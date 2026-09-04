@@ -34,7 +34,7 @@ The build follows the phased plan in `docs/SPEC.md §7`. Implemented so far:
 | **F1** | L1 proof-of-endpoint registration on SQLite, persistence, upsert/expiry, stable error codes | ✅ |
 | **F2** | Search (capability / free-text AND / geo / pagination / trust filters), heartbeat (v1 signed + legacy), expiry prune | ✅ |
 | **L5 base** | Append-only, hash-chained audit log written in the same transaction as every state change; `/v1/audit/*` read + verify | ✅ (foundation) |
-| **F3** | L2 domain verification (DNS TXT / HTTPS well-known) | ⏳ planned |
+| **F3** | L2 domain verification (DNS TXT / HTTPS well-known) | ✅ |
 | **F4** | L3 vouching + L4 reports / auto-suspend | ⏳ planned |
 | **F6** | Federation seams, Docker, OpenAPI polish | ⏳ planned |
 
@@ -90,6 +90,14 @@ systemd + Apache reverse-proxy layout (`ProxyPass /haap-directory ->
 backup notes. **Cloudflare note:** if the domain sits behind Cloudflare,
 disable the Browser Integrity Check for the directory path — Python-stdlib
 clients (like the `haap` client) are otherwise rejected with error 1010.
+This also affects the L2 `https_well_known` verifier: a directory running on a
+Cloudflare-fronted host cannot verify a *different* Cloudflare-fronted domain,
+because the server-side `urllib` fetch is itself blocked by BIC (error 1010).
+Use the **`dns_txt`** method for domains behind Cloudflare (the `dig` check
+does not traverse Cloudflare), reserving HTTPS well-known for plain-Apache /
+non-CDN hosts. The live instance and the `Peluqueria Euraka` demo agent prove
+`acoalex.com` via `dns_txt`.
+
 
 ## API at a glance
 
@@ -103,6 +111,9 @@ Canonical endpoints under `/v1`; legacy aliases keep the `haap` client working.
 | `GET  /v1/search` | Search by `capability`, `q`, `geo`, `limit`/`offset` + trust filters |
 | `GET  /v1/agents/{fp}` | Full manifest + trust block |
 | `GET  /v1/audit/head`, `GET /v1/audit/log` | Read and verify the transparency chain |
+| `POST /v1/verify-domain` | L2: signed request issues a domain challenge (DNS TXT or HTTPS well-known), 30-min single-use token (202) |
+| `POST /v1/verify-domain/confirm` | L2: directory re-checks the record server-side, validates endpoint↔domain consistency, marks agent domain-verified (90-day validity) |
+| `GET  /v1/verify-domain/status?fingerprint=…` | L2: current verification state (primary) |
 | `GET  /health` | Status, listed count, chain seq, directory fingerprint |
 | `POST /register`, `POST /register/complete`, `POST /heartbeat`, `GET /search`, `GET /agents/{fp}` | Legacy aliases (identical semantics) |
 
