@@ -26,6 +26,26 @@ from haap_directory.config import DirectoryConfig  # noqa: E402
 from haap_directory.crypto import KeyPair  # noqa: E402
 from haap_directory.http_api import DirectoryHTTPServer  # noqa: E402
 from haap_directory.identity import fingerprint_of_public_key  # noqa: E402
+from haap_directory.resolver import ResolverNotFound, ResolverTemporary  # noqa: E402
+
+
+class StubResolver:
+    """Deterministic resolver for L2 tests (no real DNS/HTTP)."""
+
+    def __init__(self):
+        self.txt: dict[str, list[str]] = {}
+        self.well_known: dict[str, str] = {}
+        self.txt_temporary: set[str] = set()
+
+    def resolve_txt(self, name: str) -> list[str]:
+        if name in self.txt_temporary:
+            raise ResolverTemporary("stub servfail")
+        return self.txt.get(name, [])
+
+    def fetch_well_known(self, domain: str) -> str:
+        if domain not in self.well_known:
+            raise ResolverNotFound("stub 404")
+        return self.well_known[domain]
 
 
 class MutableClock:
@@ -85,6 +105,13 @@ class Agent:
 
     def sign_nonce(self, nonce: str) -> str:
         return base64.b64encode(self.keypair.sign(nonce.encode("ascii"))).decode("ascii")
+
+    def sign_payload(self, payload: dict) -> str:
+        """Sign the canonical JSON of a request subset (L2/L3/L4 endpoints)."""
+        canonical = json.dumps(
+            payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False
+        ).encode("utf-8")
+        return base64.b64encode(self.keypair.sign(canonical)).decode("ascii")
 
 
 def make_agent(name: str = "Test Agent", endpoint: Optional[str] = None) -> Agent:
@@ -147,6 +174,7 @@ class RunningServer:
     server: DirectoryHTTPServer
     clock: MutableClock
     config: DirectoryConfig
+    resolver: object = None
 
 
 @pytest.fixture()
@@ -160,7 +188,7 @@ def make_server(tmp_path, clock):
     servers: list[DirectoryHTTPServer] = []
     counter = {"n": 0}
 
-    def _factory(**config_overrides) -> RunningServer:
+    def _factory(resolver=None, **config_overrides) -> RunningServer:
         counter["n"] += 1
         db_path = str(tmp_path / f"dird_{counter['n']}.db")
         defaults = dict(
@@ -175,11 +203,13 @@ def make_server(tmp_path, clock):
         defaults.update(config_overrides)
         config = DirectoryConfig(**defaults)
         keypair = KeyPair.generate()
-        server = DirectoryHTTPServer.build(config, keypair, clock=clock)
+        server = DirectoryHTTPServer.build(config, keypair, clock=clock, resolver=resolver)
         http = server.start()
         servers.append(server)
         url = f"http://127.0.0.1:{http.server_address[1]}"
-        return RunningServer(url=url, server=server, clock=clock, config=config)
+        return RunningServer(
+            url=url, server=server, clock=clock, config=config, resolver=resolver
+        )
 
     yield _factory
 

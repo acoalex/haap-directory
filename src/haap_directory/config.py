@@ -39,6 +39,32 @@ class DirectoryConfig:
     rate_register_per_hour: int = 5
     key_path: str = ""  # directory signing key file; "" -> alongside db
 
+    # L2 domain verification (F3).
+    domain_token_ttl_s: int = 1800          # 30 min single-use token
+    domain_verification_ttl_days: int = 90  # validity of a confirmed verification
+    max_pending_verifications: int = 5      # per agent
+    wellknown_timeout_s: int = 10
+    wellknown_max_bytes: int = 4096
+
+    # L3 vouching (F4).
+    vouch_max_outgoing: int = 10
+    vouch_max_expiry_days: int = 180
+    vouch_young_hours: int = 72
+
+    # L4 reputation (F4).
+    report_tenure_hours: int = 72           # reporter min listed age to count
+    report_window_days: int = 7             # rolling auto-suspend window
+    report_decay_days: int = 180            # reports older than this stop counting
+    report_dup_window_hours: int = 24       # duplicate reporter+target+category
+    auto_suspend_threshold: int = 3         # unique eligible reporters
+    report_war_days: int = 30               # mutual-report annotation window
+
+    # L5 audit checkpoints (F5).
+    checkpoint_interval_s: int = 3600       # signed checkpoint cadence
+
+    # Moderation (F4): operator-held Ed25519 public keys (standard base64).
+    moderator_keys: list = field(default_factory=list)
+
     @property
     def ttl_seconds(self) -> float:
         return self.ttl_hours * 3600.0

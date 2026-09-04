@@ -21,9 +21,11 @@ from . import PROTOCOL_VERSION, __version__
 from .canonical import canonical_json
 from .config import DirectoryConfig
 from .crypto import KeyPair, b64d, verify_with
+from .domain import DomainService, endpoint_host
 from .errors import DirectoryError
 from .identity import fingerprint_of_public_key
 from .manifest import validate_manifest
+from .resolver import Resolver
 from .store import Store, load_manifest_json
 from .timeutil import Clock, from_rfc3339, system_clock, to_rfc3339
 
@@ -40,14 +42,36 @@ class DirectoryService:
         keypair: KeyPair,
         config: DirectoryConfig,
         clock: Clock = system_clock,
+        resolver: Optional[Resolver] = None,
     ):
         self.store = store
         self.keypair = keypair
         self.config = config
         self._clock = clock
         self.directory_fingerprint = fingerprint_of_public_key(keypair.public_key)
+        self.domain = DomainService(store, config, clock, resolver)
+        # L3/L4/L5 sub-services are attached by their phases (see below).
+        self.vouches = None
+        self.reputation = None
+        self.moderation = None
+        self.audit = None
+        self._attach_subservices()
         # Prune stale entries on startup (SPEC §5.3, §7 F2).
         self.store.prune_expired()
+
+    def _attach_subservices(self) -> None:
+        """Wire L3 (vouching), L4 (reputation + moderation) and L5 (audit)."""
+        from .audit_service import AuditService
+        from .moderation import ModerationService
+        from .reputation import ReputationService
+        from .vouching import VouchService
+
+        self.vouches = VouchService(self.store, self.config, self._clock)
+        self.reputation = ReputationService(self.store, self.config, self._clock)
+        self.moderation = ModerationService(
+            self.store, self.config, self._clock, self.reputation
+        )
+        self.audit = AuditService(self.store, self.keypair, self.config, self._clock)
 
     def now(self) -> float:
         return self._clock()
@@ -231,13 +255,48 @@ class DirectoryService:
         return {"manifest": load_manifest_json(row), "trust": self.build_trust_block(row)}
 
     def build_trust_block(self, row: dict) -> dict:
-        """The §5.2 trust block. L2–L4 fields carry honest defaults for now."""
+        """The §5.2 trust block, assembled from the L1–L5 signals available."""
         now = self.now()
+        fingerprint = row["fingerprint"]
         age_days = round((now - row["registered_epoch"]) / 86400.0, 4)
         fresh = bool(
             row["last_heartbeat_epoch"] is not None
             and (now - row["last_heartbeat_epoch"]) <= self.config.ttl_seconds
         )
+
+        # L2: domain verification signal (primary = matches the endpoint host).
+        host = endpoint_host(load_manifest_json(row))
+        primary = self.domain.primary_verification(fingerprint, host)
+        domain_block = None
+        if primary is not None:
+            domain_block = {
+                "domain": primary["domain"],
+                "method": primary["method"],
+                "verified_at": primary["verified_at"],
+                "expires_at": primary["expires_at"],
+                "primary": True,
+            }
+
+        # L3/L4 signals (present when their services are wired in).
+        vouches_in = self.vouches.inbound_signal(fingerprint) if self.vouches else []
+        vouch_annotations = (
+            self.vouches.annotations(fingerprint) if self.vouches
+            else {"mutual_vouch_density": 0.0, "vouchers_share_registration_cluster": False}
+        )
+        reports = (
+            self.reputation.counters(fingerprint) if self.reputation
+            else {"by_category": {}, "unique_reporters": 0, "first_at": None, "last_at": None}
+        )
+        block_recommendation = (
+            self.reputation.block_recommendation(fingerprint) if self.reputation else None
+        )
+        suspension = None
+        if row["status"] == "suspended" and row["suspension_json"]:
+            try:
+                suspension = json.loads(row["suspension_json"])
+            except (ValueError, TypeError):
+                suspension = None
+
         return {
             "directory_fingerprint": self.directory_fingerprint,
             "listed_since": row["registered_at"],
@@ -245,22 +304,14 @@ class DirectoryService:
             "last_heartbeat": row["last_heartbeat"],
             "fresh": fresh,
             "endpoint_proof_at": row["endpoint_proof_at"],
-            "domain_verified": False,
-            "domain_verification": None,
-            "vouches_in": [],
-            "vouch_annotations": {
-                "mutual_vouch_density": 0.0,
-                "vouchers_share_registration_cluster": False,
-            },
-            "reports": {
-                "by_category": {},
-                "unique_reporters": 0,
-                "first_at": None,
-                "last_at": None,
-            },
+            "domain_verified": domain_block is not None,
+            "domain_verification": domain_block,
+            "vouches_in": vouches_in,
+            "vouch_annotations": vouch_annotations,
+            "reports": reports,
             "status": row["status"],
-            "suspension": None,
-            "block_recommendation": None,
+            "suspension": suspension,
+            "block_recommendation": block_recommendation,
             "reputation_history": [],
             "audit_verifiable": True,
         }
@@ -273,7 +324,7 @@ class DirectoryService:
             "version": __version__,
             "protocol_version": PROTOCOL_VERSION,
             "agents": self.store.count_live(),
-            "suspended": 0,
+            "suspended": self.store.count_suspended(),
             "pending_verifications": 0,
             "chain_seq": head["seq"],
             "uptime_s": round(uptime_s, 1),
