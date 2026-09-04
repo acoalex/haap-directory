@@ -111,8 +111,9 @@ detection + signed checkpoints), `/metrics`, rate-limit flood (429 +
 is present — the **unmodified** `haap` client registering, searching and
 heartbeating against this service.
 
-The L2 `dns_txt` method needs the optional `dnspython` dependency
-(`pip install '.[dns]'`); `https_well_known` works with the stdlib alone.
+The L2 `dns_txt` method shells out to the system `dig` binary
+(`bind9-dnsutils`); `https_well_known` works with the stdlib alone. In tests
+both are driven through an injectable stub resolver, so neither is contacted.
 
 ## License
 

@@ -26,26 +26,45 @@ from haap_directory.config import DirectoryConfig  # noqa: E402
 from haap_directory.crypto import KeyPair  # noqa: E402
 from haap_directory.http_api import DirectoryHTTPServer  # noqa: E402
 from haap_directory.identity import fingerprint_of_public_key  # noqa: E402
-from haap_directory.resolver import ResolverNotFound, ResolverTemporary  # noqa: E402
+from haap_directory.errors import DirectoryError  # noqa: E402
 
 
 class StubResolver:
-    """Deterministic resolver for L2 tests (no real DNS/HTTP)."""
+    """Deterministic resolver for L2 tests (no real DNS/HTTP).
+
+    Implements the ``check(domain, method, token)`` seam using in-memory maps:
+    ``txt`` keyed by ``_haap.<domain>`` and ``well_known`` keyed by domain;
+    ``txt_temporary`` forces a transient DNS error for a given name.
+    """
 
     def __init__(self):
         self.txt: dict[str, list[str]] = {}
         self.well_known: dict[str, str] = {}
         self.txt_temporary: set[str] = set()
 
-    def resolve_txt(self, name: str) -> list[str]:
-        if name in self.txt_temporary:
-            raise ResolverTemporary("stub servfail")
-        return self.txt.get(name, [])
-
-    def fetch_well_known(self, domain: str) -> str:
-        if domain not in self.well_known:
-            raise ResolverNotFound("stub 404")
-        return self.well_known[domain]
+    def check(self, domain: str, method: str, token: str) -> None:
+        if method == "dns_txt":
+            name = f"_haap.{domain}"
+            if name in self.txt_temporary:
+                raise DirectoryError("DNS_ERROR_TEMPORARY")
+            expected = f"haap-verify={token}"
+            for rec in self.txt.get(name, []):
+                r = rec.strip()
+                if r == token or r.startswith(expected):
+                    return
+            raise DirectoryError("DNS_TXT_NOT_FOUND")
+        body = self.well_known.get(domain)
+        if body is None:
+            raise DirectoryError("WELL_KNOWN_NOT_FOUND")
+        if body.strip() == token:
+            return
+        try:
+            parsed = json.loads(body)
+            if isinstance(parsed, dict) and parsed.get("haap_verify_token") == token:
+                return
+        except ValueError:
+            pass
+        raise DirectoryError("WELL_KNOWN_MISMATCH")
 
 
 class MutableClock:

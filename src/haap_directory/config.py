@@ -37,14 +37,16 @@ class DirectoryConfig:
     # Anonymous per-IP rate limits (capacity, refill window seconds).
     rate_search_per_min: int = 60
     rate_register_per_hour: int = 5
+    # Trust X-Forwarded-For / CF-Connecting-IP from loopback peers only
+    # (set true when running behind a trusted local reverse proxy).
+    trust_proxy_headers: bool = False
     key_path: str = ""  # directory signing key file; "" -> alongside db
 
-    # L2 domain verification (F3).
+    # L2 domain verification (F3). The DNS/well-known network limits live in
+    # verify.py (it owns the dig/TLS fetch); these are the protocol timers.
     domain_token_ttl_s: int = 1800          # 30 min single-use token
     domain_verification_ttl_days: int = 90  # validity of a confirmed verification
     max_pending_verifications: int = 5      # per agent
-    wellknown_timeout_s: int = 10
-    wellknown_max_bytes: int = 4096
 
     # L3 vouching (F4).
     vouch_max_outgoing: int = 10

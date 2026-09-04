@@ -8,33 +8,19 @@ lookup at ``_haap.<domain>`` or an HTTPS well-known fetch. This is a *signal*
 
 from __future__ import annotations
 
-import json
-import re
 import secrets
 from typing import Optional
 from urllib.parse import urlsplit
 
-from .canonical import canonical_json
 from .config import DirectoryConfig
 from .errors import DirectoryError
-from .resolver import Resolver, ResolverNotFound, ResolverTemporary, SystemResolver
+from .resolver import Resolver, SystemResolver
 from .signing import subset, verify_over
 from .store import Store, load_manifest_json
 from .timeutil import Clock, system_clock, to_rfc3339
+from .verify import validate_domain  # dig-based checker's domain validator
 
-_DOMAIN_RE = re.compile(
-    r"^(?=.{1,253}$)([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,}$"
-)
 _METHODS = ("dns_txt", "https_well_known")
-
-
-def validate_domain(domain: object) -> str:
-    if not isinstance(domain, str):
-        raise DirectoryError("DOMAIN_INVALID", "domain must be a string")
-    d = domain.strip()
-    if d != d.lower() or "/" in d or ":" in d or " " in d or not _DOMAIN_RE.match(d):
-        raise DirectoryError("DOMAIN_INVALID")
-    return d
 
 
 def endpoint_host(manifest: dict) -> str:
@@ -59,9 +45,7 @@ class DomainService:
         self.store = store
         self.config = config
         self._clock = clock
-        self.resolver: Resolver = resolver or SystemResolver(
-            timeout_s=config.wellknown_timeout_s, max_bytes=config.wellknown_max_bytes
-        )
+        self.resolver: Resolver = resolver or SystemResolver()
 
     def now(self) -> float:
         return self._clock()
@@ -166,35 +150,9 @@ class DomainService:
         }
 
     def _check_control(self, domain: str, method: str, token: str) -> None:
-        if method == "dns_txt":
-            name = f"_haap.{domain}"
-            try:
-                records = self.resolver.resolve_txt(name)
-            except ResolverTemporary as exc:
-                raise DirectoryError("DNS_ERROR_TEMPORARY") from exc
-            expected = f"haap-verify={token}"
-            for rec in records:
-                r = rec.strip()
-                if r == token or r == expected or r.startswith(expected):
-                    return
-            raise DirectoryError("DNS_TXT_NOT_FOUND")
-        # https_well_known
-        try:
-            body = self.resolver.fetch_well_known(domain)
-        except ResolverNotFound as exc:
-            raise DirectoryError("WELL_KNOWN_NOT_FOUND") from exc
-        except ResolverTemporary as exc:
-            raise DirectoryError("DNS_ERROR_TEMPORARY") from exc
-        text = body.strip()
-        if text == token:
-            return
-        try:
-            parsed = json.loads(body)
-            if isinstance(parsed, dict) and parsed.get("haap_verify_token") == token:
-                return
-        except ValueError:
-            pass
-        raise DirectoryError("WELL_KNOWN_MISMATCH")
+        """Delegate to the injected resolver, which raises a stable code on
+        failure (``DNS_TXT_NOT_FOUND``, ``WELL_KNOWN_*``, ``DNS_ERROR_TEMPORARY``)."""
+        self.resolver.check(domain, method, token)
 
     # -- signals -----------------------------------------------------------
     def status(self, fingerprint: str) -> list[dict]:

@@ -1,17 +1,18 @@
 # HAAP Public Directory — single-container image (SPEC §6.1, §7 F6).
 FROM python:3.11-slim
 
-# Optional: dnspython enables the L2 dns_txt verification method. The
-# https_well_known method works without it.
-ARG WITH_DNS=1
+# `dig` (bind9-dnsutils) powers the L2 dns_txt verification method; the
+# https_well_known method needs only the stdlib.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends dnsutils \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 COPY pyproject.toml README.md LICENSE ./
 COPY src ./src
 COPY haap_dird.py ./
 
-RUN pip install --no-cache-dir . \
-    && if [ "$WITH_DNS" = "1" ]; then pip install --no-cache-dir dnspython; fi
+RUN pip install --no-cache-dir .
 
 # Persist the SQLite index + directory key on a mounted volume.
 VOLUME ["/data"]

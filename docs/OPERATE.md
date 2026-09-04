@@ -93,12 +93,14 @@ consistent snapshot of the database is a consistent audit chain.
 
 ## L2 domain verification
 
-The directory performs domain-control checks itself. The `dns_txt` method
-resolves `_haap.<domain>` and requires the optional `dnspython` dependency
-(`pip install dnspython`); the `https_well_known` method fetches
-`https://<domain>/.well-known/haap-verify.txt` over TLS and needs no extra
-dependency. Verifications are valid 90 days and downgrade automatically.
-`domain_verified` is a control signal, never "verified business" or KYC.
+The directory performs domain-control checks itself (`verify.py`). The
+`dns_txt` method resolves `_haap.<domain>` via the system `dig` binary
+(install `bind9-dnsutils`) and rejects off-registrable-domain CNAMEs; the
+`https_well_known` method fetches `https://<domain>/.well-known/haap-verify.txt`
+(or `.json`) over TLS, following only same-registrable-domain redirects, with
+the body capped at 4 KiB and a 10 s timeout — needs no extra dependency.
+Verifications are valid 90 days and downgrade automatically. `domain_verified`
+is a control signal, never "verified business" or KYC.
 
 ## Moderation
 

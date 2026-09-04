@@ -210,7 +210,19 @@ class DirectoryHTTPServer:
                 return data
 
             def _client_ip(self) -> str:
-                return self.client_address[0] if self.client_address else "unknown"
+                peer = self.client_address[0] if self.client_address else "unknown"
+                if not server.config.trust_proxy_headers:
+                    return peer
+                # Only trust forwarding headers when the TCP peer is local (a
+                # reverse proxy on the same host); otherwise they are spoofable.
+                if peer not in ("127.0.0.1", "::1"):
+                    return peer
+                header = (
+                    self.headers.get("CF-Connecting-IP")
+                    or self.headers.get("X-Forwarded-For")
+                    or ""
+                )
+                return header.split(",")[0].strip() or peer
 
             # -- GET ------------------------------------------------------
             def do_GET(self):
@@ -381,10 +393,18 @@ class DirectoryHTTPServer:
                     if path in ("/v1/heartbeat", "/heartbeat"):
                         return self._handle_heartbeat(path == "/v1/heartbeat", request_id)
                     if path == "/v1/verify-domain":
+                        if not self._rate_limit(
+                            server.limiters.register, self._client_ip(), request_id
+                        ):
+                            return None
                         return self._json_action(
                             202, server.service.domain.request_verification, request_id
                         )
                     if path == "/v1/verify-domain/confirm":
+                        if not self._rate_limit(
+                            server.limiters.register, self._client_ip(), request_id
+                        ):
+                            return None
                         return self._json_action(
                             200, server.service.domain.confirm, request_id
                         )
