@@ -37,6 +37,10 @@ class DirectoryConfig:
     # Anonymous per-IP rate limits (capacity, refill window seconds).
     rate_search_per_min: int = 60
     rate_register_per_hour: int = 5
+    # L2 domain verification (SPEC §3.3).
+    domain_challenge_ttl_s: int = 1800        # token TTL: 30 minutes
+    domain_validity_days: float = 90.0        # verified signal lifetime
+    max_pending_domain_verifications: int = 5 # per agent (§4.3)
     # Trust X-Forwarded-For / CF-Connecting-IP from loopback peers only
     # (set true when running behind a trusted local reverse proxy).
     trust_proxy_headers: bool = False

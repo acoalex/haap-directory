@@ -26,8 +26,20 @@ from .identity import fingerprint_of_public_key
 from .manifest import validate_manifest
 from .store import Store, load_manifest_json
 from .timeutil import Clock, from_rfc3339, system_clock, to_rfc3339
+from .verify import (
+    check_dns_txt,
+    check_https_well_known,
+    registrable_domain,
+    validate_domain,
+)
+from urllib.parse import urlsplit
 
 MAX_CLOCK_SKEW_S = 300
+
+
+def _within(parent: str, child: str) -> bool:
+    """True if ``child == parent`` or ``child`` ends with ``.parent``."""
+    return child == parent or child.endswith("." + parent)
 NONCE_PREFIX = "v1:register:"
 
 
@@ -160,6 +172,160 @@ class DirectoryService:
             "ttl_seconds": int(self.config.ttl_seconds),
         }
 
+    # -- L2 domain verification ----------------------------------------------
+    def request_domain_verification(
+        self,
+        fingerprint: str,
+        domain: str,
+        method: str,
+        signature_b64: str,
+        body_canonical: bytes,
+    ) -> dict:
+        """Issue an L2 challenge (SPEC §4.3). Must be signed by the agent key."""
+        row = self.store.get_agent_row(fingerprint)
+        if not (row and self.store.is_live_row(row)):
+            raise DirectoryError("AGENT_NOT_LISTED")
+        if method not in ("dns_txt", "https_well_known"):
+            raise DirectoryError(
+                "INVALID_SCHEMA", "method must be dns_txt or https_well_known"
+            )
+        domain = validate_domain(domain)
+
+        if not verify_with(b64d(row["public_key_b64"]), body_canonical, b64d(signature_b64)):
+            raise DirectoryError("SIGNATURE_MISMATCH")
+
+        if (
+            self.store.count_pending_domain_challenges(fingerprint)
+            >= self.config.max_pending_domain_verifications
+        ):
+            raise DirectoryError("VERIFICATION_LIMIT_REACHED")
+
+        verification_id = "vd_" + secrets.token_hex(16)
+        token = secrets.token_hex(32)  # 128-bit+ random hex token
+        instructions = (
+            f"Publish TXT record at _haap.{domain} with value "
+            f"haap-verify={token} (TTL <= 300 recommended)"
+            if method == "dns_txt"
+            else f"Serve https://{domain}/.well-known/haap-verify.txt with the "
+            f"exact body {token} (or .json {{\"haap_verify_token\": \"{token}\"}})"
+        )
+        self.store.insert_challenge(
+            challenge_id=verification_id,
+            fingerprint=fingerprint,
+            nonce=token,
+            public_key_b64=row["public_key_b64"],
+            endpoint="",
+            ttl_s=self.config.domain_challenge_ttl_s,
+            kind="domain",
+            audit_event="domain.challenge_issued",
+            max_pending=None,
+            manifest_json=None,
+            domain=domain,
+            method=method,
+        )
+        expires = self.now() + self.config.domain_challenge_ttl_s
+        return {
+            "verification_id": verification_id,
+            "domain": domain,
+            "method": method,
+            "token": token,
+            "instructions": instructions,
+            "expires_at": to_rfc3339(expires),
+            "ttl_seconds": self.config.domain_challenge_ttl_s,
+        }
+
+    def confirm_domain_verification(
+        self,
+        fingerprint: str,
+        verification_id: str,
+        signature_b64: str,
+        body_canonical: bytes,
+    ) -> dict:
+        """Run the server-side check and persist the verification (§4.3)."""
+        challenge = self.store.get_challenge(verification_id)
+        if challenge is None or challenge.get("kind") != "domain":
+            raise DirectoryError("VERIFICATION_NOT_FOUND")
+        if challenge["fingerprint"] != fingerprint:
+            raise DirectoryError("FINGERPRINT_MISMATCH")
+        if challenge["used"]:
+            raise DirectoryError("VERIFICATION_USED")
+        if challenge["expires_epoch"] < int(self.now()):
+            raise DirectoryError("VERIFICATION_EXPIRED")
+
+        row = self.store.get_agent_row(fingerprint)
+        if not (row and self.store.is_live_row(row)):
+            raise DirectoryError("AGENT_NOT_LISTED")
+        if not verify_with(b64d(row["public_key_b64"]), body_canonical, b64d(signature_b64)):
+            raise DirectoryError("SIGNATURE_MISMATCH")
+
+        # Domain and method come from the challenge itself (server-issued),
+        # never from the request body.
+        domain = challenge["domain"] if "domain" in challenge.keys() else None
+        method = challenge["method"] if "method" in challenge.keys() else None
+        if not domain or not method:
+            raise DirectoryError("VERIFICATION_NOT_FOUND")
+
+        # Endpoint-domain consistency (SPEC §3.3): the declared endpoint host
+        # MUST be the verified domain or a subdomain of it.
+        manifest = load_manifest_json(row)
+        endpoint_host = urlsplit(manifest["agent"]["endpoint"]).hostname or ""
+        endpoint_match = _within(domain, endpoint_host.lower())
+        if not endpoint_match:
+            raise DirectoryError("DOMAIN_ENDPOINT_MISMATCH")
+
+        token = challenge["nonce"]
+        if method == "dns_txt":
+            check_dns_txt(domain, token)
+        else:
+            check_https_well_known(domain, token)
+
+        self.store.mark_challenge_used(verification_id)
+        now = self.now()
+        vrow = self.store.insert_domain_verification(
+            verification_id="dv_" + secrets.token_hex(16),
+            fingerprint=fingerprint,
+            domain=domain,
+            method=method,
+            verified_at_epoch=now,
+            validity_days=self.config.domain_validity_days,
+            endpoint_match=True,
+            challenge_id=verification_id,
+        )
+        return {
+            "status": "verified",
+            "domain": domain,
+            "method": method,
+            "verified_at": vrow["verified_at"],
+            "expires_at": vrow["expires_at"],
+            "endpoint_match": True,
+        }
+
+    def domain_verification_status(self, fingerprint: str) -> dict:
+        """Public verification state for an agent (§4.3 status endpoint)."""
+        rows = self.store.active_domain_verifications(fingerprint)
+        agent_row = self.store.get_agent_row(fingerprint)
+        endpoint_host = ""
+        if agent_row:
+            manifest = load_manifest_json(agent_row)
+            endpoint_host = (urlsplit(manifest["agent"]["endpoint"]).hostname or "").lower()
+        primary_assigned = False
+        out = []
+        for r in rows:
+            primary = False
+            if not primary_assigned and _within(r["domain"], endpoint_host):
+                primary = True
+                primary_assigned = True
+            out.append(
+                {
+                    "domain": r["domain"],
+                    "method": r["method"],
+                    "verified_at": r["verified_at"],
+                    "expires_at": r["expires_at"],
+                    "primary": primary,
+                }
+            )
+        return {"fingerprint": fingerprint, "verifications": out}
+
     # -- heartbeats --------------------------------------------------------
     def heartbeat_v1(self, fingerprint: str, timestamp: str, signature_b64: str) -> dict:
         """Signed heartbeat (SPEC §4.7). Never confirms fingerprint existence."""
@@ -231,13 +397,32 @@ class DirectoryService:
         return {"manifest": load_manifest_json(row), "trust": self.build_trust_block(row)}
 
     def build_trust_block(self, row: dict) -> dict:
-        """The §5.2 trust block. L2–L4 fields carry honest defaults for now."""
+        """The §5.2 trust block. L2 is live; L3–L4 carry honest defaults."""
         now = self.now()
         age_days = round((now - row["registered_epoch"]) / 86400.0, 4)
         fresh = bool(
             row["last_heartbeat_epoch"] is not None
             and (now - row["last_heartbeat_epoch"]) <= self.config.ttl_seconds
         )
+        # L2: newest active verification whose domain matches the endpoint
+        # host is surfaced as primary (SPEC §3.3).
+        verifications = self.store.active_domain_verifications(row["fingerprint"])
+        endpoint_host = ""
+        manifest = load_manifest_json(row)
+        endpoint_host = (urlsplit(manifest["agent"]["endpoint"]).hostname or "").lower()
+        domain_verified = False
+        domain_verification = None
+        for v in verifications:
+            if _within(v["domain"], endpoint_host):
+                domain_verified = True
+                domain_verification = {
+                    "domain": v["domain"],
+                    "method": v["method"],
+                    "verified_at": v["verified_at"],
+                    "expires_at": v["expires_at"],
+                    "primary": True,
+                }
+                break
         return {
             "directory_fingerprint": self.directory_fingerprint,
             "listed_since": row["registered_at"],
@@ -245,8 +430,8 @@ class DirectoryService:
             "last_heartbeat": row["last_heartbeat"],
             "fresh": fresh,
             "endpoint_proof_at": row["endpoint_proof_at"],
-            "domain_verified": False,
-            "domain_verification": None,
+            "domain_verified": domain_verified,
+            "domain_verification": domain_verification,
             "vouches_in": [],
             "vouch_annotations": {
                 "mutual_vouch_density": 0.0,

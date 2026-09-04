@@ -27,6 +27,7 @@ from typing import Optional
 from urllib.parse import parse_qs, urlsplit
 
 from .config import DirectoryConfig
+from .canonical import canonical_json
 from .crypto import KeyPair, b64e
 from .errors import DirectoryError
 from .rate_limit import RateLimiterSet
@@ -184,6 +185,16 @@ class DirectoryHTTPServer:
                         return self._send(200, server.service.store.audit_head(), request_id)
                     if path == "/v1/audit/log":
                         return self._handle_audit_log(parsed.query, request_id)
+                    if path == "/v1/verify-domain/status":
+                        qs = parse_qs(parsed.query)
+                        fingerprint = (qs.get("fingerprint") or [""])[0]
+                        if not fingerprint:
+                            return self._error(
+                                DirectoryError("INVALID_SCHEMA", "fingerprint is required"),
+                                request_id,
+                            )
+                        result = server.service.domain_verification_status(fingerprint)
+                        return self._send(200, result, request_id)
                     m = _AGENT_RE.match(path)
                     if m:
                         return self._handle_agent(m.group(1), path.startswith("/v1/"), request_id)
@@ -272,6 +283,18 @@ class DirectoryHTTPServer:
                         return self._handle_complete(path.startswith("/v1/"), request_id)
                     if path in ("/v1/heartbeat", "/heartbeat"):
                         return self._handle_heartbeat(path == "/v1/heartbeat", request_id)
+                    if path == "/v1/verify-domain":
+                        if not self._rate_limit(
+                            server.limiters.register, self._client_ip(), request_id
+                        ):
+                            return None
+                        return self._handle_verify_domain(request_id)
+                    if path == "/v1/verify-domain/confirm":
+                        if not self._rate_limit(
+                            server.limiters.register, self._client_ip(), request_id
+                        ):
+                            return None
+                        return self._handle_verify_domain_confirm(request_id)
                     return self._error(DirectoryError("NOT_FOUND"), request_id)
                 except DirectoryError as err:
                     return self._error(err, request_id)
@@ -333,5 +356,44 @@ class DirectoryHTTPServer:
                 if ok:
                     return self._send(200, {"status": "ok"}, request_id)
                 return self._error(DirectoryError("UNKNOWN_OR_EXPIRED"), request_id)
+
+            # -- L2: domain verification ----------------------------------
+            def _handle_verify_domain(self, request_id: str):
+                data = self._read_json(request_id)
+                if data is None:
+                    return None
+                fingerprint = str(data.get("fingerprint", ""))
+                domain = str(data.get("domain", ""))
+                method = str(data.get("method", ""))
+                signature = str(data.get("signature", ""))
+                body = canonical_json(
+                    {
+                        "fingerprint": fingerprint,
+                        "domain": domain,
+                        "method": method,
+                    }
+                )
+                result = server.service.request_domain_verification(
+                    fingerprint, domain, method, signature, body
+                )
+                return self._send(202, result, request_id)
+
+            def _handle_verify_domain_confirm(self, request_id: str):
+                data = self._read_json(request_id)
+                if data is None:
+                    return None
+                fingerprint = str(data.get("fingerprint", ""))
+                verification_id = str(data.get("verification_id", ""))
+                signature = str(data.get("signature", ""))
+                body = canonical_json(
+                    {
+                        "fingerprint": fingerprint,
+                        "verification_id": verification_id,
+                    }
+                )
+                result = server.service.confirm_domain_verification(
+                    fingerprint, verification_id, signature, body
+                )
+                return self._send(200, result, request_id)
 
         return Handler

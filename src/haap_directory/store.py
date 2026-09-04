@@ -77,7 +77,9 @@ CREATE TABLE IF NOT EXISTS domain_verifications (
     domain         TEXT NOT NULL,
     method         TEXT NOT NULL,
     verified_at    TEXT NOT NULL,
+    verified_epoch INTEGER NOT NULL DEFAULT 0,
     expires_at     TEXT NOT NULL,
+    expires_epoch  INTEGER NOT NULL DEFAULT 0,
     endpoint_match INTEGER NOT NULL DEFAULT 0,
     challenge_id   TEXT
 );
@@ -161,6 +163,24 @@ class Store:
                 "INSERT OR IGNORE INTO meta(key, value) VALUES('schema_version', ?)",
                 (SCHEMA_VERSION,),
             )
+            # Additive migration for pre-existing domain_verifications tables
+            # created before the epoch columns existed (F3).
+            cols = {
+                r["name"]
+                for r in self._conn.execute(
+                    "PRAGMA table_info(domain_verifications)"
+                ).fetchall()
+            }
+            if "verified_epoch" not in cols:
+                self._conn.execute(
+                    "ALTER TABLE domain_verifications "
+                    "ADD COLUMN verified_epoch INTEGER NOT NULL DEFAULT 0"
+                )
+            if "expires_epoch" not in cols:
+                self._conn.execute(
+                    "ALTER TABLE domain_verifications "
+                    "ADD COLUMN expires_epoch INTEGER NOT NULL DEFAULT 0"
+                )
 
     def close(self) -> None:
         with self._lock:
@@ -278,6 +298,8 @@ class Store:
         audit_event: str = "register.challenge_issued",
         max_pending: Optional[int] = None,
         manifest_json: Optional[str] = None,
+        domain: Optional[str] = None,
+        method: Optional[str] = None,
     ) -> None:
         now = self.now()
         with self._write() as cur:
@@ -303,8 +325,9 @@ class Store:
                         )
             cur.execute(
                 "INSERT INTO challenges(challenge_id, kind, fingerprint, public_key_b64, "
-                "nonce, endpoint, manifest_json, created_at, created_epoch, expires_epoch, used) "
-                "VALUES(?,?,?,?,?,?,?,?,?,?,0)",
+                "nonce, endpoint, manifest_json, domain, method, "
+                "created_at, created_epoch, expires_epoch, used) "
+                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,0)",
                 (
                     challenge_id,
                     kind,
@@ -313,6 +336,8 @@ class Store:
                     nonce,
                     endpoint,
                     manifest_json,
+                    domain,
+                    method,
                     to_rfc3339(now),
                     int(now),
                     int(now + ttl_s),
@@ -545,6 +570,79 @@ class Store:
     def count_total_agents(self) -> int:
         with self._lock:
             row = self._conn.execute("SELECT COUNT(*) AS n FROM agents").fetchone()
+        return int(row["n"])
+
+    # -- domain verifications (L2) ------------------------------------------
+    def insert_domain_verification(
+        self,
+        verification_id: str,
+        fingerprint: str,
+        domain: str,
+        method: str,
+        verified_at_epoch: float,
+        validity_days: float,
+        endpoint_match: bool,
+        challenge_id: str,
+    ) -> dict:
+        """Persist a successful L2 check (audited) and return the row."""
+        now = verified_at_epoch
+        expires_epoch = int(now + validity_days * 86400.0)
+        with self._write() as cur:
+            cur.execute(
+                "INSERT INTO domain_verifications(id, fingerprint, domain, method, "
+                "verified_at, verified_epoch, expires_at, expires_epoch, "
+                "endpoint_match, challenge_id) "
+                "VALUES(?,?,?,?,?,?,?,?,?,?)",
+                (
+                    verification_id,
+                    fingerprint,
+                    domain,
+                    method,
+                    to_rfc3339(now),
+                    int(now),
+                    to_rfc3339(expires_epoch),
+                    expires_epoch,
+                    1 if endpoint_match else 0,
+                    challenge_id,
+                ),
+            )
+            self._append_audit(
+                cur,
+                "domain.verified",
+                f"agent:{fingerprint}",
+                "ok",
+                fingerprint,
+                {
+                    "domain": domain,
+                    "method": method,
+                    "verification_id": verification_id,
+                    "endpoint_match": bool(endpoint_match),
+                },
+            )
+            row = cur.execute(
+                "SELECT * FROM domain_verifications WHERE id=?", (verification_id,)
+            ).fetchone()
+            return dict(row)
+
+    def active_domain_verifications(self, fingerprint: str) -> list[dict]:
+        """Unexpired verification rows for an agent, newest first."""
+        now = int(self.now())
+        with self._lock:
+            rows = self._conn.execute(
+                "SELECT * FROM domain_verifications WHERE fingerprint=? "
+                "AND expires_epoch >= ? ORDER BY verified_epoch DESC",
+                (fingerprint, now),
+            ).fetchall()
+        return [dict(r) for r in rows]
+
+    def count_pending_domain_challenges(self, fingerprint: str) -> int:
+        now = int(self.now())
+        with self._lock:
+            row = self._conn.execute(
+                "SELECT COUNT(*) AS n FROM challenges WHERE fingerprint=? "
+                "AND kind='domain' AND used=0 AND expires_epoch > ?",
+                (fingerprint, now),
+            ).fetchone()
         return int(row["n"])
 
     # -- misc --------------------------------------------------------------
