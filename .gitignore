@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+dist/
+build/
+
+# Directory keys and secrets — NEVER commit
+*.key
+*.pem
+directory_key.json
+.env
+secrets/
+
+# Local directory state (SQLite index + WAL)
+*.db
+*.db-wal
+*.db-shm
+data/
