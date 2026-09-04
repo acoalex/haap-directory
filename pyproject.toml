@@ -18,6 +18,9 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0"]
+# Enables the L2 "dns_txt" domain-verification method; the "https_well_known"
+# method works without it.
+dns = ["dnspython>=2.0"]
 
 [project.scripts]
 haap-dird = "haap_directory.cli:main"

@@ -64,6 +64,15 @@ class DirectoryHTTPServer:
         self._http: Optional[ThreadingHTTPServer] = None
         self._stop_event = threading.Event()
         self._checkpoint_thread: Optional[threading.Thread] = None
+        # Lightweight metrics counters (GIL-protected increments).
+        self.ops_total = 0
+        self.rejections: dict = {}
+
+    def bump_ops(self) -> None:
+        self.ops_total += 1
+
+    def bump_rejection(self, code: str) -> None:
+        self.rejections[code] = self.rejections.get(code, 0) + 1
 
     # -- construction ------------------------------------------------------
     @classmethod
@@ -157,10 +166,20 @@ class DirectoryHTTPServer:
                 self._send(code, obj, request_id, headers)
 
             def _error(self, err: DirectoryError, request_id: str):
+                server.bump_rejection(err.code)
                 headers = {}
                 if err.retry_after is not None:
                     headers["Retry-After"] = err.retry_after
                 self._send(err.status, err.to_wire(request_id), request_id, headers)
+
+            def _send_text(self, code: int, text: str, request_id: str):
+                body = text.encode("utf-8")
+                self.send_response(code)
+                self.send_header("Content-Type", "text/plain; version=0.0.4")
+                self.send_header("Content-Length", str(len(body)))
+                self.send_header("X-Request-Id", request_id)
+                self.end_headers()
+                self.wfile.write(body)
 
             def _rate_limit(self, limiter, key: str, request_id: str) -> bool:
                 allowed, retry_after = limiter.check(key)
@@ -196,12 +215,24 @@ class DirectoryHTTPServer:
             # -- GET ------------------------------------------------------
             def do_GET(self):
                 request_id = self._request_id()
+                server.bump_ops()
                 parsed = urlsplit(self.path)
                 path = parsed.path
                 try:
                     if path == "/health":
                         return self._send(
                             200, server.service.health(server.uptime_s()), request_id
+                        )
+                    if path == "/metrics":
+                        from .telemetry import render_metrics
+
+                        return self._send_text(
+                            200,
+                            render_metrics(
+                                server.service, server.uptime_s(),
+                                server.ops_total, server.rejections,
+                            ),
+                            request_id,
                         )
                     if path in ("/v1/search", "/search"):
                         if not self._rate_limit(
@@ -331,6 +362,7 @@ class DirectoryHTTPServer:
             # -- POST -----------------------------------------------------
             def do_POST(self):
                 request_id = self._request_id()
+                server.bump_ops()
                 parsed = urlsplit(self.path)
                 path = parsed.path
                 try:
@@ -412,6 +444,7 @@ class DirectoryHTTPServer:
             # -- DELETE ---------------------------------------------------
             def do_DELETE(self):
                 request_id = self._request_id()
+                server.bump_ops()
                 path = urlsplit(self.path).path
                 try:
                     m = _VOUCH_ID_RE.match(path)
