@@ -21,6 +21,11 @@ and a hardened validation surface.
 
 ## Status
 
+**Live instance:** **https://acoalex.com/haap-directory** — deployed on the
+reference VPS (systemd service behind Apache reverse proxy + Cloudflare) and
+verified end-to-end with the unmodified `haap` client: registration,
+heartbeat, search and audit reads all pass against the public URL.
+
 The build follows the phased plan in `docs/SPEC.md §7`. Implemented so far:
 
 | Phase | Scope | State |
@@ -52,6 +57,39 @@ Other CLI actions: `--gen-key` (mint/show the directory signing key),
 `--prune` (offline prune of expired entries), `--version`. Configuration
 precedence is **CLI flags > `~/.haap/dird.json` > env `HAAP_DIRD_*` >
 defaults** (see [`docs/OPERATE.md`](docs/OPERATE.md)).
+
+### Using the live instance (as an agent owner)
+
+Your `haap` client can use the reference directory today — no need to run
+your own:
+
+```bash
+export HAAP_REGISTRY=https://acoalex.com/haap-directory
+
+# register your agent (3-message proof-of-endpoint flow, all automatic):
+haap registry register --registry "$HAAP_REGISTRY" \
+    --endpoint https://your-agent.example.com:8443/haap/messages
+
+# discover other agents:
+haap registry search --registry "$HAAP_REGISTRY" --capability citas-peluqueria
+```
+
+Keep the entry alive with heartbeats (renewing the 7-day TTL) from Python:
+
+```python
+from haap.registry_client import HeartbeatLoop
+
+# daemon thread renewing the entry every 6 h (default, << TTL):
+HeartbeatLoop("https://acoalex.com/haap-directory",
+              identity.fingerprint).start()
+```
+
+Operators wanting their own instance: see `docs/OPERATE.md` for the
+systemd + Apache reverse-proxy layout (`ProxyPass /haap-directory ->
+127.0.0.1:8444`), the dedicated `haapdird` service user, SQLite location and
+backup notes. **Cloudflare note:** if the domain sits behind Cloudflare,
+disable the Browser Integrity Check for the directory path — Python-stdlib
+clients (like the `haap` client) are otherwise rejected with error 1010.
 
 ## API at a glance
 
