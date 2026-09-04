@@ -44,6 +44,20 @@ class DirectoryConfig:
     # Trust X-Forwarded-For / CF-Connecting-IP from loopback peers only
     # (set true when running behind a trusted local reverse proxy).
     trust_proxy_headers: bool = False
+    # L4 moderator keys (SPEC §3.5.5): base64 Ed25519 public keys authorised
+    # to takedown / suspend / unsuspend / resolve appeals. Empty => moderation
+    # endpoints reject with MODERATOR_UNKNOWN (directory is consumer-only).
+    moderator_key_b64: list[str] = field(default_factory=list)
+    # L4 automation thresholds (SPEC §3.5.2).
+    report_auto_suspend_count: int = 3     # unique eligible reporters (7d)
+    report_suspend_window_s: int = 7 * 86400
+    report_decay_s: int = 180 * 86400      # > this age stops counting
+    report_duplicate_window_s: int = 24 * 3600
+    report_throttle_window_s: int = 24 * 3600
+    report_war_window_s: int = 30 * 86400
+    reporter_min_tenure_s: int = 72 * 3600
+    vouch_max_outgoing: int = 10           # cap active outgoing vouches
+    vouch_max_days: int = 180              # max expiry horizon
     key_path: str = ""  # directory signing key file; "" -> alongside db
 
     @property
