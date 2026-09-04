@@ -37,6 +37,9 @@ class DirectoryConfig:
     # Anonymous per-IP rate limits (capacity, refill window seconds).
     rate_search_per_min: int = 60
     rate_register_per_hour: int = 5
+    # Trust X-Forwarded-For / CF-Connecting-IP from loopback peers only
+    # (set true when running behind a trusted local reverse proxy).
+    trust_proxy_headers: bool = False
     key_path: str = ""  # directory signing key file; "" -> alongside db
 
     @property

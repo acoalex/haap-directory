@@ -149,7 +149,20 @@ class DirectoryHTTPServer:
                 return data
 
             def _client_ip(self) -> str:
-                return self.client_address[0] if self.client_address else "unknown"
+                peer = self.client_address[0] if self.client_address else "unknown"
+                if not server.config.trust_proxy_headers:
+                    return peer
+                # Only trust forwarding headers when the TCP peer is local
+                # (reverse proxy on the same host); otherwise the header is
+                # trivially spoofable.
+                if peer not in ("127.0.0.1", "::1"):
+                    return peer
+                header = (
+                    self.headers.get("CF-Connecting-IP")
+                    or self.headers.get("X-Forwarded-For")
+                    or ""
+                )
+                return header.split(",")[0].strip() or peer
 
             # -- GET ------------------------------------------------------
             def do_GET(self):
