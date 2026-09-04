@@ -27,7 +27,6 @@ from typing import Optional
 from urllib.parse import parse_qs, urlsplit
 
 from .config import DirectoryConfig
-from .canonical import canonical_json
 from .crypto import KeyPair, b64e
 from .errors import DirectoryError
 from .rate_limit import RateLimiterSet
@@ -35,7 +34,17 @@ from .service import DirectoryService, SearchQuery
 from .store import Store
 from .timeutil import Clock, system_clock
 
-_AGENT_RE = re.compile(r"^/(?:v1/)?agents/(HF-[0-9a-f]{16})$")
+_FP = r"HF-[0-9a-f]{16}"
+_AGENT_RE = re.compile(rf"^/(?:v1/)?agents/({_FP})$")
+_VOUCHES_IN_RE = re.compile(rf"^/v1/agents/({_FP})/vouches$")
+_VOUCHES_OUT_RE = re.compile(rf"^/v1/agents/({_FP})/vouches/outgoing$")
+_REPORTS_RE = re.compile(rf"^/v1/agents/({_FP})/reports$")
+_AGENT_AUDIT_RE = re.compile(rf"^/v1/agents/({_FP})/audit$")
+_SUSPEND_RE = re.compile(rf"^/v1/agents/({_FP})/suspend$")
+_UNSUSPEND_RE = re.compile(rf"^/v1/agents/({_FP})/unsuspend$")
+_APPEAL_RE = re.compile(rf"^/v1/agents/({_FP})/appeal$")
+_VOUCH_ID_RE = re.compile(r"^/v1/vouches/([A-Za-z0-9_]+)$")
+_TAKEDOWN_RE = re.compile(r"^/v1/reports/([A-Za-z0-9_]+)/takedown$")
 
 
 class DirectoryHTTPServer:
@@ -53,6 +62,17 @@ class DirectoryHTTPServer:
         self._started_at = clock()
         self._clock = clock
         self._http: Optional[ThreadingHTTPServer] = None
+        self._stop_event = threading.Event()
+        self._checkpoint_thread: Optional[threading.Thread] = None
+        # Lightweight metrics counters (GIL-protected increments).
+        self.ops_total = 0
+        self.rejections: dict = {}
+
+    def bump_ops(self) -> None:
+        self.ops_total += 1
+
+    def bump_rejection(self, code: str) -> None:
+        self.rejections[code] = self.rejections.get(code, 0) + 1
 
     # -- construction ------------------------------------------------------
     @classmethod
@@ -61,21 +81,36 @@ class DirectoryHTTPServer:
         config: DirectoryConfig,
         keypair: KeyPair,
         clock: Clock = system_clock,
+        resolver=None,
     ) -> "DirectoryHTTPServer":
         store = Store(config.db_path, clock=clock)
-        service = DirectoryService(store, keypair, config, clock=clock)
+        service = DirectoryService(store, keypair, config, clock=clock, resolver=resolver)
         return cls(service, config, clock=clock)
 
     def uptime_s(self) -> float:
         return self._clock() - self._started_at
 
     # -- lifecycle ---------------------------------------------------------
+    def _start_checkpoint_loop(self) -> None:
+        """Background thread signing an audit checkpoint on the configured cadence."""
+        def _loop():
+            interval = max(1, self.config.checkpoint_interval_s)
+            while not self._stop_event.wait(interval):
+                try:
+                    self.service.audit.maybe_checkpoint()
+                except Exception:  # noqa: BLE001 - never crash the loop
+                    pass
+
+        self._checkpoint_thread = threading.Thread(target=_loop, daemon=True)
+        self._checkpoint_thread.start()
+
     def start(self, host: Optional[str] = None, port: Optional[int] = None) -> ThreadingHTTPServer:
         host = host if host is not None else self.config.host
         port = port if port is not None else self.config.port
         self._http = ThreadingHTTPServer((host, port), self._make_handler())
         self._http.daemon_threads = True
         threading.Thread(target=self._http.serve_forever, daemon=True).start()
+        self._start_checkpoint_loop()
         return self._http
 
     def serve_forever(self, host: Optional[str] = None, port: Optional[int] = None) -> None:
@@ -83,13 +118,20 @@ class DirectoryHTTPServer:
         port = port if port is not None else self.config.port
         self._http = ThreadingHTTPServer((host, port), self._make_handler())
         self._http.daemon_threads = True
+        self._start_checkpoint_loop()
         self._http.serve_forever()
 
     def stop(self) -> None:
+        self._stop_event.set()
         if self._http is not None:
             self._http.shutdown()
             self._http.server_close()
             self._http = None
+        # Sign a final checkpoint on shutdown (SPEC §3.6.1), then close.
+        try:
+            self.service.audit.create_checkpoint()
+        except Exception:  # noqa: BLE001 - best effort on shutdown
+            pass
         self.service.store.close()
 
     # -- handler -----------------------------------------------------------
@@ -115,11 +157,29 @@ class DirectoryHTTPServer:
                 self.end_headers()
                 self.wfile.write(body)
 
+            def _send_signed(self, code: int, obj: dict, request_id: str):
+                """Audit response signed by the directory key (SPEC §2.7.9)."""
+                headers = {
+                    "X-HAAP-Directory-Signature": server.service.audit.sign_body(obj),
+                    "X-HAAP-Directory-Fingerprint": server.service.directory_fingerprint,
+                }
+                self._send(code, obj, request_id, headers)
+
             def _error(self, err: DirectoryError, request_id: str):
+                server.bump_rejection(err.code)
                 headers = {}
                 if err.retry_after is not None:
                     headers["Retry-After"] = err.retry_after
                 self._send(err.status, err.to_wire(request_id), request_id, headers)
+
+            def _send_text(self, code: int, text: str, request_id: str):
+                body = text.encode("utf-8")
+                self.send_response(code)
+                self.send_header("Content-Type", "text/plain; version=0.0.4")
+                self.send_header("Content-Length", str(len(body)))
+                self.send_header("X-Request-Id", request_id)
+                self.end_headers()
+                self.wfile.write(body)
 
             def _rate_limit(self, limiter, key: str, request_id: str) -> bool:
                 allowed, retry_after = limiter.check(key)
@@ -153,9 +213,8 @@ class DirectoryHTTPServer:
                 peer = self.client_address[0] if self.client_address else "unknown"
                 if not server.config.trust_proxy_headers:
                     return peer
-                # Only trust forwarding headers when the TCP peer is local
-                # (reverse proxy on the same host); otherwise the header is
-                # trivially spoofable.
+                # Only trust forwarding headers when the TCP peer is local (a
+                # reverse proxy on the same host); otherwise they are spoofable.
                 if peer not in ("127.0.0.1", "::1"):
                     return peer
                 header = (
@@ -168,12 +227,24 @@ class DirectoryHTTPServer:
             # -- GET ------------------------------------------------------
             def do_GET(self):
                 request_id = self._request_id()
+                server.bump_ops()
                 parsed = urlsplit(self.path)
                 path = parsed.path
                 try:
                     if path == "/health":
                         return self._send(
                             200, server.service.health(server.uptime_s()), request_id
+                        )
+                    if path == "/metrics":
+                        from .telemetry import render_metrics
+
+                        return self._send_text(
+                            200,
+                            render_metrics(
+                                server.service, server.uptime_s(),
+                                server.ops_total, server.rejections,
+                            ),
+                            request_id,
                         )
                     if path in ("/v1/search", "/search"):
                         if not self._rate_limit(
@@ -182,19 +253,45 @@ class DirectoryHTTPServer:
                             return None
                         return self._handle_search(parsed.query, path == "/v1/search", request_id)
                     if path == "/v1/audit/head":
-                        return self._send(200, server.service.store.audit_head(), request_id)
+                        return self._send_signed(200, server.service.audit.head(), request_id)
                     if path == "/v1/audit/log":
                         return self._handle_audit_log(parsed.query, request_id)
+                    if path == "/v1/audit/checkpoints":
+                        return self._send_signed(
+                            200, server.service.audit.checkpoints(), request_id
+                        )
+                    if path == "/v1/audit/verify":
+                        seq = int((parse_qs(parsed.query).get("seq") or ["0"])[0])
+                        return self._send_signed(
+                            200, server.service.audit.verify(seq), request_id
+                        )
                     if path == "/v1/verify-domain/status":
-                        qs = parse_qs(parsed.query)
-                        fingerprint = (qs.get("fingerprint") or [""])[0]
-                        if not fingerprint:
-                            return self._error(
-                                DirectoryError("INVALID_SCHEMA", "fingerprint is required"),
-                                request_id,
-                            )
-                        result = server.service.domain_verification_status(fingerprint)
-                        return self._send(200, result, request_id)
+                        fp = (parse_qs(parsed.query).get("fingerprint") or [""])[0]
+                        return self._send(
+                            200, {"verifications": server.service.domain.status(fp)}, request_id
+                        )
+                    if path == "/v1/trust/paths":
+                        return self._handle_trust_paths(parsed.query, request_id)
+                    m = _VOUCHES_OUT_RE.match(path)
+                    if m:
+                        return self._send(
+                            200, server.service.vouches.outgoing_graph(m.group(1)), request_id
+                        )
+                    m = _VOUCHES_IN_RE.match(path)
+                    if m:
+                        return self._send(
+                            200, server.service.vouches.inbound_graph(m.group(1)), request_id
+                        )
+                    m = _REPORTS_RE.match(path)
+                    if m:
+                        return self._send(
+                            200, server.service.reputation.public_reports(m.group(1)), request_id
+                        )
+                    m = _AGENT_AUDIT_RE.match(path)
+                    if m:
+                        return self._send_signed(
+                            200, server.service.audit.agent_audit(m.group(1)), request_id
+                        )
                     m = _AGENT_RE.match(path)
                     if m:
                         return self._handle_agent(m.group(1), path.startswith("/v1/"), request_id)
@@ -257,15 +354,27 @@ class DirectoryHTTPServer:
                 entries = server.service.store.audit_entries(after=after, limit=limit)
                 head = server.service.store.audit_head()
                 next_after = entries[-1]["seq"] if entries else after
-                return self._send(
+                return self._send_signed(
                     200,
                     {"entries": entries, "next_after": next_after, "head": head},
+                    request_id,
+                )
+
+            def _handle_trust_paths(self, query_string: str, request_id: str):
+                qs = parse_qs(query_string)
+                source = (qs.get("from") or [""])[0]
+                target = (qs.get("to") or [""])[0]
+                max_depth = int((qs.get("max_depth") or ["2"])[0])
+                return self._send(
+                    200,
+                    server.service.vouches.trust_paths(source, target, max_depth),
                     request_id,
                 )
 
             # -- POST -----------------------------------------------------
             def do_POST(self):
                 request_id = self._request_id()
+                server.bump_ops()
                 parsed = urlsplit(self.path)
                 path = parsed.path
                 try:
@@ -288,13 +397,83 @@ class DirectoryHTTPServer:
                             server.limiters.register, self._client_ip(), request_id
                         ):
                             return None
-                        return self._handle_verify_domain(request_id)
+                        return self._json_action(
+                            202, server.service.domain.request_verification, request_id
+                        )
                     if path == "/v1/verify-domain/confirm":
                         if not self._rate_limit(
                             server.limiters.register, self._client_ip(), request_id
                         ):
                             return None
-                        return self._handle_verify_domain_confirm(request_id)
+                        return self._json_action(
+                            200, server.service.domain.confirm, request_id
+                        )
+                    if path == "/v1/vouches":
+                        return self._json_action(
+                            201, server.service.vouches.create, request_id
+                        )
+                    if path == "/v1/reports":
+                        return self._json_action(
+                            202, server.service.reputation.create_report, request_id
+                        )
+                    m = _TAKEDOWN_RE.match(path)
+                    if m:
+                        return self._json_action(
+                            200,
+                            lambda body: server.service.moderation.takedown(m.group(1), body),
+                            request_id,
+                        )
+                    m = _SUSPEND_RE.match(path)
+                    if m:
+                        return self._json_action(
+                            200,
+                            lambda body: server.service.moderation.suspend(m.group(1), body),
+                            request_id,
+                        )
+                    m = _UNSUSPEND_RE.match(path)
+                    if m:
+                        return self._json_action(
+                            200,
+                            lambda body: server.service.moderation.unsuspend(m.group(1), body),
+                            request_id,
+                        )
+                    m = _APPEAL_RE.match(path)
+                    if m:
+                        return self._json_action(
+                            202,
+                            lambda body: server.service.moderation.appeal(m.group(1), body),
+                            request_id,
+                        )
+                    return self._error(DirectoryError("NOT_FOUND"), request_id)
+                except DirectoryError as err:
+                    return self._error(err, request_id)
+                except Exception:  # noqa: BLE001
+                    return self._error(DirectoryError("INTERNAL_ERROR"), request_id)
+
+            def _json_action(self, code: int, fn, request_id: str):
+                """Read a JSON body, call ``fn(body)``, send its result at ``code``."""
+                data = self._read_json(request_id)
+                if data is None:
+                    return None
+                try:
+                    result = fn(data)
+                except DirectoryError as err:
+                    return self._error(err, request_id)
+                return self._send(code, result, request_id)
+
+            # -- DELETE ---------------------------------------------------
+            def do_DELETE(self):
+                request_id = self._request_id()
+                server.bump_ops()
+                path = urlsplit(self.path).path
+                try:
+                    m = _VOUCH_ID_RE.match(path)
+                    if m:
+                        return self._json_action(
+                            200,
+                            lambda body: server.service.vouches.revoke(m.group(1), body),
+                            request_id,
+                        )
                     return self._error(DirectoryError("NOT_FOUND"), request_id)
                 except DirectoryError as err:
                     return self._error(err, request_id)
@@ -356,44 +535,5 @@ class DirectoryHTTPServer:
                 if ok:
                     return self._send(200, {"status": "ok"}, request_id)
                 return self._error(DirectoryError("UNKNOWN_OR_EXPIRED"), request_id)
-
-            # -- L2: domain verification ----------------------------------
-            def _handle_verify_domain(self, request_id: str):
-                data = self._read_json(request_id)
-                if data is None:
-                    return None
-                fingerprint = str(data.get("fingerprint", ""))
-                domain = str(data.get("domain", ""))
-                method = str(data.get("method", ""))
-                signature = str(data.get("signature", ""))
-                body = canonical_json(
-                    {
-                        "fingerprint": fingerprint,
-                        "domain": domain,
-                        "method": method,
-                    }
-                )
-                result = server.service.request_domain_verification(
-                    fingerprint, domain, method, signature, body
-                )
-                return self._send(202, result, request_id)
-
-            def _handle_verify_domain_confirm(self, request_id: str):
-                data = self._read_json(request_id)
-                if data is None:
-                    return None
-                fingerprint = str(data.get("fingerprint", ""))
-                verification_id = str(data.get("verification_id", ""))
-                signature = str(data.get("signature", ""))
-                body = canonical_json(
-                    {
-                        "fingerprint": fingerprint,
-                        "verification_id": verification_id,
-                    }
-                )
-                result = server.service.confirm_domain_verification(
-                    fingerprint, verification_id, signature, body
-                )
-                return self._send(200, result, request_id)
 
         return Handler

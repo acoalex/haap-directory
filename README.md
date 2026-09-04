@@ -21,26 +21,23 @@ and a hardened validation surface.
 
 ## Status
 
-**Live instance:** **https://acoalex.com/haap-directory** — deployed on the
-reference VPS (systemd service behind Apache reverse proxy + Cloudflare) and
-verified end-to-end with the unmodified `haap` client: registration,
-heartbeat, search and audit reads all pass against the public URL.
-
-The build follows the phased plan in `docs/SPEC.md §7`. Implemented so far:
+All phases of the `docs/SPEC.md §7` build plan (F0–F6) are implemented, tested,
+and green. The full L0–L5 trust ladder is live.
 
 | Phase | Scope | State |
 |---|---|---|
 | **F0** | Repo skeleton, persistent SQLite store, `haap-dird` CLI, `/health`, config precedence | ✅ |
 | **F1** | L1 proof-of-endpoint registration on SQLite, persistence, upsert/expiry, stable error codes | ✅ |
 | **F2** | Search (capability / free-text AND / geo / pagination / trust filters), heartbeat (v1 signed + legacy), expiry prune | ✅ |
-| **L5 base** | Append-only, hash-chained audit log written in the same transaction as every state change; `/v1/audit/*` read + verify | ✅ (foundation) |
-| **F3** | L2 domain verification (DNS TXT / HTTPS well-known) | ✅ |
-| **F4** | L3 vouching + L4 reports / auto-suspend | ⏳ planned |
-| **F6** | Federation seams, Docker, OpenAPI polish | ⏳ planned |
+| **F3** | L2 domain verification (DNS TXT / HTTPS well-known), injectable resolver, 90-day expiry | ✅ |
+| **F4** | L3 vouching (graph, paths, caps) + L4 reports, auto-suspend, decay, moderation, appeals | ✅ |
+| **F5** | L5 signed checkpoints, `/v1/audit/*` (head/log/checkpoints/verify/agent), response signing | ✅ |
+| **F6** | Federation mirror seam, Docker image, `/metrics`, rate-limit hardening, operator docs | ✅ |
 
-The trust block returned with every listing already carries the L2–L4 fields
-with honest "no signal yet" defaults, so the wire shape is stable as later
-phases fill them in.
+The layered-trust design principle holds throughout: the directory returns
+labelled signals with provenance (`domain_verified`, `vouches_in`, `reports`,
+`status`, `block_recommendation`, `audit_verifiable`) and **never** a
+"safe/trusted" verdict — the consumer always decides.
 
 ## Install & run
 
@@ -58,64 +55,22 @@ Other CLI actions: `--gen-key` (mint/show the directory signing key),
 precedence is **CLI flags > `~/.haap/dird.json` > env `HAAP_DIRD_*` >
 defaults** (see [`docs/OPERATE.md`](docs/OPERATE.md)).
 
-### Using the live instance (as an agent owner)
-
-Your `haap` client can use the reference directory today — no need to run
-your own:
-
-```bash
-export HAAP_REGISTRY=https://acoalex.com/haap-directory
-
-# register your agent (3-message proof-of-endpoint flow, all automatic):
-haap registry register --registry "$HAAP_REGISTRY" \
-    --endpoint https://your-agent.example.com:8443/haap/messages
-
-# discover other agents:
-haap registry search --registry "$HAAP_REGISTRY" --capability citas-peluqueria
-```
-
-Keep the entry alive with heartbeats (renewing the 7-day TTL) from Python:
-
-```python
-from haap.registry_client import HeartbeatLoop
-
-# daemon thread renewing the entry every 6 h (default, << TTL):
-HeartbeatLoop("https://acoalex.com/haap-directory",
-              identity.fingerprint).start()
-```
-
-Operators wanting their own instance: see `docs/OPERATE.md` for the
-systemd + Apache reverse-proxy layout (`ProxyPass /haap-directory ->
-127.0.0.1:8444`), the dedicated `haapdird` service user, SQLite location and
-backup notes. **Cloudflare note:** if the domain sits behind Cloudflare,
-disable the Browser Integrity Check for the directory path — Python-stdlib
-clients (like the `haap` client) are otherwise rejected with error 1010.
-This also affects the L2 `https_well_known` verifier: a directory running on a
-Cloudflare-fronted host cannot verify a *different* Cloudflare-fronted domain,
-because the server-side `urllib` fetch is itself blocked by BIC (error 1010).
-Use the **`dns_txt`** method for domains behind Cloudflare (the `dig` check
-does not traverse Cloudflare), reserving HTTPS well-known for plain-Apache /
-non-CDN hosts. The live instance and the `Peluqueria Euraka` demo agent prove
-`acoalex.com` via `dns_txt`.
-
-
 ## API at a glance
 
 Canonical endpoints under `/v1`; legacy aliases keep the `haap` client working.
 
 | Method & path | Purpose |
 |---|---|
-| `POST /v1/register` | Step 1: verify signed manifest, issue endpoint challenge (202) |
-| `POST /v1/register/complete` | Step 2: verify endpoint proof, list the agent (201) |
+| `POST /v1/register` · `/v1/register/complete` | L1 proof-of-endpoint registration (202 → 201) |
 | `POST /v1/heartbeat` | Signed heartbeat renews the entry's TTL |
-| `GET  /v1/search` | Search by `capability`, `q`, `geo`, `limit`/`offset` + trust filters |
-| `GET  /v1/agents/{fp}` | Full manifest + trust block |
-| `GET  /v1/audit/head`, `GET /v1/audit/log` | Read and verify the transparency chain |
-| `POST /v1/verify-domain` | L2: signed request issues a domain challenge (DNS TXT or HTTPS well-known), 30-min single-use token (202) |
-| `POST /v1/verify-domain/confirm` | L2: directory re-checks the record server-side, validates endpoint↔domain consistency, marks agent domain-verified (90-day validity) |
-| `GET  /v1/verify-domain/status?fingerprint=…` | L2: current verification state (primary) |
-| `GET  /health` | Status, listed count, chain seq, directory fingerprint |
-| `POST /register`, `POST /register/complete`, `POST /heartbeat`, `GET /search`, `GET /agents/{fp}` | Legacy aliases (identical semantics) |
+| `GET  /v1/search` · `/v1/agents/{fp}` | Search + full manifest with trust block |
+| `POST /v1/verify-domain` · `/v1/verify-domain/confirm` · `GET /v1/verify-domain/status` | L2 domain verification |
+| `POST /v1/vouches` · `DELETE /v1/vouches/{id}` · `GET /v1/agents/{fp}/vouches[/outgoing]` · `GET /v1/trust/paths` | L3 vouching |
+| `POST /v1/reports` · `GET /v1/agents/{fp}/reports` | L4 reports |
+| `POST /v1/reports/{id}/takedown` · `/v1/agents/{fp}/suspend` · `/unsuspend` · `/appeal` | L4 moderation |
+| `GET  /v1/audit/head` · `/log` · `/checkpoints` · `/verify` · `/agents/{fp}/audit` | L5 transparency chain |
+| `GET  /health` · `/metrics` | Observability |
+| `POST /register` · `/register/complete` · `/heartbeat`, `GET /search` · `/agents/{fp}` | Legacy aliases (identical semantics) |
 
 Errors use a stable envelope `{"error": {"code", "message", "request_id"}}`
 with the code table in `docs/SPEC.md §4.10`.
@@ -147,11 +102,18 @@ python -m pytest -q
 HAAP_REPO=/path/to/haap python -m pytest -q
 ```
 
-The suite covers the happy path, every rejection case with its stable code,
-update-vs-fresh, injected-clock expiry, search semantics, the audit chain
-(link + tamper detection), and — when the companion `haap` checkout is present
-— the **unmodified** `haap` client registering, searching and heartbeating
-against this service.
+The suite covers every phase: the happy path and each rejection case with its
+stable code, update-vs-fresh, injected-clock expiry, search semantics, L2
+domain verification (stub resolver), L3 vouching (graph, paths, caps, rules),
+L4 reports/auto-suspend/moderation/appeal, the L5 audit chain (link + tamper
+detection + signed checkpoints), `/metrics`, rate-limit flood (429 +
+`Retry-After`), the federation mirror, and — when the companion `haap` checkout
+is present — the **unmodified** `haap` client registering, searching and
+heartbeating against this service.
+
+The L2 `dns_txt` method shells out to the system `dig` binary
+(`bind9-dnsutils`); `https_well_known` works with the stdlib alone. In tests
+both are driven through an injectable stub resolver, so neither is contacted.
 
 ## License
 

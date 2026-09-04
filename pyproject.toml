@@ -18,6 +18,9 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0"]
+# Note: the L2 "dns_txt" method shells out to the system `dig` binary
+# (bind9-dnsutils); the "https_well_known" method uses only the stdlib. No
+# extra Python dependency is required for domain verification.
 
 [project.scripts]
 haap-dird = "haap_directory.cli:main"

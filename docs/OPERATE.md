@@ -46,6 +46,10 @@ audit checkpoints. **Back it up separately and never commit it.**
   chain_seq, uptime_s, directory_fingerprint, api.completion_route}` — no
   sensitive data. Also serves as the legacy `/health` contract (superset of
   `{status, agents}`).
+- `GET /metrics` → plain-text Prometheus-style exposition:
+  `haapd_agents_listed`, `haapd_agents_suspended`, `haapd_agents_total`,
+  `haapd_audit_seq`, `haapd_ops_total`, `haapd_uptime_seconds`, and
+  `haapd_rejections_total{code="…"}`.
 - Every response carries `X-Request-Id` (accepted from the client or
   generated). Rejections use the stable error envelope
   `{"error": {code, message, request_id}}`; `429`s carry `Retry-After`.
@@ -87,8 +91,38 @@ consistent snapshot of the database is a consistent audit chain.
 - Pending-challenge table is capped; the oldest pending challenge is evicted
   (audited) when full.
 
-## Roadmap for operators
+## L2 domain verification
 
-L2 domain verification (F3), L3 vouching + L4 reports/moderation (F4) and
-federation/mirroring (F6) are planned. Moderator keys and the moderation
-runbook (`docs/MODERATION.md`) arrive with F4.
+The directory performs domain-control checks itself (`verify.py`). The
+`dns_txt` method resolves `_haap.<domain>` via the system `dig` binary
+(install `bind9-dnsutils`) and rejects off-registrable-domain CNAMEs; the
+`https_well_known` method fetches `https://<domain>/.well-known/haap-verify.txt`
+(or `.json`) over TLS, following only same-registrable-domain redirects, with
+the body capped at 4 KiB and a 10 s timeout — needs no extra dependency.
+Verifications are valid 90 days and downgrade automatically. `domain_verified`
+is a control signal, never "verified business" or KYC.
+
+## Moderation
+
+Moderator public keys are configured in `dird.json` (`moderator_keys`). All
+moderator actions and the automated auto-suspend automaton are L5-audited. See
+[`MODERATION.md`](MODERATION.md) for the runbook, thresholds and appeal flow.
+
+## Federation & mirrors
+
+Every response carries `directory_fingerprint`; the append-only chain plus
+`/v1/audit/*` let an independent operator run a **mirror** that ingests the
+chain and reproduces an identical head — federation without a central registry
+of directories. Ingest with `haap_directory.mirror.ingest_chain(base_url)`;
+two mirrors agreeing on a head prove they saw the same ordered world. v1 is
+single-directory; multi-directory trust is a consumer decision (SPEC §3.7 M12).
+
+## Deployment
+
+A single-container image is provided (`Dockerfile`): it runs `haap-dird` as a
+non-root user with the SQLite index and directory key on a `/data` volume.
+
+```bash
+docker build -t haap-dird .
+docker run -p 8444:8444 -v haap-data:/data haap-dird
+```

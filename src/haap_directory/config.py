@@ -37,28 +37,35 @@ class DirectoryConfig:
     # Anonymous per-IP rate limits (capacity, refill window seconds).
     rate_search_per_min: int = 60
     rate_register_per_hour: int = 5
-    # L2 domain verification (SPEC §3.3).
-    domain_challenge_ttl_s: int = 1800        # token TTL: 30 minutes
-    domain_validity_days: float = 90.0        # verified signal lifetime
-    max_pending_domain_verifications: int = 5 # per agent (§4.3)
     # Trust X-Forwarded-For / CF-Connecting-IP from loopback peers only
     # (set true when running behind a trusted local reverse proxy).
     trust_proxy_headers: bool = False
-    # L4 moderator keys (SPEC §3.5.5): base64 Ed25519 public keys authorised
-    # to takedown / suspend / unsuspend / resolve appeals. Empty => moderation
-    # endpoints reject with MODERATOR_UNKNOWN (directory is consumer-only).
-    moderator_key_b64: list[str] = field(default_factory=list)
-    # L4 automation thresholds (SPEC §3.5.2).
-    report_auto_suspend_count: int = 3     # unique eligible reporters (7d)
-    report_suspend_window_s: int = 7 * 86400
-    report_decay_s: int = 180 * 86400      # > this age stops counting
-    report_duplicate_window_s: int = 24 * 3600
-    report_throttle_window_s: int = 24 * 3600
-    report_war_window_s: int = 30 * 86400
-    reporter_min_tenure_s: int = 72 * 3600
-    vouch_max_outgoing: int = 10           # cap active outgoing vouches
-    vouch_max_days: int = 180              # max expiry horizon
     key_path: str = ""  # directory signing key file; "" -> alongside db
+
+    # L2 domain verification (F3). The DNS/well-known network limits live in
+    # verify.py (it owns the dig/TLS fetch); these are the protocol timers.
+    domain_token_ttl_s: int = 1800          # 30 min single-use token
+    domain_verification_ttl_days: int = 90  # validity of a confirmed verification
+    max_pending_verifications: int = 5      # per agent
+
+    # L3 vouching (F4).
+    vouch_max_outgoing: int = 10
+    vouch_max_expiry_days: int = 180
+    vouch_young_hours: int = 72
+
+    # L4 reputation (F4).
+    report_tenure_hours: int = 72           # reporter min listed age to count
+    report_window_days: int = 7             # rolling auto-suspend window
+    report_decay_days: int = 180            # reports older than this stop counting
+    report_dup_window_hours: int = 24       # duplicate reporter+target+category
+    auto_suspend_threshold: int = 3         # unique eligible reporters
+    report_war_days: int = 30               # mutual-report annotation window
+
+    # L5 audit checkpoints (F5).
+    checkpoint_interval_s: int = 3600       # signed checkpoint cadence
+
+    # Moderation (F4): operator-held Ed25519 public keys (standard base64).
+    moderator_keys: list = field(default_factory=list)
 
     @property
     def ttl_seconds(self) -> float:

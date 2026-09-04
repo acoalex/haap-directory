@@ -26,6 +26,45 @@ from haap_directory.config import DirectoryConfig  # noqa: E402
 from haap_directory.crypto import KeyPair  # noqa: E402
 from haap_directory.http_api import DirectoryHTTPServer  # noqa: E402
 from haap_directory.identity import fingerprint_of_public_key  # noqa: E402
+from haap_directory.errors import DirectoryError  # noqa: E402
+
+
+class StubResolver:
+    """Deterministic resolver for L2 tests (no real DNS/HTTP).
+
+    Implements the ``check(domain, method, token)`` seam using in-memory maps:
+    ``txt`` keyed by ``_haap.<domain>`` and ``well_known`` keyed by domain;
+    ``txt_temporary`` forces a transient DNS error for a given name.
+    """
+
+    def __init__(self):
+        self.txt: dict[str, list[str]] = {}
+        self.well_known: dict[str, str] = {}
+        self.txt_temporary: set[str] = set()
+
+    def check(self, domain: str, method: str, token: str) -> None:
+        if method == "dns_txt":
+            name = f"_haap.{domain}"
+            if name in self.txt_temporary:
+                raise DirectoryError("DNS_ERROR_TEMPORARY")
+            expected = f"haap-verify={token}"
+            for rec in self.txt.get(name, []):
+                r = rec.strip()
+                if r == token or r.startswith(expected):
+                    return
+            raise DirectoryError("DNS_TXT_NOT_FOUND")
+        body = self.well_known.get(domain)
+        if body is None:
+            raise DirectoryError("WELL_KNOWN_NOT_FOUND")
+        if body.strip() == token:
+            return
+        try:
+            parsed = json.loads(body)
+            if isinstance(parsed, dict) and parsed.get("haap_verify_token") == token:
+                return
+        except ValueError:
+            pass
+        raise DirectoryError("WELL_KNOWN_MISMATCH")
 
 
 class MutableClock:
@@ -85,6 +124,13 @@ class Agent:
 
     def sign_nonce(self, nonce: str) -> str:
         return base64.b64encode(self.keypair.sign(nonce.encode("ascii"))).decode("ascii")
+
+    def sign_payload(self, payload: dict) -> str:
+        """Sign the canonical JSON of a request subset (L2/L3/L4 endpoints)."""
+        canonical = json.dumps(
+            payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False
+        ).encode("utf-8")
+        return base64.b64encode(self.keypair.sign(canonical)).decode("ascii")
 
 
 def make_agent(name: str = "Test Agent", endpoint: Optional[str] = None) -> Agent:
@@ -147,6 +193,7 @@ class RunningServer:
     server: DirectoryHTTPServer
     clock: MutableClock
     config: DirectoryConfig
+    resolver: object = None
 
 
 @pytest.fixture()
@@ -160,7 +207,7 @@ def make_server(tmp_path, clock):
     servers: list[DirectoryHTTPServer] = []
     counter = {"n": 0}
 
-    def _factory(**config_overrides) -> RunningServer:
+    def _factory(resolver=None, **config_overrides) -> RunningServer:
         counter["n"] += 1
         db_path = str(tmp_path / f"dird_{counter['n']}.db")
         defaults = dict(
@@ -175,11 +222,13 @@ def make_server(tmp_path, clock):
         defaults.update(config_overrides)
         config = DirectoryConfig(**defaults)
         keypair = KeyPair.generate()
-        server = DirectoryHTTPServer.build(config, keypair, clock=clock)
+        server = DirectoryHTTPServer.build(config, keypair, clock=clock, resolver=resolver)
         http = server.start()
         servers.append(server)
         url = f"http://127.0.0.1:{http.server_address[1]}"
-        return RunningServer(url=url, server=server, clock=clock, config=config)
+        return RunningServer(
+            url=url, server=server, clock=clock, config=config, resolver=resolver
+        )
 
     yield _factory
 

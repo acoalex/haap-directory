@@ -12,7 +12,7 @@ from __future__ import annotations
 import urllib.error
 import urllib.request
 
-from conftest import http_get
+from tests.conftest import http_get
 
 
 def _get_with_ip(url: str, ip: str) -> tuple[int, dict]:
@@ -30,14 +30,14 @@ def _get_with_ip(url: str, ip: str) -> tuple[int, dict]:
         return e.code, _json.loads(e.read() or b"{}")
 
 
-def test_proxy_headers_ignored_by_default(running):
+def test_proxy_headers_ignored_by_default(make_server):
     """Spoofed X-Forwarded-For must NOT change the rate-limit key by default."""
-    low = running.server.config.rate_search_per_min
+    running = make_server(rate_search_per_min=3)  # trust_proxy_headers defaults False
     # Exhaust the single 127.0.0.1 bucket with spoofed distinct IPs.
-    for _ in range(low + 5):
+    status = 200
+    for _ in range(6):
         status, _ = _get_with_ip(f"{running.url}/v1/search", ip="1.2.3.4")
-        if status == 429:
-            break
+    assert status == 429
     # A request with a different spoofed IP is still throttled (same bucket).
     status, _ = _get_with_ip(f"{running.url}/v1/search", ip="5.6.7.8")
     assert status == 429
