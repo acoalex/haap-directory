@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "haap-directory"
+version = "0.1.0"
+description = "HAAP Public Directory — the federated, cryptographically-verified phone book of the HAAP agent ecosystem"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Alex Acosta", email = "acoalex@gmail.com" }]
+# Runtime is stdlib-first (http.server, sqlite3). The only hard dependency is
+# `cryptography` for Ed25519 verification, exactly as the haap client package.
+dependencies = [
+    "cryptography>=41.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+haap-dird = "haap_directory.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["haap_directory*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
