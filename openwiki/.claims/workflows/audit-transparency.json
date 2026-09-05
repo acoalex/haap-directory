@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:53eb9ef2d54d8e1ec6c636f49cc3ca81cdc0288b1c226ef1be934fa2a1e7d039",
+  "claims": [
+    {
+      "id": "claim_6ad97cdefa2d4c46912891bb41b84d27",
+      "statement": "The L5 audit chain is the directory's public record of every state change: each state-changing Store write appends exactly one chain entry inside the same SQLite write transaction as the mutation it records, so the chain row count equals committed mutating ops by construction and a failed (rolled-back) mutation leaves no entry.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/store.py#L211-L261",
+          "version": "repo-lines-v1:sha256:9360b4af1ced11374c64697387a94aa01dba98a70064e3d2218fd126a2df5bfa:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVmMzliNTdmYzc2YmQ1ZDlmZmE5MTRiNGJjZGU1MjFiMmRjYTVmMGIxM2UwZmNiYjZhMDhlN2E4NzAwMjY1ZGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1ZWVmZjNjNDc3NmY1ZmI5Yzk1OTg0ZDFhMTc0NmIxZTU2OGRkNjhkNWVkZTZlNDQ4NWFhNzM1ODhhNDM3ZWIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUwZDg4ODQ5YWFlNGFjNzczNzgwYTI5OGQ2ZTNiMTJlNmM4OWU1YTY1N2FjMGZhNjI5ZmQ4ZGUxMGYxZmI3NmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM1MDMzOTJhMGI2MzZmOGQ2ODFkNDIyNTBlNWZmMWJmZWEzNzUwNTU1YWFmYzY4YzlhZTYzOGRhMzE3Y2RmMTUifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L7-L11",
+          "version": "repo-lines-v1:sha256:4f4b8177313b4cd9378cb7507b57ee2475e3b4367fb7f5dd9bc5f73ba50ad592:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzdmMTA4OTgyN2M1NjllOGQxMjlmZjY3NmYxY2JlOTJmNzU4ODBiNzgwMmFkNmU1MGE2ODAwYmVhYzk1NDE2ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDkwMDQ0MGNmYmI3ZGZkODgwOWUxOGY1YmU2NTU4N2U2ZDIxZTJkODA2NzU3YzZmYjVkOTQ5MTk0Mzc3OTVhYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjM2NDM1NTIwMDllYmFkNDc4ZDVhMTNjOTZiNDlkYWVhMzgyZjU3M2NhZmNiYWE0YjM4ODIzZjg3N2E0MmU5MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjgwNTZkNDQ3NzY0ZWQ5ZmRjOTQwOGVkMTJlYzY5ZTdmMjQ5MWE1YWI2YzgxZGVlMDA2MGY2ZmIzNDBlYjNkZiJ9"
+        },
+        {
+          "resource": "repo://tests/test_audit_chain.py#L16-L21",
+          "version": "repo-lines-v1:sha256:6e8b2466f1b957ed2a20bdc1898f3cf12fb861c7ccc776a930fcdecf900fdb83:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWVhYTYzZmEwNzk3N2MxODU4YmI3OTY2MmY5ZmEyZTVjMTU2OTI4ZDIwMmMxY2I4NmU5MDUwZmU1MDMxMzc5MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTE4YTQ2Yjk1ZjNiYWUzYzVlNWE3ZGI4MzgzZTA1ZTI1MWE4ZGRmNDJiZjc0YThkNWUyMTFiNTlkMTM3ZDQ2MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTM0NjZhZTc5MzE3ZjNmNDIzYTg4NGU3YTRjZGI4OGFiZTk5MDkwZWRlODJkOTU2OGRjYTM0MTFjMjE0NGFkNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTM2ZTFjYTE0N2E2YzgzNmNlNWM4OWM4NmI2Y2ZlODc2ZWI1ZmY4ZGQ0YTFiNTNjZjM4NDdhNDA3OTFkODJhMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_476f1a9564554f14b0c2bef08def56e6",
+      "statement": "Chain construction is normative SPEC §3.6.1 and pure: entry[n] = {seq, ts, event, fingerprint, actor, result, detail_hash, prev_hash}; entry_hash[n] = sha256 of the canonical JSON of entry[n]; the genesis entry is seq 0 with prev_hash '0'*64 and event 'chain.genesis', appended by Store at first boot of an empty database inside a write transaction.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/audit.py#L26-L64",
+          "version": "repo-lines-v1:sha256:60476e4fb51d4ac398116f769cb3720b30d025a1c8178544b07d5a6baa6c2b87:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFjYjY1Y2RjYTZjNjQ5ZWMzYWNiZjk1MDk2NmFlMTBkNDk0YzI4ZmMwMzk1MjBmYWVmNTIyMmRjZDhiMGE0ZjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3NjA0MmJmMjE1NjIwOWRkOGRhNGQ3YjMwMTEzZWNhYzg2N2ViM2RhNjA2MWNjMjVhODNlZGM2NzdjNGY4ZGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ4ODBiYWZiZjAzZDY0ZDczMDZkNDQ3OGViOWQxNzM4NGU0MTU1NWM2ZjA0NGI0ZTc1OTk1YzI0NzhlNjNmYzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkxYTA1MTU5MjE3MjNlNWRlZTU1ZmY5MmI3M2JiZDVjMWU2MjNlYWU1NTBlYTRhZDc5MDFkMjIyMTEyMGRjZmUifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L263-L274",
+          "version": "repo-lines-v1:sha256:ed747038a0b38b328e7927a0a921cbdedbfe7e5e729a418c15ff422f1cd880de:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFlZDk5ZjBiMjZkOWYxNDllM2RiYjEzY2ZiYzFhNmZkMjk3YTZiNmJmODBmNGRlYjJkYmYyOTdiMmU3NTBmMmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxMDM0ODFjNTdkMGYwZGMwZjc2Y2QyY2M4YjM2MDRjNGU4Mjk2ZGE0MTIyYWRkMTllODE3NDVkYzdlMzMxYTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZkZWZjM2EyMjg0MjEzMWM3MWY2NGY4NjBjYmMzMDJmNDc0YzdmM2ZiYzI5YTJjMWEyZTljMmVhNzZmNGU5ZDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJjOGNkZDg0ZTNkMmM4NmQyM2IyZTQ3YTVlODI0NDgwZWRjNjZhZjhiNGYxNWVkM2U4NDE1NTRjN2NiZjE0NzYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_707df9acaaf74111822702c0f2cd947d",
+      "statement": "Audit entries never carry sensitive detail bodies: detail_hash is the sha256 hex of the canonical JSON of a small detail object ({} when None), which is the only trace of event details that enters the chain, so manifest internals, nonces and report evidence stay out of the public log.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/audit.py#L34-L36",
+          "version": "repo-lines-v1:sha256:86cf56d91cb3d6428580644d066345c9008ab465bbbd3ae65027f8a9ef35dbd1:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmMxYjFjOTIyZTMzYzkwZGUyYTQ0NGIzYTVmYTRlZTliZDcwNDdlY2FmM2Y4OWI0Nzk2NTMyOTQzMTJjMTJhMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMGIwZGU0ZGQyMTMwMmE0MzA2N2NiMmU0NTViYmY5N2ZhM2U5MGJjMDAxY2QyNWUzODg3Yzk3YzgzODkzZmQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTgwNjc3ZDEzZWMzNTBjNDFhMmIzYTIyYWQ1NzQ4OGQzMWMxMWVmNTBkZThhMGUxMjM5ODBjZDBmMzFiM2FkMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzZjNTk1YTkwYTcxNzM1NjRiZDYxNGIxZTNlZWIyNDFmYjUyY2ZmNTgyZjVjYzU2YmQ1ZDc3MTRjZmU4YjAxYyJ9"
+        },
+        {
+          "resource": "repo://tests/test_audit_chain.py#L50-L56",
+          "version": "repo-lines-v1:sha256:d1b4c9787215930dbea44ed2f0ba18461ec7610fd408ded6e08053eefee9e498:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTRhNTIwNjk3ZjM0OTc1OGQ4M2FhOGIyNmE1NmY2ZTZhMTg4YmQwMjYxMDMxNjc1NDQzNzhhOTIyNjY0MDIzZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGY3MWQ4NzYxMzFlMmMxNWYwMjhiYWU0YTMwYzA0NDk0OThhOGQ5MGE1NmUzYmNiZmQwMzQ0MmY1ODg4ZjUwNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGIwYzA2YWViNzRkMDhlMTZkYzVmNjBkNjRiNDkyYjA5N2U4ODVlZjFjZGI2ZmE2YTc2ZjcyOTIxMzhiM2U3YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_bbab0ded60874c508cb936f1f06916df",
+      "statement": "audit.verify_chain(entries) re-computes every entry_hash from an entry's eight canonical fields, compares it with the stored entry_hash, and checks that each row's prev_hash equals the previous row's entry_hash; any modification, deletion or reordering fails verification — flipping a single event field is detected.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/audit.py#L67-L91",
+          "version": "repo-lines-v1:sha256:44577e95fb492de2aac181a9990d273b73621cfd47ca1d91a4ba57504a6ae4c6:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg5M2M1NTg2OWNjMzc0YWFjNjFiYTkwMDAzNjY4N2JlYjIxY2E5Nzk3NTVmYzk2MWFjY2Y2YTYxMGM4ZGVjZjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwZTJhNDY1MDA5NWZhOTVkMGUyYmI0MWIyZGIyOTA5NGQzNDA0ZDI4Y2UxMjMzOWVjODhiYjRiNWM1YmU4ZjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAyN2IzY2VjOTI4ZTM0ZGU4ZmQ0OGIzMzljZmM3YzJkMDQxMzM2MTY1MTc0M2EyMTk1ODM3YTQ3NzRiYTQ5MWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://tests/test_audit_chain.py#L41-L47",
+          "version": "repo-lines-v1:sha256:4ae354ea3dfb88784e53ee618a162bec46ae6ba7d8b4950e8f4528e9238b08a0:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDI1ODM3YjMzYTQ5NzA5M2ZkODg2ZTRiMGRjMDk3MWNmNjgyODUxNDIzZmE3ZjU4MjM5ZGRmNzk4ZmUxNWM2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWRlM2EzOWQ4ZDk3NzM1ZWEzZDhhYTQ1ZTI2ZDAxODk0NGI5Yzk4YWYyMTViMGExMjM5OGIxZjE2MTk3YjM4YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTQ4NzEwMTc4ZTZkZTM0MjNiZThmOTcxN2Q5NjNkM2QxNWJhYzViYmM4NmE0M2Y5NzExYTAyNWU4ZDNkNGE2MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGI5YzYzNjIxOWUyMTU5MmFhOTE0YzBmNmNmYTQ2NTAwZjBhYjkwMWVkYjMyMjVmOTE1OTdjODVhZDExOGI1ZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1c54bdaeb5b2499b8495e205d2fbbdc2",
+      "statement": "Checkpoints are signed on the configured cadence: DirectoryHTTPServer.start() launches a daemon checkpoint thread that calls audit.maybe_checkpoint() every config.checkpoint_interval_s (default 3600 s = hourly), and maybe_checkpoint only signs a new checkpoint when the elapsed time since the latest persisted checkpoint reaches the interval unless force=True; exceptions in the loop are swallowed so the server never crashes.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/audit_service.py#L60-L70",
+          "version": "repo-lines-v1:sha256:3f3607f1049eb5dd3d13e24dae5530ee55a6a7bdbdb89dbabb785bff49c65c7c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5MTkyMGYxODU2ZGZiZWUzZmU1NTE3ZDNlODZjNmUxY2IxMTM3MDI0ZTc0ZTNlMjM1MjBmN2ZmNTAyNjZhNGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU0NTMyNjRmMTY0NWQ5NDk0MmM1ZTFhNzVkMmZjNThiZmVlOTMzOGUyZDFjNTdjYjk0ZDczMDhlYmY4NDlmMDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVjOTc5ZTNiZjdiZmEyMTg1OGE2MGQ4ZWU1NDBlYjhlNTQxNmViZmJiZTBhZWZiNTU1NjNhZGRjYWMyYTU1NzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJiZjBmZjI4YjlmZTk2ZmI5Y2ZhYmUyZGMyYjNlNzljYTc4YjFmMGVmM2Q0NmYyYzMzMjIxN2FlM2QyNjFmOGEifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/config.py#L64-L65",
+          "version": "repo-lines-v1:sha256:65a3c951c2ffd598f4383c61e4133940eef382a8083d207754b26dcfa6a00bea:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDZhMWFjZDk1MWU5YWUwNjgxNTEwYWZkZWQ3MjBkZTZiMjhiNjA2ZjY0ZTkzMzhhZGU3OTU2ZThiMTEzZjAyOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2VlYjFlMWMxMDJmNGQ5NDgwMTYzODhlNzFkZTE0ODk4MjdmZjQwZGZlNzI0NGU2ZmNlYTI0Y2Q3ZWE0YTliNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzAzNjVhYzg5NGU4MGU5ZWUzMzAwOTAxYjE0NzI2MmVkZTcyMGJhMjgzM2QzMTg2NDQ2ZmU2ZDYxM2Q5ZTk4NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjUzMDQ0NTExYWI2Y2I5OGRiM2FhYTVkNGU1OTgyYTkxMGUxZjE5M2JjYTVlODdlNDRiYTkwZmIzMGU2NWQzZCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L94-L105",
+          "version": "repo-lines-v1:sha256:5207cc4b510c1010ec4f8ae1af3d6be2054254939ddb868f0a579c1480126f7a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0NDdiY2UwOTA2YmJmODJiNTRjM2M1YTkyYjA1OWVlYWY1NjRjZWUxMGYwYTM3ZjQ3MTIwNTFiMTRiODgyZTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1MzMyNTYwZTQ3MzVhMjRiYTJhZjA0OWI4OTQwZDIzZDViOTU0MDNiOWUzZTkyM2I1ZTE0MTMxMTY0YjkyZGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiZTNjYWZlOTQ0MDA3ODUyOTZjNGRhNzA4OWNjMjg2NWNiZmU2MmE1NzhjYWRhYmU2YzYxYWY4MDA4YzUyNTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVkMjhkMGFmYjU0N2JjMDIwYTg5ZTE4ODY4NzkwODBjY2UyZWRkMTc3N2U5NThhYmExNTgzYWM4ZmMxMGQ1OWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c388b43fc59f4bdba8ceadc8b43ad10e",
+      "statement": "A final checkpoint is signed on shutdown: DirectoryHTTPServer.stop() sets the stop event, shuts the HTTP socket, then calls audit.create_checkpoint() best-effort before store.close(), so a clean shutdown always persists a signed snapshot of the final head (verified by a test that reopens the DB after stop).",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L124-L135",
+          "version": "repo-lines-v1:sha256:1ac7bbc6a288e9f024a06ef94ed6683f861a17b467fa490448c1b32b96368e32:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNkYzg1OWNiZTRjZjg5YWFiNTc1ZGRlYjU2OTAzNzU5ODdiZGRkOWQ4MWE2ZDIyMzQyZWQ0OGM3OWQyZTM0YTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU1ZmZkOTEyZGJkZDFmNWU2NGFjNmNhYWY0MmRmOWMyNWI3NmU5OGU3OGYzMTgwNGRhOThkZjRmZTZmMDc3MTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYwMmI5YjVjYmU3NGZmNjQ2ZWVjMDM5Y2IyOTY1YWJjNDQ2NTIyNzI0NzBiNzFiNGE0NzYyMjk1NzkxOGFkYzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQxNjMwZmQ1MzM2YzA2NGQ3OWI2NzhiMDQ5OTc2NTY5YTE1M2E3OGQzYWFjMzJjMjg5MWE4OGYyNzVhNjE1YzAifQ"
+        },
+        {
+          "resource": "repo://tests/test_checkpoints.py#L80-L88",
+          "version": "repo-lines-v1:sha256:4f4eb8f278d83ce56abe540e1a806c31cf40eca67a95f46b75f666013703188d:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTliOWY4ZTgwOGI4ODdiYWQ0MGM2NmRmZjgxNDk1ZTYwMjY5ZWE1YWI1MGI5NWRlMTljZWUxYzEzMWE1MjMyNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzM2YTE3NDRiZTA3YjIxZjVkNjkyNzRlMWE4NDNlODVhNTRlZjUyYWU1NGZkOTk5MTcxOTc2ZTM1MDU1ZDc1ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2YwMzUwYTU3ZGMyNjRhMGNhMzRiYjU4ZjU2YTQxNmViODVlNmE0Y2NkMjFlNTcyMjgwZWY1ZWI5NGYzOGEwMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a0ad1b01b5fc4ea7bbd3db05177c593d",
+      "statement": "create_checkpoint signs the canonical JSON of {seq, entry_hash, ts} of the current head with the directory Ed25519 key and persists it to the checkpoints table via INSERT OR REPLACE keyed by the head seq (at most one checkpoint per head seq); GET /v1/audit/head always serves the head as that signed payload plus a checkpoint_signature field.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/audit_service.py#L45-L58",
+          "version": "repo-lines-v1:sha256:0e762768191a3af78d974ec384cea576f907e833468538be9bb01b8cabbfa044:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3OTBlZWQ0YTk3M2IwZTBhM2Q4Y2U4YzA3ODFhZDk0ZDc5M2MyOGM1MDU5MTU3YmIzZDYzODE3NjNlNWZlZDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJjNWQ4NjliMTAwZWRmMTY1ZTQwYjhkN2FkZjc5ZTk2ZDM4OWM2YTEyZDE1MDI2YzJjZDU5NjcyYjlkZGRjNzgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY3Yzk3YWFiYWQzM2JjYzIzYzgzODI1NmZmYzZlMzNkZTFhMzk3ZTBlNGE1MGNlOTBlZDgxNTYxNjc1Yzg2YjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkxNmJlMDE1ZWI3ZDNjY2ZhMTE4ZTAxOTc0ZDIyYTY0MzZlM2Y0ZTUyOGQyODY0ZmEzNzM1YjhiZDc0MDc2MGIifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L255-L256",
+          "version": "repo-lines-v1:sha256:9d6d66c4e0a6b4924e835e36980d6fe59b93a226d320106381b7181eb1e054e7:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTVjOWJiMzYwNmJlNmY4ZGU3ZTljYzJiZjllZWRjMmUxMWEwNTYxN2EwOWQ2MWMxYTlhNzJkNjQyMzdhMzU0YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODgyOWJhZjVhYWRmNmExODMxMjJjMzZiNWFkMzI1NjZhYzU2YmIzYTVmNGQwMGI0MDM1MWZjMDdjZGM1YzE1YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOThmZjg0ZDFjZDU5MjcxODBjN2ZmMTRiYTEzMGVmYjUwY2MwMmU5NTNjMWRlY2NmODZiMjIwNTA3ZWY4YTdkMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjg0YzAzOTA0NDJhNWI5OWM4MzVjOGMyYTE1MzFjMGIzZDg5Nzg5ZjhiZjI3ZGUyZmE4Y2MzYWU0MjMwOGI1MiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L956-L962",
+          "version": "repo-lines-v1:sha256:3225d689192b79d416426f34c46f8a5000a98746d5f23f1f3a17dcc1ef23b673:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTNiZWUyNGUyYjRhMzc5ZGVmZGNmMzFiMDFjNWQ0YTQzYTNmZmI5MTU2ZTNjZmVhMDM0MDEyODVmMTRjYjE0NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTUwMzJlOTY0ZDA5MzIzNTFlNWQxODUyNjkyODFiMTcxYTNhMDliMDhiMjg2ZTY2MWVhNDcwMzIzYzgyZWI0ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTcxNjJiZWRmMzZjMjBmYWVlZmFkMmIxM2E1YTY3NGM0YWRmMjJhMzNhNWI0OTVjNmIwYzc5ZjFhMDkxYTYzNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDY3YmJlYWZjMmRjY2UwYTUxNmFlNDRkOWU1OGIxOWM1NzI1MmU5NTc2YTViNzU4YzIyNWMwOGJmYTVkNTA0NCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ff372212ffe54404a0180cb536061af7",
+      "statement": "GET /v1/audit/log?after=<seq>&limit=<n> serves contiguous ascending full chain rows (each including stored prev_hash and entry_hash): after defaults to -1 (so after=-1 starts at genesis seq 0), limit defaults to 100 and is clamped server-side to 1–1000, and the response is {entries, next_after, head} where next_after is the last served seq — clients and mirrors page gap-free until a short or empty batch.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L350-L361",
+          "version": "repo-lines-v1:sha256:6249719ceb2f81c3bea6973a50898729d5644bcf159ee6f084f2df4183d0385e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4MTJhZWJlMWYyMjliNGQ5ZGE4N2YwZmI3Y2ZkNjNlNTM4ZGYyMTEzYTViMTMxOWNkYWJhMWU5YmJmYmUxZjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxMDM0ODFjNTdkMGYwZGMwZjc2Y2QyY2M4YjM2MDRjNGU4Mjk2ZGE0MTIyYWRkMTllODE3NDVkYzdlMzMxYTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk0ZTdmZjlkODgwNjczMjA5OWI1OWM5NGZlMDA2OTEyNTk4ZGNkYjQ0YmU2ODVlZGRiNWEzODc5MjMyMTMxMTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg5NGJhOGZjYmFhOTZjYTg2YzgzNjAyOTJlY2MwY2VkZjk3N2FkOWUwMzlmYjJjNTAzMDYxN2JiYWRkMDA0YTMifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L283-L290",
+          "version": "repo-lines-v1:sha256:d0182f5cf984854bb2454ac3935d4292fa054c5687f89e21c4099d9c7ab9e690:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjU1MTMzMTZjNGFkMGQ1ZDY4MGE0MzJkYjE4MjVmMzY1NGE2MjM1NTlhMmNmMWNhMGI5ZjlmMTkzM2M5ODI5NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTJlN2RiZTQ3ZTJkZmEzODhhOTFhZGIzNDUxMWMwN2U3ZWYwODIxN2JiMjhlOGQ2ZjFkZGM2OWVhYmZhNzJiZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWYwN2JlNGY3MjU0NDcwM2FhY2NlZjQxZGFkZTRlOGY0YTUzOGNlYTRhNzhiZDYzNTc2OTYxMjBjNmE3YjNmZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2FmY2Q5YzYzNzBhN2RiMGRjYzdlMmRmMWY2MTFjMTZkMmM2MGE5NzhjYjM0N2Q1NGVhZGQ3MjRlZjJjMmI0ZiJ9"
+        },
+        {
+          "resource": "repo://tests/test_audit_chain.py#L32-L38",
+          "version": "repo-lines-v1:sha256:a55e3f1ced3c79076501a7d5f448e27733fa1a09f3fe7a8e648a670149df1b8e:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDBiYzg3ZWRjMjgyZWI3ZTRlOWIyZDNjOTg0NzVjMGU1YmY0MTM2NGY5NzEyYzdlNzlhZmNkYzVkNDE4MTZlNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTRiYTBkNjViMzNiMjk0NWEzNTkzNGMzNzViMTcyODQ3MDdiMmY3NzE2ZDNmNDMzMzZjN2Y1YmVmNzdmMzRlOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmM0MmFmMjJlZDAxNmRkMDJkN2FlNmE2Zjg3ZDMyMmM2NGQ2NjhiMjYxYzc3NzhmZDU1YzE4NGRmY2YwODI4YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGVlMTcxOTdiZDdkOTg0OTRmMTM0ZGM3YmNjNGExN2IzNjg0YTZlZmU4Y2FkZDU2MTY1YWFkYjBhYzZkZDgwMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a9d70620bd0e43d6b664e3ac91d18ad4",
+      "statement": "GET /v1/audit/verify?seq=<n> is a directory-side recompute convenience: AuditService.verify pages the full chain from genesis (1000 entries per page) until it reaches seq, runs audit.verify_chain over the prefix, and returns {valid, computed_head}; the SPEC directs that clients SHOULD verify locally from raw entries instead of trusting this convenience endpoint.",
+      "evidence": [
+        {
+          "resource": "repo://docs/SPEC.md#L757-L758",
+          "version": "repo-lines-v1:sha256:a179c67b98969b81ca9389abbe7061b64196d81decf421c0cea614bbbda7d7c0:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjM0OWJjMWEzM2Y1NTcwMGFkNDY1NjEwYjVjODI3OTJlMmE4Njc1ZDE4ZjA0OTkxZTZiYTlhMmI3YmJmMWJlYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjI4MWE1MDU5NzBhNDYxNTQ2MjZkYjgzMGJlZjI2YWQ5NDUzNjcwYjY5ZDBhMzNiMDU2MGUxNjk4NDA5NWM5YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjZkMmRjZjQ0MjYxZjA4NjJhN2YyYmZiMzI5NjQwZDg0NDMyMDM1Nzk3NzFhOGEzZmRmMGJiZjdmYjU4NTk4YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTI2MjZkNDAzOTNkMThlYWZkMGZhZmYxNjI5ZWJlNTQ1ZGVhYjgyNzA3NjBmMGZhOGYyNTI4MGQ4NWM0YzViZiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/audit_service.py#L76-L87",
+          "version": "repo-lines-v1:sha256:89637768c1492d462b62923a25b3043dcfca743cdf6549294bb8a79cf3fc372d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMjQ2YTVmOWRhODcyZjc3MTMxNWI0ZWZmMTM3YjlmZThhNjYzZDYyMjY2YmU4MDliZGMyMjU1YmVkNjZmNTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhjOTQ1MWMwMThhOTg2NmRmN2UzMmJlZGNiMjk2NjI0ZWQ2ODc2ODczNGYxNWQ1Y2U3N2JkN2JkNWMxOWZjYmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJmMDU5YzcwNWRmZjE3NzljYzRlOGNiZTAxNjI4ZDAzNjhkNTc3OTYwZDhkNTkwOTRkODdiNmI5NDQ2OTE5Y2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0MTY1YTE5NDdiNGVhM2M5MzliODc3YjBlYzBlMDRhN2VlOThlYjdlNTFlMzE1NmFhZWYwMGNkNWEwOWVmNDkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7bf99b10b6324b5f81acc6dc46d7b814",
+      "statement": "GET /v1/agents/{fp}/audit (a v1-only route) returns a redacted per-agent projection whose rows carry only seq, ts, event, fingerprint, actor, result and detail_hash — never a detail body and no prev_hash/entry_hash linkage columns — limited to the first 200 matching rows in ascending seq order, so the projection cannot be re-chained in isolation and must be cross-referenced against /v1/audit/log by seq.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L290-L294",
+          "version": "repo-lines-v1:sha256:4c844197d4dc259ed2de34a784de4cfcd73fd00932204f6e4e9b93c2ee589f83:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzdjNmZlMDJhYjRmMWFjZTQ3NGJkYjMwMjVhNjY5MTAzNzAzZjNmZWRmZjllNzk1MDNjMTlkMzRhYTVhMTk2NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWFkNmM4ZWFhODUzZGZiNzA3MjA1MWE1ZjU5NjI5YmI3NmYwMmQxMzMwNDJmNjQxNDM0M2ZhMDE5YWI4ZTZkOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWRjZWY5MmZmZTJlYTZmYTIwZGEzMTZiZTRjY2Y3YjQwNjJlMGE4YzQ3ZjNlYTgzODFiNWQ4YmRiODA2NzkwZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2VjMzViZmQ3ZDUyNzRjNjgxOWYxOTIyM2I4MmU4OTBlZTZjOTMzM2VkOTdhNTU4M2ZlNTA3MTllMGQ5NzE3YiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L985-L992",
+          "version": "repo-lines-v1:sha256:bc3560fdf990a036af4a624d19a5658f87e2d9ec755a0306a76449761e343640:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGEwYmIyMDYwNGI2M2VkODEzYmZkNjQzZjlkZTY1ZDEyZjA4YjNiOTZhZjA4MTZmNWE1ZDU3MTJjYzI1OTkxNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTJlN2RiZTQ3ZTJkZmEzODhhOTFhZGIzNDUxMWMwN2U3ZWYwODIxN2JiMjhlOGQ2ZjFkZGM2OWVhYmZhNzJiZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGFlZWQ3MTYwNWY3OTU1YjFiODA2YWE4ZTZkNTQwMDU0ZGEwNzFkYjM5MWMxN2EwNGMzMmIwOTNhYjliYzBmMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzk3ODdkMTdiMGY2MWFlZmQxOTYxMjgzYTE0NDY2ZmM1Mzg3YTUxZTYxMWM1MGUxMmExOTY2YTQ4ZTc0MGMxNCJ9"
+        },
+        {
+          "resource": "repo://tests/test_checkpoints.py#L68-L77",
+          "version": "repo-lines-v1:sha256:fbb28fd09aa44539689811dd788c1c7cbae30708a6eefc182cb0fe24feff60e1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0NWEyYmJmYTA4NjRhNzMzMGMwN2E4NDI0OWI3MzBkYzdkMzljNDJiNzdkZTAyM2I3YWRlY2I4MTVlYTI5YWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxNzY1YzZiZWRmYTQ5ZmJmYzY1ZGQxZDIwMjgzMzk3ZmE1MTRjMTEzOTFmNTdhZWZlY2M1YWNhMjg2NzIxNmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFkMGMyZWM4NjZkODI4ZjMyNjY5NDBiZTJhMzhlYTQ4MDU3ZTRkNmE4NmQ5NTM5MTU4ODZlZjhlNDZlMGQ1YTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdkODZkNDM0MjllYmJmOTQ3MDRjZGY0YTE0YjI0OWMzYmQ0MjJkOWQ3NmY0YzRmODBlYTMyYzJkODVlNDdhMTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6a49831b0ce54223b8f5581993e42dd1",
+      "statement": "Every /v1/audit/head, /v1/audit/log, /v1/audit/checkpoints, /v1/audit/verify and /v1/agents/{fp}/audit response is served through _send_signed with headers X-HAAP-Directory-Signature (b64 Ed25519 signature of the directory key over the canonical JSON of the exact body, via AuditService.sign_body) and X-HAAP-Directory-Fingerprint, so a consumer holding the directory public key can detect a rewrite of anything it already fetched; consumers SHOULD verify audit responses before trusting them.",
+      "evidence": [
+        {
+          "resource": "repo://docs/SPEC.md#L119-L119",
+          "version": "repo-lines-v1:sha256:b514a23cb3ad9689b3ae3807ffc37da8a070837b791b23f3b98b22749c65039f:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjUxNGEyM2NiM2FkOTY4OWIzYWUzODA3ZmZjMzdkYThhMDcwODM3Yjc5MWIyM2YzYjk4YjIyNzQ5YzY1MDM5ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjUxNGEyM2NiM2FkOTY4OWIzYWUzODA3ZmZjMzdkYThhMDcwODM3Yjc5MWIyM2YzYjk4YjIyNzQ5YzY1MDM5ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjk4NDk1N2UxYzk1YWVlZTE0NzY4MjUyZGI2N2QxOWJjNjY3MjY0MTc2ZGY0ZjFmY2YyZDM4NzA0MDM0NTJhNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzVmZmI5Y2RhMWFmM2RhYTRjZjJkZjkyYjQ2ZjIyZjRlZTE4NjZiY2RiYmJkMjdkODRhNzM1MmNkZTA5ZDQ0OSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/audit_service.py#L40-L42",
+          "version": "repo-lines-v1:sha256:41f1fe892aff6819e8e553353fa74a0f12ed89bc5dc746e83f1ba27a574d221c:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDg4YmVjMTI4NmZkMDJmZWFhYTA0MDg5ZWYwMzZmMzI4Yjc5YTZhYTc5MjM1ZTJhNTM1Yzk2OTVlMTdlYWE2NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWNlZmIyZTc3ZTQ3NTcxOTkwNGFiZTE0YWI4OTBiZTM1NjgwZmY4ODcwMDdlYzEwNzU5MzYzZTI5MjY1ZjY2NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzc1YTIzZDI0N2ZmMjAyMWRmOGRlN2RiOTA0ZjI5MTdlYTZlMDgwN2Y2ZmI1Y2NiOGQ4OGMxMTQ5MTQ4OWQ0ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWZiZmJjNDU0YjY0YjAyZmNiZDg3YTI5YWI2YmFjYWM3M2Y2Njg1M2Y5MDMzNjhhMWFlZTA2YjEwNmViMTBiNCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L160-L166",
+          "version": "repo-lines-v1:sha256:4dff09bfece92455275220b7621ff9dc43187428cff432fb84fca47c8936f57c:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTFiMmRjMDNmMzE3MTk1NWIxZTNkMGYwM2JlNGI3MzNlNGVmNzc2NmNmYTU0OTdjZmI0ZGQ4OWZlMGRlMjYxZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTU5ZWNkZmZhNDJjMzdkNzlkNjcxNWZhN2MwY2FkNGYzODNmYzk1YTI1ZDA1OTE3Mjk4MDM0Y2Y4ZmJjYTE2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWMyY2U0NjVjYzU0MGI3YWUzZmM3MGVjYWNhZWY3NDJjZmNhY2JmYmVjODE5MDNmOGRmZWYyNzYyNDdiZGY3MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzRlMWIxNGMzMmEwNWE1ZjYxZTk1OWFiMTI1OGYwMTAzNGYzYTU4YTA5M2ZkYzM3YzBmMzgyNjY4YzZmN2VkMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_03309018d5674abcbdbcaaef739f4bc3",
+      "statement": "The chain is tamper-evident, not tamper-proof: it detects a rewrite only for parties who fetched a signed checkpoint before the rewrite; it does not catch omission (checkpoints sign the chain, not the world); consumers who never fetch checkpoints get no protection at all; and the rewrite-detection window is bounded by the polling interval. The consumer duty is to poll /v1/audit/head at least as often as the checkpoint cadence and to escalate to a mirror.",
+      "evidence": [
+        {
+          "resource": "repo://docs/OPERATE.md#L80-L82",
+          "version": "repo-lines-v1:sha256:28104e9b7fac5eba6e5dca74a4ce082a21617c1a91c775ebe14a42dca9fafcc5:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDJjN2ZlOTQyZGMxYzQ5NjBlMjFjNTE2MzEyMDA2MjdhNDgyMzdmMWQxMTRjNDYwNzgwODY5NjEzNTNjYjZiZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjgwMmQ5OTFjMjFhNDVmYmViOTU5YzFiYmZlZDdmZDgyZDI2MzdmODBjODIxMzZkZTI1MjdhZWJjNTk0MTRlNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGU0M2YyMjIzZjY3ZDg1NTI1YjQzYWU5MWZiYmE2NzhhOGY1NDFkMjc0ZjgxYzY0ZjQyZGNiNmY5NWVjMDAxZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWJiNzdkMDk4M2I1NDQwMzZkMWE0NmE4M2MzZTcwMmQzNDk0M2IzODc4YTQ4ZWQxZGY3MDBmODk3YTAxMWMwNyJ9"
+        },
+        {
+          "resource": "repo://docs/SPEC.md#L537-L544",
+          "version": "repo-lines-v1:sha256:a2d5721730676a7cacbbc2192881a51536cf1ed3cbd245e920eec4330925ac53:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjg1ZTRkMzJhY2Y3ZmY2N2JmMzBiNjEyNzg5MmNmNGY1YTE5ZWY5MDc1MTdhYmVmNGI5MDQ4Yzg0NGVmZDBkMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTY0MzI3YmRhNmIzYzZkZDk1OWNjOTU3NGEyM2UxMzI3MmQ0NjZjOTY2ODZmMjU4NjAyZWYyNDhjNjIyYTE0MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWNlMmVjMjI2NmU3ZTFmNWU0ZDg0OTE0ZDg3ZGY2ODNjOTZjMzE0Mjc3MGNiMTMyMjdhOTFiMWY5N2QwMzliOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjQ1N2MzMTM1YTMxYTZmNGFlNmU0NTE2OThmMGMwZGNhM2FmOGIwZGNmODgyNThkNjVhNzhjOTg0MjFjMmQ0ZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4ba48bb8f6a34700a1341303e313c8c4",
+      "statement": "The audit endpoints are the mirror ingest seam: mirror.ingest_chain pages /v1/audit/log until a short or empty batch, verifies the concatenated entries locally with audit.verify_chain, fetches /v1/audit/head and reports {seq, entry_hash, entries, verified, matches_served_head}; the helper never verifies the X-HAAP-Directory-Signature headers itself. Mirrors that agree on a head prove they saw the same ordered world.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/mirror.py#L25-L54",
+          "version": "repo-lines-v1:sha256:09afd30135c61acbb8f6357a9b933c5b0ae81f6e715c32a8cc42fe2078842945:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0ZmUzNzI4YzhhZDg1ZWJhMWIxZmY3MDMyNWI1NjZlMmU1OGFmMDc3NzhkZmZkOTQ5ZjJjYmUxNTFlMzQ5NmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdmNjIwNTA0YWI5ZTc0YTNiNTQ5MDRiZDg4MzExNDIyMmQyZjc4MTBlMDU1OGNlMWNmMTcwNmY2MWNkZDdjYWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://tests/test_ops_federation.py#L69-L77",
+          "version": "repo-lines-v1:sha256:5f74e84c2e4290dbf11d9f041197d5924d1885893d842e0e05839665e23c38b3:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjdmY2FhZDU5NzUwYzJjM2Y1YmEzZjAyMDZmNGUxNzgzNTQxOGQwYjkxYmE1MTdlYWQ4ZTAwZGUxYWI3OWYwNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTE4MmU0ZDIxNWE4MzE5NWJkYmRlYzA0OTY1ZjkxOTY5OGVjNDFlZTQ5NGUxYzg2YmUyMjI2MzVjMDllYjA1OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGJjNzhmODczMjdjMmQyYTEyMWM3MzA0NDI2MTI2ZTQzNzc3YzFjYzVjOTFiZWM2MTIyZmZhNzEyNGU3NTAwYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e2b390a8f6f54352a77a5cd1d6ca7e91",
+      "statement": "All chain hashes and directory signatures are computed over the vendored canonical JSON serializer in canonical.py (sort_keys, separators ',', ':', ensure_ascii=False, UTF-8) that is byte-identical to the serializer the haap client package uses, so the directory, consumers and mirrors always hash and sign the same bytes.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/canonical.py#L22-L26",
+          "version": "repo-lines-v1:sha256:f83501419bb070a1e64cba8f9dc21fbb544cfd806668b4d3b27323868b252332:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDYyNTI3M2ZhYjI2OWQyYTdhNmFlNzExYTdhMWY4OWJjNjE2MWVhZDY3NTg1MDE2YjgyMTNhODU4ZWY4MDNhMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDNjNDI2MTkzYzhjMGJhMWI1YWMxYzc0ZmQwYTViNjRhNTI4NTViN2E0MGExYjQ4YzVhOGZkODc2ZGIxNzM4NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWQzN2EzM2QwNzNhYjhkYTI5ZGM3NGNlNmE4OTEzMTgxOGE1MmE1YzE2NWQxNmYzMWQ5OTE5OTdmMGU2NmNmNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDA3MTY1MWFkZTIzNWZmNTA1NWQ0MTc1ZWRkMWE2MDJlNTY3YmM1MTVlNzMxNzRhZjdmYjEwYjYwYTIzMGI5OCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2cfc96a65fca440d80ba790c24cce3cb",
+      "statement": "The chain head is observable outside the audit API for operators: /health reports chain_seq and /metrics exposes the haapd_audit_seq counter, both read from store.audit_head().",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/service.py#L319-L333",
+          "version": "repo-lines-v1:sha256:9552727dcea5c7912b578b632db3603e6581e3bb93b102f6a41a98ef27904700:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhMTk2MWU4ODE1OTM4ZjgxYWI2MDRhNTBlNGI4NmZkYzU3YTdkNWI2ZTVmYjk5Y2NiOGFjNDZhNGY4Njg3NDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhiYWMxZjdjN2VhNjVjYzI3MjMyYmJhY2RkMjFkYjJhMzFkZTI1YzNhN2E4OGNhNmIzNTQ5MWVjMGRmNjU0NjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdhNjJmZWM1ODUzNWVmZTZhMjkzMjkxYzExODk2MGNiMGEyODJlY2I4M2ZjMmUyNTc1NTRjZjJjYTJmM2Y1MGQifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/telemetry.py#L23-L25",
+          "version": "repo-lines-v1:sha256:54b7f552d7d1d155dc559c07848c2c5251b78022750e9543340534d7fbe4b1c4:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTg5NzMwNGJlOWY3MWUyYzQ4YjZmNzg4ODk0YTE3MTU1N2E1NTliMjYzYmQ0MTY3NzcxZjQ2OTU2M2U3ZDE5YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODViNmZlNTFmMGEyNDIyM2Y5Y2E0YzA1YTlhM2RmMDRkZTkxNmE5ZmVjY2RhMzk4MTVlODI2NjBiODE1MDZkZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDBlNWRhYjY5OTBkMTViNzU5NTQ0YmRiY2ZiOGY2MDJhYzMxNjE2ZTZjOGQ2YzA0MmU5ZmRhMWNkYjZkYWViYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTJmMGVjNzVkNDE4NjJkOTRiYTc3ZTU5YTYwOTFjNzY4MmViMjQ1MGVjMTVmZmVlNmNlYjkxMzA4ODk5NjI5YiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-05T09:05:06.235Z"
+  }
+}

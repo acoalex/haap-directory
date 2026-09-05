@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:68916b212dc5249cd900f6cdbbf30f92813cdd71018a168996b5c2187c9ac9af",
+  "claims": [
+    {
+      "id": "claim_36b9b17646784f0ca11e4c872363f70e",
+      "statement": "The directory's core invariant — 'a phone book, not a notary — and never a judge' — means identity lives in the agents' Ed25519 keys, not in the directory: the service indexes signed manifests and verifies endpoint control but returns only labelled signals with provenance (domain_verified, vouches_in, reports, status, block_recommendation, audit_verifiable), never a safe/trusted verdict or a collapsed trust score, so a compromised directory can lie about listings but cannot sign as an agent.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L15-L24",
+          "version": "repo-lines-v1:sha256:788eb7194c8cfdf2f6198175e361002a6a65e4d4df746192c2da2ed44a86b301:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkZDEyOTU0ODQ4OWQyN2NmNTMyYzQ2OTBhZjM2MjVlNTliODI4NWZiMTFiZjcxYTZhNDA2NjU4OTY1NTk2MWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjczN2M1NjRiYzE5YjAyMDA4NTUzZjA3MDhkOGM5ZjkwNzQyNTY3Y2U3MWU5NzEwYTAxYzQwOTdiNzMzMzliZjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NWNmNmRkMzEwZWIwZGY0ZWE0NzA5YWEwMGM5OWI2ZjgzZjNkYmZkM2UwODczZWE4NWY1YmM4MWUzNTg3NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVjMTUzNzQ5OWMzM2FiYzJiMWZjNmFiODk3MGE2OTBjYTE2ZTA3ZWRhYTE1NjdhM2MyM2ZhOTQyY2ViMzEyMDcifQ"
+        },
+        {
+          "resource": "repo://README.md#L9-L14",
+          "version": "repo-lines-v1:sha256:172d74fe9ef1cc44ad33acbf3efabc519358617ccc820cbd737e5659721ed7f3:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWQ2N2E0ZDUyMDE4YzE5N2M1MTA4ZGIyMTlmZTM3NDNjMjJjZjU2YjFlNTQ5MzhkNGVhODIwY2FmNWE3ZDFhOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmRhYWY5MTgxNTU4NjY1M2EzMjBjNDQzMjk2OWIxNzA0MjVjNDFiNjkyYTNkZmE2NGY3ZDAyNjdmOGJlZjFiMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTEwODdkZWRkMWZkMTUxMzQxNTU4YzRmOGQxZjVkZWZlOWVmMDc3NjVjZGIyN2VlMmUyNjcxNGNkYTM3MGFmYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDgxMWI0OWYyNjYyMTdlZDFkNGRlM2EwOWQ2NzAwYWUxMGMxMDY2YWZlNWQwNjI5N2M1NzljZjAzNWQ2YmI1ZCJ9"
+        },
+        {
+          "resource": "repo://docs/SPEC.md#L44-L48",
+          "version": "repo-lines-v1:sha256:d70262442bf714bfd9dd60057318598c1e8dbda4e052966327ea0638fe6a41b3:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWJhYTVkYWRkYjE3Y2U0NTZkMmY2OTFmOTA1Y2RjM2VlNzhiOGZlN2IxYjM4OWZmNTdiNzlmN2ZiMzdmYThmNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjRlY2ZlZjQ0MDIwNzkzNmNjMDY3MTAzNDM2OGMyNjUyYjIwYzM4ZmFjYjQxM2JlNzg2NjdiMGQ3ZjUzMTM1YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmM0NjUzMmRmOGNlNTY1ODAwMjQzOTMxM2Q0Njg2MmE3NmUzZWEwNzAyMjNmOGU2ZjEzNTFhNjY3NGM5NzA3YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzI1Njk3ZjI3MDliZDdjZTlhNTUzMjYwZjI3MDBlZmVmMWYzZDZiMjFlYWRhNzQwZTg5YTgzOTIzNjUyYjgyNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_10c7e633dde24e2fb4674edec01a6a32",
+      "statement": "DirectoryService.build_trust_block assembles the per-listing trust block (SPEC §5.2) from only the signals actually available on a row: age/freshness and endpoint_proof_at from the store row, the L2 signal from DomainService.primary_verification matching the manifest endpoint host, L3 vouches_in and annotations, L4 raw counters and block_recommendation, status and suspension, with reputation_history defaulting to an honest empty list; it computes no aggregate score and emits no verdict field.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/service.py#L257-L317",
+          "version": "repo-lines-v1:sha256:afcb695b1abb6bf8ff020c390a839d7c80379200aacea1005484ad2707261c8b:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY3MmExMTY0OTMxOTRkYzcwZGQ4OTkyMDFhNzdhZTgyMGFmOGZiNzhiYTM0MWUxZTc4OTY0ODI1NTYwNjJiYjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3MTY0OTE0NmMyODIyYjc4M2JkNzcwNzA4NDk4YTE3MjdlMTljMWIxODRjNGNkOWQyMzJmMTllZDdjM2E2YWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2YWYzMDU5ODlhYzFlNTY5ODdhOGFhMGQ2ZDViOGZhODAxYzY2MGVmYjM0Mjc1YTUyNjY1NzBlYmU0MGExMWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a66817cd7b364133bdc94f2c144a9687",
+      "statement": "Search narrows results by manifest match first (capability, free-text AND, geo) and then applies only consumer-chosen trust thresholds via _passes_trust_filters: min_age_hours, domain_verified, not_suspended (default true, excluding suspended entries), min_vouches_in (counts visible edges, not quality) and recent_reports_max (on unique_reporters). The filters gate inclusion only; results are not ranked or scored by trust, and the v1 response returns each match as manifest plus the raw trust block while the legacy alias projects bare manifests.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L304-L339",
+          "version": "repo-lines-v1:sha256:5c2f034ecca001d105d188be46f98d2e088e80a4c8f5a11a6d55f678d7a3ebfd:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNiZDY2M2U2OTBlMzViN2ZkNGNiMDE0MGM1MDcwOTVkNzI2ODNjNTE3MGM2ZjY4NGRmN2I1OTUwYmJhNzkwNTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5MmYwNjcyZmI5MWU1NDJhZThmNzBjY2IyNzZkYzdkZWQ2MWMzODE4Y2JiZTMxMjliMDFlOWZjZjI5MjcwNjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU3NWRhNmYzNDEzOTQxYTg1MjVhNWZiZGYwYWY1ZGYzYjIzY2I5MWNmMzA0ZDVmNzUzOGM3MGRiMTAyMzVmNjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA2NWU0MDRjZTY1MTNkOGFjNzhkMWNjYzIzYjJkZjZkZjAyNmQ3Yzc0NjkwMzZmMDBhNDZmNDBhYzM0MDhhNTMifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L225-L246",
+          "version": "repo-lines-v1:sha256:9aab95b0e966142568a5e7511db1845b1702dddc65735c6569bf435a95e10142:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyMGFkM2NlMzA2NTI3MDdmYzdlNWMxYWQ2NTgyYjM5NjlmZmQ5OTBjOGI0MDFiZmI1MDg1MTBmMzJmNzFlNDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUxZTVjMmNmNDMyZGJjMDkwMTY3OGNjN2YxMDllOTlhMWM5ZDkyOTFmOGMwMzNkZGFhZWYxOWM3MjdhZDg0NGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIwNjQzODkwOTdmODJlYmE0OTk2NTQxMzhiYTY4N2YzNmEzYjNjMDU3NDhlOTBhNGM5ZTc0MTA2MDdkNzlmOTkifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L336-L361",
+          "version": "repo-lines-v1:sha256:4b1ac0e621fe753e07f3802b065b308069380fb5745ff99419e4e20498a2bd73:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5NDlhMjE5M2MyMmVkZjVmYjY0ZGNmYTM2YmE2OTA5NWY2NDhlMDhlZTZiNjk0Njc4ODFiOTAwYThhYzI5YWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFkNzM1MDZmNWYwMjEwMzkwYWI1ZmI0NTI2MzgzMDliMDZhMTY0ZGI1OThkN2IxZWNkMWJmZTQyMDg5NTQwYTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBmOGNmNmU2MjBjMDg2ZDAzMTIyYzIxNThkMTY2ODZkMmIzYzBkZGE3YjY1ZDdkMjc4YjVkNWFlOGE2MDMxMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBhN2IyYWM4OWViODk2MTQxYmZkNzZjMmExYjczMmE5YjYyZTM4MzQ3MjA2NTRkN2NiZDY3NmJjNGVmOTgzZGMifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L422-L434",
+          "version": "repo-lines-v1:sha256:7aa88d0a740b6ef1658a7dedcb6999ab07c0ae93b8bcc4646b88aa65f133755d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiZmQ4Nzk2OWYxMWVmYWM5NjIwY2FlMTEyMDk4MzhlMWU1Mjc2MGMyMjZiZTQxMDdhOGU2ZjBkNzJiNTYwZDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwZTJhNDY1MDA5NWZhOTVkMGUyYmI0MWIyZGIyOTA5NGQzNDA0ZDI4Y2UxMjMzOWVjODhiYjRiNWM1YmU4ZjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRlNzU3NWMzYjc3NzZjZjJmOWMyYmZiY2E0NGYyMTQ4MTNhNzgyN2VhYTljMzg0NTRjNzAzYjY4OWE3NDQzODYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_efacadd89d6047719ba3ac82fa5f7afe",
+      "statement": "The directory never confirms a suspended or expired listing to anonymous callers: profile lookup answers 404 AGENT_NOT_LISTED for any non-live row without distinguishing suspension from expiry, and a heartbeat that fails signature verification is answered UNKNOWN_OR_EXPIRED rather than with an existence-confirming error; suspension is thereby hidden, not broadcast as a verdict.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/service.py#L188-L217",
+          "version": "repo-lines-v1:sha256:00321bdb974b2abec4df59cc85d376380b7c87cdbe0506d9e4fc1c2a56bf11be:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5ZTIzYWI5NGI1YzEyNmNkNDQ5ZjkyMTAxNDZmZTNlNjc5NDgwOTk0YjI4NTNlODQzYWUzOTVkMzFhM2M2ODAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFjNjM1NTZiZjY5NGQzNTYzYWZjOGY0YzliMzg3YjBlOWI3Y2E0OGIzZWM4MzdmM2E3ZTI4MmYyYmQ5OWYxM2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNlZTFiNDJjZTk2OGM0ZWZlYzgxYzYzOGFhMDRmYjdkNWU0NmM3ZGM5M2Q0YmEyYzBiZTg0ODljMzdkMTlkZTYifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L248-L255",
+          "version": "repo-lines-v1:sha256:a01d5aadfe5a7461464e818ddfebf86e70dda408a61d1f632968811f5e498772:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTk4MzhlMDIzNzU2NzI3M2U4YzYxYTQ2YWE0N2Y0YmIzNDQ1YjA2ZTRjM2MxNjZlYmQ4NWYwMzY2ZTg4NWM4MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWNkZmU1YmZiNjNhZjk3YTU5Mjc1NGVjMDkzZjAyZWVmMTU5ODY1NGNkMWY1ZTcxYmQ2ZjYyN2M0NjgxZGMwNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzUxZDEyNzIzY2IwNjg3ODQ0NGIzMDhiMmNlMGI5ODNiYTI4NzZhMmNmOWIzMDgxMTk4ZTNhZTk5ZjcwNzA0MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjQ5ZDc1ODJhYTMyODBhZDhkNDc5OGRkMTY0NmRhNzY0MDE4NjU0YWE0NjU4N2RjYzAzN2Y5ZjFmNzIwMjhjMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_05ca6d0bb5b4499cbe1b5d04f019aa6e",
+      "statement": "L0 registration binding: submit_registration verifies the manifest Ed25519 signature over the canonical JSON of the manifest against the presented public key and recomputes the fingerprint as HF- plus the first 16 hex chars of sha256 of the raw public key, rejecting mismatches with FINGERPRINT_MISMATCH, so a listing is bound to the key that can sign for it; bulk key minting stays ~free by design because L0's purpose is attribution for the higher layers.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/identity.py#L19-L22",
+          "version": "repo-lines-v1:sha256:122efe51d8d9c00677d9200b97723e5be2acb7dd4267dbcda85f6d283c36d850:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjdhNzQxMmRmMGNjZTc1ZjIyMThkNjVmODE2MTM5OGJiYzVkN2I1M2VmMzRlNjdlYTUwYWU5Y2EyMTBmYWIwMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDY0NTY4NmEzOThmNGEzNjZiZmI5MmFhMmI1ZDY4MzM1OThmOGRiMGRiOTlmMDU2OWVkY2MxZmJlN2I5MjNjYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWQwNmQxMzJhYjUzNzhiMzY1ZjY0NGU2NzUyNGY5ZmFjOWMwNDBlMDM4MmU5ZWY3ZWNhZGZjMjQ0OTA1ZDE4ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjBjMDA3ZWIyZDA5YWQ2MGVhY2ZlNjk1OGU3ZjZkNzc4ZjczMGY2ZmNjYmRhNGQ4YWFmNjFlMjVlZTdhZjc0MiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L84-L102",
+          "version": "repo-lines-v1:sha256:9d42e5d37364991ce2f413e0466f49161225d3487b4f33c64c5c97bd6964fdaf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiN2ZlYzc4Y2Y3Y2M0MWUxYmYyZGVjYWY4NWZjYWI1MzBhNTI3OWNjYTkyODQ4OGQzNjdhMWEzOWMzZDY2NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxN2M5YzYzYzNmZGMzODE4MTM3YjMzYmVjOWFhMjg2NjUyODdhOWRkMDY5N2ExMmE2MzBhZGZkNTc1YzdlODciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEwNmNhNjhmNzliY2E4YzhkMjJhYmYyYmJjY2Y4MjE2ODg2MWY2MTkzZTY2NTc5MzdiMzk2Y2VkOWQ4OGE4NzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRlNTZlYjY2NWY4NDNjOWE3OWNjNzRmZDE3OTViYTdlOWJmYjZjZDIxNTRmZTRmNDM5ZjUzNTAwZTYzNjJlODQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0fec6d78967e4231bff4e3c4298e45ab",
+      "statement": "L1 proof-of-endpoint is a two-step single-use challenge: submit_registration stores a challenge with a 120-second TTL bound to the exact public key and its manifest, and complete_registration lists the agent only if endpoint_proof verifies against the challenge-bound key over the nonce bytes, with single-use (CHALLENGE_USED), expiry (CHALLENGE_EXPIRED) and key-binding (KEY_MISMATCH) enforced; the directory never contacts the declared endpoint itself.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L32-L32",
+          "version": "repo-lines-v1:sha256:df9c406e83f9023b8e52b82cace0fa8dcc30873ab532bf98ff7430e5c311beb3:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGY5YzQwNmU4M2Y5MDIzYjhlNTJiODJjYWNlMGZhOGRjYzMwODczYWI1MzJiZjk4ZmY3NDMwZTVjMzExYmViMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGY5YzQwNmU4M2Y5MDIzYjhlNTJiODJjYWNlMGZhOGRjYzMwODczYWI1MzJiZjk4ZmY3NDMwZTVjMzExYmViMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWZmMzdjYjZkMjM3YzE1YzNiMzQxZWM0NjliNjFhMmM1ZmZjNTU1MjU2M2UyM2U0MDc5YzgzZjc1NzFjNTJmNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDg5NWVmMWI3OTlmOGY5MzQ3OTBhMGM2YzgxNTVjYjE4ZWEwZjUyMTZhMWYwMzk5ODQwMWU1OWFiZThiMDVmZiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L110-L131",
+          "version": "repo-lines-v1:sha256:307dfced5e1b2a61e00b9b5cd9100f3338c263a3ceb49cef4dc53382caa3d1b2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5YTM1MDg2Mzc1MzMyYmY0ZWYyODQxZDliY2M2NWZkMjkxYjhiZDAzNmQ2NWRkN2JkYzhhYjZjNWJjOWRjZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM4ZGY5ODcxNGU3MGRkYTFhYzdiYjFmNDVjZTQ5NmE2YzNmZWY1MjIxYjA0YTQ4ZWM3ZWI0YmE5NGYxNjNhOTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdlODMxZGE2YjVhODI3NzhmNGM4YjVhYmRkNjYyMDg0NTkxYzMyN2U1MTBmZTg5NDU2M2RkZjY0MzM5YTRhMzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUwYzNlMDFkNTMzMmUwMDc4M2RmOTcyMWRiM2Q1MDJjNzNlZTlmYTVhZDdjYmQ5ZmNhMjgxZmE2YTkwOTQ1OGYifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L146-L178",
+          "version": "repo-lines-v1:sha256:00a1520e4add6973fb7933fe93c34111e360e1c4f850e5f44210cb2079251305:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4NGMwMTU4MzU1YTg1ZmRiNjFiNGI0Njg1YjljOGUwMTdhOTFmYjQ0NTJkZDAwN2UxMDkyZTI4ZjYzY2Y3NjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDlhNTNhNjE4ZDAyOGUxZDMwMDBjMGE3YWJjZWVjYmU1ZmIzN2Y0ZTUxMWVmZTQ2NjQzZmFkNmU2Njg3MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ4NGZjYzk2ODdmY2U4ZDg1YmMyZDFlOTYyNzYzYjBlMDk4YTgxOGFhNmU0YTNjYTRiYWIyNjVmMmU2YzQyMzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIwYTUzNWJjYTc3N2I4NDUyOTVkMDg2ODVmM2VmZmU5YmI3NGY5OWZjZjUwODk5N2UyMzhmMmJiZDNmM2I5ZDgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e3e9e02683df415a90057ed06aa6be8c",
+      "statement": "L2 domain verification is performed server-side: DomainService.request_verification issues a single-use token for method dns_txt or https_well_known, and confirm() requires the live agent's signature, an unexpired unused challenge, and the manifest endpoint host to equal the domain or a subdomain (DOMAIN_ENDPOINT_MISMATCH otherwise) before delegating the DNS/TLS control check to the injectable resolver and persisting a verification valid for domain_verification_ttl_days (90); the trust block surfaces only the primary verification whose domain covers the endpoint host.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L47-L49",
+          "version": "repo-lines-v1:sha256:8cc748b63790f5932af0668c6b050e047f22b8dc72a1f79f0f6342f343791b2b:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFlNzVmOTgxMWRlZTQ1MDg3NzlhYTJjM2EyOTI3YzQ5MzZmMDIxNjk3MDA4ZTY1ZWNmNWJhODhlNjEzOWE2OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjIyYWM0NjcxY2JiYTFiZmE2NzMyYWYyYjE3YzMyM2ZlNGMzZTJlNzFkZWNiZjM2MmMyMWI1YjdkNTJhNzNlMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjBkMzFjYzc1YmQxZjMyZjk5OTY1NGJjYzg5NzdiNmJhNzE3YmVmNjY3MGY4ZGQ5NTc2NmU0ZTg5N2ZiYjM5NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDQ5YjEzYWFiZGI3ZjVkNjIxMzYwYzFhYWZkZTRjMzdmZmUwMGIwZDg1OTQxNmM3MzZlMjg3NWY1MGU4MzBmNiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/domain.py#L172-L179",
+          "version": "repo-lines-v1:sha256:1646821c079bc2ca1ecdd6486b360c744c3798dc78ffc81c6f23dc47bd9b8129:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzlhZjg2ZGNjOWY2NmZhY2IxNTE5ZGQwNjJiN2UzY2M2YjhmNTMyOWZjMjU2ZjkyZDA3NmUyZTczZjlmMGJhNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTFiMzliNjM1MDQ4YjFhYTFjMzAxNDczYWY5OTIzNzk4ZmFmZGJjOTNjODdhYTRjNmM4YTQ0ZDUzMzJiNGE1OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWFkM2U5M2IyMzU3NWViYjEyNmZiY2M3NmE0NDQwY2Q5YTEzMzMyMmYwZmY4NjI0YmI3YWU1ZDIzMGEyODcwMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/domain.py#L59-L150",
+          "version": "repo-lines-v1:sha256:bf7eae460d697f2f903c92ad395fdf852c4c9404db6ec4bc8c5805aaee065ae6:eyJzZWxlY3RlZExpbmVDb3VudCI6OTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY5Y2VkYjI0NWMxNjMyZjc4YWU2NjUxNjUxY2I4YTE0MWZlOWYwMmNlYjQwNDc5MTdhMjQzMjA1ZjlhNTg5NzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjljNTkxZDFmM2MzMjIxNDIyY2VjMTZlYTY1OGZkM2VhNTUxYmUzMGJlMzllMTFjMGFlY2MwM2EyMGQ4YWYyN2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM1YWRkMWNkZmJhNWFlNWNiN2MwYWE0NTE5YTQ3MzFjMjU1NDUyZmU3NThjNjVkZDYzYWE3NmJkNDdmMjhhOTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5bdaa713f44c4aec9c8cbac039398831",
+      "statement": "L3 vouching enforces mechanics only: VouchService.create requires both parties to be live listed agents (VOUCHER_NOT_LISTED/VOUCHEE_NOT_LISTED), the voucher's signature over the body minus the signature field, weight 1, and a mandatory future expires_at within vouch_max_expiry_days (180), while the store enforces the cap of vouch_max_outgoing (10) active outgoing vouches; vouching never verifies offline identity or predicts behaviour.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L52-L54",
+          "version": "repo-lines-v1:sha256:59050ec1ae122695f33423433f6bf853f5ca4d0ad462711f9e303a4bea9e2a61:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmZmYmQyZDVjNzA3MDA1OTJiYTM5NDljNTY3ODQ4OWZlNWRiY2NhM2QwZWMxZGYyYWI2ZDEzZjBiM2Y0YzEwYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDY3ZWY1MmRiNTczZTIyM2Q2YTUwZTFlZDc4NTNkM2QwOTNhYzA1YjY3ZjVkYzAwYTUzMjg0ZmMyNjY3M2IzNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGQ4ZWZhYjEzOTk0ZDhmMDhiZThhZDJlY2JjNmI0MDI4YjgzODZlZGRkYjYzODczYzk3MDg5YWRlYjlmNzg0NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzNmNGE3ZmNlMTI5ZDc0NWZhZTkxZDQyZDAxODA2MzdlMThlM2UxYWQ0NWM2NTM5YjUwNmY2ODkyYmVmNjU5MiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/vouching.py#L40-L90",
+          "version": "repo-lines-v1:sha256:3e07abc7322d72b967b18d80505e4b24ce7c39a7d05459af2590850e5faa7152:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4MzgxMWQxODE3ZWE4ZDliN2VjNDQ0MzhiZjJhYjBmZTVjM2RlNmNjOWI4YTNiMDBmYjE5MTQ2ZWEzZmFjMjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIzYjMwNGUxMjFiNGY0ZDJmOTg4MWRiMmYwZmZkMDhhZmZmYjQzOTI0ZjI5ZDAzNjFlY2VlMzA0MTY3NzQ5ZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI1NDBhYTE2OTk0OGU1ZjU1Yjc1NGNjN2E2MTc4NTU4YWM4MjJiNmQ4MzE1MTYyYmFlZGYzOTQ5ZDY1MjZmMmEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7fbfe84383674f308f8bc4e974a64c97",
+      "statement": "The vouch graph is served as raw edges only: inbound_signal exposes each active edge with voucher_tenure_hours, annotations reports the computed mutual_vouch_density while exposing vouchers_share_registration_cluster as False because registration-IP clustering is not tracked in this build (absence reported honestly rather than fabricated), and trust_paths is a depth-capped (2) BFS returning raw edge lists — the directory computes no path score, PageRank or other aggregate over the graph.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/vouching.py#L111-L143",
+          "version": "repo-lines-v1:sha256:adc4f9f3a44f2c5faa71c18ef38f927f525cf504cebba86e0fb0a5c3f4d935ff:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzZWEwNjJjMzMyMmI4MGQwNjc2MmU3MWQ2ZDE3OGNhYzliNWU3MmFjNmRmODcyZjZjYTE3MTI0YmQ3MTY5YzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY4ZmFhMWNlMzlkZGZkODNhMWMwYjA4NGNhYjgxOTZlMGM5NGU2NDRjNjEzYjAwMDg0M2UzOTYyZWVmMjExNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjljNTk0MjgzOTM1NTBkYTlhYjYwYzdhYTA0MDNhMTViMjM5ODBiOTcwNzk1N2E2NGUzMzEyNmU0ZTc1MGU2NjMifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/vouching.py#L165-L187",
+          "version": "repo-lines-v1:sha256:0db636ea33892f72f4f3484a286a8fcbd1672ea3b74b85a792828b25fb1f8ae4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRmM2Q2MTZhZTM1MDc4YTNmNGJjMTY2MmJjMzcyODYxMDQ0MTkyODAyZDU0YjQ0NTk2Y2I4YjQwNzgwMWM5MjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU3MTYzNjYyOGFkYmYwNGUzOTgwMTEyOTQ3NWZkNjE0MDYxOWU1ZjAyYWJiZGQxN2ViOGZmYzQ4Nzc4NDFlNmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNkN2UzZWRjZmFlYzA2NzM5Nzc5NzgwOTExNTBmYjk5YmYwNWYxYzU1MmU5ZTc0OTczZmYyYzFmODI4NjBkMzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6111502310a248c3b898ec2cca08b3d5",
+      "statement": "L4 reports count toward automation only from eligible reporters — live listed agents with at least report_tenure_hours (72) of tenure, deduplicated per reporter+target+category within the report_dup_window_hours (24) window — while counters() returns raw store tallies within the report_decay_days (180) window, and _maybe_auto_suspend suspends only when at least auto_suspend_threshold (3) unique eligible reporters accuse the target in one of the ABUSE_CLASSES within the rolling report_window_days (7) window; suspension is an audited, appealable abuse filter and non-abuse categories never auto-suspend.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L57-L62",
+          "version": "repo-lines-v1:sha256:21ad2b3504aa1838c09cc860e5c9f3f03d8a9b1f61c27051248e932da2420344:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjJjOTBkNmNmODI2YmMzM2Q1MzUzMDc2YmQ2MjgzMzIxMzc3ZmI3YWUwZjEyMjIyYThkYWVhNGZjYWRlYTlkMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODgzYWQzMGQ2YjYzMGNjM2NkNGU2Y2U5ZWM3ZTU0MDAxMjMzMjIzM2NlYmYxYTMyYjg3MDgzYTRlN2FlMjNkOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTA0ZGFjMGI4ODFlMjcxMTM0OWI4NDc4NGJhZWVjMTY0ZjM2MWY4ZTZhODI1NTFhZGUwZTU4YzUxYWIzYWM0NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzJkYjQ2ZjQ5YWFhMGU1YTlmN2U3MWFlNmM0MzViYWIwN2JkZmNjMDE5ODVhMGY0Mjc2ZmM3NjJmOThlNDkwZCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L45-L124",
+          "version": "repo-lines-v1:sha256:f4a000808f89d6882f37543285a9b82652009d332c35c1f29cc977f8f8452332:eyJzZWxlY3RlZExpbmVDb3VudCI6ODAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEwYTVjMzI2MDdjZTM5YWIxOTNkNmZlMTQ1NDFkMjQ2ZDE3YTFkNTc5MGI5ZTM2MmRhMzk4OTQwYjVjM2JiZDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDlhNTNhNjE4ZDAyOGUxZDMwMDBjMGE3YWJjZWVjYmU1ZmIzN2Y0ZTUxMWVmZTQ2NjQzZmFkNmU2Njg3MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3NWEyM2QyNDdmZjIwMjFkZjhkZTdkYjkwNGYyOTE3ZWE2ZTA4MDdmNmZiNWNjYjhkODhjMTE0OTE0ODlkNGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU0NjQ0NTZlMTA0MmNhNjZhNTM5NjY2NTFlMjM4ZDM0MzRjNWQ3NjBlOTJiMGRjYWY0M2M2ZGFmMWYxOGMwZDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4ba3a22eca09403e9e94b1522a3a4bde",
+      "statement": "block_recommendation is a pure function of recent raw counters — it returns {'default_max_contact_rate_h': 1} when at least 2 unique eligible reporters appear in the fraud or payment_fraud classes within the 7-day window — and is advisory data exposed in the trust block that never blocks or throttles anyone.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L132-L141",
+          "version": "repo-lines-v1:sha256:1d8caf0de95afbfbcf15b41c7f0ad7c55d4186479824a95ee4fcccf46ce9a034:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhNzI4ZTQ4MTQ2MTk0NDJjMDYzOGM0YjAxZDRmMWE1NjY2ZDZlMjEyYzhlZmU5Y2NlYTUwYjgwOTQ0MDAyZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlN2M5NTdiY2I0NGZiNjczYzk4YjAwNTBhNzVkMzgwODJkYjgxZDkxOGRlMzEzYTNmMDdjMTIzNTMwNmQ3ZWMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE0YTM4ODEyZjA1YWM0YTQ5ZDAxZjllZjhkMzhhYWUzZmNmMWZlYWFjNGI4OTBiN2YxMDNhZTlhYjIyZTkxZjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2ZDc4MjAxZjU5MGE4NzhlYjk5NmE4NTFhMTAxNGQ5Mzc2MDM5Nzg5NDc3ZjA3MWFhNWM0OTdkYzI0ZmJhNDcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e909b8230e7f487eb654d89b8f9c1a5a",
+      "statement": "L5 chain atomicity: every state change and its single audit entry commit in the same BEGIN IMMEDIATE transaction — store mutators call _append_audit inside the _write transaction, which links entry n to entry n-1 via prev_hash and stores entry_hash = sha256(canonical_json(entry)); only sha256 detail hashes (never detail bodies) enter the chain, and an empty log starts from a genesis entry whose prev_hash is 64 zeros.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/audit.py#L39-L64",
+          "version": "repo-lines-v1:sha256:38b0f6ebfbb08371af1778c1e45f8062963b3e3a62abf07472cacf65465db19b:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyMTRjODVhM2Y5ZGExMjZjZmFjMDM2NTExZDg5NTBkNTZkYTVlMWQwMTk1ZDU1NDllNjI1NzZjNTljYTYyN2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3NjA0MmJmMjE1NjIwOWRkOGRhNGQ3YjMwMTEzZWNhYzg2N2ViM2RhNjA2MWNjMjVhODNlZGM2NzdjNGY4ZGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFmN2I4MzhiZTUyYjBjM2UwOThmOGQ3YTllYWIwNjBlNDBkMzg4MmU1ZGViNmE1ZDAxMzZiMmUwOGYyMTc3YWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkxYTA1MTU5MjE3MjNlNWRlZTU1ZmY5MmI3M2JiZDVjMWU2MjNlYWU1NTBlYTRhZDc5MDFkMjIyMTEyMGRjZmUifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L197-L261",
+          "version": "repo-lines-v1:sha256:2640a17d6676c6188a61b57fb8874d24d8151848647f55476e41b61d65af0a53:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI1NjdlYTcxNTM5ZmEwOTRhYmNlNmU3MWU3ZGFlYTllZjQyMTg5YmQ3ZmE5MjExOTZiN2VlYjFkMzY4YmQ5M2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1ZWVmZjNjNDc3NmY1ZmI5Yzk1OTg0ZDFhMTc0NmIxZTU2OGRkNjhkNWVkZTZlNDQ4NWFhNzM1ODhhNDM3ZWIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ5YWM2ZmU5ZDE3MDc3MTZkNTE2ZGJjMTIxMDljMTQ4MTMxMWRjOWM0MDljYzg5Mjc0ZTE3ZDYzOGU4YzkyYWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM1MDMzOTJhMGI2MzZmOGQ2ODFkNDIyNTBlNWZmMWJmZWEzNzUwNTU1YWFmYzY4YzlhZTYzOGRhMzE3Y2RmMTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2fa71a11d81c46a6a8745258657399b1",
+      "statement": "The directory's Ed25519 key signs the chain head hourly (checkpoint_interval_s, default 3600) via AuditService.maybe_checkpoint/create_checkpoint and once more on graceful shutdown; audit responses are signed with X-HAAP-Directory-Signature plus X-HAAP-Directory-Fingerprint headers, and audit.verify_chain recomputes every hash to check prev_hash linkage — so consumers holding an earlier signed checkpoint can detect any later rewrite of the log.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/audit.py#L67-L91",
+          "version": "repo-lines-v1:sha256:44577e95fb492de2aac181a9990d273b73621cfd47ca1d91a4ba57504a6ae4c6:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg5M2M1NTg2OWNjMzc0YWFjNjFiYTkwMDAzNjY4N2JlYjIxY2E5Nzk3NTVmYzk2MWFjY2Y2YTYxMGM4ZGVjZjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwZTJhNDY1MDA5NWZhOTVkMGUyYmI0MWIyZGIyOTA5NGQzNDA0ZDI4Y2UxMjMzOWVjODhiYjRiNWM1YmU4ZjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAyN2IzY2VjOTI4ZTM0ZGU4ZmQ0OGIzMzljZmM3YzJkMDQxMzM2MTY1MTc0M2EyMTk1ODM3YTQ3NzRiYTQ5MWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/audit_service.py#L40-L70",
+          "version": "repo-lines-v1:sha256:75884cd8f24b31889f08f29985f4e50c061f8bdb7d5208649445388f025960bd:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4OGJlYzEyODZmZDAyZmVhYWEwNDA4OWVmMDM2ZjMyOGI3OWE2YWE3OTIzNWUyYTUzNWM5Njk1ZTE3ZWFhNjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU0NTMyNjRmMTY0NWQ5NDk0MmM1ZTFhNzVkMmZjNThiZmVlOTMzOGUyZDFjNTdjYjk0ZDczMDhlYmY4NDlmMDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3NWEyM2QyNDdmZjIwMjFkZjhkZTdkYjkwNGYyOTE3ZWE2ZTA4MDdmNmZiNWNjYjhkODhjMTE0OTE0ODlkNGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJiZjBmZjI4YjlmZTk2ZmI5Y2ZhYmUyZGMyYjNlNzljYTc4YjFmMGVmM2Q0NmYyYzMzMjIxN2FlM2QyNjFmOGEifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L160-L166",
+          "version": "repo-lines-v1:sha256:4dff09bfece92455275220b7621ff9dc43187428cff432fb84fca47c8936f57c:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTFiMmRjMDNmMzE3MTk1NWIxZTNkMGYwM2JlNGI3MzNlNGVmNzc2NmNmYTU0OTdjZmI0ZGQ4OWZlMGRlMjYxZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTU5ZWNkZmZhNDJjMzdkNzlkNjcxNWZhN2MwY2FkNGYzODNmYzk1YTI1ZDA1OTE3Mjk4MDM0Y2Y4ZmJjYTE2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWMyY2U0NjVjYzU0MGI3YWUzZmM3MGVjYWNhZWY3NDJjZmNhY2JmYmVjODE5MDNmOGRmZWYyNzYyNDdiZGY3MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzRlMWIxNGMzMmEwNWE1ZjYxZTk1OWFiMTI1OGYwMTAzNGYzYTU4YTA5M2ZkYzM3YzBmMzgyNjY4YzZmN2VkMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0d2fb7b0068b4bf19424844c0e170b71",
+      "statement": "Operator guidance (OPERATE.md trust boundaries) requires communicating to consumers that the directory verifies signature math, fingerprint-key binding and endpoint control at registration but does not vouch for an agent's honesty, quality or reachability; a hostile operator can lie about listings but cannot sign as an agent, so consumers MUST re-verify the agent's own /.well-known/haap.json against the fingerprint, and the audit chain is tamper-evident rather than tamper-proof — consumers who care should poll /v1/audit/head checkpoints or run a mirror.",
+      "evidence": [
+        {
+          "resource": "repo://docs/OPERATE.md#L72-L83",
+          "version": "repo-lines-v1:sha256:790c6c4ba45d113d20d717030707da342643650eec375deb4d3f6ce8386488a4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkODk3OTEwNzUyMjhmNTc5NjdkMTY4OWQzNTU3Njg1M2Y1NGYzOWJlMmYwNGVhNThhN2U4MDBhMjk1YzU4ZGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNjMGU0YmMzY2FkNzBhM2I4YTA3MGQ3MTQ4ODkwY2YyMGU0N2ZiYmMwZmI4ZWJhN2I0YWM4YTY4YmUwMjBiYjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2ZTY5Zjk1NGQ0ZmZmZWQxODc5NmI4NWI5MzQ4Yjk2NDU0NmM0ZjRiNDU1YzM1NzE4ZmRiMzE3ZWMwZjM4OWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3292d7eff5e44652a7dfb06bc6b33b37",
+      "statement": "The deterministic trust automata are parameterised by public DirectoryConfig values — challenge_ttl_s 120, domain_verification_ttl_days 90, vouch_max_outgoing 10, vouch_max_expiry_days 180, report_tenure_hours 72, report_dup_window_hours 24, report_window_days 7, auto_suspend_threshold 3, report_decay_days 180 and checkpoint_interval_s 3600 — so every published rule is replayable from config plus the audit log, with no directory-held secret and no ML participating.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L25-L68",
+          "version": "repo-lines-v1:sha256:6821143aef1c6b6186bc8f85d917890c628f53eb92158657dfc7c78001a6596a:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJkNTZkZGE0ZGJkNWI2OGZiMmRjN2YyZjlkMGI2ZTgwOTliYWFjZDEyYjY0YjBiYzcyOTIzNmY5OGQ3MGQ2NmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg5MjdhNjJjNWUxNGVhYTIzZTk0Mzc2ZDBkM2QwOWUyMzdhZDdkNjY1Y2JkZjBmYTliOTI4ZTNjNjgyZmQ2NjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZjMWYwMmZkN2VjMWQ0NjJjMGNiODE4Yjk0OGZmZTRmNzE1YjJjMmM0MzI2MzBjMjMyZGZlMzRkNDI3NDNmYTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFiZDQyYWJkYjFkMDQ4NjkwMWM1ZDYwNGRmMmY3MDdmNjFiM2YzZWU1YjU2OTMwNGE1NWQzYzI3YWI0ZTBmNzEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_958e4d355f4c422f9df03bbdc744dcc3",
+      "statement": "The labelled-signal contract is pinned by the test suite: search/profile responses assert trust-block fields (endpoint_proof_at; domain_verified with method; vouches_in edges), the domain_verified=true filter, the domain signal downgrading to false after 90-day expiry, young reporters recorded with counts_toward_automation false, and auto-suspension hiding a target from anonymous profile lookups and search while leaving reporters visible and never triggering for non-abuse categories.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_domain.py#L152-L162",
+          "version": "repo-lines-v1:sha256:37c3d637cd56b3e119d1c743e0f07a6186c6aa3590433ea5beacc61934f59e73:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiNzRmZmU1YmQ0MmI4NTcyZjFhYWUwMGJiMDA3YWE1ODc5NDY0Yjk1ZmY3ZjkzOGQ2M2VkOWZmYjJiYmZjOGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3MTYxMTljNWZjMWUyYWZiYWFkYjJkODI4MmI1YWE4MDQ3YzJlMDVhZTZiZWJlYmIxYTNkYTI4MDRmMDE0ZTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU5YTJiNWY0YTE0MTZiM2YxYjI1NTc5NTYyYmM2NjkyZDUzNTk5ZGRhNjVkMWVmMTRkYTE1NDU5ZTMzZDIwYTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://tests/test_domain.py#L53-L57",
+          "version": "repo-lines-v1:sha256:f63dc0428c505988a52c3ab0ef2004bc09791ed64d8779b70992d6d2eead93dd:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWZhMDZhYzk4YTE4MTdjZjk4MTcxMjg2ZTlmOWM1ZjA4N2RhNGE1MDY0MDRiZWI3YTgzMWI3Yzc5YmMxZDBmOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWY2ZDQzZjA4NmI3ZGMwNzkyZGZmNTEwM2Y3OWI1MTljYzJhMzJhOGFhZGFkYmVmN2MwZmZiNTljZDY5NDg5ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmNhZTgzNDhiNmNmZWQ2MGZkNGVhMmRkMzE0NGZmMTNlNjE2ODFhMDMzZDYxNmMxNjYyZmU0ODQzMzg1YjExOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjljM2Y5Zjc0Y2I5Mzk2OTVkYTIxZDBlMDBmYmMwMjhhZDNlMDg0NjYzYTIzZDM3ZjEyYzJjNzlkNjQ0YzkzMyJ9"
+        },
+        {
+          "resource": "repo://tests/test_registration.py#L36-L41",
+          "version": "repo-lines-v1:sha256:6bea662d4e1adda97921a140abb969fa6088fe4e0341d183f561ebce44daa156:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWJiMWE0NWE2ZDUzZmNiZDcxNjNmOTkwY2ZkMjZhMDEyMjhlZDFiMzNlZjZhNjM1NGNlMWEzNmRmMzI3N2UyNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGM3ZmYwMDdiYzJmOTMwZTExYTg1NDQwNjk0OTYzZmQzNGU0NTg5YzlmMDcxMDA5OWJmNjkzZTUyMTdiODg1YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTZjZWIzOTFmMmJhZjQ3MWQ0NjJjNGI4YmI0MDllZTE5OGFjMjhhM2Y4ZWNlOWUxNjk4MDllNGI1NjM1MDJjMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmRmYTlkZjU0ZDQ1NzRhYTNkOTY4NmQ1YzM4NzhlZDhhNjEwOTJjNmFiZGQ0OGI1NzVkMmRlZTg5ODdiNzQxNSJ9"
+        },
+        {
+          "resource": "repo://tests/test_reputation.py#L33-L39",
+          "version": "repo-lines-v1:sha256:38bbe495751f60a8c3bae4fda167072b8e8a88d0fcccedfaf4fec28044e438c2:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzZjZmJmOGE4ZjdkMTk0Mzc4MDY1OGI0NzQ4M2ZhOWYwZDA3NjQyZDFiNWU5YjQxM2NhZDI0ODM0MWYyODdmNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjBiYzM4MDIwY2M4MzIzNDVjYzhlNzdmZjZkMzZjNTkwNmRlYjVjMjM5NWUwZTZlODdmZGU1MjU1YzM3NGNhYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDU3Y2IwMmI2MDc1YzE0MTBhZDA4YjNmNDljMjI5N2M1NTUwZDk4MDk3MTJjODk3ZDIzYjkxNTVhMzM3OWMyNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTA2NjQ1NTFmMzljNTA2MWM4YWExZDk0MDhjZmU2MzQxZWVjN2ZiODM2YjI3NDg2YjU5MWRiZmI5Y2I2ZmE4NiJ9"
+        },
+        {
+          "resource": "repo://tests/test_reputation.py#L59-L96",
+          "version": "repo-lines-v1:sha256:f93303fcb54901be9a9092229d67413cb91896edf3966e426f508001efbcdf27:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNkZTI4ZGI0ODk4NWRjZTlmNzJmZmE0NDg5ZDI5ZDhmN2NhNzE5MDg1OTA3MmEzYmI1ODNkN2ZiNzc1ZmJhMjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzOTQzMWEwMjQ4OGM5MTMwNWMxNTBhN2Q2NDk3NWQ4ZGNlYjU5YWYzMDBmNGVhMzM0ZjMxZDRjNjY5Yjc3M2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE4YzAwZjgyODVhYWQyMzljMjY2NjFlZDZhMmMzYTc2MGU3ZWNiOWI2NDJmYzJkNTM4MDM5OWVkYmM5OWYwNTAifQ"
+        },
+        {
+          "resource": "repo://tests/test_vouching.py#L37-L42",
+          "version": "repo-lines-v1:sha256:f9141570c6bc8c797798038fcc28056aa1b1a2441da689e91d1df5d571f3810b:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzA4OGRhODcyYTgzMzE4ODdhMTVmNWZkN2JmMGZmZTA3ZGM0YTU0Mjg2MjkzZDQzYjc3YmQ0ZmNkOTg5MmE1NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDNiZTM4OTEzODM0MWIwMThjNjAyZDcyMGYyMzcyYWExZmNjMjI5YTYzNGEwMjBjM2YzMWVjMWQ5NTRjYTU2NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWUyMWI0NmIzY2FjYWM5Zjk4ZjBlYzhkMjFlZTlkZjYwMzU0ZjQxMzdmMTc2NTljNWM2MzEyODVkOWNhYzkxNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGU4NTQ0OWIxYzRjZTY3ZjE0YjA4N2EyYTMyNGI5OGFmZDUxYWYxODYzZWJmZTI1ZDdmNGNhMDkwMGFjMjFhNiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-05T09:05:06.235Z"
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:1ecad892b29d68827c214724f251f5a3faa45abbc413730b64a8a6258a566aae",
+  "claims": [
+    {
+      "id": "claim_c03ef34d7ce044c0806aaa292ba0d2a3",
+      "statement": "mirror.ingest_chain(base_url, page=500) downloads a directory's full audit chain by repeatedly GETting /v1/audit/log?after=<last seq>&limit=page starting at after=-1 (so the first page begins at genesis seq 0) and stopping when a batch is empty or shorter than the requested page size; it then verifies the concatenated entries locally with audit.verify_chain, fetches /v1/audit/head, and returns exactly {seq, entry_hash, entries, verified, matches_served_head}, where seq/entry_hash describe the local head (seq -1 and entry_hash None for an empty log) and matches_served_head is True only when verification passed and the local head hash equals the served head's entry_hash.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/mirror.py#L25-L54",
+          "version": "repo-lines-v1:sha256:09afd30135c61acbb8f6357a9b933c5b0ae81f6e715c32a8cc42fe2078842945:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0ZmUzNzI4YzhhZDg1ZWJhMWIxZmY3MDMyNWI1NjZlMmU1OGFmMDc3NzhkZmZkOTQ5ZjJjYmUxNTFlMzQ5NmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdmNjIwNTA0YWI5ZTc0YTNiNTQ5MDRiZDg4MzExNDIyMmQyZjc4MTBlMDU1OGNlMWNmMTcwNmY2MWNkZDdjYWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_04b973826f65498cb905cb65b448061d",
+      "statement": "The mirror's verification is pure chain-linkage recomputation, not directory-signature verification: audit.verify_chain rebuilds each entry from its eight canonical fields (seq, ts, event, fingerprint, actor, result, detail_hash, prev_hash), re-hashes it as sha256 over canonical JSON, compares against the stored entry_hash, and checks each row's prev_hash equals the previous row's entry_hash; mirror._get reads only the JSON body and discards response headers, so ingest_chain never cryptographically checks the X-HAAP-Directory-Signature that audit responses carry, and signature-level assurance requires the directory public key obtained out-of-band.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/audit.py#L67-L91",
+          "version": "repo-lines-v1:sha256:44577e95fb492de2aac181a9990d273b73621cfd47ca1d91a4ba57504a6ae4c6:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg5M2M1NTg2OWNjMzc0YWFjNjFiYTkwMDAzNjY4N2JlYjIxY2E5Nzk3NTVmYzk2MWFjY2Y2YTYxMGM4ZGVjZjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwZTJhNDY1MDA5NWZhOTVkMGUyYmI0MWIyZGIyOTA5NGQzNDA0ZDI4Y2UxMjMzOWVjODhiYjRiNWM1YmU4ZjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAyN2IzY2VjOTI4ZTM0ZGU4ZmQ0OGIzMzljZmM3YzJkMDQxMzM2MTY1MTc0M2EyMTk1ODM3YTQ3NzRiYTQ5MWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L160-L166",
+          "version": "repo-lines-v1:sha256:4dff09bfece92455275220b7621ff9dc43187428cff432fb84fca47c8936f57c:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTFiMmRjMDNmMzE3MTk1NWIxZTNkMGYwM2JlNGI3MzNlNGVmNzc2NmNmYTU0OTdjZmI0ZGQ4OWZlMGRlMjYxZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTU5ZWNkZmZhNDJjMzdkNzlkNjcxNWZhN2MwY2FkNGYzODNmYzk1YTI1ZDA1OTE3Mjk4MDM0Y2Y4ZmJjYTE2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWMyY2U0NjVjYzU0MGI3YWUzZmM3MGVjYWNhZWY3NDJjZmNhY2JmYmVjODE5MDNmOGRmZWYyNzYyNDdiZGY3MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzRlMWIxNGMzMmEwNWE1ZjYxZTk1OWFiMTI1OGYwMTAzNGYzYTU4YTA5M2ZkYzM3YzBmMzgyNjY4YzZmN2VkMCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/mirror.py#L20-L22",
+          "version": "repo-lines-v1:sha256:203d383f05a06c976d06e38d5590ce9e2ca5f5aa637c9e07e0ce83f7dff4a8fc:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdiNDIyMmM2NjJmMzFmYzQ0MzM5YzZjMjRiZjQ3MmFmY2JiOGIyNDI0ZDc0NzYyYjg5MWFmMTQyMzU1Y2NmZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzhlYzcxNDNlOGQxYjBmNzA3M2JmMjdlNGUwZjBkZmRjMmQxMzk2MGY0MTRjMDYyZTM4MWQ1NDczM2I3NTBjNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGZjZjQ1MjdmMWI1YmYzMGVjYWZkZDc3Y2I3MWQ0Nzg1N2IzNzEzM2M4MGFjMzRlZTRhZjNmNWExZmEyNWZmMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGZmYjRkMGM5Y2QyNmM3Y2U5N2FiNWU0MGYzMGYyODI2NTQ3M2I1MDIyNzk5NmE2YzIwYTRkMGJlMzVjMDVmYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_61f32270372a47fcb36156cb6402127a",
+      "statement": "The federation mirror seam is deliberately read-only and dependency-free: mirror.py issues only GETs through stdlib urllib.request with a 10-second timeout plus json.loads, imports only the local pure-function audit module, and has no persistence of its own — ingest_chain returns the entries for the caller to keep if it wants a durable copy, and the helper is not wired into the daemon anywhere (its only caller is the federation test).",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/mirror.py#L1-L22",
+          "version": "repo-lines-v1:sha256:406b0eb8152364a4f78849f97e6ca1017107f42fa9e29a1d88e0247c4b8ceb6c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhiMDg0YTlmMzc4MTI0YjJiMWE1MTU2M2JmM2MyMjQ0NGViN2ZmMzM2OTIwMTdkYTI4YjIxMzZhZTU2OTg3ZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM4ZWM3MTQzZThkMWIwZjcwNzNiZjI3ZTRlMGYwZGZkYzJkMTM5NjBmNDE0YzA2MmUzODFkNTQ3MzNiNzUwYzciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBmZmI0ZDBjOWNkMjZjN2NlOTdhYjVlNDBmMzBmMjgyNjU0NzNiNTAyMjc5OTZhNmMyMGE0ZDBiZTM1YzA1ZmMifQ"
+        },
+        {
+          "resource": "repo://tests/test_ops_federation.py#L69-L77",
+          "version": "repo-lines-v1:sha256:5f74e84c2e4290dbf11d9f041197d5924d1885893d842e0e05839665e23c38b3:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjdmY2FhZDU5NzUwYzJjM2Y1YmEzZjAyMDZmNGUxNzgzNTQxOGQwYjkxYmE1MTdlYWQ4ZTAwZGUxYWI3OWYwNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTE4MmU0ZDIxNWE4MzE5NWJkYmRlYzA0OTY1ZjkxOTY5OGVjNDFlZTQ5NGUxYzg2YmUyMjI2MzVjMDllYjA1OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGJjNzhmODczMjdjMmQyYTEyMWM3MzA0NDI2MTI2ZTQzNzc3YzFjYzVjOTFiZWM2MTIyZmZhNzEyNGU3NTAwYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_cb2302e9c2cf46499d6019ffdab85e68",
+      "statement": "The wire contract any external mirror implements is /v1/audit/log?after=<seq>&limit=<n> returning entries with seq strictly greater than after in contiguous ascending order (after defaults to -1; limit is clamped server-side to 1..1000 via max(1, min(limit, 1000))) with the envelope {entries, next_after, head} where next_after is the last returned seq and head is the current {seq, ts, entry_hash}; a page shorter than the requested limit or empty means the log is exhausted, which is the stop rule ingest_chain relies on.",
+      "evidence": [
+        {
+          "resource": "repo://docs/SPEC.md#L755-L758",
+          "version": "repo-lines-v1:sha256:a94cbf43cebc5c905a52c6cfa5dff5e402348fbf67c33101519ec67a62523313:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWIxZGUxZDRkNzliYzA3MzlhN2UwMzZjNGYxN2FkNGI4ZDU0NTI2NDEwYzFiYTNjODY1NjRiMWM3ZDk2NDU3ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjI4MWE1MDU5NzBhNDYxNTQ2MjZkYjgzMGJlZjI2YWQ5NDUzNjcwYjY5ZDBhMzNiMDU2MGUxNjk4NDA5NWM5YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmQxMjQ2NTk4NGJjMzU0N2FkOWZlOGY1MjcxY2E4ZWU0Yjc0ZmQyZTY2OTI5NDc1NmNmZjQ3ZWU5ZWQzMGEyMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTI2MjZkNDAzOTNkMThlYWZkMGZhZmYxNjI5ZWJlNTQ1ZGVhYjgyNzA3NjBmMGZhOGYyNTI4MGQ4NWM0YzViZiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L350-L361",
+          "version": "repo-lines-v1:sha256:6249719ceb2f81c3bea6973a50898729d5644bcf159ee6f084f2df4183d0385e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4MTJhZWJlMWYyMjliNGQ5ZGE4N2YwZmI3Y2ZkNjNlNTM4ZGYyMTEzYTViMTMxOWNkYWJhMWU5YmJmYmUxZjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxMDM0ODFjNTdkMGYwZGMwZjc2Y2QyY2M4YjM2MDRjNGU4Mjk2ZGE0MTIyYWRkMTllODE3NDVkYzdlMzMxYTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk0ZTdmZjlkODgwNjczMjA5OWI1OWM5NGZlMDA2OTEyNTk4ZGNkYjQ0YmU2ODVlZGRiNWEzODc5MjMyMTMxMTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg5NGJhOGZjYmFhOTZjYTg2YzgzNjAyOTJlY2MwY2VkZjk3N2FkOWUwMzlmYjJjNTAzMDYxN2JiYWRkMDA0YTMifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L283-L290",
+          "version": "repo-lines-v1:sha256:d0182f5cf984854bb2454ac3935d4292fa054c5687f89e21c4099d9c7ab9e690:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjU1MTMzMTZjNGFkMGQ1ZDY4MGE0MzJkYjE4MjVmMzY1NGE2MjM1NTlhMmNmMWNhMGI5ZjlmMTkzM2M5ODI5NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTJlN2RiZTQ3ZTJkZmEzODhhOTFhZGIzNDUxMWMwN2U3ZWYwODIxN2JiMjhlOGQ2ZjFkZGM2OWVhYmZhNzJiZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWYwN2JlNGY3MjU0NDcwM2FhY2NlZjQxZGFkZTRlOGY0YTUzOGNlYTRhNzhiZDYzNTc2OTYxMjBjNmE3YjNmZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2FmY2Q5YzYzNzBhN2RiMGRjYzdlMmRmMWY2MTFjMTZkMmM2MGE5NzhjYjM0N2Q1NGVhZGQ3MjRlZjJjMmI0ZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ac4c59008bd0405c86c4b7fb3b6ae244",
+      "statement": "GET /v1/audit/head returns {seq, entry_hash, ts} plus checkpoint_signature — a base64 Ed25519 signature of the directory key over the canonical JSON of {seq, entry_hash, ts} (AuditService.head/create_checkpoint) — and such signed checkpoints are written by a background thread on a cadence of checkpoint_interval_s (default 3600 s) plus a final checkpoint on server shutdown, so a consumer or mirror that polls at least that often bounds the undetected-rewrite window to the polling interval.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/audit_service.py#L40-L58",
+          "version": "repo-lines-v1:sha256:ce15bd77dd1e329ce71a71c8f5b12ddb246afa3e8069d1c5dfdb071185724d40:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4OGJlYzEyODZmZDAyZmVhYWEwNDA4OWVmMDM2ZjMyOGI3OWE2YWE3OTIzNWUyYTUzNWM5Njk1ZTE3ZWFhNjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJjNWQ4NjliMTAwZWRmMTY1ZTQwYjhkN2FkZjc5ZTk2ZDM4OWM2YTEyZDE1MDI2YzJjZDU5NjcyYjlkZGRjNzgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3NWEyM2QyNDdmZjIwMjFkZjhkZTdkYjkwNGYyOTE3ZWE2ZTA4MDdmNmZiNWNjYjhkODhjMTE0OTE0ODlkNGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkxNmJlMDE1ZWI3ZDNjY2ZhMTE4ZTAxOTc0ZDIyYTY0MzZlM2Y0ZTUyOGQyODY0ZmEzNzM1YjhiZDc0MDc2MGIifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/config.py#L65-L65",
+          "version": "repo-lines-v1:sha256:3eeb1e1c102f4d948016388e71de1489827ff40dfe7244e6fcea24cd7ea4a9b5:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2VlYjFlMWMxMDJmNGQ5NDgwMTYzODhlNzFkZTE0ODk4MjdmZjQwZGZlNzI0NGU2ZmNlYTI0Y2Q3ZWE0YTliNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2VlYjFlMWMxMDJmNGQ5NDgwMTYzODhlNzFkZTE0ODk4MjdmZjQwZGZlNzI0NGU2ZmNlYTI0Y2Q3ZWE0YTliNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTkzOTJjM2QyYzNkN2RhZWE3ZDBjZmUyOTEyNTE4ZTg5YWExNWFlMTM1NjU3ZTZkNDdhYTJiODIwZmI2NDAyNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjUzMDQ0NTExYWI2Y2I5OGRiM2FhYTVkNGU1OTgyYTkxMGUxZjE5M2JjYTVlODdlNDRiYTkwZmIzMGU2NWQzZCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L94-L135",
+          "version": "repo-lines-v1:sha256:dcbc96b1cdda3526ac94b9cfb831cddcaa2d7b3b39823420ce13ad3b5208938d:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0NDdiY2UwOTA2YmJmODJiNTRjM2M1YTkyYjA1OWVlYWY1NjRjZWUxMGYwYTM3ZjQ3MTIwNTFiMTRiODgyZTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU1ZmZkOTEyZGJkZDFmNWU2NGFjNmNhYWY0MmRmOWMyNWI3NmU5OGU3OGYzMTgwNGRhOThkZjRmZTZmMDc3MTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiZTNjYWZlOTQ0MDA3ODUyOTZjNGRhNzA4OWNjMjg2NWNiZmU2MmE1NzhjYWRhYmU2YzYxYWY4MDA4YzUyNTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQxNjMwZmQ1MzM2YzA2NGQ3OWI2NzhiMDQ5OTc2NTY5YTE1M2E3OGQzYWFjMzJjMjg5MWE4OGYyNzVhNjE1YzAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3d917a6909904bd3a1fe84452efd8fa7",
+      "statement": "The L5 chain is tamper-evident, not tamper-proof: a rewrite by the directory operator is detectable only by parties who fetched a signed checkpoint (or retained an earlier head or mirror copy) before the rewrite, and omission of events is not detectable by any mirroring; OPERATE.md therefore instructs consumers who care to poll /v1/audit/head and later run a mirror, and SPEC instructs mirror operators to download the full chain periodically and compare heads against the operator's out-of-band checkpoint publication.",
+      "evidence": [
+        {
+          "resource": "repo://docs/OPERATE.md#L74-L82",
+          "version": "repo-lines-v1:sha256:78b9d7e5775fc7bce339759c2ed1ceaaa6382684f43938832d75f681e9353100:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDhmMjBjZDUxMmI1MGYzZmExNTJmYzJhYjMyNjhmNDVhODM2ZDBkNjkyZmY0MjIzOWE4NDQ2ZjhlMGY0MTRkNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjgwMmQ5OTFjMjFhNDVmYmViOTU5YzFiYmZlZDdmZDgyZDI2MzdmODBjODIxMzZkZTI1MjdhZWJjNTk0MTRlNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTVkZjcyNTlmODYwMGJkYWNhMmQwNmJiN2JhNmRlOWUyNmRiZWFmMzhhNDkyYWU2Mjc3NzU4YmJkMTFjYzY5MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWJiNzdkMDk4M2I1NDQwMzZkMWE0NmE4M2MzZTcwMmQzNDk0M2IzODc4YTQ4ZWQxZGY3MDBmODk3YTAxMWMwNyJ9"
+        },
+        {
+          "resource": "repo://docs/SPEC.md#L520-L522",
+          "version": "repo-lines-v1:sha256:ff0be27c15f9028ebd26e6190d431935e8f570acf635f73dc0de7a16c766ed3c:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGY4ZDQ0Nzc0MWQzMzk4NTVjZWIzZDNhNmQ4NTRkMDMzOTFlNDNiYmE5ZTAzNDM4ZmViZWY2NjYyODg2NDVhNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmM1MTBlYTc2MTJlZjVhNjljN2E3ZWFkZjllODdiOTc5NzUyM2RhMmM1OWE5NDRkNGJjZDk1Mzc1M2Y5MzJhNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODdlODJkNzMzMWVmNWJiZTkwNTI2MDYzNWRjMWQ1YTU2NGM3ZGRhZTAxY2M2MzAzNjFkNmM1NmJmZWFlNjJiZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmNjNWEwZTJlMmY5MDUzYjRkM2U1MDk0MDJmOGViYTA0MDQ4N2UxMDliOGZkMDYyYmMxZjA2OTRlMDRjZDQ0ZiJ9"
+        },
+        {
+          "resource": "repo://docs/SPEC.md#L541-L544",
+          "version": "repo-lines-v1:sha256:6503eaee7099efe39d7e7e4163302bdcaf5403ceb5cacb04e4870d4929391da9:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWY5NmEyMzQ0YTQ4Njc0YjVlMzNiZDZhZDVmZGE1N2IwOWYyNzQ2MDVhMGJkZGQzZTYwNTNlYzljYmY3MzYxMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTY0MzI3YmRhNmIzYzZkZDk1OWNjOTU3NGEyM2UxMzI3MmQ0NjZjOTY2ODZmMjU4NjAyZWYyNDhjNjIyYTE0MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWVjNWZkOGI0Y2NiMzk3YTA4NTA5Y2IwYjJiNmQ0NDFjZjUyZTFhMzEzZTg3ZTdkZmUzZWQ3NWYyZjg4NmEwNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjQ1N2MzMTM1YTMxYTZmNGFlNmU0NTE2OThmMGMwZGNhM2FmOGIwZGNmODgyNThkNjVhNzhjOTg0MjFjMmQ0ZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_635f6eda3d574278a9093086c82d52de",
+      "statement": "Because a hostile directory operator can lie about listings but cannot sign as an agent, consumers must re-verify an agent's own /.well-known/haap.json against the fingerprint shown in a listing before trusting it — endpoint_proof_at (trust row M3) proves control only at registration time, not ongoing control — and high-stakes consumers use the directory_fingerprint carried on every response (row M12) to cross-check multiple directories, since directories may differ under federation.",
+      "evidence": [
+        {
+          "resource": "repo://docs/OPERATE.md#L74-L79",
+          "version": "repo-lines-v1:sha256:94b46a44eb6cbc7bf80a8379cb8fd43b47f7dc645df0afd138d5335e715e5151:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDhmMjBjZDUxMmI1MGYzZmExNTJmYzJhYjMyNjhmNDVhODM2ZDBkNjkyZmY0MjIzOWE4NDQ2ZjhlMGY0MTRkNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDY1ODYwYmY3NTc5ZGM5Njc2Yjc0NWNhMGRmMjhhYzBkYTBjNWMxZGQzMjFlMGQwMGQxNGQ2ZmFiYmUyOGM4MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTVkZjcyNTlmODYwMGJkYWNhMmQwNmJiN2JhNmRlOWUyNmRiZWFmMzhhNDkyYWU2Mjc3NzU4YmJkMTFjYzY5MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjgxMDRlOWI3ZmFjNWViYTZlNWRjYTc0YTRjZTA4MmEyMTYxN2MxYTkxYzc3NWViZTE0YTQyZGNhOWZhZmNjNSJ9"
+        },
+        {
+          "resource": "repo://docs/SPEC.md#L562-L562",
+          "version": "repo-lines-v1:sha256:78e94169b9b377ce002216aac5f9cc7449868b923928733bbd57cd230c9d5291:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzhlOTQxNjliOWIzNzdjZTAwMjIxNmFhYzVmOWNjNzQ0OTg2OGI5MjM5Mjg3MzNiYmQ1N2NkMjMwYzlkNTI5MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzhlOTQxNjliOWIzNzdjZTAwMjIxNmFhYzVmOWNjNzQ0OTg2OGI5MjM5Mjg3MzNiYmQ1N2NkMjMwYzlkNTI5MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjhhNzIxZDhhNDA2OWU1YWZkNmVmODZiYTU1ZGJlZDk2ODJkMjYxZTVjYTFhZTA2ZGYyOGFmOTI3NTU5NTY1NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjFiMGEwYTQ3OTdlYjMzODQ0YWRlZTdiOGY5NzcyZjc0YTgzNzQ5Y2UyYTdmOTJiMDE1MDU5YTBiZjM3NDU5YiJ9"
+        },
+        {
+          "resource": "repo://docs/SPEC.md#L571-L571",
+          "version": "repo-lines-v1:sha256:565de7c17d87fe050d884cab8f40f67ff09401042877f771d0f690629e82ac27:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTY1ZGU3YzE3ZDg3ZmUwNTBkODg0Y2FiOGY0MGY2N2ZmMDk0MDEwNDI4NzdmNzcxZDBmNjkwNjI5ZTgyYWMyNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTY1ZGU3YzE3ZDg3ZmUwNTBkODg0Y2FiOGY0MGY2N2ZmMDk0MDEwNDI4NzdmNzcxZDBmNjkwNjI5ZTgyYWMyNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmQ4ZjQyNmE3ZmViNzU0ZTBiMmQ5NjYxMzkxZjg1YjZmM2ZiZmJjYzk3NTQ2ZDdkOWExODcyZmU3YjA0M2FhOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDhjOTQyNWNlZDA3MTAwZGRhYTYzMTA0MzExNTFmYWE0MDA4YjM3MTk1Mjk5MGZhMzZjOWNiNTcyOGNjZmE0MyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b177bfa31f634bb898215028f40fa45d",
+      "statement": "v1 federation is single-directory with no central registry-of-directories: each directory is authoritative for its own index and another instance may ingest and re-serve a chain with an identical head, so two independent mirror operators whose locally verified heads agree prove they saw the same ordered world; multi-directory trust — querying several directories and taking intersections/unions — is entirely a consumer decision, and building a directory-of-directories is an explicit v1 non-goal.",
+      "evidence": [
+        {
+          "resource": "repo://docs/OPERATE.md#L111-L119",
+          "version": "repo-lines-v1:sha256:ca0ba444414ed77b61862f3527b9ff7afc2ddcf8957aed1da3986570501ed073:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWRlM2E4NmUzOWRlM2EyYzZmYjdhYmI4Y2ZmMmJmOWNmYmRjMmIwOTIyYTdhOWRmYWY2YmFhZDM1OTA0NmY5NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjM2Y2VmYjQ5ZTg4ZTNmY2U2MWQ1Y2FkMzExMTlhNDE4MTM3ZTA5YzE1ZGFlOTU5NGQ1ZjE4YjUyYTg2MzU2MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzY2OWQxNTI5N2YyMmUyZWRmZTEzN2RkYTYxY2VhMDNlZjMzY2FkZGQ0NTE4Yjg4OWEyYjE1ZDBiY2I3NTI0YiJ9"
+        },
+        {
+          "resource": "repo://docs/SPEC.md#L1082-L1084",
+          "version": "repo-lines-v1:sha256:e660bdf86630574597dbe88abcf7e27b963f80f73a919f0026934782c7b11260:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTJiYzU0MzA0Njk3ZGE0OGYxYzEyMjM4ZDk3ZGYwYWUyNDA2NTliNWQyMmI3MjRkZjNlZDc1NWFhNTQ1YWYyNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYThhNTcwOWY2ZDFhYjE1ODMyMmRiOTI5YmJiMTdlYmJjNTdjYWY0NjFkMDk0NjE0NzIxNzgwNDhjOTAyZDI3NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmI1YzkwZDMyZjdiNTA1Nzc1NjQ4NTRkZTM0NTVlMTIxMDFiOTE0Y2I2YzVhOGRmOTA4NmVkNTlhOTAzZjUwNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjgwOTBlNzE0MDE3MjI1ZjgwMTUxZWRjYmFiNTRhMGI1MGEyMGJkYmJjYTI0OGI4NzdlYTNjMmEwZDE3NDAzYiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/mirror.py#L1-L9",
+          "version": "repo-lines-v1:sha256:06adf10bb2f088cf905efb189b2c21bfe177275da3c85084f6e7fe5da5a0b362:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGIwODRhOWYzNzgxMjRiMmIxYTUxNTYzYmYzYzIyNDQ0ZWI3ZmYzMzY5MjAxN2RhMjhiMjEzNmFlNTY5ODdlZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTMwM2VjZGQ0YTRkMTBmMTljNzNmZDQyZmQxMjQzN2ZkMzM1NGE4MjY4MTYwNWRhNTI1NWE5N2EzOTA2OGRiYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTViNmU4NzA2YjQzMDQ3ZjJhNmRiNjdmMTMyNjM4NTk1NjA0ZTY3ZjM2OTY2ODc2Y2UwMTU4ZjAwNTNlNmJkMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_78b86b44c9374d8b9b8927c58291f5ab",
+      "statement": "ingest_chain fetches the served head only after paging the whole log, so its matches_served_head reflects a point-in-time snapshot: on a live directory an entry appended between the last log page and the head fetch yields matches_served_head False without any tampering, so an operator treats a mismatch as a retry, and durable rewrite-detection requires re-running the mirror on a cadence while retaining earlier verified heads and checkpoints for later comparison.",
+      "evidence": [
+        {
+          "resource": "repo://docs/SPEC.md#L522-L522",
+          "version": "repo-lines-v1:sha256:6c510ea7612ef5a69c7a7eadf9e87b9797523da2c59a944d4bcd953753f932a5:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmM1MTBlYTc2MTJlZjVhNjljN2E3ZWFkZjllODdiOTc5NzUyM2RhMmM1OWE5NDRkNGJjZDk1Mzc1M2Y5MzJhNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmM1MTBlYTc2MTJlZjVhNjljN2E3ZWFkZjllODdiOTc5NzUyM2RhMmM1OWE5NDRkNGJjZDk1Mzc1M2Y5MzJhNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjJkZDU3OTdjODk5YzUyNGE2YWRkYTQ4YjZiNjIxOWFmOWIzY2U0ZTJlZGQwZjU0ZDNmYWExNDMzNDJkY2UzMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmNjNWEwZTJlMmY5MDUzYjRkM2U1MDk0MDJmOGViYTA0MDQ4N2UxMDliOGZkMDYyYmMxZjA2OTRlMDRjZDQ0ZiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/mirror.py#L33-L44",
+          "version": "repo-lines-v1:sha256:8fb530892344e542fa75030e65fc9941572f94fdfb0f9d16563b7f0fffb3e801:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNkYzNjMzk5YWMzMDNjYjkxMWNmNjlhYzUxZTBmZTIxYjA3MjRmZDdlNGU0NDc2NjAwNWMzNDlkMGIzODlmNWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc0ZDQ1NjEyZDBiOTQ4OGNlNDMzYjlkNTVkMjEyNDBlYjdmNTY2OTZjMTAxZDI5MDE2YzA0ZjZmMzQ4NmU2ZGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBjNzM0Yjk3YmZmYTQzNGNkYjk2M2ZmYWY5OTkyMDRmNjliMTk3MjExYzZhZmViYTJhMDI2OTYzNzNlMzE0MzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZkNjU2ZWNiMGQ3YTMyODQwZTVkY2QyZGI4MTQ1ODQwOTFjYjg4YzdhMzdkMGI0NTU4MTBhZTYzMzdhODc0MmQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d9b0c013054a42f193fab3672afd018b",
+      "statement": "tests/test_ops_federation.py::test_mirror_reproduces_head exercises the federation seam end to end against a live server over real HTTP: after three agent registrations, mirror.ingest_chain returns verified True and matches_served_head True, and the locally reproduced seq and entry_hash equal the values served by GET /v1/audit/head — the F6 acceptance criterion 'a mirror process ingests the chain and reproduces identical head' as a test.",
+      "evidence": [
+        {
+          "resource": "repo://docs/SPEC.md#L1098-L1098",
+          "version": "repo-lines-v1:sha256:ee3de8e70952850d33ab53a7034ac8613a9f1b3cc7cb40c90e1ec4b60a99cc2d:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWUzZGU4ZTcwOTUyODUwZDMzYWI1M2E3MDM0YWM4NjEzYTlmMWIzY2M3Y2I0MGM5MGUxZWM0YjYwYTk5Y2MyZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZWUzZGU4ZTcwOTUyODUwZDMzYWI1M2E3MDM0YWM4NjEzYTlmMWIzY2M3Y2I0MGM5MGUxZWM0YjYwYTk5Y2MyZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDBjNzFlOTBiNGI5OThmMTc5NmY3MmIyYTA5MWVjNWVkNzIyYjRhOTA2YjliYjQ5MzNjN2E5MWQ0NzFkODc1NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGEyMjM2ZDkxMjliNjZlZWVmNDQzZTJiODcyNTY2NTVmOWQ4MGM5ZDBjMTNhZDAyY2FmMWI2NDliOTAyY2IwMyJ9"
+        },
+        {
+          "resource": "repo://tests/test_ops_federation.py#L69-L77",
+          "version": "repo-lines-v1:sha256:5f74e84c2e4290dbf11d9f041197d5924d1885893d842e0e05839665e23c38b3:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjdmY2FhZDU5NzUwYzJjM2Y1YmEzZjAyMDZmNGUxNzgzNTQxOGQwYjkxYmE1MTdlYWQ4ZTAwZGUxYWI3OWYwNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTE4MmU0ZDIxNWE4MzE5NWJkYmRlYzA0OTY1ZjkxOTY5OGVjNDFlZTQ5NGUxYzg2YmUyMjI2MzVjMDllYjA1OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGJjNzhmODczMjdjMmQyYTEyMWM3MzA0NDI2MTI2ZTQzNzc3YzFjYzVjOTFiZWM2MTIyZmZhNzEyNGU3NTAwYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-05T09:05:06.235Z"
+  }
+}

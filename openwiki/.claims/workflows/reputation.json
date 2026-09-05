@@ -1,0 +1,354 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:f7a6ffd1c3d817814de70b975df83b6cd8766bdae34a9180d64b8cebd03a4b3f",
+  "claims": [
+    {
+      "id": "claim_d961006b183c4ffc8abbe66da19b12a1",
+      "statement": "L4 reports are allegations, never findings: counters are raw facts about what signed witnesses alleged, the directory never marks a target guilty, and the only automated action is a published, audited auto-suspend for a narrow set of abuse classes; everything else a report produces is a visible counter, annotation, or consumer-facing recommendation.",
+      "evidence": [
+        {
+          "resource": "repo://docs/SPEC.md#L480-L487",
+          "version": "repo-lines-v1:sha256:ad416bf58891dbab01c462a6f76a3c7fbbf2b2a25fd6a58de7ebd759e2c2be00:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDQxZjcyNjlmYTJiZTE5YmVlYjEyOTRmMDU4MDhkODhjNGZiNmE0ZDdjNDVlYWZkMTFlN2JiYTlmYzY0NDc4NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMGE1ZWYzNWNiZWNjMDc0MmYwOGVlNTk2NzliMTMwYTBiZmIyY2U2MWE4Y2NmYWQwYzFiY2Q4ZjM1ZmI2ZDNkZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODE1NTMxMjc5N2FjYzY3YjViOTkwYTM2ZjcwZDdhNDE1YTRlNTAxZDAxNDViMWI4MTI2OWRlMWI4NmJmNDEyYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGZiZTZlYWNiYTRmYmE3ZThhN2M1NzIzMjE1ZmM1ZWZkZWQwNzBmZTFjM2M2YTNmZWJiMzNhYmRkMDRmN2NlZCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L1-L8",
+          "version": "repo-lines-v1:sha256:938007b552abd091d33b726b2c746c06034a4dfd1ab00f3989be035b003c4cc9:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGIwODRhOWYzNzgxMjRiMmIxYTUxNTYzYmYzYzIyNDQ0ZWI3ZmYzMzY5MjAxN2RhMjhiMjEzNmFlNTY5ODdlZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTMwM2VjZGQ0YTRkMTBmMTljNzNmZDQyZmQxMjQzN2ZkMzM1NGE4MjY4MTYwNWRhNTI1NWE5N2EzOTA2OGRiYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTViNmU4NzA2YjQzMDQ3ZjJhNmRiNjdmMTMyNjM4NTk1NjA0ZTY3ZjM2OTY2ODc2Y2UwMTU4ZjAwNTNlNmJkMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_93a592abd4ee4e9ba4733e10cd5f494a",
+      "statement": "ReputationService defines the intake whitelists as module constants: CATEGORIES has nine values (impersonation_attempt, endpoint_hijack, phishing, spam, fraud, payment_fraud, abusive_content, protocol_violation, report_abuse), ABUSE_CLASSES is the four-value subset {spam, phishing, impersonation_attempt, endpoint_hijack} that alone can trigger auto-suspend, SEVERITIES is low/medium/high, and EVIDENCE_KINDS is envelope/url/transcript/none.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L23-L29",
+          "version": "repo-lines-v1:sha256:9cb8bc45519f1e8688366f3c1e182538ecac32dfb8cb76222f6109881f9b1e4c:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTc0MjAzNThiNWQ5MTZjMDAxNGFiMDI2NDA1YmJhZDQ0MjZiZWJjMzYyZTg1MjYwMTdkMTMzNjlhOGRmOGEwNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2I1MmNhMWMwZjkyMDQ2YWUwM2I5YzgzYWM4MDE2NDM0NmJmZjQ2ZDYxZjY3OWYxNDBlMTdiMzUyNGZkODM2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTJlOWM1NmMyMWQwMDA2NzI0MjM0NmJlYzc0Y2IzNDc0MDc4YTRkOWU4OTM0YzdkMzRkZTc3ZmQ1MTU2ZGM1MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmU4OTVhNTlkMDhkYmVjZDY0M2YxZTNkMDMwMjUwNjBhYzE3M2IwNWU3MWNhZTMwNmRmNTRmNjA1M2YwYjUwYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_5a093816c8ee40afacb0180c385f6ed4",
+      "statement": "create_report validates in a fixed order and rejects with stable codes: unknown category, severity, or evidence.kind yields REPORT_INVALID (400); a target that is not a live listed agent row yields TARGET_NOT_LISTED (404); a reporter that is not a live listed agent row yields REPORTER_NOT_ELIGIBLE (403); all codes are reserved in the §4.10 error table.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/errors.py#L49-L53",
+          "version": "repo-lines-v1:sha256:eb7824aa2d68118ca6e2798181f074628a39146792d0646de1f77770fd6e483c:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTY3NTk0NWNiMWMwZWQ0NTAzNTg3N2VlMDQ1ZjQzNzExOGQyNmM2NjYwOGE1NmQ0YzcyZTlkY2JmYjY5NDkzZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTc3Mzk5YWU2MWQyZDc4MmZlYjVjMGZmNmQ0YTBkYWZmN2NiZDhmMjgwMGNmYjNmZTYyNTJiNDA3NWU5YzZhZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjZlYTljODNmNjk1N2JjNDI0ZDI1YmEwMGEyN2JlNTNkMmI0ODEyYjRmNzNiOTQ2YTQyY2EwOTdhMzIwZDU1NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGZmNWJlMjYwYWI3YWY3ZWY1YjY4YWM3NWZhN2ExZTZlNjUwMzFlNjA3ZWFmNTY5MDM2NDQzNDg5MmE4MzAwNyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L45-L67",
+          "version": "repo-lines-v1:sha256:694f3f283c2c7382514a69b0427528020c47becd40f7978102d2879fee38217e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEwYTVjMzI2MDdjZTM5YWIxOTNkNmZlMTQ1NDFkMjQ2ZDE3YTFkNTc5MGI5ZTM2MmRhMzk4OTQwYjVjM2JiZDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFlNTg1NTIzMGZiYWNjYzdiZTBkZDVlY2ExYzkwNjZhODIwZTFlZjVkMTczY2EwYzcxNWYzMmJiMDljYTZiNjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3NWEyM2QyNDdmZjIwMjFkZjhkZTdkYjkwNGYyOTE3ZWE2ZTA4MDdmNmZiNWNjYjhkODhjMTE0OTE0ODlkNGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI4MmRjYzdiMmE0ODVlYTg2ZTZjMmQ3ZmJiM2VjZWUzNzYwZjcxMGE4YjgxODVlNjMyZjY2OGExYTMyY2QyMjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4fa198160c804cbeb92c21b49b435afe",
+      "statement": "Every report must be signed by the reporter's own registered Ed25519 key: the signature is verified with verify_over over the canonical JSON of the request body minus the signature field, so only a live listed agent whose key matches its registered public key can file a report through POST /v1/reports.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/canonical.py#L22-L26",
+          "version": "repo-lines-v1:sha256:f83501419bb070a1e64cba8f9dc21fbb544cfd806668b4d3b27323868b252332:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDYyNTI3M2ZhYjI2OWQyYTdhNmFlNzExYTdhMWY4OWJjNjE2MWVhZDY3NTg1MDE2YjgyMTNhODU4ZWY4MDNhMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDNjNDI2MTkzYzhjMGJhMWI1YWMxYzc0ZmQwYTViNjRhNTI4NTViN2E0MGExYjQ4YzVhOGZkODc2ZGIxNzM4NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWQzN2EzM2QwNzNhYjhkYTI5ZGM3NGNlNmE4OTEzMTgxOGE1MmE1YzE2NWQxNmYzMWQ5OTE5OTdmMGU2NmNmNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDA3MTY1MWFkZTIzNWZmNTA1NWQ0MTc1ZWRkMWE2MDJlNTY3YmM1MTVlNzMxNzRhZjdmYjEwYjYwYTIzMGI5OCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L69-L71",
+          "version": "repo-lines-v1:sha256:1177e873c774f24bec70f29b68f7ed4aa825b8a5e0b57ccaf0375ae378a72223:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDYzYTg2MzkxYWYwOTk4Y2Y4YTc5MTc1NTlkMWQwZGE5OWNmNzJkMTg1NzRhZjM4ZTQ3YWY4ZjlhMDNkZThmZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDE3YzljNjNjM2ZkYzM4MTgxMzdiMzNiZWM5YWEyODY2NTI4N2E5ZGQwNjk3YTEyYTYzMGFkZmQ1NzVjN2U4NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTE0MDNiYjI5YTJlMzYxNDBkY2E1MmUyNDhjYjEwZGQ4NmY3Y2MzYTFiZjFhNjJkMjRmMzYwYzgyMTgxY2FjYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWI4MTY5Y2Q1OTkzNmI5MzhiZmZmNWRjZjM2N2VhY2YzNmNiZjFhZGI5NzQ5NDY4MTg3MGQxNTM4MzljNTUyMCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/signing.py#L18-L25",
+          "version": "repo-lines-v1:sha256:7fe223ff4c8336ff6e323383e91837f954a5d95c141c57b90e4b3fef1a84f50d:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGI0MGQ2Y2M0NTg2MWM0OWU1N2M0Y2ZhYTc1NDViNjQyMjhmOWQ3YTRhZmM4ZDc5ODRiZjEwNmIzNGQ4NjQ0MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDc5YmY5ZmI3Njc5MzgzMmIzNmY3ZmMzM2ExMzUxNDIwYmY1YjZkY2EyNzQxMmU2OWQwNTdjZjE4NjU4OTdkMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTIwMmQwOGU4Y2NiZDliOGExMzAzZDRhYTIyNGJmYjkzYThjMTM5NGQ0ZmRlNDY2M2I5NmViMjgyN2QyMDgwNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGU3ZTY0MWZmOWI4MGU1NjFlN2IxMTI1YWMyMTFlMmQzYzY1YTM1N2Y5MWMwNGI4ZTYwNzU3YzY1Njc4MDc0MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_333054388e944eb886cfdb2822f226e9",
+      "statement": "A report counts toward automation only when the reporter's age since registered_epoch reaches report_tenure_hours (default 72 h) at submission: the boolean is stored as the report row's counts flag, returned as counts_toward_automation, and evaluated once at intake; registered_epoch is the first-listing timestamp preserved across re-registration of an entry that is still live, so re-registering cannot reset the tenure clock.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L57-L57",
+          "version": "repo-lines-v1:sha256:f2c90d6cf826bc33d5353076bd6283321377fb7ae0f12222a8daea4fcadea9d1:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjJjOTBkNmNmODI2YmMzM2Q1MzUzMDc2YmQ2MjgzMzIxMzc3ZmI3YWUwZjEyMjIyYThkYWVhNGZjYWRlYTlkMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjJjOTBkNmNmODI2YmMzM2Q1MzUzMDc2YmQ2MjgzMzIxMzc3ZmI3YWUwZjEyMjIyYThkYWVhNGZjYWRlYTlkMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTA0ZGFjMGI4ODFlMjcxMTM0OWI4NDc4NGJhZWVjMTY0ZjM2MWY4ZTZhODI1NTFhZGUwZTU4YzUxYWIzYWM0NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWFkOGI1YmE5MzQ3OGE2Y2E1NjM3MTNjYzJhMGM2NWY2NWZlODBhOWNjYjFmNThjMDE2Y2U4NTg5ODZjZTk5OCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L100-L104",
+          "version": "repo-lines-v1:sha256:aed92d0bc69d5201d8d69d0b2db637f207721a2e52b75633f8e7b25b540db339:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTM5ZWIxNTE1ZTgyMTU0ZjkyN2QwOWQ3M2Q2OTNjNTIyMzkyYzM5MWVjMDAyZWFkYjdmZjRkZGY2MzVjZjJkMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTZiMDQ0OTE0Njk3MjJlODM2M2E5NGU0MDQ0NTM4ZTAxM2EyYTIxN2UzNmIxZTU2OGJhNjBhY2I3YjRjOGYyZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmU3NTJkNTdiZGRkNWJiNmJlYzg2NTkwYTVjNmY3NDFiODVmYzRhNTg5ODMyMDA5N2JmNDQxZDE2ZjM1OTBkZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODVkOWM5NzBkYjJiMjcyODkwZDNjMzcyYWNkMTIzNzY1NmQ2NDFmMjQwNThkNmFlNTRhZGJkMGNmMzM0NGMxOCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L73-L76",
+          "version": "repo-lines-v1:sha256:abbdde086d9c46ddfd6a00795c511e50025a01276bdac17b6ae5ee229c495e6f:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjkwN2Q4MjdlOGFhYWU4MDVjNzhhZDE1NDMxYzAyM2IyYjIwN2MxYWYxZGMwMGJmMmJlNjEzOTBhMmM1ODczNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTA1NDllMWFlYzEzN2Q3OGE5ZTE5NzdiYTUzMmY4Njg3MDVhNDM3ODlhYjExMGI2MWZlZDcxYjM4YzE5YTAzZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmU3MjdmYmQwZjc2NDhjNTQxZDI5MDk5NTI0OGE3MTM0MTc0ZDAxOTMxODdhMTM0YTFmYzI3NmNiOTQzMWVmYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGFkODk5NTJiZTI4N2VkMmI4ZjMyZDgwMzBjMzUyODJhOWU5NGQyMTdmZjI5ODAzZWE4OTdlZGI1ZDhhMzE1NSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L414-L415",
+          "version": "repo-lines-v1:sha256:c4741c1adb06e0293ef6f5886328cb6ecede331baa5ab32b5cdc3e6f98f5b637:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2VkM2M5OTU4YTEwY2U1Yjc5M2IwZjMwMWRiYjk2NjNlZTEwYTkxOWQzNDE4Yjk0NDQ4NTAzYTU1MDE1NTYzNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGNkZmQ3MjY1ZDJjOGNkZWVjNzdiMWM1MWIwNzM2ZTc5MDA4YjU2NmE2MmJlM2RhZGJjMzg2YzY4OGU1MmJhOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTk1MjA2Zjc5ZmQyOGRkZTNmYTFiY2Y1YjA2OTRiNmZhMWY2NmZhMzE0ODZjOGI3YzY0NWY3NGQ2MTk3NmZlOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTdlOTA5NmNlM2QwMTFiNmFiZDUyNDFkMjI3MGE5YjQ0MjI3MzY1ZjlhMzlkZGJjMzc4MGE0MDYwOGZjYjNmNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ade9793daa0a400f87a89c14ef48df39",
+      "statement": "Store.create_report rejects a duplicate report by the same reporter against the same target in the same category when its submission falls inside report_dup_window_hours (default 24 h), raising REPORT_EXISTS mapped to HTTP 409; the SPEC's promised idempotent replay of a client-supplied report_id is not implemented, so any duplicate in the window is rejected.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L60-L60",
+          "version": "repo-lines-v1:sha256:2ee1724ec8c0b16acea6548a69c9abd2bbf888774284043af9decad152b5c2f7:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmVlMTcyNGVjOGMwYjE2YWNlYTY1NDhhNjljOWFiZDJiYmY4ODg3NzQyODQwNDNhZjlkZWNhZDE1MmI1YzJmNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmVlMTcyNGVjOGMwYjE2YWNlYTY1NDhhNjljOWFiZDJiYmY4ODg3NzQyODQwNDNhZjlkZWNhZDE1MmI1YzJmNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTVjOGMyY2NkMjQxZmY0NTM5NTE1ZWY5MWIyNzU4YzYyMzgyNDQyNTg3YTlhZjM3ZGZmYjBiZmQ0ZWE3OTk4YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzAzNjVhYzg5NGU4MGU5ZWUzMzAwOTAxYjE0NzI2MmVkZTcyMGJhMjgzM2QzMTg2NDQ2ZmU2ZDYxM2Q5ZTk4NyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/errors.py#L50-L50",
+          "version": "repo-lines-v1:sha256:1da0fd85938cbddd3b9bbd44442c167fd6164cbb28e4f49215a091c5c4e64e15:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWRhMGZkODU5MzhjYmRkZDNiOWJiZDQ0NDQyYzE2N2ZkNjE2NGNiYjI4ZTRmNDkyMTVhMDkxYzVjNGU2NGUxNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWRhMGZkODU5MzhjYmRkZDNiOWJiZDQ0NDQyYzE2N2ZkNjE2NGNiYjI4ZTRmNDkyMTVhMDkxYzVjNGU2NGUxNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODNhOTNlODczNTAyMWI3YWU5NWIyYjJhYThkMjQ3NzI0YTM3ZThkMTM5M2NjYzFjNDM1NjdjOWE2MTNjOGNiZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDliNDBjMjFiNWJkOTRiNDU2OGI0M2E2ZGM4ZTc5Mjk1YzE5MTQ0N2FmNmZhZTdhMjA5ZTE4N2NhZDgzZDhmYyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L795-L803",
+          "version": "repo-lines-v1:sha256:94bfa1e05b24bf03827ddfefec28f188d188a1078437bd3e656c91b4b471c548:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTI1MjRhNDQ2MjNkYWI0Njg2OWZiNTc0ZTk5NzcwM2E3MWMxMWFhNmIzMDNhYTRiMDlmMDMyZTM5NmZiYzZjYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjI1MGU2NTFmNjQ2MTJiYTMzMmRkMDcxZGRmNzY2ZTExMTU3ZmU0ZjNmZmNjNDllOWQ1NzQ3MTU2OGQ5ZjNhZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmNiMTZlOGY4OWM3OWIwNDZmYmU4NTM4MTE3ZWNlNzJjYTlkZGFiOTExYjMwYjE1NzM5MTA4YjhmNTEwOGE4NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTRlOWFkN2Y0N2NkYzI0MjY0NTM5MjhiYzg5YjgwNzI3NmQ3ZWE0ODI2YzNlNmU3ZDQzMDlkYjcwMWIyY2VlMSJ9"
+        },
+        {
+          "resource": "repo://tests/test_reputation.py#L42-L48",
+          "version": "repo-lines-v1:sha256:93c0666f28d4430d39e28997259f383b5efc4840e278e6bddc1cb95302d92379:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjM1ZmFmMTU2NWEwMmFiMTQ0NDkyYmEzMjFlZmMyMjNkODEyOTRlMDYyZDczNjBiZTExYTg5YzIwZmU1YzE4ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTFlZDJhNGU5ZTU1NThkZjllMzdmOTA1NzgwYjY4M2U4ZDVkZTliZGI0YWMzMDZkM2UxZGE2NjBmYmJhMmU1MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTBkZmZhNmEwMGRmMDMwZjlmZTQxZmZmOGI1MzhjOWFmMTFlMGVmNGQ4YWMyNDQwMmE0YTY3ODJhNmY1YzM3NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjMxMzRhNjYxOGI0NDg3ZDQzNjcxMzMxMjkyNTJlZjM5MTRkMmE3NWYzMjNjMWY5MDU3MjBmNjI4OTdlZjU5ZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_394ef166a7264ead91e642d4c67a5e69",
+      "statement": "Only digests of evidence enter the store and public chain: evidence_hash is sha256 of the canonical JSON of the whole evidence dict and description_hash is sha256 of evidence.description's UTF-8 bytes when it is a string; the reports row stores evidence_kind plus the hashes and never raw bodies, the L5 audit chain stores only detail hashes, and raw evidence is kept in a separate operator-controlled encrypted store per docs/MODERATION.md.",
+      "evidence": [
+        {
+          "resource": "repo://docs/MODERATION.md#L57-L63",
+          "version": "repo-lines-v1:sha256:7154e87790a56e0e05c5e71e0d4e9362dc5f94f68742e744d219930ab80069ad:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODUwYjBjYmIyZmQ5NjZhMTY4ZmM3NGFmM2ZhMWZjNWUwMGY5Y2Y1NTFiMjM2YTEzYjI0YmI4Y2Y2ZWJlNDQxYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWQ1OTRkNGNmN2UwNjNmMGJjYzgwYWQ5ZmZhMzFjMWQ5ZjI0ZjhkZjkzM2IzMDUyZDkwZjhhYjFkMmM0M2JlMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGFiMGJmODE2MGFiZWZlOWNkMmY0ZDhkZDRlNzMwYTM1MzVhZTU4ZWM4MjllMmYyMjc3ZGY0YjAzYTAyYzM1MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTNlYjM1NjNhNzVhMTVkZjE4MGI5ZGJjYzQ5ZjNhYjFlNGQ2ZjRmMjYyMWFhNGMzODViYzJkMTJjNWE3ZjViMiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L78-L81",
+          "version": "repo-lines-v1:sha256:b15ba3a3babb4b1dbca8b195edc1f79c2d8090f332be0859badfe2033078b9f5:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2U1MzFjNWE0ZTZmNmI2NTVkZDVmODU2NGE1MjM2YzFiNmYxMzY5YmUyMjEzY2IwYTI0MDgyZmM5NmEwY2Y5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2VmNGIwOGUyMDY5YTkyOWM5ZWRmZDIyNDI0ZTBhMTNmMTE0YmQ3ODgxYjE1NThkNmVkMDc1MWU5OTVkY2E2MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjM2NDhmYWViZDQxNjJjMWQ2YTdiMGM1YWJiNjA1NGYwODI1ZWMyN2QwZTc4NjNjNTY1MGFmMmMxMWY4OTYxMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGQ1MDE2OTRlOWNlOTg0Y2VjMGU5NmQ3NmQ0ZjljYTc4Y2M2Y2I1ODczOTg1ZWIyNGZlYWQ3ZTRhZjFjNDE3OSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L106-L120",
+          "version": "repo-lines-v1:sha256:f8f1146f3711ce87ed5065dd12fb218ccfd3c44906643279dce13889a15541e4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg4MGRlODkwMDg2YzBiM2E1NDI2MzFhYzE1YzQzZmU0ZmYxM2QwZDY1YTJlMzRlN2IxMzJiMWE3Njc4NjZiYWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5OTY3ZWMxZWQzODM2ZjhlYjE3YWZmMTcyYjViZmVmN2RlNjA0ODVhNDM5YzZjYTExYzU5MWUxNzU1NzM5YWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA3MmZhYWZkNThlMzkwZmE5NWY3ZTk2MjkzYjkwYTY5ZmZmMjkwN2I2MWRiNjc2NjVkNmNmNDU3ZDVhOTk3YzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk2ODVhOTM5MzYzNGIwMzE0ZWE4Y2I5ODdlZDY1ZjcxZjkxYzk0YjJlZWRkYzQyMGI3OGNmYmNhMmJkMzY4NDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0fbb5c13b981471695ae835873d19058",
+      "statement": "A report insert commits together with one L5 audit entry report.recorded (actor agent:<reporter>, detail {report_id, category, counts}) in the same SQLite transaction, and POST /v1/reports answers 202 with {report_id, status: recorded, counts_toward_automation}.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L415-L418",
+          "version": "repo-lines-v1:sha256:ed9ef89199e59ed26345524552c8e7977bbd6c158aeb5b93ff0ab96706cd63ba:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmU3ZjJiYWIwNWI4NzNiZmMyMjYyNTRkNzY2MzY2MjRjNWY5NDk4MzUzZTI0MTY0YzMzOGVmNGYzZmI5ZGRlMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWFkNmM4ZWFhODUzZGZiNzA3MjA1MWE1ZjU5NjI5YmI3NmYwMmQxMzMwNDJmNjQxNDM0M2ZhMDE5YWI4ZTZkOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmJjYmU1NTk1YjM2MGNhYTBhOTI3ZjEwOWMzYTI1MWZkMDE0NDA5ZTYxODAwN2Q4NjkyZjVkMjJlMzIxODJhMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjQwZDcwZjBhNmI2ODA5ODI5MGFlYzlkNDJkMmMyNGFlMTczNjEyOGUwMGVlODIzMjFhOGJlYzRkMWYyNTUzOSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L100-L104",
+          "version": "repo-lines-v1:sha256:aed92d0bc69d5201d8d69d0b2db637f207721a2e52b75633f8e7b25b540db339:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTM5ZWIxNTE1ZTgyMTU0ZjkyN2QwOWQ3M2Q2OTNjNTIyMzkyYzM5MWVjMDAyZWFkYjdmZjRkZGY2MzVjZjJkMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTZiMDQ0OTE0Njk3MjJlODM2M2E5NGU0MDQ0NTM4ZTAxM2EyYTIxN2UzNmIxZTU2OGJhNjBhY2I3YjRjOGYyZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmU3NTJkNTdiZGRkNWJiNmJlYzg2NTkwYTVjNmY3NDFiODVmYzRhNTg5ODMyMDA5N2JmNDQxZDE2ZjM1OTBkZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODVkOWM5NzBkYjJiMjcyODkwZDNjMzcyYWNkMTIzNzY1NmQ2NDFmMjQwNThkNmFlNTRhZGJkMGNmMzM0NGMxOCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L211-L261",
+          "version": "repo-lines-v1:sha256:9360b4af1ced11374c64697387a94aa01dba98a70064e3d2218fd126a2df5bfa:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVmMzliNTdmYzc2YmQ1ZDlmZmE5MTRiNGJjZGU1MjFiMmRjYTVmMGIxM2UwZmNiYjZhMDhlN2E4NzAwMjY1ZGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1ZWVmZjNjNDc3NmY1ZmI5Yzk1OTg0ZDFhMTc0NmIxZTU2OGRkNjhkNWVkZTZlNDQ4NWFhNzM1ODhhNDM3ZWIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUwZDg4ODQ5YWFlNGFjNzczNzgwYTI5OGQ2ZTNiMTJlNmM4OWU1YTY1N2FjMGZhNjI5ZmQ4ZGUxMGYxZmI3NmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM1MDMzOTJhMGI2MzZmOGQ2ODFkNDIyNTBlNWZmMWJmZWEzNzUwNTU1YWFmYzY4YzlhZTYzOGRhMzE3Y2RmMTUifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L824-L829",
+          "version": "repo-lines-v1:sha256:2967e26821a825c2a697f67446ea56cf05b17bc3068fdfb16e3d5d4e0d9bf16a:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTY3MGY5ZjgyOGI3YTBmYTRlYzJjYTNlYzU4ZWJkNzYxZjljMjY2ODg1YzIyNTA5ZTZiY2EyZmY3MzYxNmQ2NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzMxYzdhZjE4ZTUyMTAwOWE1ZjM3MjhkMmMzOWYyY2Y0ZTU4NGNhMTk4ZTEyYmExMzVkMWIyYzAyMTU5NzMwOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWMxZGE3OTY5ZDg4ZmNiY2NkOWY1NTI1ZWVlODgyNzkxNGE1OGFjMDQyN2YxOGQxNDZkZjFiYmMxZWM2NWE5ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmQ3MjI5MzVkZjlkYzJkY2U1ZDU2MDhhZTQ2ZGYzZDI4N2I5NjM2NzY2YjU3NjcxYzkzMWZjOTc4ZjdhMWNhZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_99a7c67f5c9c448188cf2d177837c790",
+      "statement": "Store.create_report structurally accepts reporter=None and would audit such rows with actor human_moderation_channel, but ReputationService.create_report requires a live listed reporter before storing, so the public /v1/reports route currently produces only agent-attributable reports and no anonymous human-moderation-channel reports.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L65-L67",
+          "version": "repo-lines-v1:sha256:95d2430f6bdf35b0a045f450791e8b4066c715a05516dd7ae521de8c51528c63:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGEwMDdhZDhmNzU1OTdiMzIxZmQyMWQ2M2RkNTNlY2FhNWQ0Nzc0YjhlNDRjNzhiNGVjNTAxZmI2M2Q2NGEyZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWU1ODU1MjMwZmJhY2NjN2JlMGRkNWVjYTFjOTA2NmE4MjBlMWVmNWQxNzNjYTBjNzE1ZjMyYmIwOWNhNmI2OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWIyZjE2YjdkZTE3MTMxZjJiODZiMDMxNDgzNzZiODU2ODM0ZDdmZWRjMzQ4MDk1N2UxNWM1OWZjOTQyNjFhOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjgyZGNjN2IyYTQ4NWVhODZlNmMyZDdmYmIzZWNlZTM3NjBmNzEwYThiODE4NWU2MzJmNjY4YTFhMzJjZDIyNyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L824-L826",
+          "version": "repo-lines-v1:sha256:7aad6f8530ae263a3aa755c07b064e92b6e75764f725f0638a96968b08bd446a:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTY3MGY5ZjgyOGI3YTBmYTRlYzJjYTNlYzU4ZWJkNzYxZjljMjY2ODg1YzIyNTA5ZTZiY2EyZmY3MzYxNmQ2NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWI4NTZkOWRjMTZhNjhkYjVmMjA2ZmU4ZTE0ZjVjMTcxMTY1NTU1MTUyMmYwOWNiMjFkZjhiNDViYzYyMWFkMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWMxZGE3OTY5ZDg4ZmNiY2NkOWY1NTI1ZWVlODgyNzkxNGE1OGFjMDQyN2YxOGQxNDZkZjFiYmMxZWM2NWE5ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzgwYzUwMmQ1NzQ1NDRmY2RjNmZmZTQxZDk3NjQ0ZTQyYjU1ZDFiZTExZjViNWRhYzJiNzA0ODc2Yjg1NWQ0NyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c807c69081d1424cb9f3b65a43a9c552",
+      "statement": "The auto-suspend evaluation runs only after a report whose counts flag is true and whose category is in ABUSE_CLASSES; it counts distinct eligible reporters (stored counts=1, non-null reporter) for the same target and category whose submission falls inside the rolling report_window_days window (default 7 days), so one reporter key cannot vote multiple times and young reporters never contribute.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L58-L61",
+          "version": "repo-lines-v1:sha256:76af45732cf19c83fdcffff9241bfdd49e9d3d0a053a6c8c91fcc4b7ce16af66:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjdkN2RhYjM1NzY4MGVhYWNhYWUxOWMwOTUyOTRiOTc0NDgzMWVmOTJlYWQwNGExYTUzYzA5MDI3NWNhYjZlZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmZjODZkOWZlOGI0ZjI4MjVkNmMyZWM2NTFjZjY2MjkwZDdmNDg1NzNmMWRhZmY1OGRjMWZhYjE0YTVhODJlZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzNmNGE3ZmNlMTI5ZDc0NWZhZTkxZDQyZDAxODA2MzdlMThlM2UxYWQ0NWM2NTM5YjUwNmY2ODkyYmVmNjU5MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTkzOTJjM2QyYzNkN2RhZWE3ZDBjZmUyOTEyNTE4ZTg5YWExNWFlMTM1NjU3ZTZkNDdhYTJiODIwZmI2NDAyNSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L97-L110",
+          "version": "repo-lines-v1:sha256:32b15d5caa2bf3a4bf43bbf0721bfe65dd93beae6bb832c1425a0694024ae59a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwNmY5YTlkYjQyMzA1MzQwOGU0ZjRiYzgwZjQ0YWU2OWFlZDAyN2EzOWQzZWYyNjVjZTQwMGI0ODUzZjA3NjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdiYzk2YWNlYmQ4Yjk3MGE1MTdiZTVkOTI0YzEyOWYzYjkwOWVjYzRkZGQzZGNlOTZiZmUwMzIwZjNmODZkMzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAyMTkxYjA3ZDNhMTE3M2FkZjM3ZDY4ZjA0MTMwNTZiM2VjNzM5ZWFjMmRlM2EzZjk5YjBkY2ExYmUzODhmNGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMyZTVmZWVhNmRiYzA3NTQ3ZDcwOTY5NWYzNmNjZTFlZWQxZWRhN2Y3Njg5MDJmYmZjNzk3NzU3YmYzNDlhOWUifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L831-L842",
+          "version": "repo-lines-v1:sha256:64a1ef496da2c694acae0a125d9ff3cff891848dceb3f1e7d1726867ed250f3f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2MmFiY2ZkMzlhODFmNDNhOTcwYzVhNzlmMTRiZWYzZmI5MGU5M2Q5MTY5MjUxZjNiNzJhOTg3ODdiYzNiNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIzY2I1MDE4YjZkNTEyZWJlZDdhYTE1ZTJmYWFjYzIzMDMyYjRmYjFmMDkyODg4OGFlMmI5Y2YxZWQ3NjhhYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFhYTc4MzYzYjYyMWZmYzIwOTU0OWJjMGRlYjZhOTg0YTE4MDcwNGYwMTgzMDllZTgyMDEwMTlhYjgxYjgzMjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEwMzRjODUwMjM2ODhiOGVhNzY4Njc3NjI3OWQxN2NmZWNhNjU2N2I5YjJkOWI3Yjg3NmU4OTQ5MmI4NGIxNmEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_20502a6829394dc48291b740a9f88c8b",
+      "statement": "When the distinct eligible reporter count reaches auto_suspend_threshold (default 3) and the target agent row still has status listed, the automaton calls store.suspend_agent with actor directory, event report.auto_suspend, a rule string of the exact form '>= <threshold> unique eligible reporters in <window>d (<category>)', and evidence_reports listing the sorted reporter fingerprints that fired the rule.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L61-L61",
+          "version": "repo-lines-v1:sha256:2fc86d9fe8b4f2825d6c2ec651cf66290d7f48573f1daff58dc1fab14a5a82ef:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmZjODZkOWZlOGI0ZjI4MjVkNmMyZWM2NTFjZjY2MjkwZDdmNDg1NzNmMWRhZmY1OGRjMWZhYjE0YTVhODJlZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmZjODZkOWZlOGI0ZjI4MjVkNmMyZWM2NTFjZjY2MjkwZDdmNDg1NzNmMWRhZmY1OGRjMWZhYjE0YTVhODJlZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWFkOGI1YmE5MzQ3OGE2Y2E1NjM3MTNjYzJhMGM2NWY2NWZlODBhOWNjYjFmNThjMDE2Y2U4NTg5ODZjZTk5OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTkzOTJjM2QyYzNkN2RhZWE3ZDBjZmUyOTEyNTE4ZTg5YWExNWFlMTM1NjU3ZTZkNDdhYTJiODIwZmI2NDAyNSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L112-L124",
+          "version": "repo-lines-v1:sha256:e2ed0ac63d75bf4d42103ff6697cc0109ec5b49855727afbfa5d7218ee0e61dc:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4MGMzNGYwNTIxYzZmNDQyZDJkMDcyNmVjNjRhNTIwYTY1YTk5ZWJmYzY4OTE3ZWYxMmUzMjY1ZGM0YjE3YjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDlhNTNhNjE4ZDAyOGUxZDMwMDBjMGE3YWJjZWVjYmU1ZmIzN2Y0ZTUxMWVmZTQ2NjQzZmFkNmU2Njg3MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc2ZTE3YTI5ODg5YTA5ODE3YmMxY2VlMWZmMTM2YWZlMTc2MWMyYzdhYjZmZjZiMTc0NTRiYzRmOTg1NDhkYTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU0NjQ0NTZlMTA0MmNhNjZhNTM5NjY2NTFlMjM4ZDM0MzRjNWQ3NjBlOTJiMGRjYWY0M2M2ZGFmMWYxOGMwZDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ded97b54a94d43f69f8698066ff778aa",
+      "statement": "Store.suspend_agent writes the transition in one transaction: it sets the agent row status to suspended with suspension_json {rule, evidence_reports, at} and suspended_at, and appends one audit entry carrying the given event and actor with the suspension object as its hashed detail.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/store.py#L887-L911",
+          "version": "repo-lines-v1:sha256:f0c7885ec473babfa3dd44960c9e18ecbd623a6fa714ab110bf77341528138cb:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNlNDhjYjliMjRjODg0YjliOGNhNWU4MTk0YTc1NzBlOTIwYjgwMmFkZDM0YWEyZTE3OWZiOGIwMTMxNmM2ODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3N2QwZGQzZjg2OTQ4YjRiZTA2OGNlYTJmNGFlNWIyZTM4MTJkNmRjM2FlYTQ0Yzk4YTdlNTI1NzhlYmU1ZTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY2NTg2MDUxMTQ1ZWFjZGU5YjZiNGUzNjU1ZjRjMGFiNWI5YTBjYTAxZWIyOGNkZTZjMGU5Mjg2YjVjMDRhM2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFiMDcxZjI0MTdlYzU3YTQwNmVhOGFhM2Q4MjQwYjMzOTBmMzIzNzQyMjU0NzA5NzVjZjBhNmZmZTJhZDJkNTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6a613e9da8d644f7a5c556a818e970c6",
+      "statement": "A suspended target disappears from the public listing surface: live_agents and search (whose default not_suspended=true filter excludes suspended rows) omit it, profile-by-fingerprint returns 404 AGENT_NOT_LISTED indistinguishable from unknown for anonymous callers, /health reports the suspended count, and counters keep accumulating from new reports because pruning never touches suspended rows.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/service.py#L248-L255",
+          "version": "repo-lines-v1:sha256:a01d5aadfe5a7461464e818ddfebf86e70dda408a61d1f632968811f5e498772:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTk4MzhlMDIzNzU2NzI3M2U4YzYxYTQ2YWE0N2Y0YmIzNDQ1YjA2ZTRjM2MxNjZlYmQ4NWYwMzY2ZTg4NWM4MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWNkZmU1YmZiNjNhZjk3YTU5Mjc1NGVjMDkzZjAyZWVmMTU5ODY1NGNkMWY1ZTcxYmQ2ZjYyN2M0NjgxZGMwNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzUxZDEyNzIzY2IwNjg3ODQ0NGIzMDhiMmNlMGI5ODNiYTI4NzZhMmNmOWIzMDgxMTk4ZTNhZTk5ZjcwNzA0MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjQ5ZDc1ODJhYTMyODBhZDhkNDc5OGRkMTY0NmRhNzY0MDE4NjU0YWE0NjU4N2RjYzAzN2Y5ZjFmNzIwMjhjMyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L422-L434",
+          "version": "repo-lines-v1:sha256:7aa88d0a740b6ef1658a7dedcb6999ab07c0ae93b8bcc4646b88aa65f133755d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiZmQ4Nzk2OWYxMWVmYWM5NjIwY2FlMTEyMDk4MzhlMWU1Mjc2MGMyMjZiZTQxMDdhOGU2ZjBkNzJiNTYwZDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwZTJhNDY1MDA5NWZhOTVkMGUyYmI0MWIyZGIyOTA5NGQzNDA0ZDI4Y2UxMjMzOWVjODhiYjRiNWM1YmU4ZjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRlNzU3NWMzYjc3NzZjZjJmOWMyYmZiY2E0NGYyMTQ4MTNhNzgyN2VhYTljMzg0NTRjNzAzYjY4OWE3NDQzODYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L523-L545",
+          "version": "repo-lines-v1:sha256:93accc30ea9ba65feeb657254c37ce00eae0e60f1353e87697d045c5ce33ba87:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwMThkYjA3YjViNTc1ODk4ZDljMWYxYzVjZWViNmQyZjFkZmVmOWU5N2Y5YjQ4YjFlMDA5MTgwM2YxNGRhNTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3NDY5Y2I1NjM0MDA5MDE2NjQ3YzM0Y2M3YjllMjAyOTY3YmU4Mzk5Y2EzZWJjZTJkYTlhNGYxNTYzMTk1ODkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5YWYyNWRiMmExNWE2Y2RkZjc0ODE2ZjVjMjI2MDVkOTM5MTUzOWFhM2YyNTYxZTVkYmE3OTE2YjQ5NTAwMWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU1MTM1ZmQ2Y2U3NzRlOTllM2MxOTIwZmIwZTI0YThkMGVhZjc1OGY5YjE4MDc0YTA5ZTY5MTBjOWE4ZmE5MTEifQ"
+        },
+        {
+          "resource": "repo://tests/test_reputation.py#L59-L82",
+          "version": "repo-lines-v1:sha256:602123ce723f983bc91db35d4de074e8a4ea694af476b97764ee7cf46adc0a0c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNkZTI4ZGI0ODk4NWRjZTlmNzJmZmE0NDg5ZDI5ZDhmN2NhNzE5MDg1OTA3MmEzYmI1ODNkN2ZiNzc1ZmJhMjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjllZDExYmRlZTI4YjdkN2JkM2VhM2FmYjIwNmUzZGM3MjcyZWI5MjYzNDFkNzMwNjY0Y2I5N2Y2NGVjOWQ5OTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzOTQzMWEwMjQ4OGM5MTMwNWMxNTBhN2Q2NDk3NWQ4ZGNlYjU5YWYzMDBmNGVhMzM0ZjMxZDRjNjY5Yjc3M2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFhMTkwZDY3MjA5YjU4NDI2NjA2ZWI5OWExN2E4YTQ1OGYyNDUzYjU4YzgyZjIxOTkwZDhhZjc3ZjNjM2ExMzUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_75e2919384084c4185e65c8c4b9f3446",
+      "statement": "In the current implementation a suspended agent cannot renew via heartbeat: Store.heartbeat returns None unless the row status is listed, diverging from the SPEC and moderation runbook description that suspended agents keep heartbeating so they can appeal; a suspended row therefore persists until moderator.unsuspend restores it to listed with a fresh TTL computed from now.",
+      "evidence": [
+        {
+          "resource": "repo://docs/MODERATION.md#L48-L55",
+          "version": "repo-lines-v1:sha256:21d9ad377dae3a840268ceadd45653f755f47ecc3e9cc1902dc5cc3a1b92f436:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmNhYjBlOTYwMzRmMGJkZTliODRjZmQ2MWUzYjIxMWMwMmE2ZmE4ZDJiOWNmZjY4YzliMzU1NjZkZWVlNjhiZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTljYmVlZDllZDdiNTg0NDRhOGJiODgzYWFmZDg5MjMyYjJhNjk2NTUwYTg0MGU4ZGUxOTIzODEyOTQzNTEwYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDk2N2E2ZGZmM2JmMjdlNWJiNjE2ZGYxMWNiNTZkMjcyZTBjMmE0YjBhZDJmZGM1OTExZDlhZDVmZTYwZjI5MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDg5ZmVjOGQ3MmVmN2QwZjg1OTExMGIxYmM0ZGEzNWUzN2FjNzRiZTVlM2U5MTVjMWUwM2Y3YjAwMDBmOGJiYiJ9"
+        },
+        {
+          "resource": "repo://docs/SPEC.md#L451-L451",
+          "version": "repo-lines-v1:sha256:442d4907545e0bece829ed371a3f7ba57508d03dba854a2200564e976686ae32:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDQyZDQ5MDc1NDVlMGJlY2U4MjllZDM3MWEzZjdiYTU3NTA4ZDAzZGJhODU0YTIyMDA1NjRlOTc2Njg2YWUzMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDQyZDQ5MDc1NDVlMGJlY2U4MjllZDM3MWEzZjdiYTU3NTA4ZDAzZGJhODU0YTIyMDA1NjRlOTc2Njg2YWUzMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjliNjQ2NGI2OTNkYzg2YTY3M2Y3ZjY1MWIyNmYyMGI4NTExMmQ4MWMyZjYzNTdlYmRhOGNiMjYwMzJhODA0MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGVmYzRhOTAwY2MzZGQ1OTZhYzYwOGU3MjlkZGUzODNlMmY3YmUzY2EwNDE4MDdhMzJhMGFkNDUzOGJkZDJjNCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L491-L521",
+          "version": "repo-lines-v1:sha256:921c4fb702bc50a2f901abb69c0d8fb821a0dd539e158305cecdcb1463c008e1:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3Nzc1ZGM1OGU1ZGU1ZTllNDNiZjlkNzM3ZWM5MTRjNTgwYjE1ZTljYzRhYmM0YjhmYzFkZDU2NWZlMmVhNmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3ZjU3YTNjODdlNWQ0Zjk4ZTBjNzE5M2JmNTZkNzcwNmMzMDcxZDA4ZDA2ZGE4ZDg5MmQ4NWNkYTkyM2U3YzQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYxOTg1NjUwNGRlNzYwNzg3YTU2MjYzY2RjNTczNWQ1ZGI0OTM4ZTUxNjQxYWExMDUzZThjNjE0NTAwMGY1OTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk5ZWQxODJlNTYyYjVmMzNiYTYyODE0NGRjOGEyYjBiMjJjYzM4NTE4NWFiNmY0NWE5YzUzM2I3MjdjYTM2Y2UifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L913-L931",
+          "version": "repo-lines-v1:sha256:433777ad6043991fa62c72a97322f023fc7902bb0f3bd7f079c19edd9e44600b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM5ZjE4NjhjZTMwYjliYzhjNjU2M2QwNDFhMDRkNDlmMzVlMzY1NWE3YWY4MGE5YmJjOWExM2IxNDgyZDE4ZjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3N2QwZGQzZjg2OTQ4YjRiZTA2OGNlYTJmNGFlNWIyZTM4MTJkNmRjM2FlYTQ0Yzk4YTdlNTI1NzhlYmU1ZTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYwMWI0OWFhNDBlZjBlZmI1ZTBhZjYzYmNhYWNmNzk2OTUzYTEwYTBkNWNiNTI1OGIyZjAzNWExODZhYzMwNTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFkYWJkZDE3MWViYjQwZThhYzc4ZTBmMDA4M2I1NjA1NDhmOGZhZGNiY2RkYzgwZmI4ZTBmZThiOTQwN2JiYmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_eea944b38f334c87b3355f60ac090a44",
+      "statement": "Decayed counters are computed by Store.report_counters over a rolling report_decay_days window (default 180 days): they aggregate by_category report counts, the distinct reporter set, and first_at/last_at over every report row in the window regardless of its counts flag, and DirectoryService.build_trust_block embeds them as trust.reports in search results and profiles where consumers can filter with search's recent_reports_max parameter comparing unique_reporters.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L59-L59",
+          "version": "repo-lines-v1:sha256:cca90197eaa83554e017560eb77d8cc4ebd00f7e8bffc6d26a7e0f07edf5e8f0:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2NhOTAxOTdlYWE4MzU1NGUwMTc1NjBlYjc3ZDhjYzRlYmQwMGY3ZThiZmZjNmQyNmE3ZTBmMDdlZGY1ZThmMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2NhOTAxOTdlYWE4MzU1NGUwMTc1NjBlYjc3ZDhjYzRlYmQwMGY3ZThiZmZjNmQyNmE3ZTBmMDdlZGY1ZThmMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTNjNzdmYWY5MDRlZGU0NWQyYWRjMDY2NWMwMTJkYTQxZjVkMWZiYWE0Y2E1ZWMxMTJkNWEyNjc2MjZlYWFjMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWUyNDJmYzQ4MThkNjYwMDc4NDJiOThjMTcyMDE4NTI3OWZjZmE3OTcwMjAzNjhmZGQ4Y2FlN2RiZTU1NzhjNSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L127-L130",
+          "version": "repo-lines-v1:sha256:09770f18119acab04c7139b62c148665b01d948e7950f511cc2f2b3276c68361:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGFmYjg0NzBhMjFjNTk0MDExYjE0NDQ4ZjFiMTMwYzg4MGUwNjFjYTdiMzIzYjBkY2Y1MDlmNjQxMDllNmNiOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTkwOWE1M2E2MThkMDI4ZTFkMzAwMGMwYTdhYmNlZWNiZTVmYjM3ZjRlNTExZWZlNDY2NDNmYWQ2ZTY2ODcyZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjIxNWFhZjQyM2U5MThmNzhhNDBhYjAzODU0NmJjZjAyNzkxODI1MGFmZGQzNDgyZmU3MGE3ZGU3NTYxZWNjZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmMwZjI2NWYzZjRlOTJhNTEyMTFiMmIzNWJhYzEwYTA2MmFlNzg0NjMxM2NmNjI3MWQwNTViMzM1MDU0MWIxNiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L286-L289",
+          "version": "repo-lines-v1:sha256:010f5c7cd0fee06138c267e41dfb9070a6e8e20a7c87d947e3e994204e3eb04a:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDZlMjRmOWIxOTdmMTUwY2U1OGU3NWU1ZjM3NjJjOTc0ZTg5NTJmYjFhNTJkZjVkMThjODhmNDNhYmY2ZjEzMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTkwOWE1M2E2MThkMDI4ZTFkMzAwMGMwYTdhYmNlZWNiZTVmYjM3ZjRlNTExZWZlNDY2NDNmYWQ2ZTY2ODcyZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWU5NGNiZTMzMDU2MTRhNDAxNGI3ZDc1OTM5OTg3MjA3NTNiNDhmMThmNzBhNDFiMTk2YzJiNzY0ODU5ODhjNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzkxNDU4ZjgzNTg1YWFjOTQwNmQ2MDYwZmZmNTI2Mjc5ZGZhZTAzMzI5MDUwNGFiNjE1YzU1ZTliNmFlZTU1NCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L431-L433",
+          "version": "repo-lines-v1:sha256:e5061fe3c10365fee7b985469f44b88c93d98ce491c979e0438fdd51034ec981:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk5ZDIwNDEyYmIxMWYzM2YyYTIzMmZkODcxMzM2MzNhZmJhOTZiNmM0NzgzYjQzZWE4NWQ1ZGUyNTBiOTc1OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWYxMWVhMTFlZjAxZTJlOTY5ZTVmNGM2MjcyZjNkYjY2ZGU1ZjhlNTRkMWNhYWE0YWZlZjJkMjBiYmEyZWYyNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWZmNjgzYmQ2ZWQ2MTJjOTJmYjYxNmUyZjQwNmJiNDIwOTlhMDZlMWRhYmZiMzI3YTMwNjM0N2IwMWE1MjdhNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzBlMmE0NjUwMDk1ZmE5NWQwZTJiYjQxYjJkYjI5MDk0ZDM0MDRkMjhjZTEyMzM5ZWM4OGJiNGI1YzViZThmNiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L844-L869",
+          "version": "repo-lines-v1:sha256:a23d44abb6904c557da2e092f1fdc44d9fdc4cb2c276931ea0b2789628e73db5:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg4MzI4MWU5ZTVmZDQyNjZlYTIyNWMzZjIzYTNjOGUwMzM5NGI2OWRiOGFjOWE0MDRmMzkwYjc3ZjFjNDU0ZDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjExODI5YzJmNTg2NWQwZTU0NDMzYzk3MDRmZmFmNWNlNjdiMWZkYzhhN2ZmZjRmNDhjOGU2NDNmNmI5MDRmYmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZiZjc1YjJiOGEyMDExNTM1OWI2OWUyY2Y5ZTZjY2U1N2FlMjdlZGQzNTBlYTc3ZjJiM2VjY2IzMmFmMDdlOTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_da465f838aa74d1b8b798af954d1205f",
+      "statement": "block_recommendation is a pure function of recent counters exposed as trust.block_recommendation: it unions the distinct eligible reporters (counts=1 within report_window_days) in the fraud and payment_fraud categories and returns {default_max_contact_rate_h: 1} when that union has at least two members, otherwise None; it is data that consumer clients may ingest and never an enforcement action.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L132-L141",
+          "version": "repo-lines-v1:sha256:1d8caf0de95afbfbcf15b41c7f0ad7c55d4186479824a95ee4fcccf46ce9a034:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhNzI4ZTQ4MTQ2MTk0NDJjMDYzOGM0YjAxZDRmMWE1NjY2ZDZlMjEyYzhlZmU5Y2NlYTUwYjgwOTQ0MDAyZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlN2M5NTdiY2I0NGZiNjczYzk4YjAwNTBhNzVkMzgwODJkYjgxZDkxOGRlMzEzYTNmMDdjMTIzNTMwNmQ3ZWMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE0YTM4ODEyZjA1YWM0YTQ5ZDAxZjllZjhkMzhhYWUzZmNmMWZlYWFjNGI4OTBiN2YxMDNhZTlhYjIyZTkxZjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2ZDc4MjAxZjU5MGE4NzhlYjk5NmE4NTFhMTAxNGQ5Mzc2MDM5Nzg5NDc3ZjA3MWFhNWM0OTdkYzI0ZmJhNDcifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L290-L292",
+          "version": "repo-lines-v1:sha256:791458f83585aac9406d6060fff526279dfae033290504ab615c55e9b6aee554:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWIwY2M0NzBiOTFkMmU5OTI0OTBhOTg1MzcxYzI2YTgzZDc5ODYwYmM1OWUxNWI1ZDMwNzUwMWFkYTliY2ZkMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTkwOWE1M2E2MThkMDI4ZTFkMzAwMGMwYTdhYmNlZWNiZTVmYjM3ZjRlNTExZWZlNDY2NDNmYWQ2ZTY2ODcyZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTI4N2JmYmI5ODVjMjUxM2Y0M2ExZjAxYmFiM2EwMDUxMmFiYmM3OWFiNGZhYjc3N2ExZjZjOTNjMDhkYzI5YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmMxZDQ2ZWY3MDZkOGU2YzUyZjA0OGY3MDc2OTViMmVmMzRmZGZlMmRlYWZlNmZhMTQwMzk4ZDRiYThjN2UzNiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_bc72c5a6a0954382a410bc6eb563843e",
+      "statement": "report_war detection counts mutual reporting as the minimum of the a-reports-b and b-reports-a counts inside report_war_days (default 30 days) and flags the pair when that minimum reaches 2; the annotation never suppresses either side's reports, and ReputationService.report_war currently exists as a building block not yet surfaced in the assembled trust block, whose reputation_history is still an empty list.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L62-L62",
+          "version": "repo-lines-v1:sha256:883ad30d6b630cc3cd4e6ce9ec7e540012332233cebf1a32b87083a4e7ae23d9:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODgzYWQzMGQ2YjYzMGNjM2NkNGU2Y2U5ZWM3ZTU0MDAxMjMzMjIzM2NlYmYxYTMyYjg3MDgzYTRlN2FlMjNkOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODgzYWQzMGQ2YjYzMGNjM2NkNGU2Y2U5ZWM3ZTU0MDAxMjMzMjIzM2NlYmYxYTMyYjg3MDgzYTRlN2FlMjNkOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjVmMzQ3Nzc1OTM0ODFkMWNmY2IxZTU1ZjA5NWY0YzY3ODMwYzg4MjZhYmRkNGM5OGNiNTI4N2ZmYTE5ZTQ3OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzJkYjQ2ZjQ5YWFhMGU1YTlmN2U3MWFlNmM0MzViYWIwN2JkZmNjMDE5ODVhMGY0Mjc2ZmM3NjJmOThlNDkwZCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L143-L146",
+          "version": "repo-lines-v1:sha256:25452345e1357dd18b25f02dde842fe5283a54df4249fb7ac70256ca504e942d:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmQyYjRiYjRhODAxNjczNjY5ZTBiNWIyZmUzZDhkMDA3ZTY5Y2Q2NjVmM2U2N2FmNzY0ZWYyODU3NGZhOWQyMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTQxZmI4MDNlNjI1OWE4MDA1YzAwNWE1NGI0NzY5MjVkNTAxNjMyY2I4NTVjYjdhNzdmMTRlZWI5OWE2NjcwYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGYxNjViNGY4ODBkMTAwYTg2ZTdhYTBjYjJlZmQ3ZmVmZDZhM2E5YWEyYTA3ZDUxOWIyNWU4MjY0Y2Q3ZTY4MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWZhOGMyYzViYzAyMTk4MGM3NGJkYzYxMWU2MzRhYTAyOWYyYWQ2ODA4ZTQzZjhkNjk1OGZlNDI0ZmUzYWRlOCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L313-L317",
+          "version": "repo-lines-v1:sha256:a98def2f3989e4bcffcaac84f0b417d9d7290cbbe4d547d2ef16891936041626:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDI0MTc1NzhjMTFlZmY4NzZhY2ZkZDFiNTRiMGMyNDA2YzQxNDgxYjc4ZTAzYzgyYmVhM2ViNjJkYWY2NmRlNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTZiMDQ0OTE0Njk3MjJlODM2M2E5NGU0MDQ0NTM4ZTAxM2EyYTIxN2UzNmIxZTU2OGJhNjBhY2I3YjRjOGYyZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTE3ZDBhN2M4MWJkMTVjMWU3M2FkN2VhNjI0MWM2ODQ5MDkzMWI1YTMzMjk4NDJiMTQxNTEwZGVlZjZkYWE2YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjZhZjMwNTk4OWFjMWU1Njk4N2E4YWEwZDZkNWI4ZmE4MDFjNjYwZWZiMzQyNzVhNTI2NjU3MGViZTQwYTExYSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L871-L885",
+          "version": "repo-lines-v1:sha256:6a53a9309db820aa6bf239455d12313f9248efbec969ae4f6dcdfb81b7f8dcfb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVlMDUxNTEwZmM3NmUzNjcwMzJlZjM0ZGZkMzI5ZmZkODIwZDc5ODU3ZGVhMjYyN2UwZjY3NTU5MDE5ZDdlZWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNiYzgxNDc4N2IwMzYxZDc5OTYyN2NlZTk5YzBjODNlZTE4ZWE3ZDI3ZTBmYTNmMWRkOTc2N2NiMDA1Y2IxZmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI2N2MwNzZhZWIyZTQ2ZWU3NzQ0YzY4ZDg5YTY2NjhkNzAxZTI3NDA5MTFmZGE0NDFkOGU5MTUzM2ViMzI4NDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZjNTA4ODljMjIxZTFjYTdiZmJiYzUwMGJiMzA0MjhkNjI2MmQ5Y2UwOTljNWE0M2U4N2RmN2MxMTM3ZDYwMTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cb598f3d816c4c5ea7b4f6568615ddd9",
+      "statement": "GET /v1/agents/{fingerprint}/reports (regex _REPORTS_RE) returns exactly {fingerprint, reports: <decayed counters>} — counters and time metadata only, never evidence bodies, and with no liveness gate, so it is served for listed, suspended, or unknown fingerprints alike (an unknown agent simply gets empty counters).",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L285-L289",
+          "version": "repo-lines-v1:sha256:b17132906c8e4b4f7c6d9ee0b92c090bbf410a25310764bed5b4a5a255e2af87:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDk4MjlmM2IzY2QzZDQ0ZjljMGUyYmJkYjNjNzc3MDdjZjI3YzlmZGU3OTA2NTA5NjA3Y2FhYmQwYzYzYTEyMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWFkNmM4ZWFhODUzZGZiNzA3MjA1MWE1ZjU5NjI5YmI3NmYwMmQxMzMwNDJmNjQxNDM0M2ZhMDE5YWI4ZTZkOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzk5MDExM2EwMDVlOGQ3Y2I2YjNmZjU5ZDMwNTMxOTQwZTcxODU2NmI5NWU3MjcxZWRmMDAxMjA1OGRjYjUzNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzNjMmVhYzJhOTE3NGU1YWE0MTkyMTI5YmU1NWQxMWRiZjcxZWUxNDQxMDkyMTkyOWUyZWEzOTFlMjBmZDI0MSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L148-L150",
+          "version": "repo-lines-v1:sha256:8a9f9e1f118354a7fab37ef06cbbfce8560326823c2608447b19333c39f2b953:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWU5OGNkOGIzYjk5OWIzMzYwOGY5Yjc5NzRiMmM0ZGM3MWI0ZjQyYzIyZDdlYjNmMDgwZThkZmI3NGYwN2E1MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzY5ZWQ0MTNhYmYyNTMyMjVjZjY5N2ExMjNlMWZiNmRlOTRmOGI4ODExNDZlZjY1Zjk4OTRmNzRjY2M4ZWQ5NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjI0OWE5M2Q2NTc4MjA4ZDNmZjc3OGUzMzU0YjYyNzYwYWJjNGY3YWE5MWFmMGQ4NWNiYjA5MmUxMjc4ZmQ5ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_08343e3613fc4e82a07dadb72d32e4f5",
+      "statement": "All L4 timers and thresholds are plain DirectoryConfig fields with defaults report_tenure_hours 72, report_dup_window_hours 24, report_window_days 7, auto_suspend_threshold 3, report_decay_days 180, and report_war_days 30; windows are measured in epoch seconds through the injected Clock shared by ReputationService, ModerationService, and the store, and the two L4 services are wired by DirectoryService._attach_subservices at construction over one store, config, and clock.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L56-L62",
+          "version": "repo-lines-v1:sha256:0ed9263a946aa5958d756ef4441affd3e2795a25100031cae58f9b8cb063aff5:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGU0NmIyMjg0NTA2MzMxZjY3NTg1NTNlNDFmMmM4MWVlYzFmNDY3Njg3ZTVlYmNiYmIxODk3Y2IyMmQ5YjRmOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODgzYWQzMGQ2YjYzMGNjM2NkNGU2Y2U5ZWM3ZTU0MDAxMjMzMjIzM2NlYmYxYTMyYjg3MDgzYTRlN2FlMjNkOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDA3N2YyOGE2NDFkZDUzMTk3MTc4NzczNjA1NGFkZGY2MDljYjI3OWQ1NDBiYjMxMDBjMjY2N2FkNGNlNmNiOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzJkYjQ2ZjQ5YWFhMGU1YTlmN2U3MWFlNmM0MzViYWIwN2JkZmNjMDE5ODVhMGY0Mjc2ZmM3NjJmOThlNDkwZCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L36-L43",
+          "version": "repo-lines-v1:sha256:40a5eeb361e967967787643a8a7d3ccd0ff62355d0b3b4307088cefd4cbca93e:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzIyMWZjZmFkNzNkOWFmMzQ5MTkyOGU5ZTgwNjJmNDRlZWE3YjIwZmZkZjNmNWFiZTk4NDQ5NDNmYmZlNGY5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzI5MTVmNGRmY2M5Njc3YWU5MmRhMGEyYTM0OGFlYzI0NGJiMzY3YzhjMjMzNGIxMmMxYTBjZDE1ZWU1ZWEzZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTgwNjc3ZDEzZWMzNTBjNDFhMmIzYTIyYWQ1NzQ4OGQzMWMxMWVmNTBkZThhMGUxMjM5ODBjZDBmMzFiM2FkMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjdmZmI2NjAxZjM3MmI3ZmU1Y2NiOWE3YmFmNzk0YTdjMWRkMzI4OTVkNzBjMjY0MjE0ZjVkOWIwY2ZlOWQ4ZSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L62-L74",
+          "version": "repo-lines-v1:sha256:fc7506998efa0c3ef7975684b317d2b6a1dd977d66140130a939ad9d41bde724:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY1NmRiOGM5Mzk5YTJkYWU4ZmM3OTlmZmQ4YmNhNTNmZDBkNzBiNDNiYjliYjUxMjBhYzVlODIwMGMwYWM2OGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3Y2MyMDIwNmYxMDZjOTNlMjdiNDA0YWYzYmJkNTVlZDIyYmFmMzAyNjAyYzNkZDJiNTEyMjc1NzIwNTBkYzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM2MmU0Mzk3ZDk4NTQ5YmMzNDJhZTU5ZmY3ZDA0MzUzNGJiZmI4NmRiODE3ODJhOTk4NTlhOGQ1YzMxNzJiMWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNkMmY3OTBlMTAyZTIyZGI0NWExYjM2N2I0MGZkNjU0OWVhY2RiMWQ1MjZkMTkyYTg3MmVlMzBlMjYwZGUwYjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5f15f57ec2d2435cb5771518bdc45c64",
+      "statement": "tests/test_reputation.py pins the intake and automaton behaviour end to end over real HTTP: a just-registered reporter is recorded with counts_toward_automation false, duplicate reports get 409 REPORT_EXISTS, reporting an unregistered target gets 404 TARGET_NOT_LISTED, the third eligible reporter in the spam class auto-suspends the target (profile 404, health suspended 1, search shows only the reporters), and three eligible abusive_content reports never suspend because that category is not an abuse class.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_reputation.py#L33-L95",
+          "version": "repo-lines-v1:sha256:53e7b18902903e948762fd9d1865f67b4d3859f881f2703721eef56a8db37a11:eyJzZWxlY3RlZExpbmVDb3VudCI6NjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM2Y2ZiZjhhOGY3ZDE5NDM3ODA2NThiNDc0ODNmYTlmMGQwNzY0MmQxYjVlOWI0MTNjYWQyNDgzNDFmMjg3ZjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNiYzc0YmNkMGM2ZDg5MzRlYjlhYzI4YWZkNjdkM2MxYjE4ZmIxMDVkNTExMjY1YjZiMTdmNGFiMDFlMjc4YzEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA1N2NiMDJiNjA3NWMxNDEwYWQwOGIzZjQ5YzIyOTdjNTU1MGQ5ODA5NzEyYzg5N2QyM2I5MTU1YTMzNzljMjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVmYzhiZmUyNTUyYjBlNGE5OGFmMjVmN2VhNGNhZWE3Y2UxNTNhYzdlZDkyMzk3NTcyNzYyM2E0MGZlNjE0MjEifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-05T09:05:06.235Z"
+  }
+}

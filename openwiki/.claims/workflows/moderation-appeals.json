@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:d7746b4b09054451e1a0ba1a18c3e0599147d3d3a53d8e7e4311c33ed5ad5168",
+  "claims": [
+    {
+      "id": "claim_909dd5d4a79643709b0c459b5b29df27",
+      "statement": "Moderators are operator-held Ed25519 keys configured out of band: DirectoryConfig.moderator_keys holds standard-base64 public keys (set in ~/.haap/dird.json), and at ModerationService construction each key's fingerprint (HF- + first 16 hex chars of sha256 of the raw key) is derived via fingerprint_of_public_key and stored in a fingerprint -> public_key_b64 map; only fingerprints in that construction-time map can authorize actions, and malformed config entries are skipped.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L67-L68",
+          "version": "repo-lines-v1:sha256:b1ee9a0a381e23ebe7c21758c28d592373924a7c141dbe286770f6e2f281dc62:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTU0ZWIxZjY2ZmUxYjg5MmNhZDQzMDk4NTVhYmUxMmYzZGU2MTcwMjgzYjE4NTM0NDYzNzdiNzM4MGQ5ZDI4ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODkyN2E2MmM1ZTE0ZWFhMjNlOTQzNzZkMGQzZDA5ZTIzN2FkN2Q2NjVjYmRmMGZhOWI5MjhlM2M2ODJmZDY2NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTZiZjIxZDA1NDNlMDA5MmU2MWU1NTVlZTgyNGUyYTgwYjhmYjE3ZGIyZWJiNWEzY2VlOWM0MGJmMWM0YjMzNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWJkNDJhYmRiMWQwNDg2OTAxYzVkNjA0ZGYyZjcwN2Y2MWIzZjNlZTViNTY5MzA0YTU1ZDNjMjdhYjRlMGY3MSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/identity.py#L14-L22",
+          "version": "repo-lines-v1:sha256:fb7ccb29176800aec4effceb39860fe22024ab2ddbcc9469e78c9f59d95ff1a5:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDVlY2IwNWJhYzUyODkxYTk4NTRiYWI4OTZiNGJhOTg4ZmY1OWQzYzhmNjcyNTRkMjVhNmRjODA5NmFiZDZlNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDY0NTY4NmEzOThmNGEzNjZiZmI5MmFhMmI1ZDY4MzM1OThmOGRiMGRiOTlmMDU2OWVkY2MxZmJlN2I5MjNjYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWRjZjMwOGQzYjg2MmNhMzQ4NjJlNzViNTUwMzE0ZjU2MjQ0ZTU4NjRhZmIxNTVlM2JmYTQxMDU0MDIwZTJlNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjBjMDA3ZWIyZDA5YWQ2MGVhY2ZlNjk1OGU3ZjZkNzc4ZjczMGY2ZmNjYmRhNGQ4YWFmNjFlMjVlZTdhZjc0MiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/moderation.py#L23-L42",
+          "version": "repo-lines-v1:sha256:2339fecc6448f9e451b762e59c098abca65b862e626bd24be5de663fc44aac28:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxOGI3M2U1NmUxM2M0YWY3NmY3NTA5OTZjYjhhZmZmYTNiNWE2Yzk3YjY4MTQzMGY3MjRmY2ZhZTc1NzUxNzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlNjgzM2I1YzIzY2M4ZGUxYWU1NDNiYmJhMDFkN2RlMDBiODVlN2E5Y2EzZGYxY2E0MjJiMzQ4NjljNWZkNWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFhYjIzNGQ4MGNhNTEyN2IwYTBkZTAwYjQwYzg1NmNjOTkzOTY0MDU4N2RkNmYyMjk3ZjZiZTBjZTU5MmU5YWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNkMmY3OTBlMTAyZTIyZGI0NWExYjM2N2I0MGZkNjU0OWVhY2RiMWQ1MjZkMTkyYTg3MmVlMzBlMjYwZGUwYjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f7e1fb2013684f4f90c788eb4fa24b4f",
+      "statement": "Every moderator action first runs ModerationService._authorize_moderator over an exact payload subset: an unknown moderator_fingerprint raises MODERATOR_UNKNOWN (403) before any signature check, and a signature failing Ed25519 verification over the canonical JSON of the subset raises TAKEDOWN_UNAUTHORIZED (403); subsets are takedown {moderator_fingerprint, report_id, reason}, suspend {moderator_fingerprint, fingerprint, reason}, unsuspend {moderator_fingerprint, fingerprint}, verified against the configured key with the shared canonical serializer (sort_keys, compact separators, ensure_ascii=false), so extra body fields are ignored.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/canonical.py#L22-L26",
+          "version": "repo-lines-v1:sha256:f83501419bb070a1e64cba8f9dc21fbb544cfd806668b4d3b27323868b252332:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDYyNTI3M2ZhYjI2OWQyYTdhNmFlNzExYTdhMWY4OWJjNjE2MWVhZDY3NTg1MDE2YjgyMTNhODU4ZWY4MDNhMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDNjNDI2MTkzYzhjMGJhMWI1YWMxYzc0ZmQwYTViNjRhNTI4NTViN2E0MGExYjQ4YzVhOGZkODc2ZGIxNzM4NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWQzN2EzM2QwNzNhYjhkYTI5ZGM3NGNlNmE4OTEzMTgxOGE1MmE1YzE2NWQxNmYzMWQ5OTE5OTdmMGU2NmNmNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDA3MTY1MWFkZTIzNWZmNTA1NWQ0MTc1ZWRkMWE2MDJlNTY3YmM1MTVlNzMxNzRhZjdmYjEwYjYwYTIzMGI5OCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/errors.py#L63-L64",
+          "version": "repo-lines-v1:sha256:cd2fae35a7c58b12498146053d9081789f1176401869439935ca1bd6129c5368:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDllYzU1NTcxMjQxNmJhZTkwNGY3MTJkY2JhMjVmZWM2Y2VmMzI4YzQxMDU2YzA1YzZlZmMzYjMwODc3YTMwYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDAyYmE3MGE1ZjE4OWFlMGFmYmM2OGRlM2NiYWMyNjc4NzI3OGIyZTk5ZDEzZWI3ZGI4YjhiMTNlZTRjOTA3OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTU3NDYyZWRiYWUxN2VmZWJmM2I1NzUzYjFjMjg4ZWU0N2VhNmEwNDM3ZjM0YTI3ZDI5MzcxMzNhNzEzZjMxZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjQyNWFkM2FmNmU2M2I5NjNjZDg3MzY1ZGM1ZWMxMzM1YjA0OGNmODNhNGRmNGI0MmNlYzQ4NWRlNmQ0YTZhZCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/moderation.py#L47-L108",
+          "version": "repo-lines-v1:sha256:4510368530d212b7acc0068cfa5412ffd69cbab4730f20e50cb5ae42316058fd:eyJzZWxlY3RlZExpbmVDb3VudCI6NjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3MmExYTNlODkzMjA3MGY0YzY5MDI2ODgyNDFmN2NhYmM0Zjg3YWE1YTUzODhlNjU5Njg5OGJhZTI1ODEwYzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxODA2NzgzYmUwNmIyNWI5YmYwN2M0NTdhOWRmMzhmYWEyMzFmZThkMmQ0NjI3NTViNGQ4YzYyM2RhMzgzOWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3NWEyM2QyNDdmZjIwMjFkZjhkZTdkYjkwNGYyOTE3ZWE2ZTA4MDdmNmZiNWNjYjhkODhjMTE0OTE0ODlkNGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc5OTIxZDdmMzllMWQ0MzJjYzRmNDlhNTNjZmUxZWI5YjQ0NWY0M2ZiMDQ1MjdjZjNhZmNhMzBkOGI2NzI4ZWYifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/signing.py#L18-L25",
+          "version": "repo-lines-v1:sha256:7fe223ff4c8336ff6e323383e91837f954a5d95c141c57b90e4b3fef1a84f50d:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGI0MGQ2Y2M0NTg2MWM0OWU1N2M0Y2ZhYTc1NDViNjQyMjhmOWQ3YTRhZmM4ZDc5ODRiZjEwNmIzNGQ4NjQ0MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDc5YmY5ZmI3Njc5MzgzMmIzNmY3ZmMzM2ExMzUxNDIwYmY1YjZkY2EyNzQxMmU2OWQwNTdjZjE4NjU4OTdkMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTIwMmQwOGU4Y2NiZDliOGExMzAzZDRhYTIyNGJmYjkzYThjMTM5NGQ0ZmRlNDY2M2I5NmViMjgyN2QyMDgwNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGU3ZTY0MWZmOWI4MGU1NjFlN2IxMTI1YWMyMTFlMmQzYzY1YTM1N2Y5MWMwNGI4ZTYwNzU3YzY1Njc4MDc0MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e6019ac5165649df8e70e1f4741d423c",
+      "statement": "POST /v1/reports/{report_id}/takedown suspends the target of an existing report: moderation.takedown loads the report (REPORT_NOT_FOUND 404 if missing) and calls store.suspend_agent with rule 'moderator takedown: <reason>', evidence_reports [report_id], actor 'moderator:<fp>' and audit event moderator.takedown, returning 200 {status: suspended, agent: {fingerprint}}; a vanished target row yields AGENT_NOT_FOUND (404). Takedown works on any report category and evidence kind, unlike the narrow auto-suspend automaton.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L419-L425",
+          "version": "repo-lines-v1:sha256:9cc291cc76f29d1e555e70ff48aea565d7b52b4d9324373b6d769cae39a46886:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWJmNzYzNTJmNTJhOTkwZDgyNTI4MGNlNWI2N2U4MmQ4NTEyNDM1ZmM2OWEyYWQ2NDlmOTYwYjk5MDkyYTk4NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWFkNmM4ZWFhODUzZGZiNzA3MjA1MWE1ZjU5NjI5YmI3NmYwMmQxMzMwNDJmNjQxNDM0M2ZhMDE5YWI4ZTZkOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTc3ZDI4ZjI4NDRjYzI4NjgxMDU3MTRmN2U5Zjk1YjNjYTk0MGU0YTVjNjk3OGNlN2EwZWU5M2FjZTVhNjk3ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTY1ZGU3MTM0Y2RjNTMyNzQ4MjhjNDEzMzliMTMxOGJlNjQ2YjhmZDY5NDA1ZmM2MTk2MDJlNGRmYjBkODY4MCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/moderation.py#L54-L75",
+          "version": "repo-lines-v1:sha256:fa114220a10912d5542c77d2bbe4f5dc0b9855f4db404a83a02f043b43c4f144:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1ZjE5MGM0YjYxMjAxODM1OTAyNDIyY2Y0MWE5NjVkNjhhNDIxODdkMTQ5NjJkNTUwZTMyNmZmZDY1NGIxZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhM2JjNWY3OTIxNzI4N2JmMDcwMWQyNGQ2NGQyOTRkOTE0ZTQ4YjMwOWE2MTc3MGIxMDJhM2VjYWE3YzU4NDciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUzNTc5MDQ1ZGQ5ZDE5Njk0NmQwYjM4YjljYmUwZWU0ZTMwNzcyNTUzZjJhYjFlZjgxNGFkNmY0MDk0OWQ1ZTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI1NmUzYjNiMWVjMTA5NDI2NzRkMTJiNTZjZTM3MjM5NmE1MzA0YjMxNjZlZWFiNDM4YmU1ZDIwY2JlODEyMTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b97bd11bd45e4581bc3410a78f806c93",
+      "statement": "POST /v1/agents/{fp}/suspend is a direct moderator suspend that requires no report: after the authorization gate it calls store.suspend_agent with rule 'moderator suspend: <reason>', empty evidence_reports, actor 'moderator:<fp>' and audit event moderator.suspend, returning 200 {status: suspended, agent: {fingerprint}}; an unknown fingerprint raises AGENT_NOT_FOUND (404).",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L426-L432",
+          "version": "repo-lines-v1:sha256:9a909820276189447b9af0b16ef6a42afa22c4a00a8f6e347784377f79765801:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzIyMDU1YjJhZmI1MDllMTk1YmZhYWZlYWEwMzc4Y2YyMTA2ZDlkYTViZjNmZDk3ZjA4NzM1ZGRkNGYwYjIzYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWFkNmM4ZWFhODUzZGZiNzA3MjA1MWE1ZjU5NjI5YmI3NmYwMmQxMzMwNDJmNjQxNDM0M2ZhMDE5YWI4ZTZkOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODM3ZjI3ODc1ODM3ZDFhZjE0MTE2NzJiMWVlYjkwZGMyZmU0NmFmMDAwNGNiZTU1ODExODc5YTUyNTFiODgxMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWE2OGM4MDAwNjFmMzFmYjEzY2FiMzZjNjlmNzlmODM5MzJhYWUyNmYwZjczZWE4ZWM4M2M1MGYwMWUwM2YxZCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/moderation.py#L77-L94",
+          "version": "repo-lines-v1:sha256:c0e0c920c9932463e126867f0218e3e1e4c8c921411bde8972f75adf65546d7a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2OGRiNTYwODZlOTliNjMzN2E0NDA1M2EyMjAyNjY0NDJhMDZmNDQxODYzYzlmMDM1MTI3ZjI0MDVmZTgxODgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA2ZjM1YTUwYzFjZWVmZDhiZGNlODVkMDU0OTNmMzA0NWE4MTQwZTk3ZWI5ZjBjMTE4OWRkMmRlOGY0MmE3ZTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMwZjA0OGUzNjE3MDRhYmJlOWFlMjMyYjY1MjY4NWQyYmIwN2Y2MzcyMzBlMTAzYTU0NDRkZDNmYTUxMDI0OWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMwNDNiOTFiZDEwM2NkYmNhY2I0ZjcwOTZmZDQzMzhmZjIzZDBjMDdiMjE1Mzk0ZTZiYjlkNDVmZTdkZjJlMWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c0c685200665479384dba65f690794d9",
+      "statement": "POST /v1/agents/{fp}/unsuspend restores a suspended entry through store.unsuspend_agent, which accepts only rows whose status is 'suspended' (unknown, listed, or expired rows return None surfaced as AGENT_NOT_FOUND 404); it sets status 'listed', clears suspension_json and suspended_at, resets is_history to 0, grants a fresh TTL of config.ttl_seconds measured from now, and appends audit event moderator.unsuspend with actor 'moderator:<fp>' and result ok in the same transaction; the route responds 200 {status: listed}.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/moderation.py#L96-L108",
+          "version": "repo-lines-v1:sha256:a2d4724019b2cce37b590b826e86a106fa2367d47bf939401d9c62dc4541411d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg5N2JlOTI3MjBjNTI2ZDdlZTM1YjcyNmM0ODZkOTgyOWU0NWEwY2IxNDlkYmU2NTdmZGE0YzFkYWRlODJiYzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxODA2NzgzYmUwNmIyNWI5YmYwN2M0NTdhOWRmMzhmYWEyMzFmZThkMmQ0NjI3NTViNGQ4YzYyM2RhMzgzOWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmYjMwNmY2NTNkNTkzNDY1Mzg3NzYxMWYxMjRhMWUyODQ3NjIyNzFlNTZmZjFkZTc2ZTM5MDFmMzE1OGI2OWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc5OTIxZDdmMzllMWQ0MzJjYzRmNDlhNTNjZmUxZWI5YjQ0NWY0M2ZiMDQ1MjdjZjNhZmNhMzBkOGI2NzI4ZWYifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L913-L931",
+          "version": "repo-lines-v1:sha256:433777ad6043991fa62c72a97322f023fc7902bb0f3bd7f079c19edd9e44600b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM5ZjE4NjhjZTMwYjliYzhjNjU2M2QwNDFhMDRkNDlmMzVlMzY1NWE3YWY4MGE5YmJjOWExM2IxNDgyZDE4ZjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3N2QwZGQzZjg2OTQ4YjRiZTA2OGNlYTJmNGFlNWIyZTM4MTJkNmRjM2FlYTQ0Yzk4YTdlNTI1NzhlYmU1ZTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYwMWI0OWFhNDBlZjBlZmI1ZTBhZjYzYmNhYWNmNzk2OTUzYTEwYTBkNWNiNTI1OGIyZjAzNWExODZhYzMwNTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFkYWJkZDE3MWViYjQwZThhYzc4ZTBmMDA4M2I1NjA1NDhmOGZhZGNiY2RkYzgwZmI4ZTBmZThiOTQwN2JiYmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_52087f2bde1f4c1e9fb3fc3d35e553f3",
+      "statement": "Suspension is persisted on the agent row as status 'suspended' plus suspension_json {rule, evidence_reports, at (RFC 3339)} and suspended_at; store.suspend_agent is the single suspension writer shared by moderator takedown, moderator direct suspend and the reputation auto-suspend automaton (each passing its own rule, evidence list, actor and audit event), and it appends exactly one hash-chain audit entry with result 'suspended' in the same SQLite transaction as the status UPDATE.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/store.py#L887-L911",
+          "version": "repo-lines-v1:sha256:f0c7885ec473babfa3dd44960c9e18ecbd623a6fa714ab110bf77341528138cb:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNlNDhjYjliMjRjODg0YjliOGNhNWU4MTk0YTc1NzBlOTIwYjgwMmFkZDM0YWEyZTE3OWZiOGIwMTMxNmM2ODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3N2QwZGQzZjg2OTQ4YjRiZTA2OGNlYTJmNGFlNWIyZTM4MTJkNmRjM2FlYTQ0Yzk4YTdlNTI1NzhlYmU1ZTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY2NTg2MDUxMTQ1ZWFjZGU5YjZiNGUzNjU1ZjRjMGFiNWI5YTBjYTAxZWIyOGNkZTZjMGU5Mjg2YjVjMDRhM2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFiMDcxZjI0MTdlYzU3YTQwNmVhOGFhM2Q4MjQwYjMzOTBmMzIzNzQyMjU0NzA5NzVjZjBhNmZmZTJhZDJkNTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8d5663e9dce14e9698506ab4c2512945",
+      "statement": "The only automated suspension is ReputationService._maybe_auto_suspend: when a counting report lands in an abuse class (spam, phishing, impersonation_attempt, endpoint_hijack) and at least config.auto_suspend_threshold (default 3) unique eligible reporters exist for that target and category in the rolling config.report_window_days (default 7) window, a currently-listed target is suspended with actor 'directory', audit event report.auto_suspend, the threshold rule as text, and evidence_reports set to the sorted reporter fingerprints; categories outside the abuse classes never auto-suspend.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L56-L62",
+          "version": "repo-lines-v1:sha256:0ed9263a946aa5958d756ef4441affd3e2795a25100031cae58f9b8cb063aff5:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGU0NmIyMjg0NTA2MzMxZjY3NTg1NTNlNDFmMmM4MWVlYzFmNDY3Njg3ZTVlYmNiYmIxODk3Y2IyMmQ5YjRmOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODgzYWQzMGQ2YjYzMGNjM2NkNGU2Y2U5ZWM3ZTU0MDAxMjMzMjIzM2NlYmYxYTMyYjg3MDgzYTRlN2FlMjNkOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDA3N2YyOGE2NDFkZDUzMTk3MTc4NzczNjA1NGFkZGY2MDljYjI3OWQ1NDBiYjMxMDBjMjY2N2FkNGNlNmNiOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzJkYjQ2ZjQ5YWFhMGU1YTlmN2U3MWFlNmM0MzViYWIwN2JkZmNjMDE5ODVhMGY0Mjc2ZmM3NjJmOThlNDkwZCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L23-L29",
+          "version": "repo-lines-v1:sha256:9cb8bc45519f1e8688366f3c1e182538ecac32dfb8cb76222f6109881f9b1e4c:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTc0MjAzNThiNWQ5MTZjMDAxNGFiMDI2NDA1YmJhZDQ0MjZiZWJjMzYyZTg1MjYwMTdkMTMzNjlhOGRmOGEwNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2I1MmNhMWMwZjkyMDQ2YWUwM2I5YzgzYWM4MDE2NDM0NmJmZjQ2ZDYxZjY3OWYxNDBlMTdiMzUyNGZkODM2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTJlOWM1NmMyMWQwMDA2NzI0MjM0NmJlYzc0Y2IzNDc0MDc4YTRkOWU4OTM0YzdkMzRkZTc3ZmQ1MTU2ZGM1MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmU4OTVhNTlkMDhkYmVjZDY0M2YxZTNkMDMwMjUwNjBhYzE3M2IwNWU3MWNhZTMwNmRmNTRmNjA1M2YwYjUwYSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L97-L124",
+          "version": "repo-lines-v1:sha256:086c905a6384448fbc9193e3b30f00410a43474733ccee06b293cdc9c98086bb:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwNmY5YTlkYjQyMzA1MzQwOGU0ZjRiYzgwZjQ0YWU2OWFlZDAyN2EzOWQzZWYyNjVjZTQwMGI0ODUzZjA3NjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDlhNTNhNjE4ZDAyOGUxZDMwMDBjMGE3YWJjZWVjYmU1ZmIzN2Y0ZTUxMWVmZTQ2NjQzZmFkNmU2Njg3MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAyMTkxYjA3ZDNhMTE3M2FkZjM3ZDY4ZjA0MTMwNTZiM2VjNzM5ZWFjMmRlM2EzZjk5YjBkY2ExYmUzODhmNGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU0NjQ0NTZlMTA0MmNhNjZhNTM5NjY2NTFlMjM4ZDM0MzRjNWQ3NjBlOTJiMGRjYWY0M2M2ZGFmMWYxOGMwZDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_47a9734e990d4d0c950680c4e6e3929f",
+      "statement": "POST /v1/agents/{fp}/appeal is agent-signed, not moderator-signed: moderation.appeal loads the agent row (AGENT_NOT_FOUND 404 if unknown), verifies the signature over the canonical subset {fingerprint, statement} against the agent's registered public key (failure raises SIGNATURE_MISMATCH 400), inserts an appeals row with id 'ap_' + hex and status 'open', and appends audit event appeal.submitted with actor 'agent:<fp>'; the code does not require the agent to be suspended to file an appeal.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/moderation.py#L110-L124",
+          "version": "repo-lines-v1:sha256:dbaa74e2a9d22e257c31cd4b926a4f07fde6170eb233fcecc6c36cff876cd901:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIyNzZiZDcyNmQzZGZhMWE3NmM2YTIxODMzYzYxOGMzN2QzNWRlMmEyYWNlMzQ1MjhiOTQ1YmVkNDk5YWNmNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwYmE2OTgyZGZjZjg4MGQ2YmIzZDkyMmI5ZmQ4NTc5Mzk3YmM5OGFhNTEwYTBjYjMxOTNkNTQ0N2M1ZmQzOGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU0ZGFkNDg3NmRkMDVkNzhiNGZhZDMzMmVmYjRhMWU4MDJlZGEyMzZlMTg3OTQ3NzdiYjhiMTBjNjAyNDA3MzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L144-L151",
+          "version": "repo-lines-v1:sha256:7c1ac3f399108d111edb453afa8ec6481a4f862c4b8b72915c3730269ed11147:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTNmMGFkN2UxOWM0MWYyZDhmZTg4ZTcyYjQzODcxYjRlODVjNDQ0NzI4ZDE2NzgwNDVhM2M2NGRiOWUxY2E4YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2JjOGE2Yzk4NjZmOGU1MTUwMjVhZGJhNjViZDVjNDUxOTY4YzA0N2Q4MmYwMDRkZmJkYTY3YmIzOWFiZTg2MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWVjZDZlNTFiZDEzMGJiMTM3MTBiNTI1ZGZhMjg1MjMzYmU0MDE2ZWRiZDBmMGFlZDM1MWZiMmY3NWQ5YmY5MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzhhZTYwYTA5YTc4NGI0N2VhMDg1MzE2YmZmOTJjNjgwMTFkZDY3MGQ4OWYyOGRhZjVkYTliYjZhZTQxYmM0MiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L940-L953",
+          "version": "repo-lines-v1:sha256:6260476f965960f58348a80b119dc79a7081b6de5db9507e24df0a05f29f201a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI4NDk3ZGNjNDJkNjFhOGQyNTMzOTg5NjNhMGMzYmZkOGQzYWZiODZhMmY3YmY0MjU2NDNiYzAzZTkzMjZlNDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5OWJiMGE4Njc2NzdiYzEzNGI2ZDhlYWEwN2VkMTZjMzhjZTY1ZjM2OWNhNTliNzM1YTk2ZGY3NTc5ZWIzM2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhhZWVkNzE2MDVmNzk1NWIxYjgwNmFhOGU2ZDU0MDA1NGRhMDcxZGIzOTFjMTdhMDRjMzJiMDkzYWI5YmMwZjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI3ODRkZWIxNjA0OTU5NzI1OTExZjJiMjQyOTA1OTQ5MzUzMDUzOTdjZmI2ZTEzMmYwMTIwNWVmNGNhNDRiYzUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_86d33433ec314a50a4ffae3169fe6a65",
+      "statement": "Appeal decisions are off-band in this implementation: the appeals schema carries a status enum 'open | granted | denied', but no HTTP endpoint or code path sets granted/denied or appends appeal.granted/appeal.denied audit events — moderators review via the redacted per-agent audit view (GET /v1/agents/{fp}/audit) and act through the unsuspend route or leave the row suspended; docs/MODERATION.md is the append-only runbook and policy log recording how decisions are made, and the appeal statement is stored verbatim in the appeals table while only {appeal_id} enters the audit detail.",
+      "evidence": [
+        {
+          "resource": "repo://docs/MODERATION.md#L48-L55",
+          "version": "repo-lines-v1:sha256:21d9ad377dae3a840268ceadd45653f755f47ecc3e9cc1902dc5cc3a1b92f436:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmNhYjBlOTYwMzRmMGJkZTliODRjZmQ2MWUzYjIxMWMwMmE2ZmE4ZDJiOWNmZjY4YzliMzU1NjZkZWVlNjhiZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTljYmVlZDllZDdiNTg0NDRhOGJiODgzYWFmZDg5MjMyYjJhNjk2NTUwYTg0MGU4ZGUxOTIzODEyOTQzNTEwYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDk2N2E2ZGZmM2JmMjdlNWJiNjE2ZGYxMWNiNTZkMjcyZTBjMmE0YjBhZDJmZGM1OTExZDlhZDVmZTYwZjI5MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDg5ZmVjOGQ3MmVmN2QwZjg1OTExMGIxYmM0ZGEzNWUzN2FjNzRiZTVlM2U5MTVjMWUwM2Y3YjAwMDBmOGJiYiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/audit_service.py#L89-L94",
+          "version": "repo-lines-v1:sha256:88d1a93f587cea2e894a05d29aff403c3ee4106800ee8cc39cac499faeef84f2:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTUzNTUzNDlkYzU1NDQ3OWZmNTIwNWE1ZGNlMjc0YTFkN2QxNjkzZDc2M2NkYWMzMmEwYTk5MDUwNDk1ODA3ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTZiMDQ0OTE0Njk3MjJlODM2M2E5NGU0MDQ0NTM4ZTAxM2EyYTIxN2UzNmIxZTU2OGJhNjBhY2I3YjRjOGYyZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjE5YzI1ODViY2JiYjRkM2YzN2RmYjUwNWE0YTc3ZGU5OWViM2U5ZWVmNTdiNDU2ZmZhYWIxYTNiMmVkYjUxNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L433-L446",
+          "version": "repo-lines-v1:sha256:7f8cfa8b03138900cb4f3d9591aefee0ab770ce36ef61dc41dfb13ddb6be1377:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2Mjk5OTJkOTI0ZWNjM2Y1MDkwY2U4OTkyOTliZjM5YTk4ZDJjMzFiOGU0Yzg3NmZiMTNiMDI3N2VlZmEwZjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhZDZjOGVhYTg1M2RmYjcwNzIwNTFhNWY1OTYyOWJiNzZmMDJkMTMzMDQyZjY0MTQzNDNmYTAxOWFiOGU2ZDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiMDk4ZWU4OWM1MTBkMmY5ODg3ZjIxZjVmYWFkNmYzMjU4OTYzYjM4ZjIxM2QxNDAzNmJkMzJlNWQzM2VmYzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUzZjMwMWRkMDdlZmFmZmQzYmY1ZDZiMTVkMjI2YzBkNGE2ZDBmNjFkZmIxYjUwY2EwZTI4NTI2ZGQyODMyNWYifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L144-L151",
+          "version": "repo-lines-v1:sha256:7c1ac3f399108d111edb453afa8ec6481a4f862c4b8b72915c3730269ed11147:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTNmMGFkN2UxOWM0MWYyZDhmZTg4ZTcyYjQzODcxYjRlODVjNDQ0NzI4ZDE2NzgwNDVhM2M2NGRiOWUxY2E4YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2JjOGE2Yzk4NjZmOGU1MTUwMjVhZGJhNjViZDVjNDUxOTY4YzA0N2Q4MmYwMDRkZmJkYTY3YmIzOWFiZTg2MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWVjZDZlNTFiZDEzMGJiMTM3MTBiNTI1ZGZhMjg1MjMzYmU0MDE2ZWRiZDBmMGFlZDM1MWZiMmY3NWQ5YmY5MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzhhZTYwYTA5YTc4NGI0N2VhMDg1MzE2YmZmOTJjNjgwMTFkZDY3MGQ4OWYyOGRhZjVkYTliYjZhZTQxYmM0MiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1cc5332fa1584186bc568ed88b975dd0",
+      "statement": "Suspended entries are excluded from the public read surface: search iterates store.live_agents (status 'listed' only) and GET /v1/agents/{fp} raises AGENT_NOT_LISTED (404) for a suspended row without distinguishing suspended from expired; /health and /metrics expose only the aggregate suspended count; and suspended rows are never auto-expired — prune_expired transitions only status 'listed' rows to 'expired', so a suspended row whose TTL elapses stays suspended until unsuspend or re-registration.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/service.py#L248-L255",
+          "version": "repo-lines-v1:sha256:a01d5aadfe5a7461464e818ddfebf86e70dda408a61d1f632968811f5e498772:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTk4MzhlMDIzNzU2NzI3M2U4YzYxYTQ2YWE0N2Y0YmIzNDQ1YjA2ZTRjM2MxNjZlYmQ4NWYwMzY2ZTg4NWM4MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWNkZmU1YmZiNjNhZjk3YTU5Mjc1NGVjMDkzZjAyZWVmMTU5ODY1NGNkMWY1ZTcxYmQ2ZjYyN2M0NjgxZGMwNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzUxZDEyNzIzY2IwNjg3ODQ0NGIzMDhiMmNlMGI5ODNiYTI4NzZhMmNmOWIzMDgxMTk4ZTNhZTk5ZjcwNzA0MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjQ5ZDc1ODJhYTMyODBhZDhkNDc5OGRkMTY0NmRhNzY0MDE4NjU0YWE0NjU4N2RjYzAzN2Y5ZjFmNzIwMjhjMyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L381-L387",
+          "version": "repo-lines-v1:sha256:65b057d2abef02333e41d9e898329dd2cedbb2bc68f21ff5a8196875980171c7:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDY4MTE3YzU4MDhmNjIzY2NiMzA1YmIwYWZmMGE1YzkxZGM5NjE3YmY5YzQ4OGIyODE0ZTZiOWViZmU1MGY3YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTkwOWE1M2E2MThkMDI4ZTFkMzAwMGMwYTdhYmNlZWNiZTVmYjM3ZjRlNTExZWZlNDY2NDNmYWQ2ZTY2ODcyZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGFlZWQ3MTYwNWY3OTU1YjFiODA2YWE4ZTZkNTQwMDU0ZGEwNzFkYjM5MWMxN2EwNGMzMmIwOTNhYjliYzBmMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTkyMTZjODc2NTNiYzI3Y2RiMDc4OWMwNmUyNTIyMTI0NDcyNzEyNDlmYTU5YmFmMmI5ODZkYTI3ODdkN2I3MiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L523-L545",
+          "version": "repo-lines-v1:sha256:93accc30ea9ba65feeb657254c37ce00eae0e60f1353e87697d045c5ce33ba87:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwMThkYjA3YjViNTc1ODk4ZDljMWYxYzVjZWViNmQyZjFkZmVmOWU5N2Y5YjQ4YjFlMDA5MTgwM2YxNGRhNTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3NDY5Y2I1NjM0MDA5MDE2NjQ3YzM0Y2M3YjllMjAyOTY3YmU4Mzk5Y2EzZWJjZTJkYTlhNGYxNTYzMTk1ODkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5YWYyNWRiMmExNWE2Y2RkZjc0ODE2ZjVjMjI2MDVkOTM5MTUzOWFhM2YyNTYxZTVkYmE3OTE2YjQ5NTAwMWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU1MTM1ZmQ2Y2U3NzRlOTllM2MxOTIwZmIwZTI0YThkMGVhZjc1OGY5YjE4MDc0YTA5ZTY5MTBjOWE4ZmE5MTEifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L994-L999",
+          "version": "repo-lines-v1:sha256:0df18cc306bb5937748a2a07c130d36ea9b5a7088e7a6da63bf2af348edf62b5:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzg3NGRjNmUyZmY5NzljMmQ4YTI5MzU3MmY4OTY0NmFhMWNhYTg5MGUzNGZkOWQ0MWI1NDhhZDY1NTc1NzhlNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTI3MGI5MzUyNTk0ODcxYjY4NGNkMGU4MDI4YjY0NTZlODQ5YzM1MzIzNjhjMzA2ZjZiNTI4YjhmNjRjZTcwMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjY3ZmQxNzZmZDYzOGQxMzdkMzJhNGU4Y2U0NTlkYmQ1ODczMGJlZjcxMmZlM2YzMjYwYmE3NDMxNjg1MDUwMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzhjNGExM2Y0N2VjNDBlOWJlMWQ1MDU2MmNhNThmMWI1MTE4NTQ1ZmJlZjE0YzQ0ZjY2Y2FiYjNlNzNhODU2MyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/telemetry.py#L17-L19",
+          "version": "repo-lines-v1:sha256:19f07346817b7d950d4837e5138d35cebaad5b56d3373c5dbe5207f6b275a6ba:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmUwZWNkYjQxYjZmYzJiYWEyMTA0YzI5Y2Q1ODYzNTNlNTE0Yzg0MjAyMmQ3M2VkMjQ3Njk5YWM3MTgxOTY5OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2RhMzIzOWZjYzU5N2M4NWVmZmM1MDBlZjU4ZDA2NzIxYWYwMGI5NzU0YWE1YjRjYzU4ZTc0NjYyMTVlMTA2MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTQwNmVmZGI0YTdhNTExMDZiNmFjMzE2NDNiY2NhZTEwOTBhMzcwMGJhNmQyMDFjOGYxZjkwZDYyMTVmNGRjMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDBlNWRhYjY5OTBkMTViNzU5NTQ0YmRiY2ZiOGY2MDJhYzMxNjE2ZTZjOGQ2YzA0MmU5ZmRhMWNkYjZkYWViYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9ac770c5deac4b5e866290c4d470aac4",
+      "statement": "DirectoryService.build_trust_block carries status and suspension (parsed suspension_json: rule, evidence_reports, at) as wire fields of the §5.2 trust block, so a suspended row's record is part of the defined trust shape even though the implemented HTTP surface only serves trust blocks for listed agents.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/service.py#L257-L317",
+          "version": "repo-lines-v1:sha256:afcb695b1abb6bf8ff020c390a839d7c80379200aacea1005484ad2707261c8b:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY3MmExMTY0OTMxOTRkYzcwZGQ4OTkyMDFhNzdhZTgyMGFmOGZiNzhiYTM0MWUxZTc4OTY0ODI1NTYwNjJiYjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3MTY0OTE0NmMyODIyYjc4M2JkNzcwNzA4NDk4YTE3MjdlMTljMWIxODRjNGNkOWQyMzJmMTllZDdjM2E2YWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2YWYzMDU5ODlhYzFlNTY5ODdhOGFhMGQ2ZDViOGZhODAxYzY2MGVmYjM0Mjc1YTUyNjY1NzBlYmU0MGExMWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4cf8ef5d0cd04a24b4a20556c8543358",
+      "statement": "Every moderator action and every auto-suspend is L5-audited with actor 'moderator:<fp>' or 'directory' — the only human judgement calls in the hot path — via events moderator.takedown, moderator.suspend, moderator.unsuspend, report.auto_suspend and appeal.submitted; the chain stores only the sha256 detail_hash of the detail object (the suspension record for suspensions), so evidence bodies and reason text never enter the public chain, which instead makes attributable the actor, event, subject fingerprint, timestamp and hashes.",
+      "evidence": [
+        {
+          "resource": "repo://docs/MODERATION.md#L57-L63",
+          "version": "repo-lines-v1:sha256:7154e87790a56e0e05c5e71e0d4e9362dc5f94f68742e744d219930ab80069ad:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODUwYjBjYmIyZmQ5NjZhMTY4ZmM3NGFmM2ZhMWZjNWUwMGY5Y2Y1NTFiMjM2YTEzYjI0YmI4Y2Y2ZWJlNDQxYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWQ1OTRkNGNmN2UwNjNmMGJjYzgwYWQ5ZmZhMzFjMWQ5ZjI0ZjhkZjkzM2IzMDUyZDkwZjhhYjFkMmM0M2JlMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGFiMGJmODE2MGFiZWZlOWNkMmY0ZDhkZDRlNzMwYTM1MzVhZTU4ZWM4MjllMmYyMjc3ZGY0YjAzYTAyYzM1MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTNlYjM1NjNhNzVhMTVkZjE4MGI5ZGJjYzQ5ZjNhYjFlNGQ2ZjRmMjYyMWFhNGMzODViYzJkMTJjNWE3ZjViMiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L211-L261",
+          "version": "repo-lines-v1:sha256:9360b4af1ced11374c64697387a94aa01dba98a70064e3d2218fd126a2df5bfa:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVmMzliNTdmYzc2YmQ1ZDlmZmE5MTRiNGJjZGU1MjFiMmRjYTVmMGIxM2UwZmNiYjZhMDhlN2E4NzAwMjY1ZGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1ZWVmZjNjNDc3NmY1ZmI5Yzk1OTg0ZDFhMTc0NmIxZTU2OGRkNjhkNWVkZTZlNDQ4NWFhNzM1ODhhNDM3ZWIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUwZDg4ODQ5YWFlNGFjNzczNzgwYTI5OGQ2ZTNiMTJlNmM4OWU1YTY1N2FjMGZhNjI5ZmQ4ZGUxMGYxZmI3NmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM1MDMzOTJhMGI2MzZmOGQ2ODFkNDIyNTBlNWZmMWJmZWEzNzUwNTU1YWFmYzY4YzlhZTYzOGRhMzE3Y2RmMTUifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L887-L931",
+          "version": "repo-lines-v1:sha256:8ff4376285fb40797e515cf79c8e502cf2f3de3e7a577c2716dab4a755fa684f:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNlNDhjYjliMjRjODg0YjliOGNhNWU4MTk0YTc1NzBlOTIwYjgwMmFkZDM0YWEyZTE3OWZiOGIwMTMxNmM2ODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3N2QwZGQzZjg2OTQ4YjRiZTA2OGNlYTJmNGFlNWIyZTM4MTJkNmRjM2FlYTQ0Yzk4YTdlNTI1NzhlYmU1ZTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY2NTg2MDUxMTQ1ZWFjZGU5YjZiNGUzNjU1ZjRjMGFiNWI5YTBjYTAxZWIyOGNkZTZjMGU5Mjg2YjVjMDRhM2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFkYWJkZDE3MWViYjQwZThhYzc4ZTBmMDA4M2I1NjA1NDhmOGZhZGNiY2RkYzgwZmI4ZTBmZThiOTQwN2JiYmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3980e795b6de41a8a71f675beb605c66",
+      "statement": "Divergence from docs/MODERATION.md and SPEC: suspended agents cannot heartbeat in the implemented code — store.heartbeat requires row status 'listed' and heartbeat_v1 gates on is_live_row, so a suspended agent's heartbeat fails with UNKNOWN_OR_EXPIRED and its TTL is not extended during suspension (a suspended row whose TTL elapses simply stays suspended because prune_expired only transitions 'listed' rows); the runbook claim that heartbeats stay accepted during appeal review describes intent, not this implementation.",
+      "evidence": [
+        {
+          "resource": "repo://docs/MODERATION.md#L50-L51",
+          "version": "repo-lines-v1:sha256:8634886b8f2cf0bb0d681e51aa9a99afe9f049a1267a40b2d556dce86cb03f92:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzFkNGMzY2Y0MTQ5YzQxZWY1MDgzN2NkZTFjYzVlM2ZkZjlkODM2YjE5N2UxOTU3NTZkMmYzMmNiMzBhYmYzMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWEyYzg0MzhlY2JlOThmN2Q2MWU4YzZiYzQzMTE5NDBlODljNjMyY2RlY2VmMDk3ZDNhYWE4NmU3YzBlZDRlMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTcyYTQ1ZDQ1Mzk1ZmRiNzE4YjVjNjU1MGU3MzMwNjJjYjU5MjljYTU2YjNiOTlkNjFkOWUzYmZiNWVlZDZhZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjU2NGU4MGY5ODJhNzYwOTY3OTc3Yzk5N2M0MTI5OGI4ZWU2MDFiNWVmMThlMTZjZTcyM2NhZDYzZWUxOTVhZCJ9"
+        },
+        {
+          "resource": "repo://docs/SPEC.md#L451-L451",
+          "version": "repo-lines-v1:sha256:442d4907545e0bece829ed371a3f7ba57508d03dba854a2200564e976686ae32:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDQyZDQ5MDc1NDVlMGJlY2U4MjllZDM3MWEzZjdiYTU3NTA4ZDAzZGJhODU0YTIyMDA1NjRlOTc2Njg2YWUzMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDQyZDQ5MDc1NDVlMGJlY2U4MjllZDM3MWEzZjdiYTU3NTA4ZDAzZGJhODU0YTIyMDA1NjRlOTc2Njg2YWUzMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjliNjQ2NGI2OTNkYzg2YTY3M2Y3ZjY1MWIyNmYyMGI4NTExMmQ4MWMyZjYzNTdlYmRhOGNiMjYwMzJhODA0MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGVmYzRhOTAwY2MzZGQ1OTZhYzYwOGU3MjlkZGUzODNlMmY3YmUzY2EwNDE4MDdhMzJhMGFkNDUzOGJkZDJjNCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L188-L217",
+          "version": "repo-lines-v1:sha256:00321bdb974b2abec4df59cc85d376380b7c87cdbe0506d9e4fc1c2a56bf11be:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5ZTIzYWI5NGI1YzEyNmNkNDQ5ZjkyMTAxNDZmZTNlNjc5NDgwOTk0YjI4NTNlODQzYWUzOTVkMzFhM2M2ODAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFjNjM1NTZiZjY5NGQzNTYzYWZjOGY0YzliMzg3YjBlOWI3Y2E0OGIzZWM4MzdmM2E3ZTI4MmYyYmQ5OWYxM2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNlZTFiNDJjZTk2OGM0ZWZlYzgxYzYzOGFhMDRmYjdkNWU0NmM3ZGM5M2Q0YmEyYzBiZTg0ODljMzdkMTlkZTYifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L381-L387",
+          "version": "repo-lines-v1:sha256:65b057d2abef02333e41d9e898329dd2cedbb2bc68f21ff5a8196875980171c7:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDY4MTE3YzU4MDhmNjIzY2NiMzA1YmIwYWZmMGE1YzkxZGM5NjE3YmY5YzQ4OGIyODE0ZTZiOWViZmU1MGY3YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTkwOWE1M2E2MThkMDI4ZTFkMzAwMGMwYTdhYmNlZWNiZTVmYjM3ZjRlNTExZWZlNDY2NDNmYWQ2ZTY2ODcyZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGFlZWQ3MTYwNWY3OTU1YjFiODA2YWE4ZTZkNTQwMDU0ZGEwNzFkYjM5MWMxN2EwNGMzMmIwOTNhYjliYzBmMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTkyMTZjODc2NTNiYzI3Y2RiMDc4OWMwNmUyNTIyMTI0NDcyNzEyNDlmYTU5YmFmMmI5ODZkYTI3ODdkN2I3MiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L490-L521",
+          "version": "repo-lines-v1:sha256:7cdd2af77cd85aa1a892d71760d980dc6b0f2a22f23758923a962cbafbda6fe8:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhYWM2MTQ2NGRiODI4ZDMzYWEzNjhmYzY1YmY4OTk0ZDkwNDU2ZmM3MWFkOTk1MmQ0YmU2OWYyOTMwMTNiMTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3ZjU3YTNjODdlNWQ0Zjk4ZTBjNzE5M2JmNTZkNzcwNmMzMDcxZDA4ZDA2ZGE4ZDg5MmQ4NWNkYTkyM2U3YzQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU1ZGViNjE0ZTI3MzVlMDFjMmU5MmY4ZmNkNjk3YzVmOGVhMzdjOGNiNDAxODVlMjk5NTllNmZjOGZjNDlmODAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk5ZWQxODJlNTYyYjVmMzNiYTYyODE0NGRjOGEyYjBiMjJjYzM4NTE4NWFiNmY0NWE5YzUzM2I3MjdjYTM2Y2UifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ca5726208c144cd4919345c900f2816c",
+      "statement": "A fresh proof-of-endpoint registration clears suspension: store._upsert_agent_cur's upsert unconditionally writes status 'listed', suspension_json NULL, suspended_at NULL and is_history 0, and for a non-live row also resets registered_at/registered_epoch to now, so a suspended or expired agent that completes the full registration challenge again is listed with a fresh tenure clock and the event appended is register.completed — suspension governs the listing row, not the key or fingerprint.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/store.py#L389-L446",
+          "version": "repo-lines-v1:sha256:ba06dbfaa62c07f29d992ba101e5ddd211b1489f21d20e246718fb32279ba7c8:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhYTBkNTI2OTM2NmU5NmM0NmU2M2FkOTg3YmM5ZmIwNGEyMDQ4MTJjOGUzNmM4NTNhZTM4MWQ1OWNhMDZmYTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBlOWRkMzI4NTc3NGRiNzZhNjc4Y2FlMDcwOTA2ODIxZGEyODMwM2Y3NjM4YTI2MWFhZmUyOGE4NTcxMzdkYzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRlMDdjYzg2Nzk0NmI2Y2Y5M2U0YTEzZDZkMWIyNzAzNzQ0N2ZjYjE3MTYxMWI5MWI1ZDZjZDI1NmQ4YmQ0YjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRiOTlhY2I0NmJjM2ExODJkMjRmMTQxMDkzZDA3Zjg2MTYyMTg1ZWI1ODJkY2VkN2M5ZGM1NWI4ZmM1ODUyOTMifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-05T09:05:06.235Z"
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:60dd47a27e8d6d88e40452161e7b235c2e65b931400eb7cdcf5a2841cbbb48a2",
+  "claims": [
+    {
+      "id": "claim_fe621b5302f0442ea8229f69c7066690",
+      "statement": "Vouches are opinions with signatures, not facts: the directory enforces mechanics only (live keys, caps, expiry, revocation validity), serves the vouch graph as raw edges with no aggregate score, and makes collusion rings visible rather than stopping them; consumers apply their own trust set.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/vouching.py#L1-L8",
+          "version": "repo-lines-v1:sha256:240a5986a5ef553fcb1d0b025f4e8b9b019f08fc2cec017eafe9dc5faa5f3e4e:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGIwODRhOWYzNzgxMjRiMmIxYTUxNTYzYmYzYzIyNDQ0ZWI3ZmYzMzY5MjAxN2RhMjhiMjEzNmFlNTY5ODdlZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTMwM2VjZGQ0YTRkMTBmMTljNzNmZDQyZmQxMjQzN2ZkMzM1NGE4MjY4MTYwNWRhNTI1NWE5N2EzOTA2OGRiYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTViNmU4NzA2YjQzMDQ3ZjJhNmRiNjdmMTMyNjM4NTk1NjA0ZTY3ZjM2OTY2ODc2Y2UwMTU4ZjAwNTNlNmJkMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2f514518626049909b425005706adad7",
+      "statement": "VouchService.create validates body fields in order: scope must be a non-empty lowercase string (the canonical scope prefixes identity, task_delivery, service:, payment are declared but never enforced as membership), weight must equal 1 in v1, created_at and expires_at must be RFC 3339 strings, expires_at must be in the future (VOUCH_EXPIRED), and expires_at minus created_at must not exceed config.vouch_max_expiry_days (default 180 days, else VOUCH_INVALID).",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/vouching.py#L22-L22",
+          "version": "repo-lines-v1:sha256:90a2bdc9a1afb20bca772350242fc6486aaf1cc52195e80caf679e28ed06d8e5:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTBhMmJkYzlhMWFmYjIwYmNhNzcyMzUwMjQyZmM2NDg2YWFmMWNjNTIxOTVlODBjYWY2NzllMjhlZDA2ZDhlNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTBhMmJkYzlhMWFmYjIwYmNhNzcyMzUwMjQyZmM2NDg2YWFmMWNjNTIxOTVlODBjYWY2NzllMjhlZDA2ZDhlNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTQ4Y2NiMmQ1MTU1NDFkYWNmZWEyMzYyMDJkNjVlMTBiNDdjNmM1OWZhNjZiMWQzNDc3OTQ1NGRiYWIyZjNhNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjIyNjc2NDhiNWNkNTg2NDEzNjFkMDY1MjM2M2VmNGRkZjZkM2FkNjNlMmY0ZTk4MGIwZTQ0MGI3MjI1M2JhMCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/vouching.py#L40-L63",
+          "version": "repo-lines-v1:sha256:d2a957f4847455317da348fdf2a394f13c879cd0f0eb3982b1ba3fd287de6c57:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4MzgxMWQxODE3ZWE4ZDliN2VjNDQ0MzhiZjJhYjBmZTVjM2RlNmNjOWI4YTNiMDBmYjE5MTQ2ZWEzZmFjMjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQzMzA5ZjgwMGEyOGI4ZjllMjRkMmQ5YzU2MWVmOTExMzZkYTk2MGE1OTZkMzhlOTM4NDFhNWU4NTZjNjIwNWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIzYjMwNGUxMjFiNGY0ZDJmOTg4MWRiMmYwZmZkMDhhZmZmYjQzOTI0ZjI5ZDAzNjFlY2VlMzA0MTY3NzQ5ZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFjYTk4MzY0MmE1Y2JiYTM2ZTdmZDY4MTg5ZjU2YjA5NzNjNjQzMjI0NjYzNDY0NmFlZTI4ZDcwM2Y2MTIyNWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3c1aba4f97a24deaa889f499c279109d",
+      "statement": "Granting a vouch requires both parties to be currently live listed agents (Store.is_live_row: status listed, not history, unexpired) — a missing or non-live voucher yields VOUCHER_NOT_LISTED (400) and vouchee VOUCHEE_NOT_LISTED (404) — and a signature over the whole body minus the signature field, verified via verify_over against the public key read from the voucher's live row, else SIGNATURE_MISMATCH (400).",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/signing.py#L18-L25",
+          "version": "repo-lines-v1:sha256:7fe223ff4c8336ff6e323383e91837f954a5d95c141c57b90e4b3fef1a84f50d:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGI0MGQ2Y2M0NTg2MWM0OWU1N2M0Y2ZhYTc1NDViNjQyMjhmOWQ3YTRhZmM4ZDc5ODRiZjEwNmIzNGQ4NjQ0MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDc5YmY5ZmI3Njc5MzgzMmIzNmY3ZmMzM2ExMzUxNDIwYmY1YjZkY2EyNzQxMmU2OWQwNTdjZjE4NjU4OTdkMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTIwMmQwOGU4Y2NiZDliOGExMzAzZDRhYTIyNGJmYjkzYThjMTM5NGQ0ZmRlNDY2M2I5NmViMjgyN2QyMDgwNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGU3ZTY0MWZmOWI4MGU1NjFlN2IxMTI1YWMyMTFlMmQzYzY1YTM1N2Y5MWMwNGI4ZTYwNzU3YzY1Njc4MDc0MSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L381-L387",
+          "version": "repo-lines-v1:sha256:65b057d2abef02333e41d9e898329dd2cedbb2bc68f21ff5a8196875980171c7:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDY4MTE3YzU4MDhmNjIzY2NiMzA1YmIwYWZmMGE1YzkxZGM5NjE3YmY5YzQ4OGIyODE0ZTZiOWViZmU1MGY3YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTkwOWE1M2E2MThkMDI4ZTFkMzAwMGMwYTdhYmNlZWNiZTVmYjM3ZjRlNTExZWZlNDY2NDNmYWQ2ZTY2ODcyZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGFlZWQ3MTYwNWY3OTU1YjFiODA2YWE4ZTZkNTQwMDU0ZGEwNzFkYjM5MWMxN2EwNGMzMmIwOTNhYjliYzBmMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTkyMTZjODc2NTNiYzI3Y2RiMDc4OWMwNmUyNTIyMTI0NDcyNzEyNDlmYTU5YmFmMmI5ODZkYTI3ODdkN2I3MiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/vouching.py#L34-L38",
+          "version": "repo-lines-v1:sha256:744482235b71ed9dc88bb0ff66bb2b71dfcbf5e3111043a58056c1ec49a6deb8:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTNhNjIyNjI4N2Y5MmI4YjIzNzkyNzgzYjM2ZWRlNTcxYmMzNjk3MTQ4OThiZDUwMzRlNjJlZTJhYmYxOGY2MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTM3ZTIyZWIyODIyMTk0YzczODZhOWU2NjBhMGM3NTY2YzZjMmE4M2NjZjJmZDZjN2NjYmM4MjhhMGY2NWQ3MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzc1YTIzZDI0N2ZmMjAyMWRmOGRlN2RiOTA0ZjI5MTdlYTZlMDgwN2Y2ZmI1Y2NiOGQ4OGMxMTQ5MTQ4OWQ0ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGZkNWNkNDEzNzg5OThjODEyNmE5MGY3NmRiZmVlYjljYjIwMDMwZTZmNDZhNjFhNjAxNzI0MTRhOGY5ZWJmNiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/vouching.py#L65-L70",
+          "version": "repo-lines-v1:sha256:4f5d9c00f17bdd20c608989d5246563f2c8a9f9803061ab078de750d2d09dadf:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmZiNjBjMzUwOWQ0ZTI4OTRkNDRkYTM1OTQzMTM0MWQ5MWQ2ZWRjZWFkOTRmNjlkZWNjNzNiNjJlZGM0ZDFiMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDE3YzljNjNjM2ZkYzM4MTgxMzdiMzNiZWM5YWEyODY2NTI4N2E5ZGQwNjk3YTEyYTYzMGFkZmQ1NzVjN2U4NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWJmZGJjYzJkYzIyMTg1MmNhMGM5NDg0ZGFiNzcwZmRiMDFlMGM5MmEyOWYxN2RhZmIyYmQzZTVlOTQ1ZmI2ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTljZjdhZmQzNDRhNWYzZGY1ZjYwMjQ2OGZmZjA3M2E3OTM3MDg4OGI2MWNjOWIxMTc3N2QzNWU0NWI0ODRmYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4f64671e91f04bfa8d96da236be73467",
+      "statement": "A granted vouch is persisted with a server-generated vc_ + 32-hex id, an optional note stored but never exposed on any read edge, the weight column forced to 1, and server-authoritative created_at/created_epoch taken from the injected clock at insert time — the client-signed created_at participates only in validation and the expiry-window cap; success returns 201 {vouch_id, status: active, voucher, vouchee, scope, expires_at}.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/store.py#L701-L717",
+          "version": "repo-lines-v1:sha256:2a6831e328d87d491a86fbde971bb6a17030af40d88f232478f3fd8012cebf56:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFjMjYyYTgxYmQ5YzViMGY3YzljZmE2ZTJhNWVkOTMyYWUwYjA5MGUxMDI4N2E2NTJlNDhkOTk3NDk4MTQ4YjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1MDMyZTk2NGQwOTMyMzUxZTVkMTg1MjY5MjgxYjE3MWEzYTA5YjA4YjI4NmU2NjFlYTQ3MDMyM2M4MmViNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAxZDc4MWFlZGEwNGRhMTBhN2EzMjBhMDE0NDk5NzFkYWZjZWQxNWQ0MTZlYjU4YmQ4MjUxYTMzM2FhMzI2ZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMzZTgwZTVmMjE1MjlkMWRhYzBhZWNhZWU4ZTBhNDY0YzY5MTIzNDk2NDQ3MzdiNWQ3OTUxNTI1ZjA4OWYzOGEifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/vouching.py#L72-L90",
+          "version": "repo-lines-v1:sha256:4fcdfc0290158d2360ec5dd1d60cb1f87c6bc1fc4961641fb438914460d7c324:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3OWJkZmI5NGRlNDYzMmFmZjU3YjdmMGU1YmMzYTI4OWZlYzI1MjlmOTBmNmNhMGY0ZTliZTQxNjUwOGMzMmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIzZjI3M2MyMTE3MzdhMzA1ZDRlMzVhYWYxOTE1MTM5ZjkzZDdiYmQ3NGMxZjU1MzcwMGYyZjVkNGQxMDIzZWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI1NDBhYTE2OTk0OGU1ZjU1Yjc1NGNjN2E2MTc4NTU4YWM4MjJiNmQ4MzE1MTYyYmFlZGYzOTQ5ZDY1MjZmMmEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b5ad23e3ef0f43428c1d495150c51529",
+      "statement": "Store.create_vouch enforces the outgoing cap (VOUCH_LIMIT_REACHED, 429, when the voucher already holds vouch_max_outgoing active — unrevoked and unexpired — outgoing vouches, default 10) and the duplicate-scope rule (VOUCH_EXISTS, 409, for an identical active voucher+vouchee+scope edge) inside the same BEGIN IMMEDIATE transaction as the insert and the audit entry vouch.created (actor agent:voucher), making the scarcity checks race-free and atomic with the record.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L52-L52",
+          "version": "repo-lines-v1:sha256:fffbd2d5c70700592ba3949c5678489fe5dbcca3d0ec1df2ab6d13f0b3f4c10c:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmZmYmQyZDVjNzA3MDA1OTJiYTM5NDljNTY3ODQ4OWZlNWRiY2NhM2QwZWMxZGYyYWI2ZDEzZjBiM2Y0YzEwYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmZmYmQyZDVjNzA3MDA1OTJiYTM5NDljNTY3ODQ4OWZlNWRiY2NhM2QwZWMxZGYyYWI2ZDEzZjBiM2Y0YzEwYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGQ4ZWZhYjEzOTk0ZDhmMDhiZThhZDJlY2JjNmI0MDI4YjgzODZlZGRkYjYzODczYzk3MDg5YWRlYjlmNzg0NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDA3N2YyOGE2NDFkZDUzMTk3MTc4NzczNjA1NGFkZGY2MDljYjI3OWQ1NDBiYjMxMDBjMjY2N2FkNGNlNmNiOSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L686-L723",
+          "version": "repo-lines-v1:sha256:ce33eeff3d8baa6e4a4733440da219127872d77ee7930471a70cc9d8a4f35275:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyNTI0YTQ0NjIzZGFiNDY4NjlmYjU3NGU5OTc3MDNhNzFjMTFhYTZiMzAzYWE0YjA5ZjAzMmUzOTZmYmM2Y2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYwYzk0NmEyMDNiMjQ5YWM1NzAxM2IwOGQxNTFlYjBkZWJhZGZkYjcxMTQ0ZDdmZmE2MmVmNjk5NTMyMmZjZjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlmNzRmZjA0MTViMGQ0ZjZjY2UyOWE5ZGIyMWViMWQ3ZTljOTViZjNhYTkxZTQ4ZmZiZjZkN2NiNWNhMGQ5M2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVkZWIwZDFmYjgzMTAwYjFjODk2ZmVjYjYzOTZhMWZhNGMxNTVjZmM3NjRiZWU0NzBkOWQ5MTllNDFkODQyYTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9568ed597bd84e0599fe8c1bb6f512f7",
+      "statement": "Revocation (DELETE /v1/vouches/{vouch_id}) requires the body {voucher_fingerprint, revoked_at, signature} signed by the registered key of the original voucher over exactly those two fields; the voucher's agent row must exist but need not be live; Store.revoke_vouch refuses unknown or already-revoked ids with VOUCH_NOT_FOUND and non-owner revocation with SIGNATURE_MISMATCH, sets revoked_at to the server time (client revoked_at is signed content only), appends the audit entry vouch.revoked in the same transaction, and revocation is immediate and permanent with no un-revoke path (expired vouches remain revocable).",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/store.py#L725-L743",
+          "version": "repo-lines-v1:sha256:9c1c17b30a593731cb19787cfd10e9c2361e7244a937a7ec870cc5e7c77bd604:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyNjE1Y2U3Mzk3OWJkZjk3ZTFmYTA2MDdhMTBiYjc5MTUyMzBlZGY2MTUwYjViMjMwYjZlNTcwMWUzZGQxZGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY1MWEzMmNhYWNlMzNkOTRjOWViYzg3ZWQyYzYyM2ExNGEzZGMxOTE5NWI5NjVlYTIwOWIwYmUyNTg4Yzk0MTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmMWYwODY0NzNiMWViZDk1MjJhNDc2NWRlNjFmM2U3MjQyOGM2MzYyZTY4MWRhNjdlYzYwYTllMmFjZWY2YjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYxNWE4OWYwNWVmN2EwOWM1ZmNhZTFlNWU3YThkMjMwNTU3ZDI3YTNlNzRmZmRiNDk3MTNmZmY1N2ExNWU4NGEifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/vouching.py#L92-L102",
+          "version": "repo-lines-v1:sha256:014aa83a442cc66b4a3b2f96c582bd2e7692303c14bdae2e379b2eed1b941df9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1MGRmNWVjYTk0ZjY0ZWEwNGMzZWM1N2NmMGY0ZTNmMTJiNjMwY2M1ZWFlYWFkMzk3ZDJmZjA0MDA5ZTRjMjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxOGFlY2Q1NmNlNTdlMTk0YzljNjVkMjQzM2I5ZDk3MDk1YjQzODI1Y2ExNWNmZjE2MjZhODc2MGNhMGFkNzQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIyNGVmYWQ5MWYxMzQzZWFlY2JmYTU2OWUyZGVlNTBhOWIyZDhjMzc3NzQxYzNhZmIzMDU3YmEwNjkyYjYzNDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRkMTRkZDg1NjIzYjlkMDUwYjY1Y2FiNzcyM2YwY2VlMDc4ZTU0MGEzY2FjODAwNmFhZjM0YzBiMDc2YjkxMjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b099601981394d018429f53f0aa3df30",
+      "statement": "GET /v1/agents/{fingerprint}/vouches returns active-only inbound edges (revoked_at IS NULL AND expires_epoch >= now) ordered by created_epoch DESC, each edge carrying voucher_fingerprint, scope, created_at, expires_at, revoked_at, and voucher_tenure_hours — plus the annotations object; the note field is never returned.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/store.py#L745-L759",
+          "version": "repo-lines-v1:sha256:b8cdd763c88f690d9f74ec660038fde7b1601ba0c18f8cab57957948aab5e1ac:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyYzUyMzAxNTdhMzc0MTQ5NGRlZWE3MDZhYzE3YjA0ZDQyNTY2NmZhMWNkOTE5NDQ4MzZhNWYyN2FmMDkyNDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyZTdkYmU0N2UyZGZhMzg4YTkxYWRiMzQ1MTFjMDdlN2VmMDgyMTdiYjI4ZThkNmYxZGRjNjllYWJmYTcyYmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZmMDI4NmRjYzBlY2UwZTg3NzA5NWE3MzBlZjQxMjRkMmY4Y2RlNWYyMjljMDdiNDFlOGNkZTY5YzhlZjhlZjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgxOGRjNmFlYzNlYWI5NDRhNDViZGZlMDViYWU3NGQzZDhiMzI4NDBkY2U2ZTlmYWY3YWFiZDhkNWI5NWEzNDYifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/vouching.py#L111-L124",
+          "version": "repo-lines-v1:sha256:d6deb20e5625b5fb8dda916956f15483eb97c22be4b12edbf0db55c717163750:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzZWEwNjJjMzMyMmI4MGQwNjc2MmU3MWQ2ZDE3OGNhYzliNWU3MmFjNmRmODcyZjZjYTE3MTI0YmQ3MTY5YzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJiYjU0MmE5MDcwY2FhNGM5OTg5ZmQxN2U0NGE5NmIwMmViNTBmY2JjZWQ2N2VhMGU0N2FjODgzZTg5NjgwZGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY4ZmFhMWNlMzlkZGZkODNhMWMwYjA4NGNhYjgxOTZlMGM5NGU2NDRjNjEzYjAwMDg0M2UzOTYyZWVmMjExNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY4Y2JmNjJmYzNiMDQ1M2IwOTAwOWYwMWJhMjkzYzVjMjdjZTAwOWNmYjdjNjUwMzI3YTAyMjk3NzZmZmY3ZDUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4d94d93bd8314811a9518275e45b4c43",
+      "statement": "voucher_tenure_hours is the raw number of hours the voucher's listing had existed when the vouch was created (max(0, (created_epoch - registered_epoch)/3600) against the voucher's agent row, or null if the row is gone), computed per edge at read time; the directory never thresholds it — the vouch_young_hours = 72 config knob documents the SPEC youth window but no code consumes it, so ignoring vouches from young vouchers is a consumer policy reading the label.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L51-L54",
+          "version": "repo-lines-v1:sha256:7eb97847da078dabdd60549c1294dd037dadb3d49f89475779984652fb94f8a1:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWEwYTcyMTIyYmIzZmM3NDhkNGFiMWVkOTlhZWFhNzRkYmFkMzhlZDE3ZTQ3ZGYyOWY4MDkyMTNmMGVkZTZmZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDY3ZWY1MmRiNTczZTIyM2Q2YTUwZTFlZDc4NTNkM2QwOTNhYzA1YjY3ZjVkYzAwYTUzMjg0ZmMyNjY3M2IzNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjdiMmIxYTlhOTQwNjM0MzFlNzM0MjQ4OWE2OGZmMjM4YTcxNDk4YzIyMzYyN2VmOWMxY2RmZDA0Y2RlMzQ0NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzNmNGE3ZmNlMTI5ZDc0NWZhZTkxZDQyZDAxODA2MzdlMThlM2UxYWQ0NWM2NTM5YjUwNmY2ODkyYmVmNjU5MiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/vouching.py#L105-L109",
+          "version": "repo-lines-v1:sha256:eb17c387de9bc22723a5a5bbdcf365cf0988e04dd3ad775b9f50c74b6332108c:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWNjOWVmNWZmMTYwYjM2ZTBlMWVjZjYyNWI5MDhmODFhMTQ2MzE2NTM4MmVhNDlhY2ZjYTA5NTAwNTMzZmI5OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmY4YmQ1NTEyYjg2MjBiZjI4MmU3N2U5YTE5MGNlYmU3NGZmMzcyZmFjNzJlMmQwZGViN2U0NWJjNmIwNDA0NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzAwMmI0ZTE2NjMwN2Y4MjgyZGM2N2QzMzZmMDU5ZGM4Nzk4ZDEyOTY2MDYwN2FmNGNhMmZhYTAxZDcxMzI0ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2JkOTZiY2VmZjFmODQ2ODhkM2FkMmQ2NTYxNjkwOTJiYzM4Yzg0OTViZDY4NTk5NWMxZGFiNzAxYTJhZTc3NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_8a0611eb8ace47d3ba9fb114747233f7",
+      "statement": "The annotations block is computed from edges and exposed raw: mutual_vouch_density is the share of the agent's active inbound vouchers whom the agent also vouches back to via a non-revoked outgoing edge (outgoing expiry is not checked, so an expired-but-unrevoked outgoing edge still counts), rounded to 4 decimals, 0.0 with no inbound vouchers; vouchers_share_registration_cluster is hard-coded False because registration-IP clustering is not tracked in this build — an honest no-signal default, not a measured fact.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/vouching.py#L126-L143",
+          "version": "repo-lines-v1:sha256:4942a0535a2ee8bc871d5a0d885ec8a79abaf3767730abbc0a7bc7daf2f954d4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NDFlMGYwNWUwNjA3MTViOTcyYzA3Zjc1ZTFhZWIxOGFmMzZiOGY3NmVjNjJmMDg5ZWQyMmMzMTBmNGY3OTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVhZDNlOTNiMjM1NzVlYmIxMjZmYmNjNzZhNDQ0MGNkOWExMzMzMjJmMGZmODYyNGJiN2FlNWQyMzBhMjg3MDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjljNTk0MjgzOTM1NTBkYTlhYjYwYzdhYTA0MDNhMTViMjM5ODBiOTcwNzk1N2E2NGUzMzEyNmU0ZTc1MGU2NjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1c1191744212471cad8afe7300279fcb",
+      "statement": "GET /v1/agents/{fingerprint}/vouches/outgoing returns the voucher's full issuance history — active, revoked, and expired edges together — ordered by created_epoch DESC, each with voucher_fingerprint, vouchee_fingerprint, scope, created_at, expires_at, and revoked_at (non-null exactly for revoked edges); it carries no annotations block and no tenure label.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/store.py#L761-L767",
+          "version": "repo-lines-v1:sha256:31e2366d27f6ec0ab29b9907093bedd57fa47f842ef22f08e5acf8789ff374c3:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWRlOWFjODdjNzJmNzBkMzEyY2I2YzQwNTA1YjUxNzY0MDU4NDE3NTQxYzM1MjRjYTRhNTdiMzUyYmU0NTEzMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTJlN2RiZTQ3ZTJkZmEzODhhOTFhZGIzNDUxMWMwN2U3ZWYwODIxN2JiMjhlOGQ2ZjFkZGM2OWVhYmZhNzJiZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2VkNmI0MTI4NTk2MTJiYjg5YzdiZjcyMGI1MDcwYTNmYzFmY2YzZmMzZmY5ZTQzYjNkYzMyMGMyMWYxN2EwMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjQyZDI1MGQxY2Y3YWU1Zjg4MjZiNjEzNmM1ZGZjZjhmM2ZlMzM2MzUxYTVhNTQxYmMxN2U1ZGRhNGVmYTQ4YSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/vouching.py#L152-L163",
+          "version": "repo-lines-v1:sha256:01e43b7b9434004f69eb1d52fabb30fd56ef3499eff7269dbd17f135993910de:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0MWVkMDY3MmQzZjZiOWYyYTk3NDMwNWViYzkzZTczY2NjOWVkMzhkNjMxNDcyNmJkMzdjZWVkMzNmZmU3ZDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjczZTM5ZmIzMjIzZTkxYTM0MzkxNDk3NWIwYTU3YzJlMWEwN2Q5Mzc0OTAzYTcwZWE5MjQwMzYwZmRjNGExNDkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImExNTU0NDA5NzViYmY1MjQ0MWQzZWI5ZmI0MzcxYWZjYzgyYWM1ZmNkNTAwZGRlMDRlMzQ0M2Q4NWIyY2NkZjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhhYjFlZWMzNDg2ZDMzMmIxMzE1ZTA0OTJlNDNiY2JhNWE5MmMzYjJmYTUwNGVjMmFhYTJjY2YxYWM1YThiNzkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_eccffb424da9408fbc1297a86dfd374a",
+      "statement": "The inbound and outgoing graph GET routes apply no liveness gate and no per-IP rate limit to the queried fingerprint, so vouches of suspended or expired agents remain readable (frozen visible next to the record), while the v1 profile endpoint refuses non-live agents with AGENT_NOT_LISTED — an unknown fingerprint simply returns empty edges and zero-valued annotations.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L273-L284",
+          "version": "repo-lines-v1:sha256:6508ea439e648bde214feb68f0dac186a45dafb458488d1841da9365b2723e0e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzNDAyNjMzNmNkMTZiYjlmYTk2NmIyZmI4Y2MwMTlmZGZkZjEyNzNkNjRkY2M4ODQyNTE4MzBkYTQ0YWZiMzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhZDZjOGVhYTg1M2RmYjcwNzIwNTFhNWY1OTYyOWJiNzZmMDJkMTMzMDQyZjY0MTQzNDNmYTAxOWFiOGU2ZDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3OTU5Mzk3M2FmYTYwMTI3NjdhZmNhNDQzZDIyZmU3YmZkNTZiYmNmMjk3YzllNjUyMjg4Nzg0YWQwZjJkMzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhiODE5MzcwNjY2ZDBkMWFlMmZlZTc5N2ZlNDhhYzc2ZDI2ZmJlODViMDE2Njc1ZGNlNDFkMzJmNmFmMzU0ZTcifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L248-L255",
+          "version": "repo-lines-v1:sha256:a01d5aadfe5a7461464e818ddfebf86e70dda408a61d1f632968811f5e498772:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTk4MzhlMDIzNzU2NzI3M2U4YzYxYTQ2YWE0N2Y0YmIzNDQ1YjA2ZTRjM2MxNjZlYmQ4NWYwMzY2ZTg4NWM4MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWNkZmU1YmZiNjNhZjk3YTU5Mjc1NGVjMDkzZjAyZWVmMTU5ODY1NGNkMWY1ZTcxYmQ2ZjYyN2M0NjgxZGMwNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzUxZDEyNzIzY2IwNjg3ODQ0NGIzMDhiMmNlMGI5ODNiYTI4NzZhMmNmOWIzMDgxMTk4ZTNhZTk5ZjcwNzA0MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjQ5ZDc1ODJhYTMyODBhZDhkNDc5OGRkMTY0NmRhNzY0MDE4NjU0YWE0NjU4N2RjYzAzN2Y5ZjFmNzIwMjhjMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2adfb6de450149d78daf0e90fee795c5",
+      "statement": "GET /v1/trust/paths runs BFS over active edges only (Store.active_vouch_edges: revoked_at IS NULL AND expires_epoch >= now), clamps max_depth to 2 (max(1, min(int(max_depth), 2))), enumerates every simple source-to-target path of length at most max_depth with a per-path seen set so nodes are not revisited, and returns raw edge lists {voucher_fingerprint, vouchee_fingerprint, scope, created_at, expires_at, revoked_at} as {\"paths\": [...]} (empty when none) — the directory computes no aggregate, distance, or score over paths.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L363-L372",
+          "version": "repo-lines-v1:sha256:c91c987a083b90703e41a806d7cbe3e07b984932712f6636fc663e4c6523ee91:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc1YmM4NjdlMTNlZThkOTEzMWI1MzA2NjMyNzEzY2ZjY2ZiNWE4OTBlNTY4N2JkNzVlMDViZGVhMzhmOGFmOWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxMDM0ODFjNTdkMGYwZGMwZjc2Y2QyY2M4YjM2MDRjNGU4Mjk2ZGE0MTIyYWRkMTllODE3NDVkYzdlMzMxYTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQxMWIwZTEwYzk4OWFiMzhkZWY3OTRlOTU0MjJmNDllNmQyNTc2MjYxMzU1MWRmMmQ0NGNkNDgzOTNkOGRkN2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY4NjZmYzdlYmI1NWNlOTZjODFmNGU0MGRiYzI2OGIyMzU3M2U0NTU4Yzg0MDliZDhhYzJmZGVlYTg5ZjMwY2YifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L769-L777",
+          "version": "repo-lines-v1:sha256:712f3092477687fad26685f1a795e62d76721b223a3cc0a6429d76ff763e18d0:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDg0ZDQ3Y2EyMzg3ZWUzZWEzZmIzNmJlYWM3NzE3Yzk5ZDRjODgwNWQyY2ZmOTc2YzIxMzYxYzkyMzM3Mjg1MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTJlN2RiZTQ3ZTJkZmEzODhhOTFhZGIzNDUxMWMwN2U3ZWYwODIxN2JiMjhlOGQ2ZjFkZGM2OWVhYmZhNzJiZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjY3ZmQxNzZmZDYzOGQxMzdkMzJhNGU4Y2U0NTlkYmQ1ODczMGJlZjcxMmZlM2YzMjYwYmE3NDMxNjg1MDUwMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2M3MzBhMjk0NDQ4YTMyMmYyNWMxZjZhNzVhNjEzNTY2YmFiOGRkYzFjODhmYWU2ZDEzMDA5NjQyYmUxYWExMyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/vouching.py#L165-L187",
+          "version": "repo-lines-v1:sha256:0db636ea33892f72f4f3484a286a8fcbd1672ea3b74b85a792828b25fb1f8ae4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRmM2Q2MTZhZTM1MDc4YTNmNGJjMTY2MmJjMzcyODYxMDQ0MTkyODAyZDU0YjQ0NTk2Y2I4YjQwNzgwMWM5MjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU3MTYzNjYyOGFkYmYwNGUzOTgwMTEyOTQ3NWZkNjE0MDYxOWU1ZjAyYWJiZGQxN2ViOGZmYzQ4Nzc4NDFlNmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNkN2UzZWRjZmFlYzA2NzM5Nzc5NzgwOTExNTBmYjk5YmYwNWYxYzU1MmU5ZTc0OTczZmYyYzFmODI4NjBkMzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8f77894e700646f9b8b41de03afa4743",
+      "statement": "DirectoryService.build_trust_block embeds the L3 signals in every v1 profile and search result as trust.vouches_in (the same active inbound edges as the graph endpoint, listed per-edge with scope, timestamps, and voucher_tenure_hours — never collapsed into a count or score) and trust.vouch_annotations, with honest empty defaults when the VouchService is unwired; reputation_history is currently hard-coded to [] so past vouch revocations are not yet folded into it, and search's optional min_vouches_in=N filter gates inclusion on len(trust[\"vouches_in\"]) — counting visible active edges, explicitly not quality — while the legacy /agents/{fp} and /search aliases drop the trust block entirely.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L324-L324",
+          "version": "repo-lines-v1:sha256:177a3fb419fab64f47611295f8744fbe83bce97b3c8b560b2762133b434a2325:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTc3YTNmYjQxOWZhYjY0ZjQ3NjExMjk1Zjg3NDRmYmU4M2JjZTk3YjNjOGI1NjBiMjc2MjEzM2I0MzRhMjMyNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTc3YTNmYjQxOWZhYjY0ZjQ3NjExMjk1Zjg3NDRmYmU4M2JjZTk3YjNjOGI1NjBiMjc2MjEzM2I0MzRhMjMyNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTdjZGE2OGZlMDNiNzdmZmE5YjFlYTUyNWZkMWQ0ZWVjOTM4MGU1ZTU5YTViN2M5MWUxNGYwNjc4ZWRiNjI3MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2E4YTU5MDNlYjJhYmFiNzEwYjljN2MxNmQwYTNlOWUxMDRiMTg2YmE0NjE1Y2JkYjgyODNhOGY5MDEyYWE1NyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L341-L348",
+          "version": "repo-lines-v1:sha256:3ba1b2f51dac54a4e69d2b2cae5285b1c18a03fadbb637be583ddec75d8bc0fa:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmQ2NTAxMDg1MmUyOWZlYjY0MGE5MDRkYzQ5YjY4ZTgzZmViMDM4NTIzZTAyOWE5NjM0NGMwOTFmOWQ1ZGIxMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjYzOThjZDQxY2ExMTQ4MTRlNDlmNDg1ZjczMDc2ZTQ3ZWU5MjE2ZTM2NTc2MmExYTE4MzYzMWQ2MWQ2NmZlOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzcwZWZiZDEwYjg5ZWQxYzUyNTk4ZDBiY2M5NGE1YzdkN2RiMjhmZDFjMjcwY2FiY2NkYjUyZGQyMjA1NjA4OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDViN2M0MzEyYjhjMDA2ZDcxZmEyNjRlNjZmNmU5NGMxOTc3ZDlmMjI3MGFmYmE1M2U1ODI2YmZjMzg3Yjg2NyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L257-L317",
+          "version": "repo-lines-v1:sha256:afcb695b1abb6bf8ff020c390a839d7c80379200aacea1005484ad2707261c8b:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY3MmExMTY0OTMxOTRkYzcwZGQ4OTkyMDFhNzdhZTgyMGFmOGZiNzhiYTM0MWUxZTc4OTY0ODI1NTYwNjJiYjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3MTY0OTE0NmMyODIyYjc4M2JkNzcwNzA4NDk4YTE3MjdlMTljMWIxODRjNGNkOWQyMzJmMTllZDdjM2E2YWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2YWYzMDU5ODlhYzFlNTY5ODdhOGFhMGQ2ZDViOGZhODAxYzY2MGVmYjM0Mjc1YTUyNjY1NzBlYmU0MGExMWEifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L422-L434",
+          "version": "repo-lines-v1:sha256:7aa88d0a740b6ef1658a7dedcb6999ab07c0ae93b8bcc4646b88aa65f133755d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiZmQ4Nzk2OWYxMWVmYWM5NjIwY2FlMTEyMDk4MzhlMWU1Mjc2MGMyMjZiZTQxMDdhOGU2ZjBkNzJiNTYwZDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwZTJhNDY1MDA5NWZhOTVkMGUyYmI0MWIyZGIyOTA5NGQzNDA0ZDI4Y2UxMjMzOWVjODhiYjRiNWM1YmU4ZjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRlNzU3NWMzYjc3NzZjZjJmOWMyYmZiY2E0NGYyMTQ4MTNhNzgyN2VhYTljMzg0NTRjNzAzYjY4OWE3NDQzODYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_12a39e707861490ca4a986ab5a58605a",
+      "statement": "Vouching rejections use the stable add-only error-code table: VOUCHER_NOT_LISTED (400), VOUCHEE_NOT_LISTED (404), VOUCH_INVALID (400), VOUCH_EXPIRED (400), VOUCH_EXISTS (409), VOUCH_NOT_FOUND (404), VOUCH_LIMIT_REACHED (429), SIGNATURE_MISMATCH (400) — delivered in the shared {error: {code, message, request_id}} envelope with 201 on grant and 200 on revocation and all graph/path reads.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/errors.py#L40-L48",
+          "version": "repo-lines-v1:sha256:9ad6547afab624e72f6fc32a5eca64a2af73712cf7b34bf4480593eb736c06e6:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGY4YTUxYTE3NThkOTI0ZTQzM2ZmYTkzMmI4ODVmMDI5ZWYyZGU3Y2Q3OTQyNTIyYjkyZTViMDAyMzk2MzU2MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWFhYWRkNjcwOGZhN2NmZTEwMDk5ZTQ4YWZjZDZhN2M1YmE3NmQ4NTAwZjQ1N2NlYzAwODY3YmViY2UzNDRmOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmY0MGU1ODc5NDI2OGQ1Y2QxZDZkMTA5Njg5YWExMWUyZmFkYWQwMWRkNGQzYzczZWNlMTAzMjUzNmVhODcyYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmQ0MjhhMzA3ZWQyMzliYTQ2NGExZDNmNTYxODYxZWFiYWJhZTA2NTZlYWE0ZWEwZjY2MzRmNmY3NDQxNmExOCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L411-L414",
+          "version": "repo-lines-v1:sha256:3d8e5f5f3191858697fc5d4c2aaa0f57857901e9bb5fa47aa81c9b20bea729bb:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTY2YjdkYjU0NmVhOWExNWRlNmUxYjlhOTUzYmMzNTdiMDFjNDRkZTgxM2IxNjQ0ZmZmMGUyNTNlZGYyNDRiOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWFkNmM4ZWFhODUzZGZiNzA3MjA1MWE1ZjU5NjI5YmI3NmYwMmQxMzMwNDJmNjQxNDM0M2ZhMDE5YWI4ZTZkOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjNlMzcxYWRjZWY5ZGY1YjZhZjBhMjdkYTlhNjFlOTZhNjg5MDgxZTk3NDUxNTg0NDE1YjA3ZWE3MDNjYzBiZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTQ1ODUwZjVhNDUxMDkzZDBmZTdmMzQxNzNiYmMwZTAxZjBmZjAxZWQ0MDgyMmYxNDQ1MTI4NTk3YTljNWFlZSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L464-L476",
+          "version": "repo-lines-v1:sha256:aa9f6e58e005310fc822be1708d51296ba1113f7f15660c44580ea8a5eb6225f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1OTEyNTI0ZDBlMjNlZmM3NTFiMjZmNDViMTEwZmU1NDE5OTdkMjM2MGFjZjIzZWY4NWQxN2RlNDZmOThiOTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhZDZjOGVhYTg1M2RmYjcwNzIwNTFhNWY1OTYyOWJiNzZmMDJkMTMzMDQyZjY0MTQzNDNmYTAxOWFiOGU2ZDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI2MDY1MGU1MDk0ZDdkZTE4Nzk5NmMwM2I4YmNmMDM1ZDAyMGFjZWUxMzcyOTZmOTYyODRiNzJmMGE2MDIyYWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUzZjMwMWRkMDdlZmFmZmQzYmY1ZDZiMTVkMjI2YzBkNGE2ZDBmNjFkZmIxYjUwY2EwZTI4NTI2ZGQyODMyNWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6405022746c24c21a6e4e187848d882f",
+      "statement": "tests/test_vouching.py asserts the end-to-end contract over real HTTP with an injected clock: 201 grant visible in both the inbound graph and the profile trust block; signed DELETE revocation removes the edge from active inbound reads; unregistered vouchee VOUCHEE_NOT_LISTED (404); past expiry VOUCH_EXPIRED and over-long expiry VOUCH_INVALID (400); duplicate active scope VOUCH_EXISTS (409); the vouch_max_outgoing cap returning VOUCH_LIMIT_REACHED (429); and /v1/trust/paths finding the depth-2 chain A to B to C with max_depth=2 while returning an empty path list for the unreachable reverse direction.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_vouching.py#L30-L133",
+          "version": "repo-lines-v1:sha256:81be306864717c71f6cba43240884969e52bee5da77a9e9d0bd766651082a854:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA0LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJiYmZkZjI3Y2E0ZjI5MDU2MzFmNjAwODY0ZTAwMDc0MzVkNTZlNGNlM2FiYTIyMThhZjU4ZjAwN2ZiODc3MzQwIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJiMTQ2MTIzMTA2ZmQwYjdhMGYyNjEzODkyNmFjNzI2YmRhOTI3NDA0YjE5MDRjY2Q1MDAwZjhmZDAyMGQzZTg1IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIwNTdjYjAyYjYwNzVjMTQxMGFkMDhiM2Y0OWMyMjk3YzU1NTBkOTgwOTcxMmM4OTdkMjNiOTE1NWEzMzc5YzI3IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-05T09:05:06.235Z"
+  }
+}

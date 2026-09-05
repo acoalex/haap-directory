@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:1f0a11764123024c8d2d9d8bda810c371c6789aab0ca974eacae15928a2f5772",
+  "claims": [
+    {
+      "id": "claim_80fe417b5c5449cebe1308c4e576c22e",
+      "statement": "L2 domain verification anchors the listed pseudonym to a domain the key holder controls; the directory performs the control check itself over a single-use challenge token using one of two methods (dns_txt and https_well_known), and the resulting trust signal is labelled domain_verified — a control fact with method and timestamps, never KYC or \"verified business\".",
+      "evidence": [
+        {
+          "resource": "repo://docs/SPEC.md#L246-L253",
+          "version": "repo-lines-v1:sha256:e7aea8ab5d89703ea001b524bb1dfacfac80e38dc90a799e119f673576247d36:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzQyMTNjZTg1ZmUzMzVmNWI2OWYyNGNmMjE0OTY4NTJlZTFlNGM5Y2YxYmEzZWM4NTVmNDZiZTYxZTAyZTg5ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTU4MjMxZTFhOGE4MTNkZmFjYzFjMzQxNmM5MTA0NmI5MmU2NTBhNzQzYWM0NDg0M2I4YzIxMDM5ZjQzNzA5MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTBiOWEzNjIxODNhZTRhNjY2ZDJmYmVjNzkxN2IwZjFjZWMzMzk1YzBhYmI1MzAwMDlkMWQwMmI0MjBlNjJhNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWM2MTUwYWI2YTAyOGM3MjkzY2JjOTViMWZlMTg2OWUwODg5N2YzZmM5ODVjOWViZjcyNGMzMTUyNGI0MjU2MiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/domain.py#L1-L7",
+          "version": "repo-lines-v1:sha256:9592c0d7f7ade1f1066e468e65c5bfbdb383047d6c4b3dbd821f675a88728cc4:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGIwODRhOWYzNzgxMjRiMmIxYTUxNTYzYmYzYzIyNDQ0ZWI3ZmYzMzY5MjAxN2RhMjhiMjEzNmFlNTY5ODdlZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTMwM2VjZGQ0YTRkMTBmMTljNzNmZDQyZmQxMjQzN2ZkMzM1NGE4MjY4MTYwNWRhNTI1NWE5N2EzOTA2OGRiYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTViNmU4NzA2YjQzMDQ3ZjJhNmRiNjdmMTMyNjM4NTk1NjA0ZTY3ZjM2OTY2ODc2Y2UwMTU4ZjAwNTNlNmJkMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9dd7418b82674dc393c9814eb88face7",
+      "statement": "POST /v1/verify-domain (202) calls DomainService.request_verification: it requires a currently listed, non-expired agent (AGENT_NOT_LISTED), validates the claimed domain (DOMAIN_INVALID) and the method (only dns_txt or https_well_known, else INVALID_SCHEMA), verifies the agent's signature over the canonical JSON subset (fingerprint, domain, method), and mints verification_id 'vd_' + token_hex(16) plus a 256-bit single-use token bound to the fingerprint, returning token, instructions, expires_at and ttl_seconds.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/domain.py#L59-L103",
+          "version": "repo-lines-v1:sha256:f9cac624166904743dc73973e7e5fa4aca6eb1236416becb65dd7025d8ee0d32:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY5Y2VkYjI0NWMxNjMyZjc4YWU2NjUxNjUxY2I4YTE0MWZlOWYwMmNlYjQwNDc5MTdhMjQzMjA1ZjlhNTg5NzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjljNTkxZDFmM2MzMjIxNDIyY2VjMTZlYTY1OGZkM2VhNTUxYmUzMGJlMzllMTFjMGFlY2MwM2EyMGQ4YWYyN2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk0ZDRhYzc3ZjA3YTM0YWJmOTllNDUyYTgzZThmODgxYmIwNDk5Y2RkZjc5YWZlZTcyMTYyYjNmYWYwOTYxMjUifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L395-L402",
+          "version": "repo-lines-v1:sha256:d85760c2a555a9c6d73ea31f4862094cae2758ee2ace9edcbb8d7a757e05d6e1:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDk1M2I1MDhmNzIzYjQ2ZGU3ZjdiNjBjN2IwMDM5YzliYTQ1M2U3YzEwYjc5YTg4ZTAyN2UyZDU4NGUxNTRiZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWFkNmM4ZWFhODUzZGZiNzA3MjA1MWE1ZjU5NjI5YmI3NmYwMmQxMzMwNDJmNjQxNDM0M2ZhMDE5YWI4ZTZkOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWY5NjgyNGE5NWVkZjBlZDA2Y2ViYWRlODM4YmVmM2YwZGE2MjY3YWFhZjlhZjRjNjA1YWZmMzliYWRhYzZlNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2I3NWM4NDQwOTQ5OWRjMGYwOWYzMWI1OGE4N2ZiMjA1NjYxMjQ2OGM1NzJhN2YwNTM0YjZjNzUzMzEzNGUwMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_7e0452932f0b45cfbff7bb920ca1622e",
+      "statement": "POST /v1/verify-domain/confirm (200) calls DomainService.confirm in a strict order: live-agent check, signature over the subset (fingerprint, verification_id), challenge lookup that rejects unknown/foreign challenges as VERIFICATION_NOT_FOUND (404), already-used as VERIFICATION_USED (409) and past-TTL as VERIFICATION_EXPIRED (410), then endpoint match, then the server-side control probe; on success the challenge is consumed and a 90-day verification persisted in one store transaction.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/domain.py#L105-L150",
+          "version": "repo-lines-v1:sha256:e354c5d5d37b268cce02e14e68287a8fe3f992dc1f00ba7fbeb9477e8dd59307:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIzMjAxNWY1ZGIxOGU3ZGE2YjY5MDc3MDk0Y2IyMmE4ZGZiOWY3MmZmMDQ0MDA0NDY3ZjlkYWY0ZjU3NmZhZDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM2MTlkNjAyZTVlZTRhNDk2NmYxMzliNTQwZjA1NzVjZTQxMzA2MGQzMmY0MTI0NTVlNWI0YzQwMDcyMTNmYTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM1YWRkMWNkZmJhNWFlNWNiN2MwYWE0NTE5YTQ3MzFjMjU1NDUyZmU3NThjNjVkZDYzYWE3NmJkNDdmMjhhOTcifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L614-L661",
+          "version": "repo-lines-v1:sha256:dd4ce6cf87d2e18f219d47c2cf383cb7eede77837c2db2ee20c3fece6e687b76:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhNmI3NzhlZTIwNzIwZjljOGFiNWNjODNlZTNlNGQxZjM0ZGE2ZGE4ODdiZjcxMDYzOWNkZDYzYWE4NGNiODMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYwYzk0NmEyMDNiMjQ5YWM1NzAxM2IwOGQxNTFlYjBkZWJhZGZkYjcxMTQ0ZDdmZmE2MmVmNjk5NTMyMmZjZjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVlNjFiZDc4MjgzMTQ0MTI0MDZmYTgyN2U3MWUyYjJmY2FjZGY3YzEzN2Q5ZTk1NWY3YmQ3YWUyNDNmOWJhMDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImViMzc1OTkwNjU4NjVlNWM5ZGIzZDgyYmQ3NTFiMzExMzUwNGI4NWRmNTg0MzhhZmZhYjY2NDdhNzJlNTIzMDAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2b986509db344e8f98116d53a02f021f",
+      "statement": "The directory never trusts an agent's claim of success: confirm delegates the actual control probe to an injected Resolver seam (SystemResolver in production dispatches to verify.check_dns_txt / verify.check_https_well_known) and only a passing probe can persist the signal; a failed probe raises a stable DirectoryError code and does not consume the challenge, so confirm is retryable with the same verification_id until the token TTL expires.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/domain.py#L152-L155",
+          "version": "repo-lines-v1:sha256:723cfc73b7225c341292342b17ed317e6f5262c3abbadfa04fb6a13fcc81f3f9:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODliOTg4OWU4NzM3OWExZDY0NDIyYjU3MTc5Nzg0ZTc1NWMzNjEyOWRlNjJhNjc1NTM1OTFiMGM4OTJmYzZlZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzQyMjkxODQ3ZjAxMDY1N2MxMGU1NTc2ZjcyZDMwODA5MTI3ZjhkODgzYWMzZGE5NTYyOGUwODA5MzAxMWVkNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2Y3YTQwN2VlNDlkODA0NzY0NjNjNWJiNjljNWUwOTcxMmJiNzg5MGJkNDE5NDZkYjdiYTQ3NzE2YjIyMzU2YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTU0YTc3MTUzN2EwOWFlNGQ5MWIwNGY3M2VkYTU4YzBkNzI0NTVhMmRlZGM2NGZhZTM2NWE5YmQ4YjkzN2VhNCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/resolver.py#L22-L34",
+          "version": "repo-lines-v1:sha256:1ab741c4d4bb2dae2b17e2aa853c03267f53e22248cfc9000d5edc20fe8cfa02:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI0YWQ4MzJmMmUyYzg3MWIxZDg4MmEwYTliYjFlNzA4Y2E2MzliMjYyMDMxYzhiNmQ5ZmIzZTE3NTg0M2I1ZWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmMzg5ZTZkMDFiOWI0MTM2MDJiY2M3MGY5NWY0MjQ0OTA5OWJlNGIzNDQ3MmE2ZmZlYTA1MzMxZDE1NDNhZTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE3ODBjNWNmMWYxOWE2NzgwZGFlZjdmYjlhMDFjOTExZGI5ZDY2Nzc3ZTFmOWU3M2ZkMDk1MTZmMWVlYjU3NDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://tests/test_domain_verification.py#L94-L117",
+          "version": "repo-lines-v1:sha256:30b5ce176119e8f2630fdb9de9ab94b6bc8dd117ab8cc9834eb7d6da67bd047e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4MjVkM2FjNzQ0NzFlMDM0NjUxNTIyYmVhNWJiNzllOWE1ODA1YzQzMGQ5YWFkMWJhMThlMjI4YmZhNDMzZTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMzVmNjEzYmQxOWRlOTc1OGIzYTFmMzc0ZjFlZjY3ZDhkYjU4ODUzYTE4ZjQ0MWFjYjk0NTY3OTc0NjliODMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNmOTU3OTI5MmViNGFiNzljMzQxYTI2ZDc0MWRlMzJlZjA1Y2Q0MTk2NzI3ODUzN2IxODc1ZmQ4NTdlYmMxODkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a305ce6f9b4249c8899e4b53052d8ead",
+      "statement": "The dns_txt check (check_dns_txt) shells out to the system dig binary with 'dig +noall +answer TXT _haap.<domain>' and a 10 s timeout, accepts a TXT record whose value equals the token or starts with 'haap-verify=<token>', treats an answer CNAME whose target leaves the approximated two-label registrable domain as DNS_TXT_NOT_FOUND (422), and maps a missing, failed, or timed-out dig to DNS_ERROR_TEMPORARY (503).",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/verify.py#L73-L113",
+          "version": "repo-lines-v1:sha256:900f072189ee2ddc2cbac410033cf59d8022a1ac87bf1cc3f6d21a1b0b034d21:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlYjNmODJiNTg0OTQ1NDI5ZGI0ZGYwY2JhNWU4NmI5MWY5NzEwNzlhMDk5ODZmYjAyNmJmYjkxZGUyYzc0ZGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwYzFmMTg4ZjE0MmVkN2E4MjQ2ODBiMjA3MTcyYzU1MTliYzYxNGE0OGZkYTdjZjE2N2VkYjhkZGY3OTk1NmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVjZTAzNzEwZTY0ODg3OTY4NjFiN2ZkNzliNDExMWIwY2RlYzljMWFiMzJlMGI2ODkxYzZmZmUzOWU0NTE1ZWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcxYzIzODhhMDBiMDE3YjBkYzgyMjM0ODUyYWRjYTRlNDEwMTM4MDEyNzRmODYxOTYyNGRlYjE2OTc1ZjE4ZDYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_25d63308c47f458ba975cf9c0ecec600",
+      "statement": "The https_well_known check (check_https_well_known) fetches https://<domain>/.well-known/haap-verify.txt over stdlib TLS (falling back to the .json variant only on a .txt 404) with a 10 s timeout and a 4 KiB + 1 read cap; redirects are followed only when every hop is https and stays within the original domain's registrable domain; success requires the trimmed body to equal the token or, for JSON, the field haap_verify_token; failures raise WELL_KNOWN_NOT_FOUND or WELL_KNOWN_MISMATCH (both 422).",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/verify.py#L116-L175",
+          "version": "repo-lines-v1:sha256:4d199c481a942412df5362f78922d6c9d1d6ac145c9224eee3d395a88999ff82:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU3NDhjODg2Y2Q4OGJlY2Y2NTIzZmY3NDA2YmIyMDYxZGNjNDViOGVlNzE0NWFjZDZjODQ5YjE4MjZkMjAzOWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3ZTRjMTRiYWRkMWZjY2NlMGI2Mjg5ZWY0Yzg3MWRjNTY5NjVhZTdhNTZjNzllY2ExMmNmMzVjZmRlYzQwNmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhjYzRhN2QxY2M3OTZhYmEzZTQ2NzIzMzI3ZjUxN2U5ZjgxMTk4MmQyNTBmMDcwMjk4NmU0YjU3NjRhZDk1ODkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2cc6c990d04e441084fd5c8984699f9d",
+      "statement": "validate_domain normalizes to a stripped, lowercase bare hostname and rejects scheme/port/path/userinfo, whitespace, length over 253, fewer than two labels, or a format outside the label regex — all as DOMAIN_INVALID (400); registrable_domain approximates the registrable domain as the last two labels (deliberately conservative for multi-label public suffixes) and gates both the DNS CNAME rule and the well-known redirect cage.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/verify.py#L40-L70",
+          "version": "repo-lines-v1:sha256:1c161aa2580378687068d30e0bf521adf0ba671b43d454b474266c080069ef32:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE2ZjAyZTc1MGRkYTJmMTllZTFiMGI4YmYzYTg3ODIzZmI5ZDE4OTEyN2E3NWRiYzQ3ZmRjZDFiNjBkMzU5MGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFmN2YzM2QzZDlkNDBkNTE2MTg5NjcwZTBmMGMxMDAxNGM0NzJjNzQ5NmZmN2Q5YmYyMWE3MTVlOGUwOThmNGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYxMGY4MWQ1NGFkZDc3MTZkMTRkMTVmZGVkZjc1NWMyM2EzNDVmYWM4NGQ5MjE5ZmNjZDUyYmUzYjg0NDc2ZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE4NmM4YzNhMTgzNTZjY2VmYmZjZmFiZTc1MGZhYzY3NjRmMjUyN2JkYmJhM2UzMTBmNWI5NzhjMGNjNmVhOWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_39b4b8ac88904917bba8aa7a88e8ed79",
+      "statement": "confirm requires the stored manifest's agent.endpoint host to equal the claimed domain or be a subdomain of it (endpoint_host + host_under_domain), raising DOMAIN_ENDPOINT_MISMATCH (422) before any resolver or network activity; the same subdomain relation selects the primary verification among an agent's possibly several verified domains.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/domain.py#L126-L132",
+          "version": "repo-lines-v1:sha256:58ece1c1cc18e8c2838882127191e86f0b2983a1d9a295792b666160d5e795a5:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTA5NzA4ODc1MzY4YjY1YTU0NWZmNGYyY2M0MWE1OGFmYTMwZWQyNTJiMTNmMDIxOGNlMjkwNjEyNjkzYzVjMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWZjNmQwOWYxN2I5YTczYzM3ZTIxNWMxN2MwNTE5MzFkN2U4YmIyMzc1M2Q0ZmRmOTE2ZmEyOTc0Yzk4NTQ0MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2MwOTAzODQxYWU3MWJkNmI4M2FhMGRlMGU5Zjg5ODNmNDFhYzE0ZTA4ODI4MzUzYjNhNjA5MjY2ZjI4YTg0OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjI5OGU5NGM5ODNlMWRmMTYwYTM2MDQ2NjZhODk0YjdkYjVjMjEyM2E1OWE1YTM0OTkxY2VlOWZjOTNjM2VmMyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/domain.py#L172-L179",
+          "version": "repo-lines-v1:sha256:1646821c079bc2ca1ecdd6486b360c744c3798dc78ffc81c6f23dc47bd9b8129:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzlhZjg2ZGNjOWY2NmZhY2IxNTE5ZGQwNjJiN2UzY2M2YjhmNTMyOWZjMjU2ZjkyZDA3NmUyZTczZjlmMGJhNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTFiMzliNjM1MDQ4YjFhYTFjMzAxNDczYWY5OTIzNzk4ZmFmZGJjOTNjODdhYTRjNmM4YTQ0ZDUzMzJiNGE1OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWFkM2U5M2IyMzU3NWViYjEyNmZiY2M3NmE0NDQwY2Q5YTEzMzMyMmYwZmY4NjI0YmI3YWU1ZDIzMGEyODcwMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/domain.py#L26-L32",
+          "version": "repo-lines-v1:sha256:686101701da73e80dbdc4e5cdd261c4f33e2e116c9ddcd002ced0d67023b917b:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTdhZGExMTMxMjViNmQwNmUwMmZhNzg0OWY4MGQyNzdlZGQ1OTYzMzkyOWY4NTU4OWU4NTRlNDNiYmJkNmVkNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDhjOGM1OWNmN2E0MGQwMGQwZGQ2MjBiZDgzZjc3NjgxNzU3YjljZDRkNTM3NWU1MWM0NDE4NGViNGY1OWEwMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjdhOWQzYjYwYWE3MWUyOWQ5YjRlZTM1ZjNmZDMxNTM3NDczNTE1MTg3MjE3MDE0YWI1MzM3YTk0MmJhMTBmYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTE5ZDAzM2U3Yjg5ZTA4NWQ0YzVjNDk3NmExMGU0MTZlNWNlODI0YjhjZTgyNjc0M2JhYTg0NTlkZWMzNTVkMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_57d73ab863474b86b74a0e6ce4b7b0d0",
+      "statement": "The protocol timers are DirectoryConfig fields: domain_token_ttl_s (default 1800 s), domain_verification_ttl_days (default 90) and max_pending_verifications (default 5); Store refuses a new challenge with VERIFICATION_LIMIT_REACHED (429) when the agent already holds that many live pending domain challenges. The network limits (10 s DNS/TLS timeouts, 4 KiB body cap) and the dig dependency are hardcoded in verify.py, not configurable.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/config.py#L45-L49",
+          "version": "repo-lines-v1:sha256:6737ccba01220af1c77db741369a784183ef6e460d2f36213d9b96119ebb2762:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzRkMzE0OTRkMWVjM2ZmZmU2YjJjZjgxODk1NDU2ZjIxNWM1NzllZWE2ZWU1ZWNmY2Y3MmUzMmQzZmU3Zjk0ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjIyYWM0NjcxY2JiYTFiZmE2NzMyYWYyYjE3YzMyM2ZlNGMzZTJlNzFkZWNiZjM2MmMyMWI1YjdkNTJhNzNlMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmZkZGEyMjAwY2E0OGQ2NDA3NzM0Njc2YzBkNzYzZjQ0OTNiN2Q1ZTk2OGU0ZWI3YzZmZjcwNjJjYzdkYzQwNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDQ5YjEzYWFiZGI3ZjVkNjIxMzYwYzFhYWZkZTRjMzdmZmUwMGIwZDg1OTQxNmM3MzZlMjg3NWY1MGU4MzBmNiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L586-L593",
+          "version": "repo-lines-v1:sha256:b2d376fa2a6ef9dfa29ccb9a0b0c48a978f1361151f746ba26b16759e7fcaaf5:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTI1MjRhNDQ2MjNkYWI0Njg2OWZiNTc0ZTk5NzcwM2E3MWMxMWFhNmIzMDNhYTRiMDlmMDMyZTM5NmZiYzZjYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcwMjBhZWM1YzMyNDM0ZDUxYWJlNDgyZDllODFkN2IwYWY1MDhmMDUyOWZkMTM5ZDA4YTMxZDFhY2NmNjM5MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2RjYTM1MjUzYzgxY2M2ZmZkZmFlNzJmMWRlNTMzOWJkZTYyMzY3MWI4MTBhYTU1YmEzZjA0ODQzYWVkYThhNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDVhM2NiZjhhZTVjZDUzZWY5NGZmZDA2NzI4NTliYjQwZTJmNzI5MzU0MWFjMGE4MDVkZGRkNTA2ZGI4NDUzMSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/verify.py#L34-L37",
+          "version": "repo-lines-v1:sha256:e26a1e4b9fbbef55817d6f2bfd0b2a555d39500e8dba51faec40a98fd706aaef:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWVhYjQyOTFhNTgzODA5YWMzYjdmYTZiYWNjNTBlOGQwZmJjNDBjNDY5OWM5YzgyODFiYTE5ZTI0ODY0YjljYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyMGU1MjNmNmI1OTRmZGFjMTEzZjBiODgwOGU5NGU5ZWYwMTk2NTI4NmU0NWM4MWVhYWU0N2JiMDU3MjI2MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTJiNTkxOWEzNjg2YzIzNThlNzBiNjNjMTRiZjYwZjU4NzljOTkwNWQ2ZmMxNTFjY2I4ZjM3MzdkZDYwMGYwMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDE1YjNmOTgxYjdhNTZmZjg2NTYyZjljOWY2NWFjNGQ0MjNmNjdlYzkyMWM3NWEwZTg2MWVmODFlZmNlZmRlMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_710f4a644503440c91c2cc835abd94f3",
+      "statement": "Pending domain challenges are rows of the shared challenges table with kind='domain' and the token stored in the nonce column; the request appends audit domain.verify_requested in the same transaction, and confirm_domain_verification atomically marks the challenge used, inserts a domain_verifications row (id, fingerprint, domain, method, verified_at/epoch, expires_at/epoch, endpoint_match, challenge_id) and appends audit domain.verified — all in one write transaction.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/store.py#L57-L87",
+          "version": "repo-lines-v1:sha256:254ceededd57dd25ad6fda6ae8fb028e6dccb49f2ac5ec6d8e8887092c9013b1:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQwNDAwNzhkZWUyNTgwMTYxNDkxMDgzZDhkOWRkNGEyYTA5ZDJhYTU2ZjhkZDQ1MjYwYmI2NDk3MjNlYzhmNjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjYjE5N2ZmMzc5ZWJhYjdmODYwYjY5ZjBlMmJlODAwZmIyNTBlMzQ2OGJjYTU5MTZkOWEzNmJkYjFlNDJkN2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQxYTA2NTU0MTUyNGQ4MGFjZTFhYTYzYWNmM2I2ZWMxNTZiMzk1OThmM2I1YjM0ODQzMDU4ZmI2MmI1YTRiMDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFjMzhjYzY1ODRkYTI1ZDk1ZjE2Yjg5ZDZhYjMxYWYzZWE4MzA4ODQwZjlhYjUyNjZhMzJjNjRjMDY2MzEwNzEifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L575-L612",
+          "version": "repo-lines-v1:sha256:0c6a56e795569884ada79f42d3c23146c248cc9222d0455b6d048b26ff63b67a:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEyNjgxMmQyYjQ3YTk4YjI3ODViMzc0ZmNiNDE0M2RiMDJmZWNkNzg0NjQ5OWQwYTYxNGExODJjY2E5NjUyYzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1MDMyZTk2NGQwOTMyMzUxZTVkMTg1MjY5MjgxYjE3MWEzYTA5YjA4YjI4NmU2NjFlYTQ3MDMyM2M4MmViNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM0OTg0YmY4ZDY2NDE1MjhjYWI2NjBkMTYyOTdhMjUxZWZhNWI3YmMwOTI2MDRiYjMxMTg1OThiMjMzYWUyMjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBmN2EwNjJiY2MzZTE4ZmM4NmQ4NWZjOTY2ZDgxZTNhNzM3YjBhZjY1ZGMwMjlmNTQ0OTAyOTJlOWNlNTA4MWMifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L614-L661",
+          "version": "repo-lines-v1:sha256:dd4ce6cf87d2e18f219d47c2cf383cb7eede77837c2db2ee20c3fece6e687b76:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhNmI3NzhlZTIwNzIwZjljOGFiNWNjODNlZTNlNGQxZjM0ZGE2ZGE4ODdiZjcxMDYzOWNkZDYzYWE4NGNiODMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYwYzk0NmEyMDNiMjQ5YWM1NzAxM2IwOGQxNTFlYjBkZWJhZGZkYjcxMTQ0ZDdmZmE2MmVmNjk5NTMyMmZjZjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVlNjFiZDc4MjgzMTQ0MTI0MDZmYTgyN2U3MWUyYjJmY2FjZGY3YzEzN2Q5ZTk1NWY3YmQ3YWUyNDNmOWJhMDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImViMzc1OTkwNjU4NjVlNWM5ZGIzZDgyYmQ3NTFiMzExMzUwNGI4NWRmNTg0MzhhZmZhYjY2NDdhNzJlNTIzMDAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c704664c99ab485f86ed6c984e1d6e8b",
+      "statement": "A confirmed verification expires purely by read-time filtering: active_domain_verifications selects only rows with expires_epoch >= now, so once the 90 days pass every projection (profile trust block, search, /v1/verify-domain/status, heartbeats) downgrades domain_verified to false immediately with no stored transition; expired challenge and verification rows are not deleted by the pruner.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/store.py#L663-L671",
+          "version": "repo-lines-v1:sha256:f069f259190b5a016839df763d24161695800225982e911f4e2e03d2e8fa9667:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGNiOTg4MDNmNjAyMzM5MDhlMTk4ZjYxYWJhZTQ1YWY0OWZjODQ2NGM4ZmMxNDliMDYzNzRhMWQ3MmU1MWE3NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTJlN2RiZTQ3ZTJkZmEzODhhOTFhZGIzNDUxMWMwN2U3ZWYwODIxN2JiMjhlOGQ2ZjFkZGM2OWVhYmZhNzJiZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2Q3OTMxNjJkNTY1ZDExOTI1YjdmNWFhM2Y1ZmJkM2YzOWQ3MTUxYjg3ODZlYTM4MjlhZTM1NWNmN2FjYjNiZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTVlMTY3OGU4MDRiMDFjMTNkNDc3YTJlNDE5NTUzMWUwYzI5ODhmMDg0MzA0ODcwMGVjZjFmMjFlNWFkYmM2YyJ9"
+        },
+        {
+          "resource": "repo://tests/test_domain.py#L144-L162",
+          "version": "repo-lines-v1:sha256:ed3b01229acfd3348355df1e52d8a720dfb2cfa0efa0fbbb4d9632bcf678e573:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMmQ1OTU4YzcwMDY5NjljYTBiMzI3M2NlZDkwODc3MWIwZjQxOWI4YzE2ZmI4MGU1YzQyY2UyN2QyMDFlNTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3MTYxMTljNWZjMWUyYWZiYWFkYjJkODI4MmI1YWE4MDQ3YzJlMDVhZTZiZWJlYmIxYTNkYTI4MDRmMDE0ZTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRkNDg2MDQ2ZDM3MjI3NDI4YTQyZjk1NDc1OGNhOTUxMmVlOTU2YjBlNzczN2NkNWEyYTkzYjJlNGZjNDhhMjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7e4d9c268ddc4953911234fd0c79d03d",
+      "statement": "domain_verified is a labelled control signal, never KYC or \"verified business\": the trust block built by DirectoryService.build_trust_block carries domain_verification {domain, method, verified_at, expires_at, primary} only when DomainService.primary_verification finds an active verification whose domain covers the endpoint host, and search's domain_verified=true parameter gates inclusion one-sided (false does not exclude) without ranking results.",
+      "evidence": [
+        {
+          "resource": "repo://docs/SPEC.md#L297-L302",
+          "version": "repo-lines-v1:sha256:80829d446eff7bbf3c11bcac6441b0f8bc4d6dc96d183201335248bbe683afed:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmFkYjE0YjQ2YjAzNjhkZTkwNDgyMGU2MDU5OTdmYWQzZTkzOWUzNWU0OTIyZTA2ZjJlOWVlN2ZmZjQ2N2FjYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmZhZDVjMTY5OTIxOTBmZGRhNjRjOGM3NjA2MmU3ZjMyNDNjNWNiM2Y3NDg0OTE4ZjY5ZTAyZTFmYzQ0YTkwNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDhhZmY5ZTQwNjhlNDUxMTE4YWI5NjQzNWY1NmUzOWJhYzljZGFjOTBkODVjOTZmNjUzYjFhNjkzOTliNjlkNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjdkOTZiYTY1ZDdmMDUwOWFlYWYyMjk4NmQ3MWFjZTIzNDcwYjk2MTQwZDU1YTZhZWVlZjEwZDkxZjhmNjU2NCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L257-L317",
+          "version": "repo-lines-v1:sha256:afcb695b1abb6bf8ff020c390a839d7c80379200aacea1005484ad2707261c8b:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY3MmExMTY0OTMxOTRkYzcwZGQ4OTkyMDFhNzdhZTgyMGFmOGZiNzhiYTM0MWUxZTc4OTY0ODI1NTYwNjJiYjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3MTY0OTE0NmMyODIyYjc4M2JkNzcwNzA4NDk4YTE3MjdlMTljMWIxODRjNGNkOWQyMzJmMTllZDdjM2E2YWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2YWYzMDU5ODlhYzFlNTY5ODdhOGFhMGQ2ZDViOGZhODAxYzY2MGVmYjM0Mjc1YTUyNjY1NzBlYmU0MGExMWEifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L422-L434",
+          "version": "repo-lines-v1:sha256:7aa88d0a740b6ef1658a7dedcb6999ab07c0ae93b8bcc4646b88aa65f133755d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiZmQ4Nzk2OWYxMWVmYWM5NjIwY2FlMTEyMDk4MzhlMWU1Mjc2MGMyMjZiZTQxMDdhOGU2ZjBkNzJiNTYwZDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwZTJhNDY1MDA5NWZhOTVkMGUyYmI0MWIyZGIyOTA5NGQzNDA0ZDI4Y2UxMjMzOWVjODhiYjRiNWM1YmU4ZjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRlNzU3NWMzYjc3NzZjZjJmOWMyYmZiY2E0NGYyMTQ4MTNhNzgyN2VhYTljMzg0NTRjNzAzYjY4OWE3NDQzODYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ea134992781b43b0b9a372273b1969ed",
+      "statement": "The L2 HTTP surface is POST /v1/verify-domain (202), POST /v1/verify-domain/confirm (200) and the public unsigned GET /v1/verify-domain/status?fingerprint which lists active verifications with their primary flags; both POST routes share the per-IP register rate limiter (default 5/hour), and all rejections use the stable codes mapped to fixed HTTP statuses by the add-only errors.py table.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/errors.py#L18-L70",
+          "version": "repo-lines-v1:sha256:75fc76ccd7929f8a44870753e1a01055b84c975388a0f48c99f9e403d7151e56:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJlNWUzOWQ0ZTZkNGRjYTQ1NjJlNWFiZjFjODJlMTlkZDYyNzY0OWI2ZjM3NWE5NjNiZTM4YmMxNTczNGUyODMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA0NWI4OTVmNTQ3NzFjYjUxY2E3MDQ3OTY5OGJiNWU4MTdjMzllYTQ2YTljMWU0Y2YyYTY5NDI1YTIwN2JlMGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFkYWM3ZWM1ZDQyMzlkZDMzNWQzMGExODlhY2Q2NmEyYTJhMmMwODI3YzI4MTlmZTg1MmQxZWU5OTg2NmJiOTkifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L268-L272",
+          "version": "repo-lines-v1:sha256:6dd2e2d23973a7cc75fa8a433d00d236d1ae0e34f2e6327d7ed2559f52b7b60d:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWNlZTA1ZWViZTUxMWJiNjUzMThmNTkyOGIwMzYxZTYwM2NiN2QxOGY2Y2NjM2Q5NTUzMDBlNTNmNzMwYjA0ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWFkNmM4ZWFhODUzZGZiNzA3MjA1MWE1ZjU5NjI5YmI3NmYwMmQxMzMwNDJmNjQxNDM0M2ZhMDE5YWI4ZTZkOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDRjNzBlYzFhMDViMTc4MWU0NTU5ZDg4ZDcwZTc0OWIxYzMwNmMwZmQzZTQ5MTQ2NzIyZjRjY2E2NzFiNTAzZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjU3NWIzODI3MzdlZThhMDBiOGM4Y2NkMDk5ZDM4YWJjMzNjNzllNWIyMjNjNDQxOTg4NzUzNWVkMjRjYWFmMSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L395-L410",
+          "version": "repo-lines-v1:sha256:ab5eb1c277e712c341367e076bc85b7336d08b2f6bbf0318b81233550231d554:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA5NTNiNTA4ZjcyM2I0NmRlN2Y3YjYwYzdiMDAzOWM5YmE0NTNlN2MxMGI3OWE4OGUwMjdlMmQ1ODRlMTU0YmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhZDZjOGVhYTg1M2RmYjcwNzIwNTFhNWY1OTYyOWJiNzZmMDJkMTMzMDQyZjY0MTQzNDNmYTAxOWFiOGU2ZDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVmOTY4MjRhOTVlZGYwZWQwNmNlYmFkZTgzOGJlZjNmMGRhNjI2N2FhYWY5YWY0YzYwNWFmZjM5YmFkYWM2ZTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyMjk2ZjI5OTFiNzFmNDJmMTY4NDJhNTZiZDgwYWMyODYwMTZjMDMxOWZjMDI4M2M3ZGY2ZmRmMjA1ZWZjNzMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9d4c33ab90264d0a98a4d2b4debd158a",
+      "statement": "Operationally, the dns_txt method needs the system dig binary (bind9-dnsutils on Debian/Ubuntu; installed in the Docker image) and a missing or failing dig surfaces as DNS_ERROR_TEMPORARY (503), not a configuration error; the L2 protocol knobs are DirectoryConfig fields settable through ~/.haap/dird.json or HAAP_DIRD_* environment variables, not CLI flags.",
+      "evidence": [
+        {
+          "resource": "repo://docs/OPERATE.md#L94-L103",
+          "version": "repo-lines-v1:sha256:884bb450e80d7181c23ab95b9ecbd7383f772881520a68a04b939dff6bfdfaae:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzY2FkYzIwMjBjYmViYjgxNDNkNGVmNzQ4NmI1MGY2NjJmYjE1MDMwZDg3NmNlMTJhODk3MzZhNjE3Mjc2MTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg2OWYzMDkwYWIwYzA1YjhjOTdhMmNiNjVjNzY0M2IxYjhkZjY5ODVkNTI0MWQ4OGY5NzY3N2YyZWMxNTk5MmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyYWQ2MTJlODMxYTMzOTI4ODdmMjAwNmQ3Y2FlOTJlNTM3MmNlMWUxNGFkODhiMzZiZjZmOTVlNmU3MGQxYzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMwMmI0NTNkNDJkMWI1MDBlZDYyOGNmZjBjNmQ4ZjcwYTM2YjU3YTdjYjMyNjhlZDJmN2QzN2Y5OWRiYmNlOTMifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/verify.py#L77-L88",
+          "version": "repo-lines-v1:sha256:7feddb5e8d1d8366f8b7a935572d10185433201cdedefd6f50a536ab61cab519:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyOTg2N2NiNzY1MGRkNzczMzk4NjdmMzk4YTU2NDEyMGE4YThiZjIzZmFiOWM3NWVjZTRmYTgzNDA4YjY5MzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUwYzRkMWQ4YjlhMDNlM2I3YjM2ZDkyOGRmMjI0ZDdjMDMxYzViYzI3YzZjMTU1NDViNWY4OWEyNjBiYmQzMDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZkMDJmOWM3NTQzMzAxYjcyZDA4MmJiNzgzYjg2YjRmMTBhNjhmNTg1YWMxMDJlZWYwMjBkNjc1NGM3MmIwYmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU3MWFhOGEzMDg3ZTAzNDAxOTEyYjYwODNiOGNiMmNmY2FmM2FhNTVmMmMwZTAzOWU1NDA2MzM2ZmQyZWQ5MTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4deae7c5a2fa4c6783d163983f8d3ea7",
+      "statement": "Tests never contact real DNS or HTTP: StubResolver implements the same check(domain, method, token) seam as production with in-memory txt/well_known maps plus a txt_temporary set forcing DNS_ERROR_TEMPORARY; test_domain.py covers the end-to-end request/publish/confirm protocol and its failure and downgrade edges over the stub, while test_domain_verification.py unit-tests the real parsers (validate_domain, registrable_domain, dig answer-line parsing) and HTTP edge cases such as retryable confirm.",
+      "evidence": [
+        {
+          "resource": "repo://tests/conftest.py#L32-L67",
+          "version": "repo-lines-v1:sha256:e9fc25adf6062d398e1ea64af05cab6635a95cc649c778eba84420a30a17ec1d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMyOTE0M2ZlOWUzNDQwYTYxNzE5MTlkNGU4YmRiNzVkZmZiZDFlOTQ3MTBjZWM1YTQ0NDhjOTk5MWQ0NzE3ZGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc1MmJhYWIzNDRkZmIyOGZlMDNkMTExZmYxNzBmZTg2YjY3MmJmNGQyOGQ1YmFlMzMzOGVjZGU4OTI0MmM4N2EiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY4YTE0OGFiN2U1NTcyODFjN2E1YzQ1NTI5NzM4MWMxZWI0ODVhNTMwODVlYWEzZjE4NGFiZWZhMjlkMTU5MDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI2NjdhMWJiN2VkZjI2YmQyNzE1YmIwOWIxODNiNTg4MGM0ZGRlMGU5ZmQyM2M4Yjg2NGIxNjg0YmRjOWE5YTIifQ"
+        },
+        {
+          "resource": "repo://tests/test_domain.py#L38-L162",
+          "version": "repo-lines-v1:sha256:6cb60a2f7ca98309779f29e608328eae22a65f817fd381fb3e2508d71ddc8e80:eyJzZWxlY3RlZExpbmVDb3VudCI6MTI1LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIyZjA2NzU0MWZkYTkwMTVhOWNkOTc1NmM3MWMyMGE1Y2ZiMDljNzAwY2U4M2EwM2I5MjQ0NGYyNTE2NjJhMzdjIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJhNzE2MTE5YzVmYzFlMmFmYmFhZGIyZDgyODJiNWFhODA0N2MyZTA1YWU2YmViZWJiMWEzZGEyODA0ZjAxNGU2IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI2NDIyNzYzY2M0N2MzOTE0MTBlOTg2NGQ2MDFkOTcxYTZjZTcxYTNmNDM2YWNlYmJlZmQyNjAxNTMzODYyMWIwIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        },
+        {
+          "resource": "repo://tests/test_domain_verification.py#L23-L117",
+          "version": "repo-lines-v1:sha256:404731c6d9dd4deb6b7196d5e21743d3fe512be2a9eb879e0841f8c62c98e17a:eyJzZWxlY3RlZExpbmVDb3VudCI6OTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4NmU2ZGRmY2Q4ZWMyNmY2MGQxNDhiNGM3NjUwZDM5YWEzZjQ5NWUzNjdhN2UyMGM4YWRjODE5MTllMDhhNmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMzVmNjEzYmQxOWRlOTc1OGIzYTFmMzc0ZjFlZjY3ZDhkYjU4ODUzYTE4ZjQ0MWFjYjk0NTY3OTc0NjliODMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRkNjExNGJlNzJkZjY0YjFiY2FjMGY1MWE4OTczMjgxYTM4MGZkNDRmMjY5NjEyZjk1N2E3MTBjNThjMzViMzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-05T09:05:06.235Z"
+  }
+}

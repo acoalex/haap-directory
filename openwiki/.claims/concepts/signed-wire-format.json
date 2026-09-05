@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:b9a50e5087b05dfe7f3525cd0754135c2b5a993d2e4ff608f0c38352bd01ad88",
+  "claims": [
+    {
+      "id": "claim_25f8638d49cf4abb9fd191d637f40824",
+      "statement": "Every signature in the system is computed over the frozen canonical serialization json.dumps(obj, sort_keys=True, separators=(\",\", \":\"), ensure_ascii=False).encode(\"utf-8\"), exposed as canonical_json() (with canonical_str() for hashing/logging). The form is deliberately vendored in src/haap_directory/canonical.py so the directory has no import dependency on the haap client, and it is byte-for-byte identical to the haap client package serialization: any deviation or 'improvement' breaks signature verification.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/canonical.py#L1-L31",
+          "version": "repo-lines-v1:sha256:2f09ccf7b5dba5344cde7aae05da88d1226aa36a8722b841bae94a2ae5886184:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhiMDg0YTlmMzc4MTI0YjJiMWE1MTU2M2JmM2MyMjQ0NGViN2ZmMzM2OTIwMTdkYTI4YjIxMzZhZTU2OTg3ZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhjMjE2Njg0OTFmMDk3MzYzMDMxZWNhYmMxYjIxODVlODEzMTkxYWQ1M2YxMzBkN2NhNWVkOTc1ZDYwY2UxNzQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0807dd91d21b421095b14e7cc9358ff9",
+      "statement": "crypto.py reproduces the haap client encoding conventions with raw 32-byte Ed25519 keys and standard base64 via b64e/b64d; verify_with(raw_pub, data, signature) returns False on any failure (bad signature, malformed key, or malformed signature/input) instead of raising, so callers never leak crypto internals. The directory only ever verifies agent signatures; its own KeyPair signs only directory-owned data such as challenge nonces and audit checkpoints.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/crypto.py#L25-L60",
+          "version": "repo-lines-v1:sha256:0544bb26a0c8e81fb04bf9378a1005ccb48110a0699dae1ad8b5749ab9324a8c:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBhMjc3YjJiMjU1M2VhMzM3OWY1YWViMjQ5ZGQ5YTkxMWI4OWEyMjM4ZjcwMzI2YTNjNGQ1ZWRkMWVjZmU0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5N2M3MTI0N2FmM2NkMWVkZjU1NWE3ZDEwNzU5MzE1N2Y2ZGMyYTIyYWYwZGU4MmU3Nzc0YWJmMTBmOGFkZTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE5OGIwNjNkOWI0N2U2NTM3OTYyNTU3MmNjZTE5NzY2OWQ1NzY3ZTEyYzE4YmUwNzU2NTJiOGNkOTgxY2U4ZDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZjMWYwMmZkN2VjMWQ0NjJjMGNiODE4Yjk0OGZmZTRmNzE1YjJjMmM0MzI2MzBjMjMyZGZlMzRkNDI3NDNmYTkifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/crypto.py#L63-L93",
+          "version": "repo-lines-v1:sha256:ddd6f3187afe1ef131569e21a6a52d53d1abc9fc308cb17b9183aa4799417c89:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI2ZmJhZTBiOTFkNDRmYzBkNDlmNWRlNjkxZGE2ZmM0MzFmMjYwMTM0YmY3MzFlMGUyMWY3NjQ4MDk0MzM0Y2IiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImExMmNhOGE1MGMwN2IwZjU4M2M3YTQzNzFhMTVjZDczMTA2YjBlODQ3ZjA1N2IyM2EzNTZiMGQ0OTVkMzg4MGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY5OWVmZWRmZDJkOTcwNmQ4OTFjN2JhOTgzZTdmODRlMDVhZDBlMDE5MWMxMzI3OThiZTVlM2MxY2M1MzA0MjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f6af166a093a40a298731379726b92a0",
+      "statement": "A fingerprint is 'HF-' + the first 16 hex characters of sha256 over the raw 32-byte Ed25519 public key, matching ^HF-[0-9a-f]{16}$ (identity.py, identical semantics to haap.identity). The directory never trusts a client-supplied fingerprint: submit_registration recomputes it from the presented public_key_b64 and rejects with FINGERPRINT_MISMATCH when it differs from manifest.agent.fingerprint, and registration completion binds the fingerprint to the key stored at challenge time, rejecting any differing re-supplied public key with KEY_MISMATCH.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/identity.py#L14-L26",
+          "version": "repo-lines-v1:sha256:c6f1b7a015e5f74d212dd57b8d4f7b4410447178648bc8e464259f8d13225578:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1ZWNiMDViYWM1Mjg5MWE5ODU0YmFiODk2YjRiYTk4OGZmNTlkM2M4ZjY3MjU0ZDI1YTZkYzgwOTZhYmQ2ZTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI2ZTVlNWQyOTI5ZmRlNzU3ODE2NTYzN2JmMDY2ZDdlMGY3YjRhMDQwODU5YzNlODU4ZTFhMGM4YzE5YjA5MzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVkY2YzMDhkM2I4NjJjYTM0ODYyZTc1YjU1MDMxNGY1NjI0NGU1ODY0YWZiMTU1ZTNiZmE0MTA1NDAyMGUyZTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L146-L159",
+          "version": "repo-lines-v1:sha256:9577e9ce65161387eb396cffa2ba29424d212ae1a92a4c2d8e4f00d6459faeee:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4NGMwMTU4MzU1YTg1ZmRiNjFiNGI0Njg1YjljOGUwMTdhOTFmYjQ0NTJkZDAwN2UxMDkyZTI4ZjYzY2Y3NjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmMDg3MGZkYzc2ZGFhNTkzODdlY2NhMDI5ZWE3MDM2Yjk4ZWE2Nzc1ZWFkMTE2NjAyNjRmNjIwMjQ1OWFiMDYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ4NGZjYzk2ODdmY2U4ZDg1YmMyZDFlOTYyNzYzYjBlMDk4YTgxOGFhNmU0YTNjYTRiYWIyNjVmMmU2YzQyMzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgwYzg4NWE4MWE3ZDZjN2RiZTQ2OGVmZGI1NjE0NzVlZjNiMmRiYzQ4OGY3ZDdiMzY5ZDhmYTlmNDBiMDc5NWMifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L84-L102",
+          "version": "repo-lines-v1:sha256:9d42e5d37364991ce2f413e0466f49161225d3487b4f33c64c5c97bd6964fdaf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiN2ZlYzc4Y2Y3Y2M0MWUxYmYyZGVjYWY4NWZjYWI1MzBhNTI3OWNjYTkyODQ4OGQzNjdhMWEzOWMzZDY2NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxN2M5YzYzYzNmZGMzODE4MTM3YjMzYmVjOWFhMjg2NjUyODdhOWRkMDY5N2ExMmE2MzBhZGZkNTc1YzdlODciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEwNmNhNjhmNzliY2E4YzhkMjJhYmYyYmJjY2Y4MjE2ODg2MWY2MTkzZTY2NTc5MzdiMzk2Y2VkOWQ4OGE4NzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRlNTZlYjY2NWY4NDNjOWE3OWNjNzRmZDE3OTViYTdlOWJmYjZjZDIxNTRmZTRmNDM5ZjUzNTAwZTYzNjJlODQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2e74b3a05de9459aabc3a724d31a18b4",
+      "statement": "Mutating agent endpoints have no session auth — the presented Ed25519 key is the credential. signing.verify_over(pubkey_b64, payload, signature_b64) base64-decodes key and signature and verifies them over canonical_json(payload), returning bool; signing.subset(body, fields) returns only the named fields that are present so handlers sign a defined logical subset and never include out-of-band fields (such as the signature carrier itself) in the signed bytes.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/signing.py#L1-L30",
+          "version": "repo-lines-v1:sha256:52e9f15e43f82f53f15babf1601c90681cd9e9820434f96ab01c78decbda4e56:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhiMDg0YTlmMzc4MTI0YjJiMWE1MTU2M2JmM2MyMjQ0NGViN2ZmMzM2OTIwMTdkYTI4YjIxMzZhZTU2OTg3ZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkyMTIwY2Y5OGRlN2E1MzEyMDgwYTMyOTE2N2E4MWI2YTUwYWMzZTQ1YTc1ZGYxYmZmYjE3NzI2ZTAzNjBmZTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b63e84a6425c414aa44c91f94f9aa479",
+      "statement": "At registration an agent signs the complete manifest object: manifest_signature is a b64 Ed25519 signature over canonical_json(manifest). The directory validates the manifest, caps its canonical bytes at config.max_manifest_bytes (MANIFEST_TOO_LARGE), recomputes the fingerprint from public_key_b64 (FINGERPRINT_MISMATCH on difference), verifies the signature (SIGNATURE_MISMATCH), then issues a single-use proof-of-endpoint challenge whose nonce has the ASCII prefix 'v1:register:'. The second step requires endpoint_proof to be a b64 Ed25519 signature over the ASCII nonce bytes made by the challenge-bound key (PROOF_INVALID otherwise) before the entry is listed.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/service.py#L146-L168",
+          "version": "repo-lines-v1:sha256:db48e1dcecb94710b8b31a6b67267d25c186ceff541f00c2378fc3d683ebc84c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4NGMwMTU4MzU1YTg1ZmRiNjFiNGI0Njg1YjljOGUwMTdhOTFmYjQ0NTJkZDAwN2UxMDkyZTI4ZjYzY2Y3NjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJjOGE5ZjkyOTQzNzg5YmQ1NWE3MDQ1YTE0MmNiZTJlNzY3ZTRkYzYyNjAzZDcxYWZjN2Q3MTg2MDFlZjI5OTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ4NGZjYzk2ODdmY2U4ZDg1YmMyZDFlOTYyNzYzYjBlMDk4YTgxOGFhNmU0YTNjYTRiYWIyNjVmMmU2YzQyMzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNlYmU0M2RiODZlODIwMmViY2E4NTZkNTAwNjc3OThiOTE3MjQwMWUwOTRmOGEyY2VkNDllODM4NzNjMjIxNzgifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L84-L132",
+          "version": "repo-lines-v1:sha256:2add74c3653a3c931b66f4eb6ee6e31b3a1f2805932d23c5a0216b12a459c74c:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiN2ZlYzc4Y2Y3Y2M0MWUxYmYyZGVjYWY4NWZjYWI1MzBhNTI3OWNjYTkyODQ4OGQzNjdhMWEzOWMzZDY2NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEwNmNhNjhmNzliY2E4YzhkMjJhYmYyYmJjY2Y4MjE2ODg2MWY2MTkzZTY2NTc5MzdiMzk2Y2VkOWQ4OGE4NzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRiOTlhY2I0NmJjM2ExODJkMjRmMTQxMDkzZDA3Zjg2MTYyMTg1ZWI1ODJkY2VkN2M5ZGM1NWI4ZmM1ODUyOTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a6a9b1c09e0342d0a09956347db5bd96",
+      "statement": "Signed v1 heartbeats verify a b64 Ed25519 signature over the ASCII string 'heartbeat:{fingerprint}:{timestamp}' (not canonical JSON) using the agent's registered key; the RFC 3339 timestamp must be within ±300 s of server time (STALE_TIMESTAMP). Signature failure, an unknown fingerprint, or an expired entry all surface the same UNKNOWN_OR_EXPIRED error so the endpoint never confirms whether a fingerprint exists to callers that cannot sign.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/service.py#L188-L217",
+          "version": "repo-lines-v1:sha256:00321bdb974b2abec4df59cc85d376380b7c87cdbe0506d9e4fc1c2a56bf11be:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5ZTIzYWI5NGI1YzEyNmNkNDQ5ZjkyMTAxNDZmZTNlNjc5NDgwOTk0YjI4NTNlODQzYWUzOTVkMzFhM2M2ODAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFjNjM1NTZiZjY5NGQzNTYzYWZjOGY0YzliMzg3YjBlOWI3Y2E0OGIzZWM4MzdmM2E3ZTI4MmYyYmQ5OWYxM2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNlZTFiNDJjZTk2OGM0ZWZlYzgxYzYzOGFhMDRmYjdkNWU0NmM3ZGM5M2Q0YmEyYzBiZTg0ODljMzdkMTlkZTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bdabbeb86156479da825d9e751790917",
+      "statement": "L2 domain-verification requests sign only a defined subset of the body: POST /v1/verify-domain verifies the signature over canonical_json(subset(body, ('fingerprint','domain','method'))) and POST /v1/verify-domain/confirm over canonical_json(subset(body, ('fingerprint','verification_id'))); the verifying key is looked up from the store row of the currently live agent identified by fingerprint, so the signature must be made by the registered key of a listed agent (SIGNATURE_MISMATCH or AGENT_NOT_LISTED otherwise). Extra body fields outside the subset are not part of the signed data.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/domain.py#L105-L114",
+          "version": "repo-lines-v1:sha256:0fc7a081e1dfcef8f5661b5d6bfde0102bdf5a7dd336a9e5b32e6054a89f3fd4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIzMjAxNWY1ZGIxOGU3ZGE2YjY5MDc3MDk0Y2IyMmE4ZGZiOWY3MmZmMDQ0MDA0NDY3ZjlkYWY0ZjU3NmZhZDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxN2M5YzYzYzNmZGMzODE4MTM3YjMzYmVjOWFhMjg2NjUyODdhOWRkMDY5N2ExMmE2MzBhZGZkNTc1YzdlODciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM2MTlkNjAyZTVlZTRhNDk2NmYxMzliNTQwZjA1NzVjZTQxMzA2MGQzMmY0MTI0NTVlNWI0YzQwMDcyMTNmYTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg4OTBiODg4MDAyYWNhMWE4YTNhMTVhMTRhYzYzNTg2OTA0ODNhZGFjMjMwNTlhZGUzNzlmNjlmNzczYmZlNmUifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/domain.py#L59-L71",
+          "version": "repo-lines-v1:sha256:5388411e11eedcf8ab0ce2c846cce19ae744bea71b4f604189edf5c041ff3d97:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY5Y2VkYjI0NWMxNjMyZjc4YWU2NjUxNjUxY2I4YTE0MWZlOWYwMmNlYjQwNDc5MTdhMjQzMjA1ZjlhNTg5NzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxN2M5YzYzYzNmZGMzODE4MTM3YjMzYmVjOWFhMjg2NjUyODdhOWRkMDY5N2ExMmE2MzBhZGZkNTc1YzdlODciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjljNTkxZDFmM2MzMjIxNDIyY2VjMTZlYTY1OGZkM2VhNTUxYmUzMGJlMzllMTFjMGFlY2MwM2EyMGQ4YWYyN2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYzNzRhNGY5MjI5ZDE2OTcxMmFiZWQ1MGZhMjdjNmNiZWRiOGMwNTZhYjBkMDBhOWJjM2NkYzRiOTdmZmY3MmUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3334638bb6b146be9553aac78213340f",
+      "statement": "L3 vouches and L4 reports use whole-body-minus-signature signing: handlers construct signed = {k: v for k, v in body.items() if k != 'signature'} and call verify_over with the registered public key of the acting live agent — the voucher's key for vouch creation (VOUCHER_NOT_LISTED when not live) and the reporter's key for reports (REPORTER_NOT_ELIGIBLE). Vouch revocation instead signs only the server-constructed canonical dict {voucher_fingerprint, revoked_at} with the voucher's registered key.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/reputation.py#L45-L71",
+          "version": "repo-lines-v1:sha256:24cc83893a3cb629a8cc0068a95d602ec7c324878a25500b7d2a1ceb8dcf4db1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEwYTVjMzI2MDdjZTM5YWIxOTNkNmZlMTQ1NDFkMjQ2ZDE3YTFkNTc5MGI5ZTM2MmRhMzk4OTQwYjVjM2JiZDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxN2M5YzYzYzNmZGMzODE4MTM3YjMzYmVjOWFhMjg2NjUyODdhOWRkMDY5N2ExMmE2MzBhZGZkNTc1YzdlODciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3NWEyM2QyNDdmZjIwMjFkZjhkZTdkYjkwNGYyOTE3ZWE2ZTA4MDdmNmZiNWNjYjhkODhjMTE0OTE0ODlkNGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFiODE2OWNkNTk5MzZiOTM4YmZmZjVkY2YzNjdlYWNmMzZjYmYxYWRiOTc0OTQ2ODE4NzBkMTUzODM5YzU1MjAifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/vouching.py#L40-L102",
+          "version": "repo-lines-v1:sha256:fa2c9560e618ad8bce6f585f83e0c5f58091037c19ae3794540f991108bd5f57:eyJzZWxlY3RlZExpbmVDb3VudCI6NjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4MzgxMWQxODE3ZWE4ZDliN2VjNDQ0MzhiZjJhYjBmZTVjM2RlNmNjOWI4YTNiMDBmYjE5MTQ2ZWEzZmFjMjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxOGFlY2Q1NmNlNTdlMTk0YzljNjVkMjQzM2I5ZDk3MDk1YjQzODI1Y2ExNWNmZjE2MjZhODc2MGNhMGFkNzQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIzYjMwNGUxMjFiNGY0ZDJmOTg4MWRiMmYwZmZkMDhhZmZmYjQzOTI0ZjI5ZDAzNjFlY2VlMzA0MTY3NzQ5ZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRkMTRkZDg1NjIzYjlkMDUwYjY1Y2FiNzcyM2YwY2VlMDc4ZTU0MGEzY2FjODAwNmFhZjM0YzBiMDc2YjkxMjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e971f03a975c4c828f8ad43d0f85b42b",
+      "statement": "Moderator actions (takedown, suspend, unsuspend) are signed by operator-held keys from config.moderator_keys, mapped at startup from fingerprint to public key. The service verifies over a server-constructed canonical dict mixing body fields with path parameters — {moderator_fingerprint, report_id, reason} for takedown, {moderator_fingerprint, fingerprint, reason} for suspend, {moderator_fingerprint, fingerprint} for unsuspend — raising MODERATOR_UNKNOWN for an unconfigured key and TAKEDOWN_UNAUTHORIZED on verification failure. Agent appeals are signed with the agent's own stored key over the constructed {fingerprint, statement} dict.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/moderation.py#L36-L52",
+          "version": "repo-lines-v1:sha256:4c8b9cb69a8d81a9175a10bb5df2178deeb44f24e57c878ab88a7dec46df8f97:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkNzgyYTFiYWIwODk0NGQwMDZkM2JhYmM0ZDBiYjNlMmRjZmEzOTRkYjdiYjAzZGY0MzU3ZjVmZDhhN2ZlNmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1Y2E5ZTViZTUzNzhlY2M4OWE4NmZkZmVkM2FhOGYxYzNlNTNlMGMyM2RiZGRhZWFkZWE4YmE0ZmIzM2U5YTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE4NzQxY2ZkMDk5ZmEyYmY0MDIwNmFlMzJjOTkzZjU5ZjA5NmQ2NTk1MGViMDQ1NThkMzkxM2JlOWZkM2I0NmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIxNzA3N2U5MDQwNjFmMTUwNmU2MzM5YzcxMjFiYTc4MzdkZjE5NGM1YmE3MjdjMTBjNGJkMGE0Nzc2ZjAzZjIifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/moderation.py#L54-L121",
+          "version": "repo-lines-v1:sha256:6d1687eeb3bfddc0c4d104f64b52da458f9abccfaa676493215350425fe326c5:eyJzZWxlY3RlZExpbmVDb3VudCI6NjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1ZjE5MGM0YjYxMjAxODM1OTAyNDIyY2Y0MWE5NjVkNjhhNDIxODdkMTQ5NjJkNTUwZTMyNmZmZDY1NGIxZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxN2M5YzYzYzNmZGMzODE4MTM3YjMzYmVjOWFhMjg2NjUyODdhOWRkMDY5N2ExMmE2MzBhZGZkNTc1YzdlODciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUzNTc5MDQ1ZGQ5ZDE5Njk0NmQwYjM4YjljYmUwZWU0ZTMwNzcyNTUzZjJhYjFlZjgxNGFkNmY0MDk0OWQ1ZTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIzYzYxNjM3OTdjZjk2M2M1YTljMzJmMDg3ZDFmNmQxMTZlZDk1OWI2NTU2NjNiOTBkZjljN2YwODkxOWJlY2UifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_75106f623a184bacaa6db716b412a9b9",
+      "statement": "validate_manifest enforces the hard rules protecting the signed form in fixed order: manifest must be a dict with format 'haap-public-manifest-v1' and an agent object; agent.fingerprint must match ^HF-[0-9a-f]{16}$; a recursive scan rejects any forbidden field (private_key/signature/nonce) at any depth with FORBIDDEN_FIELD and any float value anywhere with FLOAT_FORBIDDEN, running before endpoint checks so dedicated codes win; agent.endpoint must be http(s) with a host and no query, fragment, or URL credentials (ENDPOINT_INVALID). Validation never mutates the manifest because its canonical bytes must stay identical to what the agent signed.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/manifest.py#L1-L16",
+          "version": "repo-lines-v1:sha256:1e44951a8d08de6a3214909978474f4ca930d0871f8db8613648aab537716445:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhiMDg0YTlmMzc4MTI0YjJiMWE1MTU2M2JmM2MyMjQ0NGViN2ZmMzM2OTIwMTdkYTI4YjIxMzZhZTU2OTg3ZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzMDNlY2RkNGE0ZDEwZjE5YzczZmQ0MmZkMTI0MzdmZDMzNTRhODI2ODE2MDVkYTUyNTVhOTdhMzkwNjhkYmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU1YjZlODcwNmI0MzA0N2YyYTZkYjY3ZjEzMjYzODU5NTYwNGU2N2YzNjk2Njg3NmNlMDE1OGYwMDUzZTZiZDEifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/manifest.py#L30-L101",
+          "version": "repo-lines-v1:sha256:a43485edb1efa2419f9eb02a118b8229ed401624a26f0cef030b91aafb3da3dd:eyJzZWxlY3RlZExpbmVDb3VudCI6NzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU4MGUwMTFiNGMwZjZjZjk5NDRhNmZhMGFjYzJlOWI0NzVmZDk3NWQ4YmYyNWE2NTgxNzU5ODUzNjU0MzcwODIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdkN2ZhNWI1MDVlYTNlNWFiMTc0YjU4MDg2M2FkODlmYWNkYzIyMTM4NGY2NTBjZmZlNmJmMTFiOWM5MDI5ZjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIwM2FmNDJkNjlkYjUxNmM4MmU5ZTZjNWQyMjM1MDYyMTY2ZWZlMDk0NDA0N2Q2M2M5ODA0ZDBlZmNkNjA3NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e86dcb2b5e784f6aba18f73f21e9db53",
+      "statement": "errors.py's ERROR_STATUS dict is the master add-only contract: it maps every stable UPPER_SNAKE code to a fixed HTTP status (400/403/404/405/409/410/413/422/429/500/503) and is pre-seeded with the reserved L2/L3/L4 codes so the table stays complete as handlers are wired in. Codes are API — never renamed, never removed, add only. DirectoryError(code, message, retry_after) resolves the status from ERROR_STATUS, uses short generic default messages from _DEFAULT_MESSAGES, and to_wire(request_id) renders the envelope {\"error\": {\"code\", \"message\", \"request_id\"}}.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/errors.py#L1-L100",
+          "version": "repo-lines-v1:sha256:76e9bccfa55c044b6fa275f83ebdc97169a75e40bb67162ef20c92014ad058b6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI4YjA4NGE5ZjM3ODEyNGIyYjFhNTE1NjNiZjNjMjI0NDRlYjdmZjMzNjkyMDE3ZGEyOGIyMTM2YWU1Njk4N2VkIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJlNmIwNDQ5MTQ2OTcyMmU4MzYzYTk0ZTQwNDQ1MzhlMDEzYTJhMjE3ZTM2YjFlNTY4YmE2MGFjYjdiNGM4ZjJlIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIzYzhiNDYwZmZjNzYxMTI4ZDFmY2JmNzA1YjI2NjRkNzJkMzE5NTE0YjZjMTlkN2ExOGI4OTgxNjZhOGE5MmM1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_15b269a48ccc4838ac930c03e71a4fb6",
+      "statement": "Error messages never leak internals: handlers raise only stable codes with short generic messages, and any non-DirectoryError exception escaping an HTTP handler (do_POST or the _json_action wrapper) is converted to INTERNAL_ERROR (500) by the HTTP layer, with details confined to server logs. Body-size and parse failures are handled before business logic: bodies over config.max_body_bytes are rejected with PAYLOAD_TOO_LARGE before reading, malformed JSON with INVALID_JSON, and valid JSON that is not an object with INVALID_SCHEMA.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L193-L210",
+          "version": "repo-lines-v1:sha256:50e7d4785db2702007ca8f92e272635c4556e9cc0a8a0edb0e7aceb546471577:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY1ZmY3ZjYxYTg3MDZlNjE2NjU5NmFkN2Y1ZTQ0NWEzNjM5OGQ5Yjg5YjE0ZDllZDUyMzIwOWI4MGViMTQ0Y2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyYTM0NDc4ZDk5ZDEyYTg1OTgwYTZiMDMyMmQyZDg1NTk4N2FmMzFkMmJmY2YyYmZiMGVjM2UyOGNiNjAwMjUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjllYTMyOGI3OTIzNjY0MDJhNmM3NzFiYjFlMDE3ZjJiN2FlNDIyMTljNDhjYzc5ZWMwOTY3N2I3YzBkYTdiNGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlkY2FhMjE0NTU5ZDhiZmM3Mjc5MDQzNzYzNTI4NDQzNWQ5N2IxODMyNDhhZGNlNGIyOWU3NmE2YmMxNWRjZjkifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L448-L462",
+          "version": "repo-lines-v1:sha256:7aacbf58763d6e6665ed90e93c1462ff8e77cb7cae606d8a9a160948446c31de:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVhZDkzZDJiNGJhYTIxNWRhOGM1NWIxYTZlYWViODI2YzRmMDZjY2JmNzc0YjFlMjMwZTM2YTk5NjM5MmMzYTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYzNDM4Njk4MDFmODc5MDQ4ZGE4ZjgwNTQzOWEwZWI4MDk0MzRhODU4MDdlNGU5ZmU4NzAyZDhlZjllNTFlZjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUwZTY1OTQ3MzU5MDFmMTc3Y2I5YmM0YzI1NGEwMzY4YjgyODdiOTAyYmZjNGUxNjUwNjBmNjUwMjZiYmU2MTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgxYzNkMzFiMmRjMjlkZGMzNmM1MjAwOGY0YjI3YThhMDgyMzY2YmQ5MzIyZWM2NGVmOTAxMDI1NmY2M2JhY2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6fc94d0c4cdd44d287ca8dc8d21330bd",
+      "statement": "The directory key signs its own outputs with the same canonical form and conventions: legacy register responses add registry_signature (b64 Ed25519 over the ASCII challenge nonce) plus registry_fingerprint/directory_fingerprint, and audit responses and checkpoints are signed by the directory key over canonical_json of the response body, carried in the X-HAAP-Directory-Signature and X-HAAP-Directory-Fingerprint headers so consumers can detect rewrites of anything already seen.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/audit_service.py#L40-L58",
+          "version": "repo-lines-v1:sha256:ce15bd77dd1e329ce71a71c8f5b12ddb246afa3e8069d1c5dfdb071185724d40:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4OGJlYzEyODZmZDAyZmVhYWEwNDA4OWVmMDM2ZjMyOGI3OWE2YWE3OTIzNWUyYTUzNWM5Njk1ZTE3ZWFhNjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJjNWQ4NjliMTAwZWRmMTY1ZTQwYjhkN2FkZjc5ZTk2ZDM4OWM2YTEyZDE1MDI2YzJjZDU5NjcyYjlkZGRjNzgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3NWEyM2QyNDdmZjIwMjFkZjhkZTdkYjkwNGYyOTE3ZWE2ZTA4MDdmNmZiNWNjYjhkODhjMTE0OTE0ODlkNGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkxNmJlMDE1ZWI3ZDNjY2ZhMTE4ZTAxOTc0ZDIyYTY0MzZlM2Y0ZTUyOGQyODY0ZmEzNzM1YjhiZDc0MDc2MGIifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L160-L166",
+          "version": "repo-lines-v1:sha256:4dff09bfece92455275220b7621ff9dc43187428cff432fb84fca47c8936f57c:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTFiMmRjMDNmMzE3MTk1NWIxZTNkMGYwM2JlNGI3MzNlNGVmNzc2NmNmYTU0OTdjZmI0ZGQ4OWZlMGRlMjYxZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTU5ZWNkZmZhNDJjMzdkNzlkNjcxNWZhN2MwY2FkNGYzODNmYzk1YTI1ZDA1OTE3Mjk4MDM0Y2Y4ZmJjYTE2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWMyY2U0NjVjYzU0MGI3YWUzZmM3MGVjYWNhZWY3NDJjZmNhY2JmYmVjODE5MDNmOGRmZWYyNzYyNDdiZGY3MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzRlMWIxNGMzMmEwNWE1ZjYxZTk1OWFiMTI1OGYwMTAzNGYzYTU4YTA5M2ZkYzM3YzBmMzgyNjY4YzZmN2VkMCJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L483-L506",
+          "version": "repo-lines-v1:sha256:16906330f3aedbd6a45d108c50b7e79ff103e6ec3be2255bb2d6f1f9cb606e1c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg3MTM1ZTk0YzcwZTA4N2ZlMjA1MzEzNjZkNjlhZTczY2EyOTRkNGQ5YTNiZWI2ZTcwNzQ5OWZhZTViY2U5YzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkyNGQzYjg5ZTYxYWY4N2E3MDVlMjY5N2UyODRmZTM4YzNjYzY2NzViZTg5M2RmY2FmZWYyZTM3YWI5M2M4YzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwN2ZhNTQzOTEzMTJjYmM2NjJiN2NkNzUzOTE0N2JjMjkyNjY4OTk5ODk5Yjg4ODE3MjEyMTY2ZjhmZmRmZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFhYmE2YjQ5NzAzZWI1NmQ2ODFmNzA4NjQ2N2UxNzRjYjc1ZjA4ZjBmZTgwOTI2ZDQ0ZDg4YWFjOGIxY2QyMWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3b2ff2817b934541b0db0be1dab924b3",
+      "statement": "The tests/conftest.py Agent helper kit mirrors the wire signing conventions exactly and serves as the worked example: sign_manifest signs json.dumps(manifest, sort_keys=True, separators=(\",\", \":\"), ensure_ascii=False).encode('utf-8') with the agent key, sign_payload signs the canonical JSON of an arbitrary request object (the L2/L3/L4 subset shape), sign_nonce signs the ASCII nonce bytes for endpoint proof, and register_agent drives the full 3-step v1 registration flow using exactly those signatures.",
+      "evidence": [
+        {
+          "resource": "repo://tests/conftest.py#L166-L187",
+          "version": "repo-lines-v1:sha256:0958c93b04ed3aa2160fefd4a0b2dd59bd39c76f5f7eb940f0d98faeb7a7e8c5:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0YjJlNjZjOTg0ZWRmNTdmNWFlOGRhODAzZmIyMzY4MjAzODMyNDg1NTgyZTJkYzI4ZjAwYjBkNWNiYzAzMmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkzMWQxNzZlOTFjYmYwZWFjODlmMjZhNWMyZWM4NGJhMzY4NTgzNTk1YTU2NDUzZGE5M2UwZmM3ZWEwZjI5ZTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ1NDljYjcwYzhjNGIxYjQwNWJiMTE5ZGE5ZWM4MzY3MGY5ODJjOWU3NDMwM2ZkYzI0OGQzZTU4ZTAzZjBhMjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZjMWYwMmZkN2VjMWQ0NjJjMGNiODE4Yjk0OGZmZTRmNzE1YjJjMmM0MzI2MzBjMjMyZGZlMzRkNDI3NDNmYTkifQ"
+        },
+        {
+          "resource": "repo://tests/conftest.py#L99-L133",
+          "version": "repo-lines-v1:sha256:724052c044d44fa349902f5397bff59347c901d9d27487b8255059e282de0360:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMzMDQwZjkyMmM3NTFlZmQ5MjcyNWU1ZWFlYjhhMjVhZjlhZGRlM2JmNDkwZWVhNWY3YzYwMTY2ZjBkNmFmMTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI5MzM2YzZiYjA0NDE3ZDg5N2RlNDVmNjVjZTFjNDE1ZjllYWZkZDk4MTRiYTMxODcwZGJhMjI3YzQxZjRjZTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE1ZmM5MzFhOGViM2UyMmMwNGIzNmQyMmI5M2FjN2I1M2ZkMDkwNTlkYmU3NjdlMTAwMjEyOTQwNDYyZGNiNDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFkNWFmNjYzNjRiOWYxM2E5NjU2MGI0MTkwYzAxYTcwMzgzMTQ1Y2U1ODgwY2YwMjY0NDNkZTc3YTk2MDcxYmMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_db0389e0ff40456493b1b0b677902ec2",
+      "statement": "Manifest validation ordering and the float rule are normative because the whole manifest is signed and canonical-JSON-serialized: floats are forbidden anywhere in a manifest — including geo latitude/longitude, which must be integer micro-degrees, and prices, which must be numeric strings or integers — and this is enforced before endpoint checks (FLOAT_FORBIDDEN). The registration service additionally rejects manifests whose canonical bytes exceed config.max_manifest_bytes (default 256 KiB) with MANIFEST_TOO_LARGE and stores the canonical UTF-8 text, making the canonical form also the storage form.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/manifest.py#L63-L101",
+          "version": "repo-lines-v1:sha256:10af5d444e9651a4cf48b400c9b21821ca0c0b6d2c45738db944c714504eaea9:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5ZDJlNWM0NjU5ZmFkMGVlODBiMjAzYjBjYzg2NDlkODY3NjhjMjQ4MDc2YWIxYzA5MmU3NmYxOGUwN2ZhODUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdkN2ZhNWI1MDVlYTNlNWFiMTc0YjU4MDg2M2FkODlmYWNkYzIyMTM4NGY2NTBjZmZlNmJmMTFiOWM5MDI5ZjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJkYWM5M2VlNzcwZmVlNzlhODIyODk5MGM0NTdmNGY0MWQ4YzRmZTRjNzE4NjhlZDllNzQzOWEyZTM3MjE0NzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L84-L121",
+          "version": "repo-lines-v1:sha256:f7eb3bdacf35d601ffbd66c51a7f4eaf4187293552f94e418ce67fa3c884ccb7:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiN2ZlYzc4Y2Y3Y2M0MWUxYmYyZGVjYWY4NWZjYWI1MzBhNTI3OWNjYTkyODQ4OGQzNjdhMWEzOWMzZDY2NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkwY2NkNDhlMWM4MmY3ODhhZjRhODk2ZDlhYTRjYjI0ODI3YTMyNGI4NmJjYmI4YmRiZmIyOGMyYWNhZjBiZTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEwNmNhNjhmNzliY2E4YzhkMjJhYmYyYmJjY2Y4MjE2ODg2MWY2MTkzZTY2NTc5MzdiMzk2Y2VkOWQ4OGE4NzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjliNjVmNTEyYTNmMjFiN2FiZDg2ZDAwM2Y4MWFiM2I1NDFiM2YzODZhY2I4YjE1MDhhNjU2YjdlZGMxMTVlZWEifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-05T09:05:06.235Z"
+  }
+}

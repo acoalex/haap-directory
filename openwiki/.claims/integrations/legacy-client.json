@@ -1,0 +1,244 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:c7a5562d6dad26ff8cc24b6f6ad6111ebf0b2b0ad9f93a33fd11581041e83a01",
+  "claims": [
+    {
+      "id": "claim_2d4ac55bc6ba4c85bcc9437cc2111b2f",
+      "statement": "Keeping the unmodified haap client package working is a spec-mandated hard constraint, not a courtesy feature: objective O8 and SPEC §4.9 treat the legacy aliases as a hard requirement, §6.3 fixes the contract as 'the haap client + its full unmodified test suite MUST keep working against this directory unmodified', and the authoritative route table is the haap repo's tests/test_registry_client.py, which must stay green unchanged in every phase from F1 on — so a change that alters legacy route semantics or canonical serialization is breaking and must not ship.",
+      "evidence": [
+        {
+          "resource": "repo://docs/SPEC.md#L1068-L1080",
+          "version": "repo-lines-v1:sha256:593b797b60b3883d877711df6088b7c9b2c90a66d29962bf149e50bd200edd44:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBhNTgzYWZkN2I5YTQ0ODQzNWQ5NWY2ZDA5YWJjYTI2ZTE0M2NjODg1M2NjYmM4ZGY5NDExZTkyMzRjMWIwYjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA2ZTg3NGVkMjI1ZTQ3ZTNhMDZlMzMwMTlmYTA1OWI0MGUwYTBiMzkyYTZiOTZmNTBiZWZjZWNiYTY0YzJhOTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFkZGRjMmE5ZGY3NmJkMjU4MDBmODQyZmY1Y2FiNmYxNzdlZGZkYTBlZjNhM2RjODlmY2ZmMmU5NTRhNTQzZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVlMTQ5N2IzY2EwNDIzZWVkZTUyMzFhZWFmZWEwNzcwMTdiNzhlMmZjNzIzNzllMWJhNGFiNTE3MzVmMGMzZDEifQ"
+        },
+        {
+          "resource": "repo://docs/SPEC.md#L75-L75",
+          "version": "repo-lines-v1:sha256:8c1e199824edfe00898efb0379949bcaea18a83392340b2dd086d0ff0ebfbf10:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGMxZTE5OTgyNGVkZmUwMDg5OGVmYjAzNzk5NDliY2FlYTE4YTgzMzkyMzQwYjJkZDA4NmQwZmYwZWJmYmYxMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGMxZTE5OTgyNGVkZmUwMDg5OGVmYjAzNzk5NDliY2FlYTE4YTgzMzkyMzQwYjJkZDA4NmQwZmYwZWJmYmYxMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmU4ODhiYTdlNGJkYTVhOWRhMWU4YzZkZWJiY2JlN2RhMGVlY2E3ZjY0NTFkOTQ5MWFmNzA0NTA4MjhhZWQ4NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWNiNGU0NGEyNjdlN2FlOGQ2ZmU5MTc2OWRkNTIzZTFhMzhmOGUyNTE4NjIyOGI5OGEwMDc2NDFlZTJmY2NhNiJ9"
+        },
+        {
+          "resource": "repo://docs/SPEC.md#L762-L774",
+          "version": "repo-lines-v1:sha256:2fdfb268e7ef702154c3c56e2ba51831866e4b26ba48fa94b9b94d351b21d3dd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxOGJjNzhmMGQwM2RmNjZhYWY4MTFiNmI3MTM2ZjM5MDI4ZmNiZTU3NmViZTMwMjY0MmZmOTNkYzk5NWJkZWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzMDlmZDUyYWQwNzcwYmVjNjc0MDBlMjVjY2M3NmEyMjdmNzA4OGJmN2QwNWMyY2VlZGVhYzJiZmQzYzI3MzciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUyNjI2ZDQwMzkzZDE4ZWFmZDBmYWZmMTYyOWViZTU0NWRlYWI4MjcwNzYwZjBmYThmMjUyODBkODVjNGM1YmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdmYWFlNmFjOGY4YjU2ZDk4ZTZjOTNkMDljNzgwNzIzODc2MjM1MTY5ODlhMjg1MzBlMDM3YTdmMjQ5MTI0ZjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3b29b7a404a34beeb4d9b7a972d94a1f",
+      "statement": "The legacy surface is exactly five aliases — POST /register, POST /register/complete, POST /heartbeat, GET /search, GET /agents/{fp} — plus the shared unversioned GET /health; each alias dispatches to the same handler method as its /v1 twin with a versioned boolean that changes only HTTP status and response serialization, never validation or service semantics, and one fingerprint regex accepts both the prefixed and bare /agents/{fp} paths.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L2-L16",
+          "version": "repo-lines-v1:sha256:c07e788bab6f21703385dc33130885727388720ea005b0b12a10abf1dc6f05ab:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1MzI3MDcwYTNiMDU4MjRiMWI1NTBkY2FiZDI0MWYwMjlhMGI0MTk2NThlM2UzNDFlZDg2NDcxYjEzZWQzNzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzMDNlY2RkNGE0ZDEwZjE5YzczZmQ0MmZkMTI0MzdmZDMzNTRhODI2ODE2MDVkYTUyNTVhOTdhMzkwNjhkYmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjoxLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhiMDg0YTlmMzc4MTI0YjJiMWE1MTU2M2JmM2MyMjQ0NGViN2ZmMzM2OTIwMTdkYTI4YjIxMzZhZTU2OTg3ZWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU1YjZlODcwNmI0MzA0N2YyYTZkYjY3ZjEzMjYzODU5NTYwNGU2N2YzNjk2Njg3NmNlMDE1OGYwMDUzZTZiZDEifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L249-L254",
+          "version": "repo-lines-v1:sha256:80e9b4f97e5b6cc1df1f06007cf5fbb93aee078f54765b6a61de06d77cbea33b:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2M2YmQxYTVkMGE4OWY2ZDI3OTBjMjY4ZThkNWRhMGNkYWU5YjMyOTA3MWIxZDM5MTZiMGRmYTRmZmI4Njc4YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTJkNjU5OTRjNzM4M2ZhOGY1NzkyNjliMDRiZGY1NzY3ZDQyMWI3ZjJkNTQ4YWJkNzBlMWUzNTdmNGNkNzliMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjExNTQwMGU3NGI2YzVkZjM5N2JlZjNlYWIzZDBjZGI0ZDBiZGIzMDRkNTRkZGQ3ZTI4YTc5ZGY2YTJhYjlkMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDRkNGE3OGI0ZjllMGE4MjM1ZTk2NmIwZTY2NjMyNzBiZGVjY2JjODkzZjRlOThkNzk2NDNkZjBhZDIwMDNmNyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L37-L47",
+          "version": "repo-lines-v1:sha256:1764f24415b5db64ea9471a26586820bde1b62617f60a897a19cfc18269136b9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdiNzY4MjBkYmYyMmI4MDE2NTk4NmU5NTNhNDVmZGI0NzE1ZGY1YzQyNzc5MGI2ZjI0YzJkNTI3N2U1MWIxMzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkMzllN2NkNWJjODZlY2FiNzUwMjkyNDVhZjg2MzQyZWE5YjE0NjQxMDdjNGNmMjNmYjRlNzYyMmExZTc2ZTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjEyZTljNTZjMjFkMDAwNjcyNDIzNDZiZWM3NGNiMzQ3NDA3OGE0ZDllODkzNGM3ZDM0ZGU3N2ZkNTE1NmRjNTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkwMGNjZDMyMzdmNzZhYzEwZTBhM2Q0YmE5NWMxNTJhNWNhN2ExZTRiMDA1NWQzMGIzYjkzNzU2NTE2NThiMTkifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L381-L394",
+          "version": "repo-lines-v1:sha256:bcbf71b645def13fa34157abd4c6e3b4ea92e9c96940b8051033f278e1a81e48:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5ZDBhNjRkNzJhM2YyNGI3NTg0MWVkMTE3ZDZiMzA1Yjk0MGRkZWIyNTY3MjFhZDA5ZWFmODU3NjM5MWU4OGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0ZDZmMzY3OTRjMzVmZmRkNmE0MWE1MzFmZGQ2M2MyMDFiMjMzNWE4M2VjNGYzYWJiZGQ5ZThjMWM2NzM4ZmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI5Y2I1MTFmNDM3YmM0M2VjYzA3NzkxMzVkYjFjN2E2MTMxNzBiMDQyNTI0YWY3NDFiYWVhOWJkZWQ5OWQ2YzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE0MmUyOTk0MGJkODgwMDg5MTQ5MDU3NThiNzRjZTQyNDdiMjVlYzk2MjBmNzhlMWM5ZGM3M2M5OTk0MmFjZTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_601cf1be76924023a42b53fd13b063ba",
+      "statement": "/v1/register/challenge is additionally tolerated as an alias of the register-completion handler alongside /v1/register/complete and the legacy /register/complete, and /health advertises the canonical completion route in api.completion_route so clients can discover which alias this server accepts.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L387-L394",
+          "version": "repo-lines-v1:sha256:1f0b2366bf4c6acaa721c0aeebc177e36f26adba36c5dee1f477294d106047e3:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjdlMzk1NDQ4ZDg2ZGUxNzAxYTRlMTcyNTFhNzJkYWUwZGIwNzA0ZDVlYzA1YmMzYzRiZTUzZWNkYzkyNGRhYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTRkNmYzNjc5NGMzNWZmZGQ2YTQxYTUzMWZkZDYzYzIwMWIyMzM1YTgzZWM0ZjNhYmJkZDllOGMxYzY3MzhmYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDU1OTJiNzYxYWE1MTU5YWQzNGMwYzc0NzYxODJkM2JjYjBjN2QwZDIxYTAyMTc3MDE3MjgzZWMwMThkMTI5ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTQyZTI5OTQwYmQ4ODAwODkxNDkwNTc1OGI3NGNlNDI0N2IyNWVjOTYyMGY3OGUxYzlkYzczYzk5OTQyYWNlMiJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L319-L333",
+          "version": "repo-lines-v1:sha256:9552727dcea5c7912b578b632db3603e6581e3bb93b102f6a41a98ef27904700:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhMTk2MWU4ODE1OTM4ZjgxYWI2MDRhNTBlNGI4NmZkYzU3YTdkNWI2ZTVmYjk5Y2NiOGFjNDZhNGY4Njg3NDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhiYWMxZjdjN2VhNjVjYzI3MjMyYmJhY2RkMjFkYjJhMzFkZTI1YzNhN2E4OGNhNmIzNTQ5MWVjMGRmNjU0NjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdhNjJmZWM1ODUzNWVmZTZhMjkzMjkxYzExODk2MGNiMGEyODJlY2I4M2ZjMmUyNTc1NTRjZjJjYTJmM2Y1MGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_80888324ab3b4d818eed175f32f3eaa6",
+      "statement": "POST /register (legacy) takes the same {manifest, public_key_b64, manifest_signature} body as POST /v1/register and answers 200 (v1: 202) with the legacy challenge envelope {challenge_nonce, nonce, challenge_id, registry_fingerprint, directory_fingerprint, registry_signature, expires_at}, where registry_signature is the base64 Ed25519 signature of the directory key over the ASCII challenge nonce and challenge_nonce — the only field the unmodified client reads — is the same nonce whose bytes the agent signs for the endpoint proof; the v1 shape adds algorithm and ttl_seconds instead.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L483-L506",
+          "version": "repo-lines-v1:sha256:16906330f3aedbd6a45d108c50b7e79ff103e6ec3be2255bb2d6f1f9cb606e1c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg3MTM1ZTk0YzcwZTA4N2ZlMjA1MzEzNjZkNjlhZTczY2EyOTRkNGQ5YTNiZWI2ZTcwNzQ5OWZhZTViY2U5YzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkyNGQzYjg5ZTYxYWY4N2E3MDVlMjY5N2UyODRmZTM4YzNjYzY2NzViZTg5M2RmY2FmZWYyZTM3YWI5M2M4YzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwN2ZhNTQzOTEzMTJjYmM2NjJiN2NkNzUzOTE0N2JjMjkyNjY4OTk5ODk5Yjg4ODE3MjEyMTY2ZjhmZmRmZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFhYmE2YjQ5NzAzZWI1NmQ2ODFmNzA4NjQ2N2UxNzRjYjc1ZjA4ZjBmZTgwOTI2ZDQ0ZDg4YWFjOGIxY2QyMWMifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/keystore.py#L1-L8",
+          "version": "repo-lines-v1:sha256:497e73fbdbb35467329ca67e4d830553fc505d8831c80609d9d075990e962857:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGIwODRhOWYzNzgxMjRiMmIxYTUxNTYzYmYzYzIyNDQ0ZWI3ZmYzMzY5MjAxN2RhMjhiMjEzNmFlNTY5ODdlZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTMwM2VjZGQ0YTRkMTBmMTljNzNmZDQyZmQxMjQzN2ZkMzM1NGE4MjY4MTYwNWRhNTI1NWE5N2EzOTA2OGRiYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTViNmU4NzA2YjQzMDQ3ZjJhNmRiNjdmMTMyNjM4NTk1NjA0ZTY3ZjM2OTY2ODc2Y2UwMTU4ZjAwNTNlNmJkMSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L110-L132",
+          "version": "repo-lines-v1:sha256:227c63e2d40d5f047e7f59bc40c269a389d12dc85d57624babf1226daf0c4019:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5YTM1MDg2Mzc1MzMyYmY0ZWYyODQxZDliY2M2NWZkMjkxYjhiZDAzNmQ2NWRkN2JkYzhhYjZjNWJjOWRjZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdlODMxZGE2YjVhODI3NzhmNGM4YjVhYmRkNjYyMDg0NTkxYzMyN2U1MTBmZTg5NDU2M2RkZjY0MzM5YTRhMzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRiOTlhY2I0NmJjM2ExODJkMjRmMTQxMDkzZDA3Zjg2MTYyMTg1ZWI1ODJkY2VkN2M5ZGM1NWI4ZmM1ODUyOTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fa8d6a4118b94fcfaab869935e5dd717",
+      "statement": "Legacy POST /register/complete works without a challenge_id: complete_registration falls back to store.latest_pending_challenge(fingerprint), the most recent unused pending endpoint challenge, while keeping the v1 single-use, expiry, fingerprint-match and bound-key checks and the endpoint proof over the challenge nonce identical; the legacy alias answers 200 (v1: 201) with {status: 'registered', agent_url, expires_at, directory_fingerprint, ttl_seconds}, the status field the unmodified client's register() asserts.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L508-L518",
+          "version": "repo-lines-v1:sha256:aca589887f0c82a673374b52e8fabde98e522b7a46ab35799adf6e9ef6179db3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMwYjAwZjg0NDQ5ODRmNzY4NTZiOTkxMmNiYTI1MzA4YmU2MzZiYjdiODQ0MzU1YTZjOWE3ZmQxNmIwYTA3ODQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjczYzUxNTA3ZDVjYzQ2OTljOGY5MGUzNTMyZDVkODViOGZkZmEzNDhkOWE2MmIzNzM4ZjBiZTFjYTdmODQyMjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjEzMTM5NjE5Nzg0MThlMzExNWI4OWIxN2FkZTM4MDM4MGUyZDFiZDlkMGQzZmJhZTRmNjQyMzI0ZGJiYzMxMWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjczY2IxNGE1YTViNzVhYTk3MWMxMTk3YTQ1MTBlNzM3MDBlMjZmOTk2ZDRjYzg5NmI1OTQwMGJiY2JlZThkODIifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L141-L159",
+          "version": "repo-lines-v1:sha256:9e21eceb7d0cc4c4b6e225e2b3a56a47cff0071294f84a308e01373b36e2d680:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhMjgwMGNjNDIxN2FjNzUyNDJkMjNkMjU2ZGEwMzI1ZmViZDJkMTcwMDExNjQyN2E1Mzk3ZGI0OWM2ZTNiODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmMDg3MGZkYzc2ZGFhNTkzODdlY2NhMDI5ZWE3MDM2Yjk4ZWE2Nzc1ZWFkMTE2NjAyNjRmNjIwMjQ1OWFiMDYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlmNTQyNDg2MGFmZDc3MzQxNWYyZTY0YTExNDAwYzE2MDY1ZTNjZDUzYWI5MjIyZWE2NmYyODUwZDRmMWUxZjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgwYzg4NWE4MWE3ZDZjN2RiZTQ2OGVmZGI1NjE0NzVlZjNiMmRiYzQ4OGY3ZDdiMzY5ZDhmYTlmNDBiMDc5NWMifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L357-L365",
+          "version": "repo-lines-v1:sha256:95074fe42a77cec83d09a7daf0a7f96018910adf5b5fe9e7453a272ad8ecc436:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGVjMTg3YmYwMWY5NGZjOTkzZmYzYWY1NjM5ZjAxMmI3YmIyYTljMjU4MGQ1YzNkYjMyNDNkZGY5MzY5MDQxZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzhmNDU1YWJkNGNhYTFlOTk2NzQ1ZWQ0MDRlMzRjZDhlMDgyZWEwYWNlYTgxZTg5ZWVmY2JlMjNlYTA2MDJmMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGFlZWQ3MTYwNWY3OTU1YjFiODA2YWE4ZTZkNTQwMDU0ZGEwNzFkYjM5MWMxN2EwNGMzMmIwOTNhYjliYzBmMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDA1NTBjMjhkYzE0MDllYjQwNWM1MzRjOGUxNDQ0ZWNhOWM1NGEzMjRlZjdiZGJkMjM4NjUyMjE2MDA0YWY0YSJ9"
+        },
+        {
+          "resource": "repo://tests/test_compat_client.py#L56-L62",
+          "version": "repo-lines-v1:sha256:2f5ecf08ae3c590671f8eebc7b8cceb4fcd6e514f4da0a048744be6edba55289:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmNiNDljOTU2OTczNzE4Y2VhNDEyYmE4ZGQzNTlmYjc1ZjY5OTUyMzFiMGRlOTE5ODUzZDE1YjM2YmQ5OTgyYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjE2Y2QzMTI4Nzg4MjM5ZjM2ZGRmMzI3NjQ0NWJmMGUzOTVmODM1YTJhY2E5N2U4ZDk0MTdmOWNhMzBlYWNjZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjdmM2M5ZWRhYThiNTE2YzNlOTBkMTlmNTc0ODIwY2I4ZDMwZmQ0MjQzZWI0NjEwMTM2OGQ1YzE2ZDM2MjdhYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGFjY2NjMzEyMmFhZTQwYWFmYjZhMGY1M2ZmODdkZDJhMTVhOGI1YzA0YjIxMGQ3ODQyYmJhNTE0Y2U1NWFmOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_bd463287ad9e42edb2a812f1b7b6325b",
+      "statement": "The unsigned legacy heartbeat is honored only on the alias route: _handle_heartbeat forces the signed heartbeat_v1 verification whenever the path is /v1/heartbeat or the body carries signature and timestamp, so only an unsigned {fingerprint} body on POST /heartbeat reaches heartbeat_legacy, which renews through the same store.heartbeat write path flagged legacy=True and therefore appends the audit event heartbeat.legacy_unsigned instead of heartbeat.ok; success answers 200 {status: 'ok'} (the client's heartbeat() returns True) and an unknown or expired fingerprint answers 404 UNKNOWN_OR_EXPIRED.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L520-L537",
+          "version": "repo-lines-v1:sha256:804c84d8b6e0485c283df43ca4030dc39cdfc9b52b4e9807f57817df7afdd21c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJlZDYzZWRiZTUxY2RiNDY3YzlhODI0MWI0ODI2OTIxMzE4YzI5ZTkzY2JhMmQxYWRhYTJmMGQzMjU4NmMwZTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY5NzVlYTZjNDgzOTAwYmFiMjA1YTM2ZjUyMGNmNjVlMDM1ODE0OGZjZDMyYjdiMzVhYjBmODVkNzcxMTE0NDAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU3YWMzZWY4ZDJjYWY5M2U4MjVlYjA2YTRmOGU5OGJlZWI5NDQyNGEwNzcwOGU1ZDRmYjhkMGEzODI3ZGFlMzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEyODgyZWE2MTAyMDc3ZGE4ZmNlOTVkYmE4YWZjZmJlYmNhZWU1NmRlNzU1ZjA5NjhjYTVjZmNiOWIxNjQ1ZjkifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L219-L222",
+          "version": "repo-lines-v1:sha256:ce4d4d4890a11bc1025ad492ee32a2dedbf478ee835007f9350550f64e2716d9:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTMyYzNhMmZiOTIwOTNkZjM0NmY0MjQ2YjJkZDE0ZWVhOGY4ZWQzYzkwZWVkNzFmNzUzNGU0MjA3NmQ5MWE4MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMGNiYTIzMmJhN2RhYmU5YmQ1OGQ2MDkzZmE4MzBjZTU4MWQxNTU1YmY4MjY3ZWM3ZThiMzVhM2VjZjkxNWUwNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjk1YzZmODMxNjRlODA4MDU0NjQzZGMzOTRmYWY4Njc4NDM2YTA5MTgyYWE4OTk5M2ExZDdkZmJjMmE3NjIwYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDM0ZWQ1MTNhOGNkNzk1MzM3YjhmMWYxNWE5NDI2OTZiMjIxYjk4NGMyZDMzYTdhNDNiZmE3Y2M4ZDFhMWFiYyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/store.py#L490-L521",
+          "version": "repo-lines-v1:sha256:7cdd2af77cd85aa1a892d71760d980dc6b0f2a22f23758923a962cbafbda6fe8:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhYWM2MTQ2NGRiODI4ZDMzYWEzNjhmYzY1YmY4OTk0ZDkwNDU2ZmM3MWFkOTk1MmQ0YmU2OWYyOTMwMTNiMTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3ZjU3YTNjODdlNWQ0Zjk4ZTBjNzE5M2JmNTZkNzcwNmMzMDcxZDA4ZDA2ZGE4ZDg5MmQ4NWNkYTkyM2U3YzQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU1ZGViNjE0ZTI3MzVlMDFjMmU5MmY4ZmNkNjk3YzVmOGVhMzdjOGNiNDAxODVlMjk5NTllNmZjOGZjNDlmODAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk5ZWQxODJlNTYyYjVmMzNiYTYyODE0NGRjOGEyYjBiMjJjYzM4NTE4NWFiNmY0NWE5YzUzM2I3MjdjYTM2Y2UifQ"
+        },
+        {
+          "resource": "repo://tests/test_compat_client.py#L64-L65",
+          "version": "repo-lines-v1:sha256:7463f469c48695b1f8b25e89658962185c7c02ab9b79b331de4f36f1b7058b5c:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTEwZTRiYzgyMjhkMjY5NDg2ZDljMWMzYTlhMTkwMzdmZGUyMjQxOTU1N2QzYThmNzJhNjBlZGQ4MDhjMjMwMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzBkYWUyN2Q1MGI0ZmI0OGVlNzE2OThkOGJjZWIwNjNiODFjOTczMWQ2ZmFjZjBmMWQwZjY4NGU5YzNmMzdmYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmRiY2I2NWY5YjNlZWIwMzMwZGJmNmU5ZDRkYjFlYzVlZDc1OWI1ZWY0YmNhZTRkMDYwM2ZiYmQwZjk3Y2QxYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2MwYjRmZDQxYzI2NjU3YmFhZGE4YTMzN2VjMTBmNDcxNThmYmFiMjIwMTMzZjY5OWQxYzg2NzNiYzMwOWZjMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e47a0748c64e408d9a795844e2239ae9",
+      "statement": "GET /search (legacy) answers {results: [bare manifests]} built from DirectoryService.search's bare-manifest projection of the identical matching, trust filtering and pagination that v1 serializes with per-result trust blocks plus total, limit, offset and directory_fingerprint, so legacy consumers read manifest fields such as agent.fingerprint and agent.endpoint directly off each result; /search and /v1/search also share the same per-IP search token bucket and the same SearchQuery parameters.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L249-L254",
+          "version": "repo-lines-v1:sha256:80e9b4f97e5b6cc1df1f06007cf5fbb93aee078f54765b6a61de06d77cbea33b:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2M2YmQxYTVkMGE4OWY2ZDI3OTBjMjY4ZThkNWRhMGNkYWU5YjMyOTA3MWIxZDM5MTZiMGRmYTRmZmI4Njc4YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTJkNjU5OTRjNzM4M2ZhOGY1NzkyNjliMDRiZGY1NzY3ZDQyMWI3ZjJkNTQ4YWJkNzBlMWUzNTdmNGNkNzliMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjExNTQwMGU3NGI2YzVkZjM5N2JlZjNlYWIzZDBjZGI0ZDBiZGIzMDRkNTRkZGQ3ZTI4YTc5ZGY2YTJhYjlkMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDRkNGE3OGI0ZjllMGE4MjM1ZTk2NmIwZTY2NjMyNzBiZGVjY2JjODkzZjRlOThkNzk2NDNkZjBhZDIwMDNmNyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L304-L339",
+          "version": "repo-lines-v1:sha256:5c2f034ecca001d105d188be46f98d2e088e80a4c8f5a11a6d55f678d7a3ebfd:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNiZDY2M2U2OTBlMzViN2ZkNGNiMDE0MGM1MDcwOTVkNzI2ODNjNTE3MGM2ZjY4NGRmN2I1OTUwYmJhNzkwNTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5MmYwNjcyZmI5MWU1NDJhZThmNzBjY2IyNzZkYzdkZWQ2MWMzODE4Y2JiZTMxMjliMDFlOWZjZjI5MjcwNjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU3NWRhNmYzNDEzOTQxYTg1MjVhNWZiZGYwYWY1ZGYzYjIzY2I5MWNmMzA0ZDVmNzUzOGM3MGRiMTAyMzVmNjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA2NWU0MDRjZTY1MTNkOGFjNzhkMWNjYzIzYjJkZjZkZjAyNmQ3Yzc0NjkwMzZmMDBhNDZmNDBhYzM0MDhhNTMifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L239-L246",
+          "version": "repo-lines-v1:sha256:9d2e497698f16b0b84a774874e3a454fe4be86005ce7f2d1f869d0cd49d23ea0:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTM5ZWIxNTE1ZTgyMTU0ZjkyN2QwOWQ3M2Q2OTNjNTIyMzkyYzM5MWVjMDAyZWFkYjdmZjRkZGY2MzVjZjJkMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTZiMDQ0OTE0Njk3MjJlODM2M2E5NGU0MDQ0NTM4ZTAxM2EyYTIxN2UzNmIxZTU2OGJhNjBhY2I3YjRjOGYyZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjAxOTkzZGQ1NjlhZDM2MDQ1Mzc4ZDlhMDI5NjgzODNmMGE3NzExMmZkYTc3ZDJmZTc1OWY3MjZkOTE5NmJlOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjA2NDM4OTA5N2Y4MmViYTQ5OTY1NDEzOGJhNjg3ZjM2YTNiM2MwNTc0OGU5MGE0YzllNzQxMDYwN2Q3OWY5OSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_47f81216b9b64512894fa653ba544200",
+      "statement": "GET /agents/{fp} (legacy, no /v1 prefix) serializes the agent's bare manifest — data['manifest'] — where /v1/agents/{fp} returns the full {manifest, trust} object, and both surfaces share the same AGENT_NOT_FOUND (never registered) and AGENT_NOT_LISTED (suspended or expired) 404 errors from the service layer.",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L341-L348",
+          "version": "repo-lines-v1:sha256:3ba1b2f51dac54a4e69d2b2cae5285b1c18a03fadbb637be583ddec75d8bc0fa:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmQ2NTAxMDg1MmUyOWZlYjY0MGE5MDRkYzQ5YjY4ZTgzZmViMDM4NTIzZTAyOWE5NjM0NGMwOTFmOWQ1ZGIxMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjYzOThjZDQxY2ExMTQ4MTRlNDlmNDg1ZjczMDc2ZTQ3ZWU5MjE2ZTM2NTc2MmExYTE4MzYzMWQ2MWQ2NmZlOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzcwZWZiZDEwYjg5ZWQxYzUyNTk4ZDBiY2M5NGE1YzdkN2RiMjhmZDFjMjcwY2FiY2NkYjUyZGQyMjA1NjA4OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDViN2M0MzEyYjhjMDA2ZDcxZmEyNjRlNjZmNmU5NGMxOTc3ZDlmMjI3MGFmYmE1M2U1ODI2YmZjMzg3Yjg2NyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L248-L255",
+          "version": "repo-lines-v1:sha256:a01d5aadfe5a7461464e818ddfebf86e70dda408a61d1f632968811f5e498772:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTk4MzhlMDIzNzU2NzI3M2U4YzYxYTQ2YWE0N2Y0YmIzNDQ1YjA2ZTRjM2MxNjZlYmQ4NWYwMzY2ZTg4NWM4MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWNkZmU1YmZiNjNhZjk3YTU5Mjc1NGVjMDkzZjAyZWVmMTU5ODY1NGNkMWY1ZTcxYmQ2ZjYyN2M0NjgxZGMwNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzUxZDEyNzIzY2IwNjg3ODQ0NGIzMDhiMmNlMGI5ODNiYTI4NzZhMmNmOWIzMDgxMTk4ZTNhZTk5ZjcwNzA0MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjQ5ZDc1ODJhYTMyODBhZDhkNDc5OGRkMTY0NmRhNzY0MDE4NjU0YWE0NjU4N2RjYzAzN2Y5ZjFmNzIwMjhjMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_45f6f7eae0f94d40a91e223140e60b0c",
+      "statement": "Canonical JSON is vendored in src/haap_directory/canonical.py byte-for-byte identical to the haap client's form — json.dumps(obj, sort_keys=True, separators=(\",\", \":\"), ensure_ascii=False).encode('utf-8') — because the directory verifies client-signed manifests over canonical bytes it recomputes itself, so any deviation breaks Ed25519 signature verification; vendoring rather than importing from haap removes any hard import dependency on the client package, and the runtime dependency list is only cryptography.",
+      "evidence": [
+        {
+          "resource": "repo://docs/SPEC.md#L1080-L1080",
+          "version": "repo-lines-v1:sha256:06e874ed225e47e3a06e33019fa059b40e0a0b392a6b96f50befcecba64c2a96:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDZlODc0ZWQyMjVlNDdlM2EwNmUzMzAxOWZhMDU5YjQwZTBhMGIzOTJhNmI5NmY1MGJlZmNlY2JhNjRjMmE5NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDZlODc0ZWQyMjVlNDdlM2EwNmUzMzAxOWZhMDU5YjQwZTBhMGIzOTJhNmI5NmY1MGJlZmNlY2JhNjRjMmE5NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjFhMDBiYTUyMDEwOGYzMGVmMTI4MWY0Y2RiYTNmZDhkMDM1ZjhiMDRiZmY1MWJmNmNlOGMxNTUyMWFmMDZhOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWUxNDk3YjNjYTA0MjNlZWRlNTIzMWFlYWZlYTA3NzAxN2I3OGUyZmM3MjM3OWUxYmE0YWI1MTczNWYwYzNkMSJ9"
+        },
+        {
+          "resource": "repo://pyproject.toml#L13-L17",
+          "version": "repo-lines-v1:sha256:ef05bb13164742ef97938830b8d898430eed5ccc7dc680a48fd5153c23005732:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTRmZWU1ODU4MGY2MDA3ZDgwMmM4MjBkYWVkMTJmM2YxYmJmNjc4ZTAwZGFlNjUwMTFhN2E4ZTYzNDg0OWMxZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjk0MTZlMDlmNzhiYTMxNmMwMzI1NjgyMTNiODU1ZWU3NTZlNDE1NjVkOTE4ZjA5NTE5YzgxZmQ2MjBmNDA2MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDcxYzRjMTkwMjgzZjk0NTUxNjgyODYzNTBhNWJlNzJhMzMwNmE1M2E2Nzc0MWJlZTFlOTZjYWFhYzZlODVhZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmQ3Zjg3NDAzMGJjY2U0MWRmNGYyNDg0ZmY3MGM1MjMyZTgyMjBmYjQzYWEwMjdjYWQzMGFiNzJjZWFlNGY3MSJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/canonical.py#L1-L31",
+          "version": "repo-lines-v1:sha256:2f09ccf7b5dba5344cde7aae05da88d1226aa36a8722b841bae94a2ae5886184:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhiMDg0YTlmMzc4MTI0YjJiMWE1MTU2M2JmM2MyMjQ0NGViN2ZmMzM2OTIwMTdkYTI4YjIxMzZhZTU2OTg3ZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhjMjE2Njg0OTFmMDk3MzYzMDMxZWNhYmMxYjIxODVlODEzMTkxYWQ1M2YxMzBkN2NhNWVkOTc1ZDYwY2UxNzQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/service.py#L83-L101",
+          "version": "repo-lines-v1:sha256:25ffd1a4ce7925395b8987cb0fff17e71b381393c843c1caceca26d9cf816779:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYyY2UyOWY5ZmYxMjllYzRlYmQxNDc1ZjAxODIwN2NkMmI2Y2YxMzFmYjNjYzE3MjBkZWIxNThkMzIzODE3NmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQzNjM2MGI2MzQyOGQwM2U3MzcyYzA3ZGNmMTRhZDU2ZGU1NjE5ZjcxNGI3Njg5NDdiYzAxY2FmMTlkMjkyYTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI2ZDAzMWQyYjMwYTYxZDRlYzVkYWM3MWIwZjQwYThjNzk4NGUyNTdiMWE1NTM0Y2Y2YWQxZjYwZTAwYTgyYTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE5OTQxMjA2Njg2OWFkMDlhNDZlOWU2Nzc3YjlhNjM0ZmMwNjU2ZjQ3MDVhZjlmM2NmYjZjMzMyMmU3YTUyZGUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3c83cb0c5d7d407aa338032deffa200e",
+      "statement": "Legacy and v1 routes share transport and rejection contracts: every rejection on any route uses the stable {\"error\": {code, message, request_id}} envelope from errors.py backed by the add-only §4.10 master table, all responses echo or mint X-Request-Id, and the legacy aliases sit behind the same per-IP token buckets as their v1 twins (register bucket for POST /register, search bucket for GET /search).",
+      "evidence": [
+        {
+          "resource": "repo://src/haap_directory/errors.py#L1-L11",
+          "version": "repo-lines-v1:sha256:acff29f95fb7df1b59f77b18046a0cb272e6f7cc2af17ad92f3f75735186503f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhiMDg0YTlmMzc4MTI0YjJiMWE1MTU2M2JmM2MyMjQ0NGViN2ZmMzM2OTIwMTdkYTI4YjIxMzZhZTU2OTg3ZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzMDNlY2RkNGE0ZDEwZjE5YzczZmQ0MmZkMTI0MzdmZDMzNTRhODI2ODE2MDVkYTUyNTVhOTdhMzkwNjhkYmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU1YjZlODcwNmI0MzA0N2YyYTZkYjY3ZjEzMjYzODU5NTYwNGU2N2YzNjk2Njg3NmNlMDE1OGYwMDUzZTZiZDEifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L146-L173",
+          "version": "repo-lines-v1:sha256:335495450ad957285f305ca190a8535bf0b5fc22ce5767d2846fed9a6cd6993e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxMTg2YjQ4NmNjNGRlZTM5MzI1ZjA2NTI3MDU5ZjRjYjYzMWE0ZTM3NWEyMjM4Y2YwNmQxNGVmZTFkN2I2YmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFjNDMxZThkNTMzMGQzM2IwMGVhZTg4MWMyYWVjMThhNjQwZDMzZDIzMTc4MzBkMTE4ODZlOThiZmE5YzhlZmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA2Yjg4OGJlMWM5YTQwYTRkYjAyZTc2YmJkNTU5ZDc3YWRjM2JjYmExNTEyMjQyNDc4Y2Y0MzJiYzFkODkzOGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU0NjM2YzYwOTY5OTEwZTRlNWQzMzE0NmEzOGFlZDgyNTgxMTBjYzAxNDI1OTEwOGZhZjc0ODRlYjMwYzZhNDEifQ"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L249-L254",
+          "version": "repo-lines-v1:sha256:80e9b4f97e5b6cc1df1f06007cf5fbb93aee078f54765b6a61de06d77cbea33b:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2M2YmQxYTVkMGE4OWY2ZDI3OTBjMjY4ZThkNWRhMGNkYWU5YjMyOTA3MWIxZDM5MTZiMGRmYTRmZmI4Njc4YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTJkNjU5OTRjNzM4M2ZhOGY1NzkyNjliMDRiZGY1NzY3ZDQyMWI3ZjJkNTQ4YWJkNzBlMWUzNTdmNGNkNzliMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjExNTQwMGU3NGI2YzVkZjM5N2JlZjNlYWIzZDBjZGI0ZDBiZGIzMDRkNTRkZGQ3ZTI4YTc5ZGY2YTJhYjlkMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDRkNGE3OGI0ZjllMGE4MjM1ZTk2NmIwZTY2NjMyNzBiZGVjY2JjODkzZjRlOThkNzk2NDNkZjBhZDIwMDNmNyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L381-L386",
+          "version": "repo-lines-v1:sha256:8104dd9c39f67c3b160e101612985eeb0a92362de3b01e912580564de836aeb2:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjlkMGE2NGQ3MmEzZjI0Yjc1ODQxZWQxMTdkNmIzMDViOTQwZGRlYjI1NjcyMWFkMDllYWY4NTc2MzkxZTg4ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzNmOWYyMWMxN2NmZDNkYWY4ZGQyOTlkNmQwYzI1YzI3OTdjZWUxNjgzMDNlOThlMjNkZjcyZTRlZmM4NzA2YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjljYjUxMWY0MzdiYzQzZWNjMDc3OTEzNWRiMWM3YTYxMzE3MGIwNDI1MjRhZjc0MWJhZWE5YmRlZDk5ZDZjOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTVhNDgwN2I0ZTQ3YWFkNTVmNDFmZTAyZWIwZDBlYjA0NDVkNTUyZjI4OTQwZGQzNzBkZDgwOWM0ODQyZjU4OSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ba6d7564eb9840c1979a36978fd6f889",
+      "statement": "The legacy response bodies are governed by an additive-only rule: legacy aliases return the same bodies as the reference plus additive fields (directory_fingerprint where the reference lacked it), and fields the unmodified client reads — challenge_nonce, status 'registered', the bare-manifest results list — must never be removed or renamed; SPEC §4.9 states this as 'additive fields only, never removed'.",
+      "evidence": [
+        {
+          "resource": "repo://docs/SPEC.md#L774-L774",
+          "version": "repo-lines-v1:sha256:5309fd52ad0770bec67400e25ccc76a227f7088bf7d05c2ceedeac2bfd3c2737:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTMwOWZkNTJhZDA3NzBiZWM2NzQwMGUyNWNjYzc2YTIyN2Y3MDg4YmY3ZDA1YzJjZWVkZWFjMmJmZDNjMjczNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTMwOWZkNTJhZDA3NzBiZWM2NzQwMGUyNWNjYzc2YTIyN2Y3MDg4YmY3ZDA1YzJjZWVkZWFjMmJmZDNjMjczNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWQ1YWZjOTVmY2M4MTdmNjU3NzZhMDY2NTJmOTVhZWUxZjY2YmMwZTA2ZmFiYjE0NDZkNTlkOGQ4NDdlOTJjZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2ZhYWU2YWM4ZjhiNTZkOThlNmM5M2QwOWM3ODA3MjM4NzYyMzUxNjk4OWEyODUzMGUwMzdhN2YyNDkxMjRmNyJ9"
+        },
+        {
+          "resource": "repo://src/haap_directory/http_api.py#L494-L506",
+          "version": "repo-lines-v1:sha256:40a94d72cadaad10148903d5751ed8b8076eae04556aea4644e8d1a2536a61ff:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0MzI3NjVhZDhlYTA5Y2Q5MzQ5Mjc3YzQzMmY4MDdhY2E1YjUxNTE4YzIyYzgzZTc4YTE1NGVhZjJiNWUwMzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkyNGQzYjg5ZTYxYWY4N2E3MDVlMjY5N2UyODRmZTM4YzNjYzY2NzViZTg5M2RmY2FmZWYyZTM3YWI5M2M4YzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVlZmVmNzFkM2E4MjNiMzExOWJkZmYzNDUwMWI5YTY3YmJmNzY4OTBmY2MzODg3Mzg2ZTFhNmUzY2VlYTQwZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFhYmE2YjQ5NzAzZWI1NmQ2ODFmNzA4NjQ2N2UxNzRjYjc1ZjA4ZjBmZTgwOTI2ZDQ0ZDg4YWFjOGIxY2QyMWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ddbecd4b7b4c440f8f050dfa084b70bb",
+      "statement": "The compat test tests/test_compat_client.py locates the real unmodified client package via the HAAP_REPO env var first and the sibling ../haap checkout second, validating the candidate by the presence of haap/registry_client.py, and skips the whole module at collection with an explicit reason ('companion haap client package not found (set HAAP_REPO or place ../haap)') when neither exists; when found the module inserts the companion repo on sys.path and runs the genuine client imports.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_compat_client.py#L1-L11",
+          "version": "repo-lines-v1:sha256:fdc577ba35e4448a29fe3951e960841452093c0c2320ad9b90c094c20771f5b2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhiMDg0YTlmMzc4MTI0YjJiMWE1MTU2M2JmM2MyMjQ0NGViN2ZmMzM2OTIwMTdkYTI4YjIxMzZhZTU2OTg3ZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzMDNlY2RkNGE0ZDEwZjE5YzczZmQ0MmZkMTI0MzdmZDMzNTRhODI2ODE2MDVkYTUyNTVhOTdhMzkwNjhkYmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU1YjZlODcwNmI0MzA0N2YyYTZkYjY3ZjEzMjYzODU5NTYwNGU2N2YzNjk2Njg3NmNlMDE1OGYwMDUzZTZiZDEifQ"
+        },
+        {
+          "resource": "repo://tests/test_compat_client.py#L24-L43",
+          "version": "repo-lines-v1:sha256:4b28f6db73c1c2276581d706cdc649582ed794ddf2e78a61cc02f0c1ab6de8ac:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRiYTEwYmMxOWJiMzdhMTRkMzU3NjJlOGQ5YWJiNDk1NjRmZmM4NzE1NTFlNTIzMzc1OWRkMjllNzU0YmUwYTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ1YzBmOGZjYTViYzBmYmQxOWFjZTM1ZjNhYzc3ZmZjZTllOWM5MThmNWYzYmRmNWFjMThjNGM2MzY1ODhmYmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJhZTZlNDEzM2VhZjAxZDhlZTBlNTU0NWNiMzhiMzVhZmNmYzVlYjNmZGUyOGFmZWZjNWM0MTBmMjVhNTY4ZGEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a9be982c5a504fb5a7a67943f7674c0f",
+      "statement": "test_unmodified_client_register_search_heartbeat exercises the end-to-end wire contract by running the unmodified haap.identity.IdentityStore and haap.registry_client register, heartbeat and search against a real directory on an ephemeral port (the shared running fixture): registration completes with status 'registered', the unsigned heartbeat returns True, and both capability and free-text search return exactly one bare manifest whose agent.fingerprint and agent.endpoint match — jointly proving byte-level canonical serialization parity and legacy wire compatibility.",
+      "evidence": [
+        {
+          "resource": "repo://tests/conftest.py#L204-L241",
+          "version": "repo-lines-v1:sha256:e59c9466c3b8448e5623f5f2bb2d40309879ac070a535b7030a008868dcae57f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNmYjYxNTVkY2VjNTBlMDQ0NzYyZmE2MmU2YWU2NjYxNDVmMDNmYjE0NGNlMGIwM2RiZGY0ODYyYjQyNWNhY2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyNjU4ZTgyZDc2OGZlN2ZiOWE4OTIwZDM5MDdhOWE1NjhkNzY5ZTRlOTRlMDllMjA3NzQxYWY2YTc1Nzk4MGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYxNzdkOGY2YzUwMmZlZDFiMzc0MzZlOTY2MGMwMmQ0OWRjNjMyOTNjMjc5YzUxMDc1YmNkOGE0Y2EzZmEwOGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYzYmY2ODkxZWQxODZjN2ExOTk5MWM0NzlmYWFmZjgzNDNkNmRiNmM4MzcxNmE2MGY0YzZhOTY0YmJlYmI5MDQifQ"
+        },
+        {
+          "resource": "repo://tests/test_compat_client.py#L45-L74",
+          "version": "repo-lines-v1:sha256:aef158c01fd1c4162104b0eb7e2412e882f62d5cb1712630b055daa32a1e7719:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyY2Q1OTFlYjE5Nzc5OTQzNjgyYzFjZjg2NjUyZDI4YWE3ZjI0MDRiNjgyZjU0YmQwNzVhMWIyZTUyNWVkZGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkxMmRhMDlhZDRmMTI1MTIwNTE5MDUyNjMwMDhkM2MyZTc3NjVjMjI3MDczZTJhNzRmNWQxZGM4MmExZWRlODUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2NmZlZGEwMTBkNTE5YzU5MWY5ZjA4ZmViZjdmNTNiYzg3ZDJkZDdlZWY5MjVhZWFjOGUxMzIyZDIzMjZjNWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-05T09:05:06.235Z"
+  }
+}
